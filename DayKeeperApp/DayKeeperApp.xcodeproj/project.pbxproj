@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */; };
+		799CC39427A488AB0043A9FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC39327A488AB0043A9FF /* ContentView.swift */; };
+		799CC39627A488AC0043A9FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799CC39527A488AC0043A9FF /* Assets.xcassets */; };
+		799CC39927A488AC0043A9FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799CC39827A488AC0043A9FF /* Preview Assets.xcassets */; };
+		799CC3A427A488AC0043A9FF /* DayKeeperAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3A327A488AC0043A9FF /* DayKeeperAppTests.swift */; };
+		799CC3AF27A488AC0043A9FF /* DayKeeperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		799CC3A027A488AC0043A9FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 799CC38627A488AB0043A9FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 799CC38D27A488AB0043A9FF;
+			remoteInfo = DayKeeperApp;
+		};
+		799CC3AB27A488AC0043A9FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 799CC38627A488AB0043A9FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 799CC38D27A488AB0043A9FF;
+			remoteInfo = DayKeeperApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		799CC38E27A488AB0043A9FF /* DayKeeperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayKeeperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeeperAppApp.swift; sourceTree = "<group>"; };
+		799CC39327A488AB0043A9FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		799CC39527A488AC0043A9FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		799CC39827A488AC0043A9FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		799CC39A27A488AC0043A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		799CC39F27A488AC0043A9FF /* DayKeeperAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayKeeperAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		799CC3A327A488AC0043A9FF /* DayKeeperAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeeperAppTests.swift; sourceTree = "<group>"; };
+		799CC3A527A488AC0043A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		799CC3AA27A488AC0043A9FF /* DayKeeperAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayKeeperAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeeperAppUITests.swift; sourceTree = "<group>"; };
+		799CC3B027A488AC0043A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		799CC38B27A488AB0043A9FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		799CC39C27A488AC0043A9FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		799CC3A727A488AC0043A9FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		799CC38527A488AB0043A9FF = {
+			isa = PBXGroup;
+			children = (
+				799CC39027A488AB0043A9FF /* DayKeeperApp */,
+				799CC3A227A488AC0043A9FF /* DayKeeperAppTests */,
+				799CC3AD27A488AC0043A9FF /* DayKeeperAppUITests */,
+				799CC38F27A488AB0043A9FF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		799CC38F27A488AB0043A9FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				799CC38E27A488AB0043A9FF /* DayKeeperApp.app */,
+				799CC39F27A488AC0043A9FF /* DayKeeperAppTests.xctest */,
+				799CC3AA27A488AC0043A9FF /* DayKeeperAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		799CC39027A488AB0043A9FF /* DayKeeperApp */ = {
+			isa = PBXGroup;
+			children = (
+				799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */,
+				799CC39327A488AB0043A9FF /* ContentView.swift */,
+				799CC39527A488AC0043A9FF /* Assets.xcassets */,
+				799CC39A27A488AC0043A9FF /* Info.plist */,
+				799CC39727A488AC0043A9FF /* Preview Content */,
+			);
+			path = DayKeeperApp;
+			sourceTree = "<group>";
+		};
+		799CC39727A488AC0043A9FF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				799CC39827A488AC0043A9FF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		799CC3A227A488AC0043A9FF /* DayKeeperAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				799CC3A327A488AC0043A9FF /* DayKeeperAppTests.swift */,
+				799CC3A527A488AC0043A9FF /* Info.plist */,
+			);
+			path = DayKeeperAppTests;
+			sourceTree = "<group>";
+		};
+		799CC3AD27A488AC0043A9FF /* DayKeeperAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */,
+				799CC3B027A488AC0043A9FF /* Info.plist */,
+			);
+			path = DayKeeperAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		799CC38D27A488AB0043A9FF /* DayKeeperApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 799CC3B327A488AC0043A9FF /* Build configuration list for PBXNativeTarget "DayKeeperApp" */;
+			buildPhases = (
+				799CC38A27A488AB0043A9FF /* Sources */,
+				799CC38B27A488AB0043A9FF /* Frameworks */,
+				799CC38C27A488AB0043A9FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DayKeeperApp;
+			productName = DayKeeperApp;
+			productReference = 799CC38E27A488AB0043A9FF /* DayKeeperApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		799CC39E27A488AC0043A9FF /* DayKeeperAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 799CC3B627A488AC0043A9FF /* Build configuration list for PBXNativeTarget "DayKeeperAppTests" */;
+			buildPhases = (
+				799CC39B27A488AC0043A9FF /* Sources */,
+				799CC39C27A488AC0043A9FF /* Frameworks */,
+				799CC39D27A488AC0043A9FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				799CC3A127A488AC0043A9FF /* PBXTargetDependency */,
+			);
+			name = DayKeeperAppTests;
+			productName = DayKeeperAppTests;
+			productReference = 799CC39F27A488AC0043A9FF /* DayKeeperAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		799CC3A927A488AC0043A9FF /* DayKeeperAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 799CC3B927A488AC0043A9FF /* Build configuration list for PBXNativeTarget "DayKeeperAppUITests" */;
+			buildPhases = (
+				799CC3A627A488AC0043A9FF /* Sources */,
+				799CC3A727A488AC0043A9FF /* Frameworks */,
+				799CC3A827A488AC0043A9FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				799CC3AC27A488AC0043A9FF /* PBXTargetDependency */,
+			);
+			name = DayKeeperAppUITests;
+			productName = DayKeeperAppUITests;
+			productReference = 799CC3AA27A488AC0043A9FF /* DayKeeperAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		799CC38627A488AB0043A9FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					799CC38D27A488AB0043A9FF = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					799CC39E27A488AC0043A9FF = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 799CC38D27A488AB0043A9FF;
+					};
+					799CC3A927A488AC0043A9FF = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 799CC38D27A488AB0043A9FF;
+					};
+				};
+			};
+			buildConfigurationList = 799CC38927A488AB0043A9FF /* Build configuration list for PBXProject "DayKeeperApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 799CC38527A488AB0043A9FF;
+			productRefGroup = 799CC38F27A488AB0043A9FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				799CC38D27A488AB0043A9FF /* DayKeeperApp */,
+				799CC39E27A488AC0043A9FF /* DayKeeperAppTests */,
+				799CC3A927A488AC0043A9FF /* DayKeeperAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		799CC38C27A488AB0043A9FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				799CC39927A488AC0043A9FF /* Preview Assets.xcassets in Resources */,
+				799CC39627A488AC0043A9FF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		799CC39D27A488AC0043A9FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		799CC3A827A488AC0043A9FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		799CC38A27A488AB0043A9FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
+				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		799CC39B27A488AC0043A9FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				799CC3A427A488AC0043A9FF /* DayKeeperAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		799CC3A627A488AC0043A9FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				799CC3AF27A488AC0043A9FF /* DayKeeperAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		799CC3A127A488AC0043A9FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 799CC38D27A488AB0043A9FF /* DayKeeperApp */;
+			targetProxy = 799CC3A027A488AC0043A9FF /* PBXContainerItemProxy */;
+		};
+		799CC3AC27A488AC0043A9FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 799CC38D27A488AB0043A9FF /* DayKeeperApp */;
+			targetProxy = 799CC3AB27A488AC0043A9FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		799CC3B127A488AC0043A9FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		799CC3B227A488AC0043A9FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		799CC3B427A488AC0043A9FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DayKeeperApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		799CC3B527A488AC0043A9FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DayKeeperApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		799CC3B727A488AC0043A9FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DayKeeperAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DayKeeperApp.app/DayKeeperApp";
+			};
+			name = Debug;
+		};
+		799CC3B827A488AC0043A9FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DayKeeperAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DayKeeperApp.app/DayKeeperApp";
+			};
+			name = Release;
+		};
+		799CC3BA27A488AC0043A9FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DayKeeperAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DayKeeperApp;
+			};
+			name = Debug;
+		};
+		799CC3BB27A488AC0043A9FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DayKeeperAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DayKeeperApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		799CC38927A488AB0043A9FF /* Build configuration list for PBXProject "DayKeeperApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				799CC3B127A488AC0043A9FF /* Debug */,
+				799CC3B227A488AC0043A9FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		799CC3B327A488AC0043A9FF /* Build configuration list for PBXNativeTarget "DayKeeperApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				799CC3B427A488AC0043A9FF /* Debug */,
+				799CC3B527A488AC0043A9FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		799CC3B627A488AC0043A9FF /* Build configuration list for PBXNativeTarget "DayKeeperAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				799CC3B727A488AC0043A9FF /* Debug */,
+				799CC3B827A488AC0043A9FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		799CC3B927A488AC0043A9FF /* Build configuration list for PBXNativeTarget "DayKeeperAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				799CC3BA27A488AC0043A9FF /* Debug */,
+				799CC3BB27A488AC0043A9FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 799CC38627A488AB0043A9FF /* Project object */;
+}
