@@ -13,6 +13,8 @@
 		799CC39927A488AC0043A9FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799CC39827A488AC0043A9FF /* Preview Assets.xcassets */; };
 		799CC3A427A488AC0043A9FF /* DayKeeperAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3A327A488AC0043A9FF /* DayKeeperAppTests.swift */; };
 		799CC3AF27A488AC0043A9FF /* DayKeeperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */; };
+		799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3BC27A7421B0043A9FF /* LoginView.swift */; };
+		799CC3C127A745EA0043A9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3C027A745EA0043A9FF /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		799CC3AA27A488AC0043A9FF /* DayKeeperAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayKeeperAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeeperAppUITests.swift; sourceTree = "<group>"; };
 		799CC3B027A488AC0043A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		799CC3BC27A7421B0043A9FF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		799CC3C027A745EA0043A9FF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 		799CC39027A488AB0043A9FF /* DayKeeperApp */ = {
 			isa = PBXGroup;
 			children = (
+				799CC3BC27A7421B0043A9FF /* LoginView.swift */,
+				799CC3C027A745EA0043A9FF /* MainView.swift */,
 				799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */,
 				799CC39327A488AB0043A9FF /* ContentView.swift */,
 				799CC39527A488AC0043A9FF /* Assets.xcassets */,
@@ -259,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
+				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 			);
