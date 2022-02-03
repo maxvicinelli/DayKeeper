@@ -7,51 +7,86 @@
 
 import SwiftUI
 
+let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
+
+let lightBlueColor = Color(red: 240.0/255.0, green: 248/255.0, blue: 255/255.0, opacity:  1.0)
+
 struct LoginView: View {
+    
+    @ObservedObject var authModel: AuthenticationModel
+    
+    @State var authenticationDidSucceed: Bool = false
+    @State var authenticationDidFail: Bool = false
+    
+
+    
+    
     var body: some View {
         NavigationView {
             VStack() {
                 Text("DayKeeper")
                     .padding(.vertical, 15.0)
                     .font(.largeTitle)
-            
-                    
-                NavigationLink (
-                    destination: MainView(),
-                    label: {
-                        
-                        Text("Sign in")
-                            .fontWeight(.thin)
-                            .frame(width: 200.0, height: 40.0)
-                            .border(Color.blue)
-
-                    })
-                    .padding(.bottom, 5)
-            
-                    
-                NavigationLink (
-                    destination: MainView(),
-                    label: {
-                        
-                        Text("Register")
-                            .fontWeight(.thin)
-                            .frame(width: 200.0, height: 40.0)
-                            .border(Color.blue)
-
-                    })
                 
+                
+                TextField("username", text: $authModel.username)
+                    .padding()
+                    .border(Color.blue)
+                    .padding(.bottom, 20)
+                
+                SecureField("password", text: $authModel.password)
+                    .padding()
+                    .border(Color.blue)
+                    .padding(.bottom, 20)
+            
+                    
+//                NavigationLink (
+//                    destination: MainView(),
+//                    label: {
+//
+//                        Text("Sign in")
+//                            .fontWeight(.thin)
+//                            .frame(width: 200.0, height: 40.0)
+//                            .border(Color.blue)
+//
+//                    })
+//                    .padding(.bottom, 5)
+                
+                
+                
+//                if authModel.signingIn {
+//                    ProgressView()
+//
+//                } else {
+//                    Button ("Sign In") {
+//                        authModel.attemptSignIn()
+//                    }
+//                }
+                
+                Button ("Sign In") {
+                    if !authModel.attemptSignIn() {
+                        authenticationDidFail = true
+                    }
+                    
+                }
+                if authenticationDidFail {
+                    Text("auth failed")
+                }
+                
+                Button("Register") {
+                    
+                }
             }
             .padding(.bottom, 200.0)
             
         }
         .padding()
-        
-        
+
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(authModel: AuthenticationModel())
     }
 }
