@@ -38,30 +38,6 @@ struct LoginView: View {
                     .padding()
                     .border(Color.blue)
                     .padding(.bottom, 20)
-            
-                    
-//                NavigationLink (
-//                    destination: MainView(),
-//                    label: {
-//
-//                        Text("Sign in")
-//                            .fontWeight(.thin)
-//                            .frame(width: 200.0, height: 40.0)
-//                            .border(Color.blue)
-//
-//                    })
-//                    .padding(.bottom, 5)
-                
-                
-                
-//                if authModel.signingIn {
-//                    ProgressView()
-//
-//                } else {
-//                    Button ("Sign In") {
-//                        authModel.attemptSignIn()
-//                    }
-//                }
                 
                 Button ("Sign In") {
                     if !authModel.attemptSignIn() {
@@ -74,7 +50,7 @@ struct LoginView: View {
                 }
                 
                 Button("Register") {
-                    
+                    authModel.beginRegistration()
                 }
             }
             .padding(.bottom, 200.0)
