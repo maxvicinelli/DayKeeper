@@ -16,7 +16,11 @@ struct ViewMasterController: View {
         if authModel.authenticated {
             MainView()
         } else {
-            LoginView(authModel: authModel)
+            if authModel.registering {
+                RegistrationView(authModel: authModel)
+            } else {
+                LoginView(authModel: authModel)
+            }
         }
         
     }

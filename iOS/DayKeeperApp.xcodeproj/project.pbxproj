@@ -17,6 +17,7 @@
 		799CC3AF27A488AC0043A9FF /* DayKeeperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */; };
 		799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3BC27A7421B0043A9FF /* LoginView.swift */; };
 		799CC3C127A745EA0043A9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3C027A745EA0043A9FF /* MainView.swift */; };
+		79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CADA9227AC889B00518544 /* RegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		799CC3B027A488AC0043A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		799CC3BC27A7421B0043A9FF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		799CC3C027A745EA0043A9FF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		79CADA9227AC889B00518544 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,10 +110,11 @@
 				799CC3C027A745EA0043A9FF /* MainView.swift */,
 				799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */,
 				799CC39327A488AB0043A9FF /* ContentView.swift */,
+				79CADA9227AC889B00518544 /* RegistrationView.swift */,
+				796B76D627AB4C1900B57919 /* ViewMasterController.swift */,
 				799CC39527A488AC0043A9FF /* Assets.xcassets */,
 				799CC39A27A488AC0043A9FF /* Info.plist */,
 				799CC39727A488AC0043A9FF /* Preview Content */,
-				796B76D627AB4C1900B57919 /* ViewMasterController.swift */,
 			);
 			path = DayKeeperApp;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */,
 				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
 				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
+				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
