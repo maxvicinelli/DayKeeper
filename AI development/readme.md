@@ -1,0 +1,2 @@
+# DayKeeper notification scheduling algorithm
+calendar visualization code for testing provided from [stackoverflow](https://stackoverflow.com/questions/32485907/matplotlib-and-numpy-create-a-calendar-heatmap)
