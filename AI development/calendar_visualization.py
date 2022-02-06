@@ -1,20 +1,31 @@
 import datetime as dt
 import matplotlib.pyplot as plt
 import numpy as np
-from AI_calendar import set_notification_schedule
+from AI_calendar import set_notification_schedule, set_notification_schedule_v2
 
 def main():
-    dates, data, statuses = generate_data()
+    # call generate data with parameter of 1 for version 1 of notification schedule, 2 for version 2
+    # Version 1: if the user has been late 3 times in the last 5 days, increment the notification schedule
+    # if the user has been ontime 2 times in the last 2 days, decrement the notification schedule
+    # Version 2, STRICTER VERSION: if the user has been late 2 times in the last 7 days, increment the notification schedule
+    # if the user has been ontime for a 7 days straight, decrement the notification schedule
+
+    # version = 1
+    version = 2
+    dates, data, statuses = generate_data(version)
     fig, ax = plt.subplots(figsize=(6, 10))
     calendar_heatmap(ax, dates, data)
     fig, ax = plt.subplots(figsize=(6, 10))
     calendar_heatmap(ax, dates, statuses)
     plt.show()
 
-def generate_data():
+def generate_data(version):
     num = 100
     #data = np.random.randint(0, 20, num)
-    data, statuses = set_notification_schedule('test1.csv')
+    if version == 1:
+        data, statuses = set_notification_schedule('test1.csv')
+    elif version == 2:
+            data, statuses = set_notification_schedule_v2('test1.csv')
     print(data)
     start = dt.datetime(2015, 3, 13)
     dates = [start + dt.timedelta(days=i) for i in range(num)]
