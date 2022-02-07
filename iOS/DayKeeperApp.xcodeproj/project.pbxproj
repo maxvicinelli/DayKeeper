@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,13 @@
 		799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3BC27A7421B0043A9FF /* LoginView.swift */; };
 		799CC3C127A745EA0043A9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3C027A745EA0043A9FF /* MainView.swift */; };
 		79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CADA9227AC889B00518544 /* RegistrationView.swift */; };
+		FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventView.swift */; };
+		FE11B3BE27AF24980052CA22 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BD27AF24980052CA22 /* Event.swift */; };
+		FE11B3C127AF26770052CA22 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FE11B3C027AF26770052CA22 /* Realm */; };
+		FE11B3C327AF26770052CA22 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE11B3C227AF26770052CA22 /* RealmSwift */; };
+		FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C427B03ABA0052CA22 /* PreEvent.swift */; };
+		FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C627B05B900052CA22 /* EventRow.swift */; };
+		FE11B3C927B088490052CA22 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C827B088490052CA22 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +62,11 @@
 		799CC3BC27A7421B0043A9FF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		799CC3C027A745EA0043A9FF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		79CADA9227AC889B00518544 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		FE11B3BB27ADC3480052CA22 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		FE11B3BD27AF24980052CA22 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		FE11B3C427B03ABA0052CA22 /* PreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreEvent.swift; sourceTree = "<group>"; };
+		FE11B3C627B05B900052CA22 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		FE11B3C827B088490052CA22 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE11B3C327AF26770052CA22 /* RealmSwift in Frameworks */,
+				FE11B3C127AF26770052CA22 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +129,11 @@
 				799CC39527A488AC0043A9FF /* Assets.xcassets */,
 				799CC39A27A488AC0043A9FF /* Info.plist */,
 				799CC39727A488AC0043A9FF /* Preview Content */,
+				FE11B3BB27ADC3480052CA22 /* EventView.swift */,
+				FE11B3C827B088490052CA22 /* Data.swift */,
+				FE11B3C627B05B900052CA22 /* EventRow.swift */,
+				FE11B3BD27AF24980052CA22 /* Event.swift */,
+				FE11B3C427B03ABA0052CA22 /* PreEvent.swift */,
 			);
 			path = DayKeeperApp;
 			sourceTree = "<group>";
@@ -161,6 +180,10 @@
 			dependencies = (
 			);
 			name = DayKeeperApp;
+			packageProductDependencies = (
+				FE11B3C027AF26770052CA22 /* Realm */,
+				FE11B3C227AF26770052CA22 /* RealmSwift */,
+			);
 			productName = DayKeeperApp;
 			productReference = 799CC38E27A488AB0043A9FF /* DayKeeperApp.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +255,9 @@
 				Base,
 			);
 			mainGroup = 799CC38527A488AB0043A9FF;
+			packageReferences = (
+				FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 799CC38F27A488AB0043A9FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -275,12 +301,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */,
+				FE11B3BE27AF24980052CA22 /* Event.swift in Sources */,
 				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
 				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
+				FE11B3C927B088490052CA22 /* Data.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
+				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
+				FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */,
+				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -422,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -439,9 +470,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
+				DEVELOPMENT_TEAM = C33557Q74F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -460,9 +492,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
+				DEVELOPMENT_TEAM = C33557Q74F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,6 +627,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE11B3C027AF26770052CA22 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		FE11B3C227AF26770052CA22 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 799CC38627A488AB0043A9FF /* Project object */;
 }
