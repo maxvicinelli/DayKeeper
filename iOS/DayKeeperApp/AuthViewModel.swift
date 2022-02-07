@@ -33,26 +33,26 @@ final class AuthenticationModel: ObservableObject {
     func attemptRegistration() {
         
         print("called attempt Registration")
-        let events = loadFromiCal()
-        print(events)
-//        let eventStore = EKEventStore()
-//        
-//        print("got event store")
-//        
-//        eventStore.requestAccess(to: .event) { (granted, error) in
-//            if granted {
-//                
-//                print("granted!")
-//                let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
-//                let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: nil)
-//                
-//                print("lets get events")
-//                
-//                let events = eventStore.events(matching: predicate)
-//                print(events)
-//
-//            }
-//        }
+//        let events = loadFromiCal()
+//        print(events)
+        let eventStore = EKEventStore()
+        
+        print("got event store")
+        
+        eventStore.requestAccess(to: .event) { (granted, error) in
+            if granted {
+                
+                print("granted!")
+                let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
+                let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: nil)
+                
+                print("lets get events")
+                
+                let events = eventStore.events(matching: predicate)
+                print(events)
+
+            }
+        }
     }
     
     
