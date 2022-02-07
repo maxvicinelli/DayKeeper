@@ -11,6 +11,9 @@ struct RegistrationView: View {
     
     @ObservedObject var authModel: AuthenticationModel
     
+    
+    @State var registrationFailed: Bool = false
+    
     var body: some View {
         VStack {
             TextField("username", text: $authModel.username)
@@ -20,7 +23,19 @@ struct RegistrationView: View {
             SecureField("password", text: $authModel.password)
             
             
-            Button("Import iCalendar", action: authModel.attemptRegistration)
+            Button ("Create Account") {
+                if !authModel.attemptRegistration() {
+                    registrationFailed = true
+                }
+            }
+            
+            
+            if registrationFailed {
+                Text("registration failed")
+            }
+            
+            
+            
             
             
             
