@@ -9,7 +9,17 @@ import SwiftUI
 
 struct HelpView: View {
     var body: some View {
-        Text("do you need help?")
+        VStack {
+            Text("do you need help?")
+                .font(.title)
+            Text("Frequently asked questions:")
+                .font(.subheadline)
+            VStack{
+                Text("How can I decrease the frequency of notifications?")
+                Text("Answer")
+                    .foregroundColor(.red)
+            }
+        }
     }
 }
 

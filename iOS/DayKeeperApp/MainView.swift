@@ -9,7 +9,13 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("Import .ics file here")
+        VStack {
+            Text("Import .ics file here")
+            HStack {
+                Spacer()
+                Text("nav here")
+            }
+        }
     }
 }
 
