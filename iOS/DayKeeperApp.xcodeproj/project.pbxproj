@@ -25,6 +25,7 @@
 		FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C427B03ABA0052CA22 /* PreEvent.swift */; };
 		FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C627B05B900052CA22 /* EventRow.swift */; };
 		FE11B3C927B088490052CA22 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C827B088490052CA22 /* Data.swift */; };
+		FE11B3CB27B18CB60052CA22 /* PreEventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CA27B18CB60052CA22 /* PreEventRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		FE11B3C427B03ABA0052CA22 /* PreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreEvent.swift; sourceTree = "<group>"; };
 		FE11B3C627B05B900052CA22 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		FE11B3C827B088490052CA22 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		FE11B3CA27B18CB60052CA22 /* PreEventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreEventRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				FE11B3C627B05B900052CA22 /* EventRow.swift */,
 				FE11B3BD27AF24980052CA22 /* Event.swift */,
 				FE11B3C427B03ABA0052CA22 /* PreEvent.swift */,
+				FE11B3CA27B18CB60052CA22 /* PreEventRow.swift */,
 			);
 			path = DayKeeperApp;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
 				FE11B3C927B088490052CA22 /* Data.swift in Sources */,
+				FE11B3CB27B18CB60052CA22 /* PreEventRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
 				FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */,
