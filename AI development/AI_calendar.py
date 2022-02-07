@@ -57,6 +57,37 @@ def set_notification_schedule(test_file):
                 schedule_list[row[1]] += [schedule_list[row[1]][-1]]
     #print(len(schedule_list[row[1]]))
     return schedule_list[row[1]][1:],events[row[1]][1:]
+
+def set_notification_schedule_v2(test_file):
+    # event: list of statuses
+    events = {}
+    # event: list of notification level for each day
+    schedule_list= {}
+    
+    with open(test_file, 'r', newline='') as csvfile:
+        csv_reader = csv.reader(csvfile, delimiter=',')
+        # skip 
+        next(csv_reader)
+        for row in csv_reader:
+            #fieldnames = ['Type', 'Name', 'Date', 'Status']
+            
+            # guard clause in case event not created
+            if row[1] not in events:
+                  events[row[1]]=[-1]
+                  schedule_list[row[1]]=[0]
+
+            events[row[1]].append(int(row[3]))
+
+            # if the user has been late 2 times in the last 7 days, increment the notification schedule
+            if sum(events[row[1]][-7:]) >=2:
+                schedule_list[row[1]] += [min(4, 1+ schedule_list[row[1]][-1])]
+            # if the user has been ontime for a 7 days straight, decrement the notification schedule
+            elif events[row[1]][-7:] == [0,0,0,0,0,0,0]:
+                schedule_list[row[1]] += [max(0, schedule_list[row[1]][-1] - 1)]
+            else:
+                schedule_list[row[1]] += [schedule_list[row[1]][-1]]
+    #print(len(schedule_list[row[1]]))
+    return schedule_list[row[1]][1:],events[row[1]][1:]  
             
 if __name__ == "__main__":
     calendar_tests_1('test1.csv')
