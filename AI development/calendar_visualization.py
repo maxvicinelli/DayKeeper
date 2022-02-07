@@ -5,9 +5,9 @@ from AI_calendar import set_notification_schedule
 
 def main():
     dates, data, statuses = generate_data()
-    fig, ax = plt.subplots(figsize=(6, 10))
+    fig, ax = plt.subplots(figsize=(4, 6))
     calendar_heatmap(ax, dates, data)
-    fig, ax = plt.subplots(figsize=(6, 10))
+    fig, ax = plt.subplots(figsize=(4, 6))
     calendar_heatmap(ax, dates, statuses)
     plt.show()
 
