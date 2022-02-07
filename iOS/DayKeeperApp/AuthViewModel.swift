@@ -20,7 +20,7 @@ final class AuthenticationModel: ObservableObject {
     
     @Published var authenticated = false
     
-    @Published var registering = false 
+    @Published var registering = false
     
    
     
@@ -30,13 +30,30 @@ final class AuthenticationModel: ObservableObject {
         self.registering = true
     }
     
-    func attemptRegistration() {
+    func attemptRegistration() -> Bool {
         
         print("called attempt Registration")
+        
+        
+        if username == "" && password == "" && email == "" {
+            print("bad registration")
+            return false
+        }
+        
+        
+        print("Creating the following account: ")
+        print("username \(username)")
+        print("email \(email)")
+        print("password \(password)")
+    
+        
         
         let eventStore = EKEventStore()
         
         print("got event store")
+        
+        
+        // change this in the future - maybe we want an insuccessful registration if user doesn't grant access to their calendar?
         
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted {
@@ -52,6 +69,10 @@ final class AuthenticationModel: ObservableObject {
 
             }
         }
+        
+        authenticated = true 
+        return true
+        
     }
     
     
