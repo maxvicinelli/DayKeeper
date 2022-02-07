@@ -14,7 +14,9 @@ def main():
 def generate_data():
     num = 100
     #data = np.random.randint(0, 20, num)
-    data, statuses = set_notification_schedule('test1.csv')
+    window, late_threshold, early_threshold = 5, 3, 2
+    #data, statuses = set_notification_schedule('test1.csv', window, late_threshold, early_threshold)
+    data, statuses = set_notification_schedule('test2.csv', window, late_threshold, early_threshold)
     print(data)
     start = dt.datetime(2015, 3, 13)
     dates = [start + dt.timedelta(days=i) for i in range(num)]

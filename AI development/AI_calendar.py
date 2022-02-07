@@ -15,6 +15,7 @@
 
 import csv
 import random as r
+import pandas as pd 
 
 def calendar_tests_1(test_file):    
     with open(test_file, 'w', newline='') as csvfile:
@@ -27,7 +28,7 @@ def calendar_tests_1(test_file):
             writer.writerow({'Type' : "Class", 'Name' : "History", 'Date' : "%d"%i, 'Status': r.choice(["0","1"]) })
 
 
-def set_notification_schedule(test_file): 
+def set_notification_schedule(test_file, window, late_threshold, early_threshold): 
     # event: list of statuses
     events = {}
     # event: list of notification level for each day
@@ -47,11 +48,13 @@ def set_notification_schedule(test_file):
 
             events[row[1]].append(int(row[3]))
 
-            # if the user has been late 3 times in the last 5 days, increment the notification schedule
-            if sum(events[row[1]][-5:]) >=3:
+            # if the user has been late 3 times in the last "window" days, increment the notification schedule
+        
+
+            if sum(events[row[1]][-window:]) >= late_threshold:
                 schedule_list[row[1]] += [min(4, 1+ schedule_list[row[1]][-1])]
             # if the user has been ontime 2 times in the last 2 days, decrement the notification schedule
-            elif events[row[1]][-2:] == [0,0]:
+            elif events[row[1]][-2:] == [0] * early_threshold:
                 schedule_list[row[1]] += [max(0, schedule_list[row[1]][-1] - 1)]
             else:
                 schedule_list[row[1]] += [schedule_list[row[1]][-1]]
@@ -59,5 +62,6 @@ def set_notification_schedule(test_file):
     return schedule_list[row[1]][1:],events[row[1]][1:]
             
 if __name__ == "__main__":
-    calendar_tests_1('test1.csv')
-    print(set_notification_schedule('test1.csv'))
+    #calendar_tests_1('test1.csv')
+    window, late_threshold, early_threshold = 5, 3, 2
+    print(set_notification_schedule('test1.csv', window, late_threshold, early_threshold))
