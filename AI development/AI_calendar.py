@@ -68,7 +68,7 @@ def set_notification_schedule_test_3(test_file, window, late_threshold, early_th
     # event: list of notification level for each day
     schedule_list= {}
     # store event types
-    event_type = {}
+    event_types = {}
     
     with open(test_file, 'r', newline='') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=',')
@@ -80,17 +80,23 @@ def set_notification_schedule_test_3(test_file, window, late_threshold, early_th
             # guard clause in case event not created
             if row[1] not in events:
                 events[row[1]]=[-1]
-                event_type[row[1]] = [row[3]]
+                schedule_list[row[1]]=[0]
                 
                 # new logic for test case 3
                 # if we are already keeping track of an event of the same type, set the notification schedule to it.
-                
-                  
+                if row[0] in event_types:
+                    similar_events = [k for k,v in event_types.items() if v == row[0]]
+                    average_score = 0
+                    for event in similar_events:
+                        average_score += schedule_list[event][-1]
+                    schedule_list[row[1]] = [average_score/len(similar_events)]
+                    
+                    
+                event_types[row[1]] = [row[0]]
 
             events[row[1]].append(int(row[3]))
 
             # if the user has been late 3 times in the last "window" days, increment the notification schedule
-        
 
             if sum(events[row[1]][-window:]) >= late_threshold:
                 schedule_list[row[1]] += [min(4, 1+ schedule_list[row[1]][-1])]
@@ -100,10 +106,10 @@ def set_notification_schedule_test_3(test_file, window, late_threshold, early_th
             else:
                 schedule_list[row[1]] += [schedule_list[row[1]][-1]]
     #print(len(schedule_list[row[1]]))
-    return schedule_list[row[1]][1:],events[row[1]][1:]
+    return schedule_list,events
 
 if __name__ == "__main__":
     #calendar_tests_1('test1.csv')
     window, late_threshold, early_threshold = 5, 3, 2
-    print(set_notification_schedule('test1.csv', window, late_threshold, early_threshold))
+    #print(set_notification_schedule('test1.csv', window, late_threshold, early_threshold))
     print(set_notification_schedule_test_3('test3.csv', window, late_threshold, early_threshold))

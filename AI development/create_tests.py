@@ -48,7 +48,7 @@ def calendar_tests_3(test_file):
                 writer.writerow({'Type' : "Sport", 'Name' : "Hockey", 'Date' : "%d"%i, 'Status': is_late_or_early })
                 
 def semi_gauss_random():
-    x = min(1, max(0, r.gauss(0.2, 0.5)))
+    x = min(1, max(0, r.gauss(0.3, 0.5)))
     if (x>=0.5):
         return 1
     return 0     

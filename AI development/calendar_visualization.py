@@ -1,26 +1,25 @@
 import datetime as dt
 import matplotlib.pyplot as plt
 import numpy as np
-from AI_calendar import set_notification_schedule
+from AI_calendar import set_notification_schedule_test_3
 
 def main():
-    dates, data, statuses = generate_data()
-    fig, ax = plt.subplots(figsize=(4, 6))
-    calendar_heatmap(ax, dates, data)
-    fig, ax = plt.subplots(figsize=(4, 6))
-    calendar_heatmap(ax, dates, statuses)
+    window, late_threshold, early_threshold = 5, 3, 2
+    schedule_list,events = set_notification_schedule_test_3('test3.csv', window, late_threshold, early_threshold)
+
+    for key in schedule_list:
+
+        dates, data, statuses = generate_data(schedule_list[key],events[key])
+        fig, ax = plt.subplots(figsize=(4, 6))
+        calendar_heatmap(ax, dates, data)
     plt.show()
 
-def generate_data():
-    num = 100
+def generate_data(schedule_list,events):
+    num = len(schedule_list)
     #data = np.random.randint(0, 20, num)
-    window, late_threshold, early_threshold = 5, 3, 2
-    #data, statuses = set_notification_schedule('test1.csv', window, late_threshold, early_threshold)
-    data, statuses = set_notification_schedule('test2.csv', window, late_threshold, early_threshold)
-    print(data)
-    start = dt.datetime(2015, 3, 13)
+    start = dt.datetime(2022, 2, 7)
     dates = [start + dt.timedelta(days=i) for i in range(num)]
-    return dates, data, statuses
+    return dates, schedule_list,events
 
 def calendar_array(dates, data):
     i, j = zip(*[d.isocalendar()[1:] for d in dates])
