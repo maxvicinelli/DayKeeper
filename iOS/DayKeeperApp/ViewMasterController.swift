@@ -14,15 +14,14 @@ struct ViewMasterController: View {
     var body: some View {
         
         if authModel.authenticated {
-            EventView(events: dummyEvents())//MainView()
+            EventView(app: app!, events: loadFromiCal())
         } else {
             if authModel.registering {
-                RegistrationView(authModel: authModel)
+                RegistrationView()
+                    .environmentObject(authModel)
             } else {
-                LoginView(authModel: authModel)
-                if (authModel.authenticated) {
-                    EventView(events: dummyEvents())
-                }
+                LoginView()
+                    .environmentObject(authModel)
             }
         }
         

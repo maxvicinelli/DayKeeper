@@ -11,9 +11,6 @@ import RealmSwift
 import os
 import SwiftUI
 
-// The Realm app
-let app: RealmSwift.App? = RealmSwift.App(id: RealmAppId)
-
 let randomAdjectives = [
     "fluffy", "classy", "bumpy", "bizarre", "wiggly", "quick", "sudden",
     "acoustic", "smiling", "dispensable", "foreign", "shaky", "purple", "keen",
@@ -36,6 +33,7 @@ final class Data : ObservableObject {
 
 func loadFromiCal() -> [Event] {
     let eventStore = EKEventStore()
+    eventStore.reset()
     var events = [Event]()
     print("got event store")
     
@@ -50,7 +48,7 @@ func loadFromiCal() -> [Event] {
             
             //return eventStore.events(matching: predicate)
             let eventsFromStore = eventStore.events(matching: predicate)
-            print(eventsFromStore)
+            //print(eventsFromStore)
             //let userid = UUID()//uuidString: "620415ea8833dd465fb6f1f2")!
             let newCat = Category()
             newCat.Title = "Test"
@@ -63,7 +61,8 @@ func loadFromiCal() -> [Event] {
             taskCat.Description = "Task test"
             taskCat.UserId = userid
             taskCat.Cadence = "NEVER"
-            eventsFromStore.forEach() { e in
+            for e in eventsFromStore {
+//            eventsFromStore.forEach() { e in
                 let newEvent = Event()
                 newEvent.UserId = userid
                 newEvent.Category = newCat
@@ -89,7 +88,6 @@ func loadFromiCal() -> [Event] {
 
         }
     }
-    
     return events
 }
 
@@ -136,51 +134,10 @@ func dummyEvents() -> [Event] {
 
 func sendToRealm(events: [Event]) -> Void {
     if let app = app {
-        //let realm : Realm
-        
-        // TODO: make it so this uses the current user instead of hardcoded. 
-        let username = "dantejlarocco@gmail.com"
-        let password = "YjV7xkUEDu4YnGRA"
-        app.login(credentials: Credentials.emailPassword(email: username, password: password)) { result in
-            //isLoggingIn = false
-            if case let .failure(error) = result {
-                print("Failed to log in: \(error.localizedDescription)")
-                // Set error to observed property so it can be displayed
-                //self.error = error
-                return
-            }
-            // Other views are observing the app and will detect
-            // that the currentUser has changed. Nothing more to do here.
-            print("Logged in")
-//            app.currentUser?.identities.first?.identifier
-        }
-        
         let user = app.currentUser
-        var realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
         try! realm.write {
             realm.add(events)
         }
-        //@State var realm = try! Realm(configuration: Realm.Configuration.defaultConfiguration)
-        
-//        @AsyncOpen(appId: RealmAppId, partitionValue: app.currentUser!.id, timeout: 4000) var asyncOpen;
-//        switch asyncOpen {
-//        case .connecting:
-//            print("connecting")
-//        case .waitingForUser:
-//            print("waiting")//Logger().log("waiting")
-//        case .open(let realm):
-//            print("open")//Logger().log("open")
-////            try! realm.write {
-//////                ForEach(events) { e in
-//////                    realm.add(e.Category!)
-//////                }
-////                realm.add(events)
-////            }
-//            print("tried to write")
-//        case .progress(let progress):
-//            print("progress")
-//        case .error(let error):
-//            print("error")
-//        }
     }
 }

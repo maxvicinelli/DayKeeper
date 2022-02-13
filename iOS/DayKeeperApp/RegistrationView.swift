@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RegistrationView: View {
     
-    @ObservedObject var authModel: AuthenticationModel
-    
+    //@ObservedObject var authModel: AuthenticationModel
+    @EnvironmentObject var authModel: AuthenticationModel
     
     @State var registrationFailed: Bool = false
     
@@ -24,9 +24,18 @@ struct RegistrationView: View {
             
             
             Button ("Create Account") {
-                if !authModel.attemptRegistration() {
-                    registrationFailed = true
-                }
+                registerUser(vm: authModel, onCompletion: { (success) in
+                    if (success) {
+                        print("Creating the following account: ")
+                        print("username \(authModel.username)")
+                        print("email \(authModel.email)")
+                        print("password \(authModel.password)")
+                        authModel.authenticated = true
+                    } else {
+                        print("Did not create")
+                        registrationFailed = true
+                    }
+                })
             }
             
             
@@ -34,17 +43,13 @@ struct RegistrationView: View {
                 Text("registration failed")
             }
             
-            
-            
-            
-            
-            
         }
     }
 }
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(authModel: AuthenticationModel())
+        RegistrationView()
+            .environmentObject(AuthenticationModel())
     }
 }

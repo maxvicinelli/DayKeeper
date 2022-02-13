@@ -13,13 +13,10 @@ let lightBlueColor = Color(red: 240.0/255.0, green: 248/255.0, blue: 255/255.0, 
 
 struct LoginView: View {
     
-    @ObservedObject var authModel: AuthenticationModel
-    
+    //@ObservedObject var authModel: AuthenticationModel
+    @EnvironmentObject var authModel: AuthenticationModel
     @State var authenticationDidSucceed: Bool = false
     @State var authenticationDidFail: Bool = false
-    
-
-    
     
     var body: some View {
         NavigationView {
@@ -40,10 +37,13 @@ struct LoginView: View {
                     .padding(.bottom, 20)
                 
                 Button ("Sign In") {
-                    if !authModel.attemptSignIn() {
-                        authenticationDidFail = true
-                    }
-                    
+                    signIn(vm: authModel, onCompletion: { (success) in
+                        if (success) {
+                            authModel.authenticated = true
+                        } else {
+                            authenticationDidFail = true
+                        }
+                    })
                 }
                 if authenticationDidFail {
                     Text("auth failed")
@@ -63,7 +63,8 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(authModel: AuthenticationModel())
+        LoginView()
+            .environmentObject(AuthenticationModel())
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
