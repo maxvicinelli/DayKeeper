@@ -16,17 +16,20 @@ struct ViewMasterController: View {
         if authModel.viewingSettings {
             SettingsView(authModel: authModel)
         }
-        else if authModel.authenticated {
-            EventView(events: dummyEvents(), authModel: authModel)//MainView()
-        }
-        else {
+      
+
+        if authModel.authenticated {
+            EventView(authModel: authModel, app: app!, events: loadFromiCal())
+        } else {
+
             if authModel.registering {
-                RegistrationView(authModel: authModel)
+                RegistrationView()
+                    .environmentObject(authModel)
             } else {
-                LoginView(authModel: authModel)
+                LoginView()
+                    .environmentObject(authModel)
             }
         }
-        
     }
 }
 

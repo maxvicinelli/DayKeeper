@@ -8,7 +8,7 @@
 // Created w/ help from https://cocoacasts.com/networking-essentials-how-to-implement-basic-authentication-in-swift
 
 import Foundation
-
+import RealmSwift
 import EventKit
 
 
@@ -46,12 +46,16 @@ final class AuthenticationModel: ObservableObject {
             return false
         }
         
-        
-        print("Creating the following account: ")
-        print("username \(username)")
-        print("email \(email)")
-        print("password \(password)")
-    
+        registerUser(vm: self, onCompletion: { (success) in
+            if (success) {
+                print("Creating the following account: ")
+                print("username \(self.username)")
+                print("email \(self.email)")
+                print("password \(self.password)")
+            } else {
+                print("Did not create")
+            }
+        })
         
         
         let eventStore = EKEventStore()
@@ -76,24 +80,7 @@ final class AuthenticationModel: ObservableObject {
             }
         }
         
-        authenticated = true 
+        authenticated = true
         return true
-        
     }
-    
-    
-    
-    func attemptSignIn() -> Bool {
-        
-        print("signing in")
-        
-        if username == "Maxvicinelli" && password == "password" {
-            authenticated = true
-            return true
-        } else {
-            authenticated = false
-            return false
-        }
-    }
-    
 }

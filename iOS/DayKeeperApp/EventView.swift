@@ -9,25 +9,22 @@ import SwiftUI
 import RealmSwift
 
 struct EventView: View {
-//    @ObservedRealmObject var events: [Event]
-    @State var events: [Event]
-    
+
     @ObservedObject var authModel: AuthenticationModel
-    
-    //@ObservedRealmObject var event: Event
+    @ObservedObject var app: RealmSwift.App
+    var events: [Event]
+
     var body: some View {
         
         
-        let h = print("--------------------")
-        let _ = print("\(events[0].Title)")
-        let z = print("\(events[0])")
+
         
         VStack {
             NavigationView {
                 List {
                     ForEach(events) { event in
                         NavigationLink {
-                            EventRow(event: inout &event)
+                            EventRow(event: event)
                         } label:
                         {
                             Text(event.Title)
@@ -54,8 +51,9 @@ struct EventView: View {
 
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView(events: dummyEvents(), authModel: AuthenticationModel())
+
+        EventView(authModel: AuthenticationModel(), app: app!, events: loadFromiCal())
+
 .previewInterfaceOrientation(.portraitUpsideDown)
-        //EventView()
     }
 }

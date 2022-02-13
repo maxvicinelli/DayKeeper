@@ -35,6 +35,7 @@
 		FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CA27B18CB60052CA22 /* TaskRow.swift */; };
 		FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CC27B2DE330052CA22 /* Category.swift */; };
 		FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECDC8C27B4380C007DD3CD /* Constants.swift */; };
+		FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECDC9027B97722007DD3CD /* RealmSetup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		FE11B3CA27B18CB60052CA22 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		FE11B3CC27B2DE330052CA22 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FEECDC8C27B4380C007DD3CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FEECDC9027B97722007DD3CD /* RealmSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSetup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				799CC39727A488AC0043A9FF /* Preview Content */,
 				FE11B3BB27ADC3480052CA22 /* EventView.swift */,
 				FE11B3C827B088490052CA22 /* Data.swift */,
+				FEECDC9027B97722007DD3CD /* RealmSetup.swift */,
 				FE11B3C627B05B900052CA22 /* EventRow.swift */,
 				FE11B3BD27AF24980052CA22 /* Event.swift */,
 				FE11B3C427B03ABA0052CA22 /* PreEvent.swift */,
@@ -353,6 +356,7 @@
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
 				793F052E27B458E00062DE8E /* User.swift in Sources */,
 				FE11B3C927B088490052CA22 /* Data.swift in Sources */,
+				FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */,
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
