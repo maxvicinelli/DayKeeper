@@ -25,6 +25,9 @@ struct EventView: View {
                 }
             }
             .navigationTitle("Events")
+            .toolbar {
+                Button("Send to Realm", action: { sendToRealm(events: events) })
+            }
         }
     }
 }
@@ -32,6 +35,7 @@ struct EventView: View {
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
         EventView(events: dummyEvents())
+.previewInterfaceOrientation(.portraitUpsideDown)
         //EventView()
     }
 }

@@ -19,17 +19,17 @@ import RealmSwift
 // the cadence / recurrence pattern of the events,
 // ontime – an integer value representing how late the user was for the event (minutes)
 // preevents – a list of pre-events associated with the event that must be done before the event
-final class Event : Object, ObjectKeyIdentifiable, Identifiable {
-    @Persisted(primaryKey: true) var Id = ObjectId()
-    @Persisted var UserId : ObjectId
+final class Event : Object, ObjectKeyIdentifiable, Identifiable /*Decodable, Encodable*/ {
+    @Persisted(primaryKey: true) var _id = UUID()
+    @Persisted var UserId : UUID
     @Persisted var Title: String
     @Persisted var Description: String
     @Persisted var StartDate: Date
     @Persisted var EndDate: Date
-    @Persisted var Recurrence: String
-    @Persisted var Category: String
+    //@Persisted var Recurrence: String
+    @Persisted var Category: Category? = nil
     @Persisted var OnTime: Int
     @Persisted var NotifBefore: Int
-    @Persisted var PreEvents : List<PreEvent>
+    var Tasks: List<Event>? = nil//List<Event>()
 }
 

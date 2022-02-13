@@ -21,7 +21,7 @@ struct EventRow: View {
                 Section(header: Text("Properties")) {
                     Text("Category")
                         .bold()
-                    Text(event.Category)
+                    Text(/*event.Category?.Title ?? */"No title")
                     Text("Start Date")
                         .bold()
                     Text("\(event.StartDate)")
@@ -30,19 +30,30 @@ struct EventRow: View {
                     Text("\(event.EndDate)")
                     Text("Recurrence")
                         .bold()
-                    Text(event.Recurrence)
+                    Text(/*event.Category?.Cadence ?? */"NEVER")
                     Text("Notify me before")
                         .bold()
                     Text("\(event.NotifBefore)")
                 }.headerProminence(.increased)
-                Section(header: Text("Pre-Events")) {
-                    ForEach(event.PreEvents) { pre in
+                Section(header: Text("Tasks")) {
+                    if (event.Tasks != nil)
+                    {
+                        ForEach(event.Tasks!)
+                        { task in
                             NavigationLink {
-                                PreEventRow(pre: pre)
+                                TaskRow(task: task)
                             } label: {
-                                Text(pre.Description)
+                                Text(task.Title)
                             }
+                        }
                     }
+//                    ForEach(event.Tasks? ?? List(), id:\.Id) { task in
+//                            NavigationLink {
+//                                TaskRow(task: task)
+//                            } label: {
+//                                Text(task.Title)
+//                            }
+//                    }
                 }.headerProminence(.increased)
             }
         }

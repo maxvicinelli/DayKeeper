@@ -7,27 +7,29 @@
 
 import SwiftUI
 
-struct PreEventRow: View {
-    var pre : PreEvent
+struct TaskRow: View {
+    var task : Event
     var body: some View {
-        Text(pre.Description)
+        Text(task.Title)
             .font(.title)
+        Text(task.Description)
+            .font(.subheadline)
         List {
             Section(header: Text("Properties")) {
-                Text("Done?")
+                Text("On time")
                     .bold()
-                Text(pre.Done ? "Yes" : "No")
+                Text("\(task.OnTime)")
                 Text("Notify me before")
                     .bold()
-                Text("\(pre.NotifBefore)")
+                Text("\(task.NotifBefore)")
             }.headerProminence(.increased)
         }
     }
 }
 
-struct PreEventRow_Previews: PreviewProvider {
+struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
-        let pre = PreEvent()
-        PreEventRow(pre: pre)
+        let task = Event()
+        TaskRow(task: task)
     }
 }

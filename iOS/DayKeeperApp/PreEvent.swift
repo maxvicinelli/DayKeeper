@@ -17,11 +17,11 @@ import RealmSwift
 // a Description,
 // a 'Done' boolean which represents if the user actually accomplished the pre-event
 // and 'NotifBefore', the amount of time before the event to notify the user to do this pre-event
-final class PreEvent : Object, ObjectKeyIdentifiable, Codable
-{
-    @Persisted(primaryKey: true) var Id = ObjectId()
-    @Persisted var EventId : ObjectId
-    @Persisted var Description : String
-    @Persisted var Done : Bool
-    @Persisted var NotifBefore : Int
-}
+//final class PreEvent : Object, ObjectKeyIdentifiable, Codable
+//{
+//    @Persisted(primaryKey: true) var Id = ObjectId()
+//    @Persisted var EventId : ObjectId
+//    @Persisted var Description : String
+//    @Persisted var Done : Bool
+//    @Persisted var NotifBefore : Int
+//}
