@@ -1,0 +1,151 @@
+Type,Name,Date,Order,Status
+Class,History,0,0,1
+Clubs,Model UN,0,1,1
+Work,TAing,0,2,0
+Work,Studying,1,0,1
+Class,History,1,1,0
+Clubs,Model UN,1,2,1
+Clubs,Soccer,2,0,1
+Work,Studying,2,1,0
+Class,Math,2,2,0
+Clubs,Soccer,3,0,0
+Class,Math,3,1,1
+Work,Studying,3,2,0
+Work,TAing,4,0,1
+Clubs,Soccer,4,1,0
+Class,Math,4,2,0
+Class, English,5,0,1
+Clubs,Model UN,5,1,0
+Work,Studying,5,2,1
+Clubs,Model UN,6,0,1
+Work,TAing,6,1,0
+Class, English,6,2,1
+Clubs,Soccer,7,0,1
+Work,TAing,7,1,1
+Class,History,7,2,0
+Clubs,Soccer,8,0,1
+Work,TAing,8,1,1
+Class,History,8,2,1
+Class, English,9,0,0
+Work,TAing,9,1,1
+Clubs,Soccer,9,2,1
+Class,History,10,0,1
+Work,Studying,10,1,0
+Clubs,Soccer,10,2,1
+Class,Math,11,0,1
+Clubs,Model UN,11,1,1
+Work,Studying,11,2,1
+Work,Studying,12,0,1
+Clubs,Model UN,12,1,1
+Class,History,12,2,1
+Clubs,Soccer,13,0,1
+Class, English,13,1,1
+Work,TAing,13,2,1
+Clubs,Model UN,14,0,1
+Class, English,14,1,0
+Work,TAing,14,2,1
+Clubs,Model UN,15,0,1
+Class,Math,15,1,0
+Work,TAing,15,2,1
+Work,TAing,16,0,1
+Class,History,16,1,1
+Clubs,Soccer,16,2,1
+Work,TAing,17,0,0
+Class, English,17,1,1
+Clubs,Model UN,17,2,1
+Work,TAing,18,0,0
+Class,Math,18,1,1
+Clubs,Soccer,18,2,0
+Clubs,Soccer,19,0,1
+Class,Math,19,1,1
+Work,TAing,19,2,1
+Class, English,20,0,1
+Clubs,Soccer,20,1,0
+Work,TAing,20,2,1
+Class,Math,21,0,0
+Clubs,Soccer,21,1,0
+Work,TAing,21,2,0
+Clubs,Soccer,22,0,0
+Work,TAing,22,1,1
+Class,History,22,2,0
+Class,History,23,0,0
+Clubs,Soccer,23,1,0
+Work,TAing,23,2,1
+Class,Math,24,0,0
+Clubs,Soccer,24,1,1
+Work,TAing,24,2,1
+Class,History,25,0,0
+Work,Studying,25,1,1
+Clubs,Soccer,25,2,1
+Work,Studying,26,0,1
+Clubs,Model UN,26,1,1
+Class, English,26,2,1
+Clubs,Model UN,27,0,0
+Class,History,27,1,1
+Work,TAing,27,2,0
+Class,History,28,0,1
+Clubs,Soccer,28,1,0
+Work,Studying,28,2,0
+Class, English,29,0,1
+Work,TAing,29,1,0
+Clubs,Model UN,29,2,0
+Work,TAing,30,0,1
+Clubs,Soccer,30,1,1
+Class, English,30,2,1
+Clubs,Soccer,31,0,1
+Class,History,31,1,0
+Work,TAing,31,2,0
+Clubs,Model UN,32,0,1
+Class,Math,32,1,0
+Work,TAing,32,2,1
+Work,Studying,33,0,1
+Class,Math,33,1,1
+Clubs,Soccer,33,2,1
+Clubs,Soccer,34,0,1
+Work,Studying,34,1,1
+Class,Math,34,2,1
+Class,Math,35,0,1
+Clubs,Model UN,35,1,0
+Work,TAing,35,2,1
+Class, English,36,0,0
+Work,Studying,36,1,0
+Clubs,Model UN,36,2,0
+Work,Studying,37,0,1
+Class,History,37,1,1
+Clubs,Soccer,37,2,0
+Clubs,Model UN,38,0,1
+Class,History,38,1,1
+Work,Studying,38,2,1
+Work,Studying,39,0,1
+Clubs,Soccer,39,1,1
+Class, English,39,2,1
+Class,Math,40,0,0
+Work,TAing,40,1,1
+Clubs,Model UN,40,2,0
+Clubs,Model UN,41,0,0
+Class,Math,41,1,0
+Work,TAing,41,2,1
+Class,History,42,0,1
+Clubs,Soccer,42,1,0
+Work,Studying,42,2,1
+Class,Math,43,0,0
+Work,Studying,43,1,1
+Clubs,Soccer,43,2,1
+Class,Math,44,0,0
+Work,Studying,44,1,1
+Clubs,Model UN,44,2,1
+Work,TAing,45,0,0
+Class,History,45,1,0
+Clubs,Soccer,45,2,0
+Class, English,46,0,0
+Work,Studying,46,1,1
+Clubs,Model UN,46,2,0
+Class, English,47,0,1
+Work,Studying,47,1,1
+Clubs,Model UN,47,2,0
+Clubs,Model UN,48,0,0
+Class,History,48,1,0
+Work,Studying,48,2,1
+Work,TAing,49,0,1
+Clubs,Model UN,49,1,1
+Class,History,49,2,1
