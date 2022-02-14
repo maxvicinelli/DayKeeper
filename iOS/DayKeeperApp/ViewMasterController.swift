@@ -13,16 +13,17 @@ struct ViewMasterController: View {
     
     var body: some View {
         
-        if authModel.authenticated {
-            EventView(events: dummyEvents())//MainView()
-        } else {
+        if authModel.viewingSettings {
+            SettingsView(authModel: authModel)
+        }
+        else if authModel.authenticated {
+            EventView(events: dummyEvents(), authModel: authModel)//MainView()
+        }
+        else {
             if authModel.registering {
                 RegistrationView(authModel: authModel)
             } else {
                 LoginView(authModel: authModel)
-                if (authModel.authenticated) {
-                    EventView(events: dummyEvents())
-                }
             }
         }
         
