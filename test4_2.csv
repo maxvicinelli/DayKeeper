@@ -1,8 +1,8 @@
-Name,Tasks
-Math,"['pack bag', 'bring calculator', 'complete pre class question']"
-History,"['pack bag', 'bring textbook', 'complete pre class question']"
-English,"['pack bag', 'bring textbook', 'read poetry']"
-Soccer,"['pack bag', 'bring cleats']"
-Model UN,"['pack bag', 'bring binder']"
-TAing,"['pack bag', 'bring notes']"
-Studying,"['pack bag', 'silence phone']"
+Type,Name,Tasks
+Class,Math,"['pack bag', 'bring calculator', 'complete pre class question']"
+Class,History,"['pack bag', 'bring textbook', 'complete pre class question']"
+Class,English,"['pack bag', 'bring textbook', 'read poetry']"
+Club,Soccer,"['pack bag', 'bring cleats']"
+Club,Model UN,"['pack bag', 'bring binder']"
+Work,TAing,"['pack bag', 'bring notes']"
+Work,,"['pack bag', 'silence phone']"

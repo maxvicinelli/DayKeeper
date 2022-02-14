@@ -33,7 +33,7 @@ def calendar_tests_4(test_file, event_tasks_file):
                 order += 1
                 
     with open(event_tasks_file, 'w', newline='') as csvfile:
-        fieldnames = [ 'Name', 'Tasks']
+        fieldnames = [ 'Type', 'Name', 'Tasks']
         
         
           
@@ -41,13 +41,13 @@ def calendar_tests_4(test_file, event_tasks_file):
 
         writer.writeheader()
         
-        writer.writerow({'Name' : "Math" , "Tasks": ["pack bag", "bring calculator", "complete pre class question"] })
-        writer.writerow({'Name' : "History" , "Tasks": ["pack bag", "bring textbook", "complete pre class question"] })
-        writer.writerow({'Name' : "English" , "Tasks": ["pack bag", "bring textbook", "read poetry"] })
-        writer.writerow({'Name' : "Soccer" , "Tasks": ["pack bag", "bring cleats"]})
-        writer.writerow({'Name' : "Model UN" , "Tasks":["pack bag", "bring binder"] })
-        writer.writerow({'Name' : "TAing" , "Tasks": ["pack bag", "bring notes"] })
-        writer.writerow({'Name' : "Studying" , "Tasks": ["pack bag", "silence phone"] })
+        writer.writerow({'Type' : "Class", 'Name' : "Math" , "Tasks": ["pack bag", "bring calculator", "complete pre class question"] })
+        writer.writerow({'Type' : "Class", 'Name' : "History" , "Tasks": ["pack bag", "bring textbook", "complete pre class question"] })
+        writer.writerow({'Type' : "Class", 'Name' : "English" , "Tasks": ["pack bag", "bring textbook", "read poetry"] })
+        writer.writerow({'Type' : "Club", 'Name' : "Soccer" , "Tasks": ["pack bag", "bring cleats"]})
+        writer.writerow({'Type' : "Club", 'Name' : "Model UN" , "Tasks":["pack bag", "bring binder"] })
+        writer.writerow({'Type' : "Work", 'Name' : "TAing" , "Tasks": ["pack bag", "bring notes"] })
+        writer.writerow({'Type' : "Work", "Tasks": ["pack bag", "silence phone"] })
 
 if __name__ == "__main__":
     # uniform randomness
