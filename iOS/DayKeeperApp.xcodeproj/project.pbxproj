@@ -22,6 +22,9 @@
 		799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3BC27A7421B0043A9FF /* LoginView.swift */; };
 		799CC3C127A745EA0043A9FF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3C027A745EA0043A9FF /* MainView.swift */; };
 		79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CADA9227AC889B00518544 /* RegistrationView.swift */; };
+		79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167A27BAEA3C007BFE1D /* SettingsView.swift */; };
+		79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */; };
+		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
 		FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventView.swift */; };
 		FE11B3BE27AF24980052CA22 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BD27AF24980052CA22 /* Event.swift */; };
@@ -74,6 +77,9 @@
 		799CC3BC27A7421B0043A9FF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		799CC3C027A745EA0043A9FF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		79CADA9227AC889B00518544 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		79DC167A27BAEA3C007BFE1D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
+		79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsViews.swift; sourceTree = "<group>"; };
 		AC4B505127AEDA0700488105 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		FE11B3BB27ADC3480052CA22 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		FE11B3BD27AF24980052CA22 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				799CC39327A488AB0043A9FF /* ContentView.swift */,
 				79CADA9227AC889B00518544 /* RegistrationView.swift */,
 				751D4C7C27B0C04A006273F4 /* HelpView.swift */,
+				79DC168027BAF076007BFE1D /* SettingsViews */,
 				796B76D627AB4C1900B57919 /* ViewMasterController.swift */,
 				799CC39527A488AC0043A9FF /* Assets.xcassets */,
 				799CC39A27A488AC0043A9FF /* Info.plist */,
@@ -186,6 +193,16 @@
 				799CC3B027A488AC0043A9FF /* Info.plist */,
 			);
 			path = DayKeeperAppUITests;
+			sourceTree = "<group>";
+		};
+		79DC168027BAF076007BFE1D /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				79DC167A27BAEA3C007BFE1D /* SettingsView.swift */,
+				79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */,
+				79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */,
+			);
+			path = SettingsViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +348,8 @@
 				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				AC4B505227AEDA0700488105 /* StatsView.swift in Sources */,
+				79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */,
+				79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */,
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */,
@@ -344,6 +363,7 @@
 				FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */,
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */,
+				79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +522,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = C33557Q74F;
+				DEVELOPMENT_TEAM = HU48CMT242;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -524,7 +544,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = C33557Q74F;
+				DEVELOPMENT_TEAM = HU48CMT242;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;

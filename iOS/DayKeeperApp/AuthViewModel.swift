@@ -22,6 +22,8 @@ final class AuthenticationModel: ObservableObject {
     
     @Published var registering = false
     
+    @Published var viewingSettings = false 
+    
    
     
     // @Published var signingIn = false
@@ -32,6 +34,10 @@ final class AuthenticationModel: ObservableObject {
     
     func cancelRegistration() {
         self.registering = false
+    }
+
+    func updateSettings() {
+        self.viewingSettings = true
     }
     
     func attemptRegistration() -> Bool {

@@ -14,22 +14,36 @@ struct EventView: View {
     @StateObject private var notificationManager = NotificationManager()
     
     var events: [Event]
+    
+    @ObservedObject var authModel: AuthenticationModel
+    
     //@ObservedRealmObject var event: Event
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(events) { event in
-                     NavigationLink {
-                        EventRow(event: event)
-                    } label:
-                    {
-                        Text(event.Title)
+
+        VStack {
+            NavigationView {
+                List {
+                    ForEach(events) { event in
+                        NavigationLink {
+                            EventRow(event: event)
+                        } label:
+                        {
+                            Text(event.Title)
+                        }
                     }
                 }
-            }
-            .navigationTitle("Events")
-            .toolbar {
-                Button("Send to Realm", action: { sendToRealm(events: events) })
+                .navigationTitle("Events")
+                .toolbar {
+                    
+                    
+                    HStack {
+                        Button("Settings", action: {
+                            authModel.updateSettings()
+                            print("updated settings!")
+                        })
+                        Button("Send to Realm", action: { sendToRealm(events: events) })
+                    }
+                }
             }
             .onAppear(perform: notificationManager.reloadAuthorizationStatus)
             .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
@@ -51,7 +65,7 @@ struct EventView: View {
 
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView(events: dummyEvents())
+        EventView(events: dummyEvents(), authModel: AuthenticationModel())
 .previewInterfaceOrientation(.portraitUpsideDown)
         //EventView()
     }
