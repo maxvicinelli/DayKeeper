@@ -30,6 +30,10 @@ final class AuthenticationModel: ObservableObject {
         self.registering = true
     }
     
+    func cancelRegistration() {
+        self.registering = false
+    }
+    
     func attemptRegistration() -> Bool {
         
         print("called attempt Registration")

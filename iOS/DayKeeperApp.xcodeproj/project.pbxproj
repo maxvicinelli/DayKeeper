@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D4C7C27B0C04A006273F4 /* HelpView.swift */; };
+		7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757837FF27B99CB300D8FF4A /* NotificationManager.swift */; };
+		7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */; };
 		793F052E27B458E00062DE8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793F052D27B458E00062DE8E /* User.swift */; };
 		796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D427AB40BB00B57919 /* AuthViewModel.swift */; };
 		796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D627AB4C1900B57919 /* ViewMasterController.swift */; };
@@ -52,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		757837FF27B99CB300D8FF4A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
 		793F052D27B458E00062DE8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796B76D427AB40BB00B57919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		796B76D627AB4C1900B57919 /* ViewMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMasterController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				796B76D427AB40BB00B57919 /* AuthViewModel.swift */,
 				799CC3C027A745EA0043A9FF /* MainView.swift */,
 				799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */,
+				757837FF27B99CB300D8FF4A /* NotificationManager.swift */,
+				7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */,
 				799CC39327A488AB0043A9FF /* ContentView.swift */,
 				79CADA9227AC889B00518544 /* RegistrationView.swift */,
 				751D4C7C27B0C04A006273F4 /* HelpView.swift */,
@@ -319,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */,
+				7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */,
 				FE11B3BE27AF24980052CA22 /* Event.swift in Sources */,
 				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
 				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
@@ -333,6 +340,7 @@
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
+				7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */,
 				FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */,
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */,

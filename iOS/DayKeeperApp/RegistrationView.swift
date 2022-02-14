@@ -16,6 +16,11 @@ struct RegistrationView: View {
     
     var body: some View {
         VStack {
+            HStack{
+                Button("Back"){
+                    authModel.cancelRegistration()
+                }
+            }
             TextField("username", text: $authModel.username)
             
             TextField("email", text: $authModel.email)
