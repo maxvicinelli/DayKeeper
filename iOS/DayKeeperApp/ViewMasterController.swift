@@ -17,7 +17,11 @@ struct ViewMasterController: View {
     
     var body: some View {
         if authModel.authenticated {
-            EventsView(app: app!, eventsVM: getEventsFromDb())//loadFromiCal(eventStore: store, eventsVM: eventsVM))
+            if authModel.registering {
+                EventsView(app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
+            } else {
+                EventsView(app: app!, eventsVM: getEventsFromDb())
+            }
         } else {
             LoginView()
                 .environmentObject(authModel)
