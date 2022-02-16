@@ -7,14 +7,17 @@
 
 import SwiftUI
 import RealmSwift
+import EventKit
 
 struct EventsView: View {
     @ObservedObject var app: RealmSwift.App
-    var events: [Event]
+    @ObservedObject var eventsVM : EventsViewModel
+    var eventStore = EKEventStore()
+
     var body: some View {
         NavigationView {
             List {
-                ForEach(events) { event in
+                ForEach(eventsVM.events) { event in
                     NavigationLink {
                         EventRow(event: event)
                     } label:
@@ -25,7 +28,7 @@ struct EventsView: View {
             }
             .navigationTitle("Events")
             .toolbar {
-                Button("Send to Realm", action: { sendToRealm(events: events) })
+                Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
             }
         }
     }
@@ -33,7 +36,8 @@ struct EventsView: View {
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(app: app!, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+        EventsView(app: app!, eventsVM: dummyEvents())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
+

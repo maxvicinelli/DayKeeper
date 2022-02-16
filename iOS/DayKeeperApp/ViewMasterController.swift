@@ -12,10 +12,12 @@ import RealmSwift
 struct ViewMasterController: View {
     
     @ObservedObject var authModel: AuthenticationModel
+    @ObservedObject var eventsVM: EventsViewModel = EventsViewModel()
     var store = EKEventStore()
+    
     var body: some View {
         if authModel.authenticated {
-            EventsView(app: app!, events: dummyEvents())//loadFromiCal(eventStore: store))
+            EventsView(app: app!, eventsVM: getEventsFromDb())//loadFromiCal(eventStore: store, eventsVM: eventsVM))
         } else {
             LoginView()
                 .environmentObject(authModel)
