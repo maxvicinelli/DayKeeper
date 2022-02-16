@@ -1,24 +1,19 @@
 //
-//  EventRow.swift
+//  EventEditView.swift
 //  DayKeeperApp
 //
-//  Created by Dante LaRocco on 2/6/22.
+//  Created by Dante LaRocco on 2/15/22.
 //
 
 import SwiftUI
-import RealmSwift
 
-struct EventRow: View {
-    var event: Event
-    //@ObservedRealmObject var event: Event
+struct EventEditView: View {
+    @State var event : Event
     var body: some View {
-        Text(event.Title)
+        TextField("Title", text: $event.Title)//, text: "Title")
             .font(.title)
-        Text(event.Description)
+        TextField("Description", text: $event.Description)
             .font(.subheadline)
-        NavigationLink(destination: EventEditView(event: event)) {
-            Text("Edit")
-        }
         VStack(alignment: .leading) {
             List {
                 Section(header: Text("Properties")) {
@@ -56,9 +51,9 @@ struct EventRow: View {
     }
 }
 
-struct EventRow_Previews: PreviewProvider {
+struct EventEditView_Previews: PreviewProvider {
     static var previews: some View {
         let event = Event()
-        EventRow(event: event)
+        EventEditView(event: event)
     }
 }

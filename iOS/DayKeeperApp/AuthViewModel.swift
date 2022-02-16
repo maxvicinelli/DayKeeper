@@ -14,7 +14,7 @@ import EventKit
 
 final class AuthenticationModel: ObservableObject {
     
-    @Published var username = ""
+    //@Published var username = ""
     @Published var password = ""
     @Published var email = ""
     
@@ -35,7 +35,7 @@ final class AuthenticationModel: ObservableObject {
         print("called attempt Registration")
         
         
-        if username == "" && password == "" && email == "" {
+        if password == "" && email == "" {
             print("bad registration")
             return false
         }
@@ -43,7 +43,6 @@ final class AuthenticationModel: ObservableObject {
         registerUser(vm: self, onCompletion: { (success) in
             if (success) {
                 print("Creating the following account: ")
-                print("username \(self.username)")
                 print("email \(self.email)")
                 print("password \(self.password)")
             } else {

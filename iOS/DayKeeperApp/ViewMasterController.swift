@@ -6,23 +6,19 @@
 //
 
 import SwiftUI
+import EventKit
+import RealmSwift
 
 struct ViewMasterController: View {
     
     @ObservedObject var authModel: AuthenticationModel
-    
+    var store = EKEventStore()
     var body: some View {
-        
         if authModel.authenticated {
-            EventView(app: app!, events: loadFromiCal())
+            EventsView(app: app!, events: dummyEvents())//loadFromiCal(eventStore: store))
         } else {
-            if authModel.registering {
-                RegistrationView()
-                    .environmentObject(authModel)
-            } else {
-                LoginView()
-                    .environmentObject(authModel)
-            }
+            LoginView()
+                .environmentObject(authModel)
         }
         
     }

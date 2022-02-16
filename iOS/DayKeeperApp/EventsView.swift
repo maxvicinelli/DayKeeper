@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 
-struct EventView: View {
+struct EventsView: View {
     @ObservedObject var app: RealmSwift.App
     var events: [Event]
     var body: some View {
@@ -31,10 +31,9 @@ struct EventView: View {
     }
 }
 
-struct EventView_Previews: PreviewProvider {
+struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView(app: app!, events: loadFromiCal())
+        EventsView(app: app!, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
 .previewInterfaceOrientation(.portraitUpsideDown)
-        //EventView()
     }
 }

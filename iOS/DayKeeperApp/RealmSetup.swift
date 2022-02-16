@@ -24,14 +24,12 @@ func registerUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Voi
         print("Successfully registered user.")
         onCompletion(true)
     }
-    
-    
 }
 
 func signIn(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
     let app = app
     print("signing in")
-    app!.login(credentials: Credentials.emailPassword(email: vm.username, password: vm.password)) { result in
+    app!.login(credentials: Credentials.emailPassword(email: vm.email, password: vm.password)) { result in
         //isLoggingIn = false
         if case let .failure(error) = result {
             print("Failed to log in: \(error.localizedDescription)")
