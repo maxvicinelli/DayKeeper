@@ -18,34 +18,47 @@ struct EventsView: View {
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
 
+//    mutating func helper() {
+//        self.eventsVM = getEventsFromDb()
+//    }
+
+//    override func viewWillAppear(_ animated : Bool) {
+//        self.eventsVM = getEventsFromDb()
+//        super.viewWillAppear(animated)
+//        print("test")
+//    }
+//
     var body: some View {
-        VStack {
+
             
-            NavigationView {
-                List {
-                    ForEach(eventsVM.events) { event in
-                        NavigationLink {
-                            EventRow(event: event)
-                        } label:
-                        {
-                            Text(event.Title)
-                        }
+        NavigationView {
+            List {
+                ForEach(eventsVM.events) { event in
+                    NavigationLink {
+                        EventRow(event: event)
+                    } label:
+                    {
+                        Text(event.Title)
+                            .onAppear(perform: {eventsVM.update()})
                     }
                 }
-                .navigationTitle("Events")
-                .toolbar {
-                    HStack {
-                        Button("Settings", action: {
-                            authModel.updateSettings()
-                            print("updated settings!")
-                        })
-                        Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
-                    }
+            }
+            .navigationTitle("Events")
+            .toolbar {
+                HStack {
+                    Button("Settings", action: {
+                        authModel.updateSettings()
+                        print("updated settings!")
+                    })
+                    Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
+
                 }
             }
         }
     }
 }
+
+
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {

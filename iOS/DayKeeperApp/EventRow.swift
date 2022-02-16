@@ -15,7 +15,9 @@ struct EventRow: View {
     @State var event: Event
     
     private func updateEvent() {
-        print(event)
+        //var eventsInDb = getEventsFromDb()
+        postEvent(event: event)
+        
         
         // here is where we will send the event to the DB
         // need to make sure that we're grabbing from DB each time we open main view
