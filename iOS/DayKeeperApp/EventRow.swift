@@ -26,9 +26,8 @@ struct EventRow: View {
     
     //@ObservedRealmObject var event: Event
     var body: some View {
-        
-    
-        
+
+
         VStack(alignment: .leading) {
             Text("Title")
                .font(.title)
@@ -77,11 +76,14 @@ struct EventRow: View {
                             }
                         }
                     }
+
                 }
             Button("Save", action: updateEvent)
+
+                }.headerProminence(.increased)
         }
     }
-}
+
 
 
 

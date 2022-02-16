@@ -26,7 +26,7 @@ struct LoginView: View {
                     .font(.largeTitle)
                 
                 
-                TextField("username", text: $authModel.username)
+                TextField("email", text: $authModel.email)
                     .padding()
                     .border(Color.blue)
                     .padding(.bottom, 20)
@@ -49,8 +49,9 @@ struct LoginView: View {
                     Text("auth failed")
                 }
                 
-                Button("Register") {
-                    authModel.beginRegistration()
+                NavigationLink(destination: RegistrationView()
+                                    .environmentObject(authModel)) {
+                    Text("Register")
                 }
             }
             .padding(.bottom, 200.0)

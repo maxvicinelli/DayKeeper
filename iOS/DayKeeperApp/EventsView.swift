@@ -8,8 +8,9 @@
 import SwiftUI
 import RealmSwift
 
-struct EventView: View {
 
+
+struct EventsView: View {
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var app: RealmSwift.App
     var events: [Event]
@@ -49,11 +50,9 @@ struct EventView: View {
     }
 }
 
-struct EventView_Previews: PreviewProvider {
+struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-
-        EventView(authModel: AuthenticationModel(), app: app!, events: loadFromiCal())
-
+        EventsView(authModel: AuthenticationModel(), app: app!, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

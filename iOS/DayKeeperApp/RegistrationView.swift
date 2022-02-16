@@ -16,23 +16,19 @@ struct RegistrationView: View {
     
     var body: some View {
         VStack {
-            TextField("username", text: $authModel.username)
-            
             TextField("email", text: $authModel.email)
-            
             SecureField("password", text: $authModel.password)
             
-            
             Button ("Create Account") {
-                registerUser(vm: authModel, onCompletion: { (success) in
-                    if (success) {
-                        print("Creating the following account: ")
-                        print("username \(authModel.username)")
-                        print("email \(authModel.email)")
-                        print("password \(authModel.password)")
-                        authModel.authenticated = true
+                registerUser(vm: authModel, onCompletion: { (registerSuccess) in
+                    if (registerSuccess) {
+                        signIn(vm: authModel, onCompletion: { (signInSuccess) in
+                            if (signInSuccess) {
+                                authModel.authenticated = true
+                                
+                            }
+                        })
                     } else {
-                        print("Did not create")
                         registrationFailed = true
                     }
                 })
