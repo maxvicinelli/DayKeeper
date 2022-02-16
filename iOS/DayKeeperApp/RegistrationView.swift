@@ -25,7 +25,7 @@ struct RegistrationView: View {
                         signIn(vm: authModel, onCompletion: { (signInSuccess) in
                             if (signInSuccess) {
                                 authModel.authenticated = true
-                                
+                                authModel.registering = true
                             }
                         })
                     } else {

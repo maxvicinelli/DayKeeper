@@ -23,28 +23,22 @@ struct ViewMasterController: View {
         }
       
         if authModel.authenticated {
-<<<<<<< HEAD
-            
             if authModel.registering {
-                EventsView(authModel: authModel, app: app!, events: dummyEvents())
-            } else {
-                EventsView(authModel: authModel, app: app!, events: dummyEvents())
+                EventsView(authModel: authModel, app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
+            }
+            else {
+                EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
             }
         }
         else {
             if authModel.registering {
                 RegistrationView()
                     .environmentObject(authModel)
-            } else {
+            }
+            else {
                 LoginView()
                     .environmentObject(authModel)
             }
-=======
-            EventsView(app: app!, eventsVM: getEventsFromDb())//loadFromiCal(eventStore: store, eventsVM: eventsVM))
-        } else {
-            LoginView()
-                .environmentObject(authModel)
->>>>>>> d067a45 (getting events from db working, still working on ical integration)
         }
     }
 }
