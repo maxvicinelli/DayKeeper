@@ -10,19 +10,24 @@ import RealmSwift
 
 struct EventView: View {
 //    @ObservedRealmObject var events: [Event]
-    var events: [Event]
+    @State var events: [Event]
     
     @ObservedObject var authModel: AuthenticationModel
     
     //@ObservedRealmObject var event: Event
     var body: some View {
         
+        
+        let h = print("--------------------")
+        let _ = print("\(events[0].Title)")
+        let z = print("\(events[0])")
+        
         VStack {
             NavigationView {
                 List {
                     ForEach(events) { event in
                         NavigationLink {
-                            EventRow(event: event)
+                            EventRow(event: inout &event)
                         } label:
                         {
                             Text(event.Title)
@@ -41,16 +46,9 @@ struct EventView: View {
                         Button("Send to Realm", action: { sendToRealm(events: events) })
                     }
                     
-                    
-                        
-                        
-                
                 }
             }
-            
-            
         }
-        
     }
 }
 
