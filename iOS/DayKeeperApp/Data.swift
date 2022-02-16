@@ -134,7 +134,7 @@ func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> Events
             DispatchQueue.main.async {
                 eventsVM.events = events
             }
-            print(eventsVM.events)
+//            print(eventsVM.events)
         }
     }
 
@@ -184,7 +184,7 @@ func dummyEvents() -> EventsViewModel {
 }
 
 func sendToRealm(events: [Event]) -> Void {
-    print(events)
+//    print(events)
     if let app = app {
         let user = app.currentUser
         let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)

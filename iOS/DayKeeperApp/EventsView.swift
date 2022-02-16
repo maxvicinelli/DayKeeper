@@ -14,6 +14,16 @@ struct EventsView: View {
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
 
+//    mutating func helper() {
+//        self.eventsVM = getEventsFromDb()
+//    }
+
+//    override func viewWillAppear(_ animated : Bool) {
+//        self.eventsVM = getEventsFromDb()
+//        super.viewWillAppear(animated)
+//        print("test")
+//    }
+//
     var body: some View {
         NavigationView {
             List {
@@ -23,6 +33,7 @@ struct EventsView: View {
                     } label:
                     {
                         Text(event.Title)
+                        .onAppear(perform: {eventsVM.update()})
                     }
                 }
             }
@@ -31,8 +42,9 @@ struct EventsView: View {
                 Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
             }
         }
-    }
+    }//.onAppear(perform: {eventsVM.update()})
 }
+
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {

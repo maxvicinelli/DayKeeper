@@ -63,3 +63,39 @@ func getEventsFromDb() -> EventsViewModel
     }
     return eventsVM
 }
+
+
+func getEventsFromDb2() -> Void
+{
+    var eventsVM = EventsViewModel()
+    if let app = app {
+        let user = app.currentUser
+        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+        let query = realm.objects(Event.self)
+        var events = [Event]()
+        for e in query {
+            events.append(e)
+        }
+        eventsVM.events = events
+        print(events)
+//        let currentUserEvents = events.where {
+//            ($0.UserId == user!.id)
+//        }
+    }
+//    return eventsVM
+}
+
+
+func postEvent(event: Event) -> Void {
+    if let app = app {
+        let user = app.currentUser
+        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+        let eventsInDb = realm.objects(Event.self)
+        let eventInDb = eventsInDb.where {
+            ($0._id == event._id)
+        }
+        try! realm.write {
+            realm.add(event, update: .modified)
+        }
+    }
+}
