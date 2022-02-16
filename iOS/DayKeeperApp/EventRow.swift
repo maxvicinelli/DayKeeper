@@ -4,7 +4,6 @@
 //
 //  Created by Dante LaRocco on 2/6/22.
 //
-
 import SwiftUI
 import RealmSwift
 
@@ -26,8 +25,6 @@ struct EventRow: View {
     
     //@ObservedRealmObject var event: Event
     var body: some View {
-
-
         VStack(alignment: .leading) {
             Text("Title")
                .font(.title)
@@ -57,12 +54,6 @@ struct EventRow: View {
 //                        Text("Notify me before")
 //                            .bold()
 //                    }
-                    
-                let _ = print("\(event.Title)")
-                let dsf = print("\(event)")
-                        
-                    
-                    
                 }.headerProminence(.increased)
                 Section(header: Text("Tasks")) {
                     if (event.Tasks != nil)
@@ -76,13 +67,13 @@ struct EventRow: View {
                             }
                         }
                     }
-
                 }
             Button("Save", action: updateEvent)
-
-                }.headerProminence(.increased)
+            }
         }
     }
+
+
 
 
 
