@@ -28,7 +28,7 @@ let randomNums = [ 1, 2, 3]
 let userid = UUID()
 
 final class Data : ObservableObject {
-    @Published var loadedEvents : [Event] = dummyEvents()//loadFromiCal()
+    @Published var loadedEvents : EventsViewModel = dummyEvents()//loadFromiCal()
 }
 
 // adapted from https://techblog.travelhackfun.com/2020/10/09/retrieving-ios-calendar-event-with-eventkit/
@@ -83,7 +83,8 @@ func getEventsFromiCal(eventStore : EKEventStore) -> [Event] {
     return events
 }
 
-func loadFromiCal(eventStore: EKEventStore) -> [Event] {
+func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> EventsViewModel {
+//    let eventsVM = EventsViewModel()
     var events = [Event]()
     eventStore.requestAccess(to: .event) { (granted, error) in
         if granted {
@@ -112,7 +113,7 @@ func loadFromiCal(eventStore: EKEventStore) -> [Event] {
                 newEvent.UserId = userid
                 newEvent.Category = newCat
                 newEvent.Title = e.title
-                newEvent.Description = e.description
+                newEvent.Description = "desc"
                 newEvent.StartDate = e.startDate
                 newEvent.EndDate = e.endDate
                 newEvent.OnTime = -1
@@ -130,14 +131,18 @@ func loadFromiCal(eventStore: EKEventStore) -> [Event] {
                 }
                 events.append(newEvent)
             }
+            DispatchQueue.main.async {
+                eventsVM.events = events
+            }
+            print(eventsVM.events)
         }
     }
-    
-    return events
+
+    return eventsVM
 }
 
-func dummyEvents() -> [Event] {
-
+func dummyEvents() -> EventsViewModel {
+    let eventsVM = EventsViewModel()
     var events = [Event]()
     let newCat = Category()
     newCat._id = UUID()
@@ -174,7 +179,8 @@ func dummyEvents() -> [Event] {
         events.append(newEvent)
     }
     
-    return events
+    eventsVM.events = events
+    return eventsVM
 }
 
 func sendToRealm(events: [Event]) -> Void {

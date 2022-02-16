@@ -12,7 +12,9 @@ import RealmSwift
 struct ViewMasterController: View {
     
     @ObservedObject var authModel: AuthenticationModel
+    @ObservedObject var eventsVM: EventsViewModel = EventsViewModel()
     var store = EKEventStore()
+    
     var body: some View {
 
         
@@ -21,6 +23,7 @@ struct ViewMasterController: View {
         }
       
         if authModel.authenticated {
+<<<<<<< HEAD
             
             if authModel.registering {
                 EventsView(authModel: authModel, app: app!, events: dummyEvents())
@@ -36,6 +39,12 @@ struct ViewMasterController: View {
                 LoginView()
                     .environmentObject(authModel)
             }
+=======
+            EventsView(app: app!, eventsVM: getEventsFromDb())//loadFromiCal(eventStore: store, eventsVM: eventsVM))
+        } else {
+            LoginView()
+                .environmentObject(authModel)
+>>>>>>> d067a45 (getting events from db working, still working on ical integration)
         }
     }
 }

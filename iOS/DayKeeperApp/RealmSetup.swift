@@ -43,3 +43,23 @@ func signIn(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
         onCompletion(true)
     }
 }
+
+func getEventsFromDb() -> EventsViewModel
+{
+    var eventsVM = EventsViewModel()
+    if let app = app {
+        let user = app.currentUser
+        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+        let query = realm.objects(Event.self)
+        var events = [Event]()
+        for e in query {
+            events.append(e)
+        }
+        eventsVM.events = events
+        print(events)
+//        let currentUserEvents = events.where {
+//            ($0.UserId == user!.id)
+//        }
+    }
+    return eventsVM
+}

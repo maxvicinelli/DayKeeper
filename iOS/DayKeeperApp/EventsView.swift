@@ -7,23 +7,23 @@
 
 import SwiftUI
 import RealmSwift
+import EventKit
 
 
 
 struct EventsView: View {
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var app: RealmSwift.App
-    var events: [Event]
+    //var events: [Event]
+    @ObservedObject var eventsVM : EventsViewModel
+    var eventStore = EKEventStore()
 
     var body: some View {
-        
-        
-
-        
         VStack {
+            
             NavigationView {
                 List {
-                    ForEach(events) { event in
+                    ForEach(eventsVM.events) { event in
                         NavigationLink {
                             EventRow(event: event)
                         } label:
@@ -34,16 +34,13 @@ struct EventsView: View {
                 }
                 .navigationTitle("Events")
                 .toolbar {
-                    
-                    
                     HStack {
                         Button("Settings", action: {
                             authModel.updateSettings()
                             print("updated settings!")
                         })
-                        Button("Send to Realm", action: { sendToRealm(events: events) })
+                        Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
                     }
-                    
                 }
             }
         }
@@ -52,7 +49,8 @@ struct EventsView: View {
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(authModel: AuthenticationModel(), app: app!, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+        EventsView(authModel: AuthenticationModel(), app: app!, eventsVM: dummyEvents())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
+

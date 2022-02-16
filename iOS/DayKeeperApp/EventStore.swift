@@ -10,13 +10,10 @@ import EventKit
 
 class EventStore {
     let store : EKEventStore
-    let events : [Event]
+    var events : EventsViewModel
     init() {
         store = EKEventStore()
-        events = loadFromiCal(eventStore: store)
-    }
-    
-    func getEvents() -> [Event] {
-        return events
+        events = EventsViewModel()
+        events = loadFromiCal(eventStore: store, eventsVM: events)
     }
 }
