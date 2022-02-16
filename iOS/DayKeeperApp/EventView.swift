@@ -11,30 +11,52 @@ import RealmSwift
 struct EventView: View {
 //    @ObservedRealmObject var events: [Event]
     var events: [Event]
+    
+    @ObservedObject var authModel: AuthenticationModel
+    
     //@ObservedRealmObject var event: Event
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(events) { event in
-                    NavigationLink {
-                        EventRow(event: event)
-                    } label:
-                    {
-                        Text(event.Title)
+        
+        VStack {
+            NavigationView {
+                List {
+                    ForEach(events) { event in
+                        NavigationLink {
+                            EventRow(event: event)
+                        } label:
+                        {
+                            Text(event.Title)
+                        }
                     }
                 }
+                .navigationTitle("Events")
+                .toolbar {
+                    
+                    
+                    HStack {
+                        Button("Settings", action: {
+                            authModel.updateSettings()
+                            print("updated settings!")
+                        })
+                        Button("Send to Realm", action: { sendToRealm(events: events) })
+                    }
+                    
+                    
+                        
+                        
+                
+                }
             }
-            .navigationTitle("Events")
-            .toolbar {
-                Button("Send to Realm", action: { sendToRealm(events: events) })
-            }
+            
+            
         }
+        
     }
 }
 
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView(events: dummyEvents())
+        EventView(events: dummyEvents(), authModel: AuthenticationModel())
 .previewInterfaceOrientation(.portraitUpsideDown)
         //EventView()
     }
