@@ -11,9 +11,6 @@ import RealmSwift
 import os
 import SwiftUI
 
-// The Realm app
-let app: RealmSwift.App? = RealmSwift.App(id: RealmAppId)
-
 let randomAdjectives = [
     "fluffy", "classy", "bumpy", "bizarre", "wiggly", "quick", "sudden",
     "acoustic", "smiling", "dispensable", "foreign", "shaky", "purple", "keen",
@@ -31,14 +28,64 @@ let randomNums = [ 1, 2, 3]
 let userid = UUID()
 
 final class Data : ObservableObject {
-    @Published var loadedEvents : [Event] = dummyEvents()//loadFromiCal()
+    @Published var loadedEvents : EventsViewModel = dummyEvents()//loadFromiCal()
 }
 
-func loadFromiCal() -> [Event] {
-    let eventStore = EKEventStore()
+// adapted from https://techblog.travelhackfun.com/2020/10/09/retrieving-ios-calendar-event-with-eventkit/
+func authorizeEK(eventStore: EKEventStore) -> Bool {
+    var accessGranted : Bool = false
+    eventStore.requestAccess(to: .event) { (granted, error ) in
+        accessGranted = granted
+    }
+    return accessGranted
+}
+
+func getEventsFromiCal(eventStore : EKEventStore) -> [Event] {
     var events = [Event]()
-    print("got event store")
+    let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
+    let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: nil)
     
+    let eventsFromStore = eventStore.events(matching: predicate)
+    let newCat = Category()
+    newCat.Title = "Test"
+    newCat.Description = "Test more"
+    newCat.UserId = userid
+    newCat.Cadence = "Weekly"
+    
+    let taskCat = Category()
+    taskCat.Title = "Task category"
+    taskCat.Description = "Task test"
+    taskCat.UserId = userid
+    taskCat.Cadence = "NEVER"
+    for e in eventsFromStore {
+        let newEvent = Event()
+        newEvent.UserId = userid
+        newEvent.Category = newCat
+        newEvent.Title = e.title
+        newEvent.Description = e.description
+        newEvent.StartDate = e.startDate
+        newEvent.EndDate = e.endDate
+        newEvent.OnTime = -1
+        newEvent.NotifBefore = -1
+        newEvent.Tasks = RealmSwift.List<Event>()
+        for _ in 0...randomNums.randomElement()! {
+            let newTask = Event()
+            newTask.UserId = userid
+            newTask.Category = taskCat
+            newTask.Title = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
+            newTask.Description = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
+            newTask.NotifBefore = -1
+            newTask.OnTime = -1
+            newEvent.Tasks?.append(newTask)
+        }
+        events.append(newEvent)
+    }
+    return events
+}
+
+func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> EventsViewModel {
+//    let eventsVM = EventsViewModel()
+    var events = [Event]()
     eventStore.requestAccess(to: .event) { (granted, error) in
         if granted {
             
@@ -47,11 +94,8 @@ func loadFromiCal() -> [Event] {
             let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: nil)
             
             print("lets get events")
-            
             //return eventStore.events(matching: predicate)
             let eventsFromStore = eventStore.events(matching: predicate)
-            print(eventsFromStore)
-            //let userid = UUID()//uuidString: "620415ea8833dd465fb6f1f2")!
             let newCat = Category()
             newCat.Title = "Test"
             newCat.Description = "Test more"
@@ -63,12 +107,13 @@ func loadFromiCal() -> [Event] {
             taskCat.Description = "Task test"
             taskCat.UserId = userid
             taskCat.Cadence = "NEVER"
-            eventsFromStore.forEach() { e in
+            for e in eventsFromStore {
+//            eventsFromStore.forEach() { e in
                 let newEvent = Event()
                 newEvent.UserId = userid
                 newEvent.Category = newCat
                 newEvent.Title = e.title
-                newEvent.Description = e.description
+                newEvent.Description = "desc"
                 newEvent.StartDate = e.startDate
                 newEvent.EndDate = e.endDate
                 newEvent.OnTime = -1
@@ -77,7 +122,7 @@ func loadFromiCal() -> [Event] {
                 for _ in 0...randomNums.randomElement()! {
                     let newTask = Event()
                     newTask.UserId = userid
-//                    newTask.Category = taskCat
+                    newTask.Category = taskCat
                     newTask.Title = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
                     newTask.Description = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
                     newTask.NotifBefore = -1
@@ -86,25 +131,28 @@ func loadFromiCal() -> [Event] {
                 }
                 events.append(newEvent)
             }
-
+            DispatchQueue.main.async {
+                eventsVM.events = events
+            }
+//            print(eventsVM.events)
         }
     }
-    
-    return events
+
+    return eventsVM
 }
 
-func dummyEvents() -> [Event] {
-
+func dummyEvents() -> EventsViewModel {
+    let eventsVM = EventsViewModel()
     var events = [Event]()
+    let newCat = Category()
+    newCat._id = UUID()
+    newCat.Title = "Demo test"
+    newCat.Description = "Demo test"
+    newCat.UserId = userid
+    newCat.Cadence = "Weekly"
     
     for _ in 0...10 {
         //let userid = UUID()//uuidString: "620415ea8833dd465fb6f1f2")!
-        let newCat = Category()
-        newCat._id = UUID()
-        newCat.Title = "Test"
-        newCat.Description = "Test more"
-        newCat.UserId = userid
-        newCat.Cadence = "Weekly"
     
         let newEvent = Event()
         newEvent._id = UUID()
@@ -131,56 +179,17 @@ func dummyEvents() -> [Event] {
         events.append(newEvent)
     }
     
-    return events
+    eventsVM.events = events
+    return eventsVM
 }
 
 func sendToRealm(events: [Event]) -> Void {
+//    print(events)
     if let app = app {
-        //let realm : Realm
-        
-        // TODO: make it so this uses the current user instead of hardcoded. 
-        let username = "dantejlarocco@gmail.com"
-        let password = "YjV7xkUEDu4YnGRA"
-        app.login(credentials: Credentials.emailPassword(email: username, password: password)) { result in
-            //isLoggingIn = false
-            if case let .failure(error) = result {
-                print("Failed to log in: \(error.localizedDescription)")
-                // Set error to observed property so it can be displayed
-                //self.error = error
-                return
-            }
-            // Other views are observing the app and will detect
-            // that the currentUser has changed. Nothing more to do here.
-            print("Logged in")
-//            app.currentUser?.identities.first?.identifier
-        }
-        
         let user = app.currentUser
-        var realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
         try! realm.write {
             realm.add(events)
         }
-        //@State var realm = try! Realm(configuration: Realm.Configuration.defaultConfiguration)
-        
-//        @AsyncOpen(appId: RealmAppId, partitionValue: app.currentUser!.id, timeout: 4000) var asyncOpen;
-//        switch asyncOpen {
-//        case .connecting:
-//            print("connecting")
-//        case .waitingForUser:
-//            print("waiting")//Logger().log("waiting")
-//        case .open(let realm):
-//            print("open")//Logger().log("open")
-////            try! realm.write {
-//////                ForEach(events) { e in
-//////                    realm.add(e.Category!)
-//////                }
-////                realm.add(events)
-////            }
-//            print("tried to write")
-//        case .progress(let progress):
-//            print("progress")
-//        case .error(let error):
-//            print("error")
-//        }
     }
 }

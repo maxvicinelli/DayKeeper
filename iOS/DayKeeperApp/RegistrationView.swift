@@ -9,24 +9,29 @@ import SwiftUI
 
 struct RegistrationView: View {
     
-    @ObservedObject var authModel: AuthenticationModel
-    
+    //@ObservedObject var authModel: AuthenticationModel
+    @EnvironmentObject var authModel: AuthenticationModel
     
     @State var registrationFailed: Bool = false
     
     var body: some View {
         VStack {
-            TextField("username", text: $authModel.username)
-            
             TextField("email", text: $authModel.email)
-            
             SecureField("password", text: $authModel.password)
             
-            
             Button ("Create Account") {
-                if !authModel.attemptRegistration() {
-                    registrationFailed = true
-                }
+                registerUser(vm: authModel, onCompletion: { (registerSuccess) in
+                    if (registerSuccess) {
+                        signIn(vm: authModel, onCompletion: { (signInSuccess) in
+                            if (signInSuccess) {
+                                authModel.authenticated = true
+                                authModel.registering = true
+                            }
+                        })
+                    } else {
+                        registrationFailed = true
+                    }
+                })
             }
             
             
@@ -34,17 +39,13 @@ struct RegistrationView: View {
                 Text("registration failed")
             }
             
-            
-            
-            
-            
-            
         }
     }
 }
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(authModel: AuthenticationModel())
+        RegistrationView()
+            .environmentObject(AuthenticationModel())
     }
 }

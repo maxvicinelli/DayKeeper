@@ -25,7 +25,7 @@
 		79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */; };
 		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
-		FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventView.swift */; };
+		FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventsView.swift */; };
 		FE11B3BE27AF24980052CA22 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BD27AF24980052CA22 /* Event.swift */; };
 		FE11B3C127AF26770052CA22 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FE11B3C027AF26770052CA22 /* Realm */; };
 		FE11B3C327AF26770052CA22 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE11B3C227AF26770052CA22 /* RealmSwift */; };
@@ -34,7 +34,11 @@
 		FE11B3C927B088490052CA22 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C827B088490052CA22 /* Data.swift */; };
 		FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CA27B18CB60052CA22 /* TaskRow.swift */; };
 		FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CC27B2DE330052CA22 /* Category.swift */; };
+		FEA68AAC27BC5E61007E2E3A /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAB27BC5E61007E2E3A /* EventStore.swift */; };
+		FEA68AAE27BCB312007E2E3A /* EventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAD27BCB311007E2E3A /* EventEditView.swift */; };
+		FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */; };
 		FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECDC8C27B4380C007DD3CD /* Constants.swift */; };
+		FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECDC9027B97722007DD3CD /* RealmSetup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,14 +83,18 @@
 		79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsViews.swift; sourceTree = "<group>"; };
 		AC4B505127AEDA0700488105 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		FE11B3BB27ADC3480052CA22 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		FE11B3BB27ADC3480052CA22 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		FE11B3BD27AF24980052CA22 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FE11B3C427B03ABA0052CA22 /* PreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreEvent.swift; sourceTree = "<group>"; };
 		FE11B3C627B05B900052CA22 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		FE11B3C827B088490052CA22 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FE11B3CA27B18CB60052CA22 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		FE11B3CC27B2DE330052CA22 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FEA68AAB27BC5E61007E2E3A /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
+		FEA68AAD27BCB311007E2E3A /* EventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditView.swift; sourceTree = "<group>"; };
+		FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		FEECDC8C27B4380C007DD3CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FEECDC9027B97722007DD3CD /* RealmSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSetup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,10 +162,14 @@
 				799CC39527A488AC0043A9FF /* Assets.xcassets */,
 				799CC39A27A488AC0043A9FF /* Info.plist */,
 				799CC39727A488AC0043A9FF /* Preview Content */,
-				FE11B3BB27ADC3480052CA22 /* EventView.swift */,
+				FE11B3BB27ADC3480052CA22 /* EventsView.swift */,
+				FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */,
+				FEA68AAD27BCB311007E2E3A /* EventEditView.swift */,
 				FE11B3C827B088490052CA22 /* Data.swift */,
+				FEECDC9027B97722007DD3CD /* RealmSetup.swift */,
 				FE11B3C627B05B900052CA22 /* EventRow.swift */,
 				FE11B3BD27AF24980052CA22 /* Event.swift */,
+				FEA68AAB27BC5E61007E2E3A /* EventStore.swift */,
 				FE11B3C427B03ABA0052CA22 /* PreEvent.swift */,
 				FE11B3CC27B2DE330052CA22 /* Category.swift */,
 				FE11B3CA27B18CB60052CA22 /* TaskRow.swift */,
@@ -342,6 +354,7 @@
 				FE11B3BE27AF24980052CA22 /* Event.swift in Sources */,
 				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
 				7901612B27BD63170005F356 /* EventViewModel.swift in Sources */,
+				FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */,
 				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				AC4B505227AEDA0700488105 /* StatsView.swift in Sources */,
@@ -350,13 +363,16 @@
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */,
+				FEA68AAE27BCB312007E2E3A /* EventEditView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
+				FEA68AAC27BC5E61007E2E3A /* EventStore.swift in Sources */,
 				793F052E27B458E00062DE8E /* User.swift in Sources */,
 				FE11B3C927B088490052CA22 /* Data.swift in Sources */,
+				FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */,
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
-				FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */,
+				FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */,
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */,
 				79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */,
