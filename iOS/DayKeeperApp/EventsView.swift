@@ -33,7 +33,7 @@ struct EventsView: View {
                     } label:
                     {
                         Text(event.Title)
-                        .onAppear(perform: {eventsVM.update()})
+                        //.onAppear(perform: {eventsVM.update()})
                     }
                 }
             }
