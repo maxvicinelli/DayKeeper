@@ -18,16 +18,6 @@ struct EventsView: View {
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
 
-//    mutating func helper() {
-//        self.eventsVM = getEventsFromDb()
-//    }
-
-//    override func viewWillAppear(_ animated : Bool) {
-//        self.eventsVM = getEventsFromDb()
-//        super.viewWillAppear(animated)
-//        print("test")
-//    }
-//
     var body: some View {
 
             

@@ -15,17 +15,10 @@ struct EventRow: View {
     @State var event: Event
     
     private func updateEvent() {
-        //var eventsInDb = getEventsFromDb()
         postEvent(event: event)
-        
-        
-        // here is where we will send the event to the DB
-        // need to make sure that we're grabbing from DB each time we open main view
-        // use viewDidAppear()
     }
+        
     
-    
-    //@ObservedRealmObject var event: Event
     var body: some View {
         VStack(alignment: .leading) {
             Text("Title")
@@ -33,17 +26,23 @@ struct EventRow: View {
             TextField(event.Title, text: $event.Title)
             
             Text("Description")
-            // .font(.subheadline)
+             .font(.subheadline)
             TextField(event.Description, text: $event.Description)
                
             //List {
                 Section(header: Text("Properties")) {
                     
                     
-//                    Text("Category")
-//                    TextField(event.Category?.Title, text: $event.Category.Title)
-                        //.bold()
-                    Text(/*event.Category?.Title ?? */"No title")
+                    
+                    
+                    
+//                    if event.Category != nil {
+//                        Text("Category")
+//                            .bold()
+//
+//                        TextField(event.Category?.Title, text: $event.Category.Title)
+//                    }
+                        
                     
                     DatePicker("Start Date", selection: $event.StartDate)
                    
@@ -56,6 +55,12 @@ struct EventRow: View {
 //                        Text("Notify me before")
 //                            .bold()
 //                    }
+<<<<<<< HEAD
+=======
+                    
+                    
+                    
+>>>>>>> 1385538 (cleanup before merging to main)
                 }.headerProminence(.increased)
                 Section(header: Text("Tasks")) {
                     if (event.Tasks != nil)
@@ -81,20 +86,6 @@ struct EventRow: View {
 
 
 struct EventRow_Previews: PreviewProvider {
-//
-//    let newEvent = Event()
-//    let Title = "Happy hour"
-//
-//
-//    newEvent.Title = Title
-//    newEvent.Description = "Big chilling and sipping with the fellas"
-//    newEvent.StartDate = Date.now
-//    newEvent.EndDate = Date.now.addingTimeInterval(86400)
-//
-//    let category = Category()
-//    category.Title = "drinks"
-//    event.Category = category
-    
     static var previews: some View {
        
         EventRow(event: Event())
