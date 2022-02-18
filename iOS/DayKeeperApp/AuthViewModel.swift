@@ -40,6 +40,10 @@ final class AuthenticationModel: ObservableObject {
         self.viewingSettings = true
     }
     
+    func cancelSettings() {
+        self.viewingSettings = false
+    }
+    
     func attemptRegistration() -> Bool {
         
         print("called attempt Registration")
