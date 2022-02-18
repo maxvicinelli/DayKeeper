@@ -17,6 +17,7 @@ struct EventsView: View {
     //var events: [Event]
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
+    @StateObject private var notificationManager = NotificationManager()
 
     var body: some View {
 
@@ -41,7 +42,19 @@ struct EventsView: View {
                         print("updated settings!")
                     })
                     Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
-
+                }
+            }
+            .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
+                switch authorizationStatus {
+                case .notDetermined:
+                    notificationManager.requestAuthorization()
+                    break
+                case .authorized:
+                    //get local notifications
+                    notificationManager.reloadLocalNotifications()
+                    break
+                default:
+                    break
                 }
             }
         }
