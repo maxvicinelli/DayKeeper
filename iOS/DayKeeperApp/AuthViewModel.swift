@@ -32,8 +32,16 @@ final class AuthenticationModel: ObservableObject {
         self.registering = true
     }
     
+    func cancelRegistration() {
+        self.registering = false
+    }
+
     func updateSettings() {
         self.viewingSettings = true
+    }
+    
+    func cancelSettings() {
+        self.viewingSettings = false
     }
     
     func attemptRegistration() -> Bool {

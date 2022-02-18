@@ -14,7 +14,16 @@ struct SettingsView: View {
     
     var body: some View {
         VStack {
-            Text("Settings")
+            HStack {
+                Button("Back"){
+                    authModel.cancelSettings()
+                }
+                .padding()
+                Spacer()
+                Text("Settings")
+                    .font(.title)
+                Spacer()
+            }
             
             NavigationView {
                 List {
