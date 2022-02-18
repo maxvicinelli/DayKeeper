@@ -4,36 +4,63 @@
 //
 //  Created by Dante LaRocco on 2/6/22.
 //
-
 import SwiftUI
 import RealmSwift
 
 struct EventRow: View {
-    var event: Event
-    //@ObservedRealmObject var event: Event
+    
+    
+    
+    
+    @State var event: Event
+    
+    private func updateEvent() {
+        postEvent(event: event)
+    }
+        
+    
     var body: some View {
-        Text(event.Title)
-            .font(.title)
-        Text(event.Description)
-            .font(.subheadline)
         VStack(alignment: .leading) {
-            List {
+            Text("Title")
+               .font(.title)
+            TextField(event.Title, text: $event.Title)
+            
+            Text("Description")
+             .font(.subheadline)
+            TextField(event.Description, text: $event.Description)
+               
+            //List {
                 Section(header: Text("Properties")) {
-                    Text("Category")
-                        .bold()
-                    Text(/*event.Category?.Title ?? */"No title")
-                    Text("Start Date")
-                        .bold()
-                    Text("\(event.StartDate)")
-                    Text("End Date")
-                        .bold()
-                    Text("\(event.EndDate)")
+                    
+                    
+                    
+                    
+                    
+//                    if event.Category != nil {
+//                        Text("Category")
+//                            .bold()
+//
+//                        TextField(event.Category?.Title, text: $event.Category.Title)
+//                    }
+                        
+                    
+                    DatePicker("Start Date", selection: $event.StartDate)
+                   
+                    DatePicker("End Date", selection: $event.EndDate)
                     Text("Recurrence")
                         .bold()
                     Text(/*event.Category?.Cadence ?? */"NEVER")
-                    Text("Notify me before")
-                        .bold()
-                    Text("\(event.NotifBefore)")
+  
+//                    Toggle(isOn: $event.NotifBefore) {
+//                        Text("Notify me before")
+//                            .bold()
+//                    }
+<<<<<<< HEAD
+=======
+                    
+                    
+                    
+>>>>>>> 1385538 (cleanup before merging to main)
                 }.headerProminence(.increased)
                 Section(header: Text("Tasks")) {
                     if (event.Tasks != nil)
@@ -47,22 +74,20 @@ struct EventRow: View {
                             }
                         }
                     }
-//                    ForEach(event.Tasks? ?? List(), id:\.Id) { task in
-//                            NavigationLink {
-//                                TaskRow(task: task)
-//                            } label: {
-//                                Text(task.Title)
-//                            }
-//                    }
-                }.headerProminence(.increased)
+                }
+            Button("Save", action: updateEvent)
             }
         }
     }
-}
+
+
+
+
+
 
 struct EventRow_Previews: PreviewProvider {
     static var previews: some View {
-        let event = Event()
-        EventRow(event: event)
+       
+        EventRow(event: Event())
     }
 }
