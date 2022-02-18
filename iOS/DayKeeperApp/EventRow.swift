@@ -55,12 +55,6 @@ struct EventRow: View {
 //                        Text("Notify me before")
 //                            .bold()
 //                    }
-<<<<<<< HEAD
-=======
-                    
-                    
-                    
->>>>>>> 1385538 (cleanup before merging to main)
                 }.headerProminence(.increased)
                 Section(header: Text("Tasks")) {
                     if (event.Tasks != nil)

@@ -14,7 +14,7 @@ import EventKit
 
 final class AuthenticationModel: ObservableObject {
     
-    //@Published var username = ""
+    // @Published var username = ""
     @Published var password = ""
     @Published var email = ""
     
