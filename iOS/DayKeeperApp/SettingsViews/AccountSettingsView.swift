@@ -28,10 +28,10 @@ struct AccountSettingsView: View {
             
             
             VStack {
-                TextField(
-                    authModel.username,
-                    text: $authModel.username
-                )
+//                TextField(
+//                    authModel.username,
+//                    text: $authModel.username
+//                )
                 SecureField(
                     authModel.password,
                     text: $authModel.password
