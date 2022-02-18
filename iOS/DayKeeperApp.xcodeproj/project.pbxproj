@@ -62,12 +62,10 @@
 
 /* Begin PBXFileReference section */
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
+
 		757837FF27B99CB300D8FF4A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
-=======
 		7901612A27BD63170005F356 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
->>>>>>> 0b51340bcc3cd30f9f4a2c30c394d6928db4c640
 		793F052D27B458E00062DE8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796B76D427AB40BB00B57919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		796B76D627AB4C1900B57919 /* ViewMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMasterController.swift; sourceTree = "<group>"; };
@@ -382,12 +380,9 @@
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
-<<<<<<< HEAD
 				7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */,
 				FE11B3BC27ADC3480052CA22 /* EventView.swift in Sources */,
-=======
 				FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */,
->>>>>>> 0b51340bcc3cd30f9f4a2c30c394d6928db4c640
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */,
 				79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */,
