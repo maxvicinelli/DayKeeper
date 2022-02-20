@@ -16,17 +16,21 @@ struct ViewMasterController: View {
     var store = EKEventStore()
     
     var body: some View {
-        if authModel.authenticated {
-            if authModel.registering {
-                EventsView(app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
-            } else {
-                EventsView(app: app!, eventsVM: getEventsFromDb())
-            }
+        if let _ = app!.currentUser {
+            EventsView(app: app!, eventsVM: getEventsFromDb())
         } else {
-            LoginView()
-                .environmentObject(authModel)
+            if authModel.authenticated {
+                if authModel.registering {
+                    EventsView(app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
+                } else {
+                    EventsView(app: app!, eventsVM: getEventsFromDb())
+                }
+            } else {
+                LoginView()
+                    .environmentObject(authModel)
+            }
+            
         }
-        
     }
 }
 

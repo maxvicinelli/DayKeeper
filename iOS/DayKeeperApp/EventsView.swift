@@ -33,7 +33,7 @@ struct EventsView: View {
                     } label:
                     {
                         Text(event.Title)
-                        //.onAppear(perform: {eventsVM.update()})
+                        .onAppear(perform: {eventsVM.update()})
                     }
                 }
             }
@@ -42,7 +42,7 @@ struct EventsView: View {
                 Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
             }
         }
-    }//.onAppear(perform: {eventsVM.update()})
+    }
 }
 
 

@@ -131,9 +131,9 @@ func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> Events
                 }
                 events.append(newEvent)
             }
-            DispatchQueue.main.async {
-                eventsVM.events = events
-            }
+//            DispatchQueue.main.async {
+//                eventsVM.events = events
+//            }
 //            print(eventsVM.events)
         }
     }
