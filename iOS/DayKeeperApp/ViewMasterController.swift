@@ -16,7 +16,9 @@ struct ViewMasterController: View {
     var store = EKEventStore()
     
     var body: some View {
-
+        if let _ = app!.currentUser {
+            EventsView(app: app!, eventsVM: getEventsFromDb())
+        }
         
         if authModel.viewingSettings {
             SettingsView(authModel: authModel)
@@ -39,6 +41,7 @@ struct ViewMasterController: View {
                 LoginView()
                     .environmentObject(authModel)
             }
+            
         }
     }
 }

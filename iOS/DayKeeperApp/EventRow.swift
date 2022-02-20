@@ -79,7 +79,23 @@ struct EventRow: View {
 
 
 
+
+
 struct EventRow_Previews: PreviewProvider {
+//
+//    let newEvent = Event()
+//    let Title = "Happy hour"
+//
+//
+//    newEvent.Title = Title
+//    newEvent.Description = "Big chilling and sipping with the fellas"
+//    newEvent.StartDate = Date.now
+//    newEvent.EndDate = Date.now.addingTimeInterval(86400)
+//
+//    let category = Category()
+//    category.Title = "drinks"
+//    event.Category = category
+    
     static var previews: some View {
        
         EventRow(event: Event())
