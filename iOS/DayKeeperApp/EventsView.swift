@@ -4,6 +4,7 @@
 //
 //  Created by Dante LaRocco on 2/4/22.
 //
+//  Modified by Jonah Kershen to include NotificationManager
 
 import SwiftUI
 import RealmSwift
@@ -18,13 +19,24 @@ struct EventsView: View {
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
     @StateObject private var notificationManager = NotificationManager()
+    @State private var showTodayEventsOnly = false
+    
+    
+    var filteredEvents: [Event] {
+        eventsVM.events.filter { event in
+            (Calendar.current.isDateInToday(event.StartDate))
+        }
+    }
 
     var body: some View {
 
             
         NavigationView {
             List {
-                ForEach(eventsVM.events) { event in
+                Toggle(isOn: $showTodayEventsOnly){
+                    Text("Today's Events")
+                }
+                ForEach(filteredEvents) { event in
                     NavigationLink {
                         EventRow(event: event)
                     } label:
@@ -44,6 +56,7 @@ struct EventsView: View {
                     Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
                 }
             }
+            .onAppear(perform: notificationManager.reloadAuthorizationStatus)
             .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
                 switch authorizationStatus {
                 case .notDetermined:
