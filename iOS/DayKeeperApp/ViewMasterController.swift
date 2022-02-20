@@ -18,14 +18,26 @@ struct ViewMasterController: View {
     var body: some View {
         if let _ = app!.currentUser {
             EventsView(app: app!, eventsVM: getEventsFromDb())
-        } else {
-            if authModel.authenticated {
-                if authModel.registering {
-                    EventsView(app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
-                } else {
-                    EventsView(app: app!, eventsVM: getEventsFromDb())
-                }
-            } else {
+        }
+        
+        if authModel.viewingSettings {
+            SettingsView(authModel: authModel)
+        }
+      
+        if authModel.authenticated {
+            if authModel.registering {
+                EventsView(authModel: authModel, app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
+            }
+            else {
+                EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
+            }
+        }
+        else {
+            if authModel.registering {
+                RegistrationView()
+                    .environmentObject(authModel)
+            }
+            else {
                 LoginView()
                     .environmentObject(authModel)
             }

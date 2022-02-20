@@ -9,22 +9,18 @@ import SwiftUI
 import RealmSwift
 import EventKit
 
+
+
 struct EventsView: View {
+    @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var app: RealmSwift.App
+    //var events: [Event]
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
 
-//    mutating func helper() {
-//        self.eventsVM = getEventsFromDb()
-//    }
-
-//    override func viewWillAppear(_ animated : Bool) {
-//        self.eventsVM = getEventsFromDb()
-//        super.viewWillAppear(animated)
-//        print("test")
-//    }
-//
     var body: some View {
+
+            
         NavigationView {
             List {
                 ForEach(eventsVM.events) { event in
@@ -33,22 +29,30 @@ struct EventsView: View {
                     } label:
                     {
                         Text(event.Title)
-                        .onAppear(perform: {eventsVM.update()})
+                            .onAppear(perform: {eventsVM.update()})
                     }
                 }
             }
             .navigationTitle("Events")
             .toolbar {
-                Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
+                HStack {
+                    Button("Settings", action: {
+                        authModel.updateSettings()
+                        print("updated settings!")
+                    })
+                    Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
+
+                }
             }
         }
     }
 }
 
 
+
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(app: app!, eventsVM: dummyEvents())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+        EventsView(authModel: AuthenticationModel(), app: app!, eventsVM: dummyEvents())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

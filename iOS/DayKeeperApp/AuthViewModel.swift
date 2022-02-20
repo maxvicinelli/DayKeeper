@@ -22,12 +22,18 @@ final class AuthenticationModel: ObservableObject {
     
     @Published var registering = false
     
+    @Published var viewingSettings = false 
+    
    
     
     // @Published var signingIn = false
     
     func beginRegistration() {
         self.registering = true
+    }
+    
+    func updateSettings() {
+        self.viewingSettings = true
     }
     
     func attemptRegistration() -> Bool {
