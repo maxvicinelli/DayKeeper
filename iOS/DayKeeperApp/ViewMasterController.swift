@@ -16,15 +16,11 @@ struct ViewMasterController: View {
     var store = EKEventStore()
     
     var body: some View {
-        if let _ = app!.currentUser {
-            EventsView(app: app!, eventsVM: getEventsFromDb())
-        }
-        
         if authModel.viewingSettings {
             SettingsView(authModel: authModel)
-        }
-      
-        if authModel.authenticated {
+        } else if let _ = app!.currentUser {
+            EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
+        } else if authModel.authenticated {
             if authModel.registering {
                 EventsView(authModel: authModel, app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
             }

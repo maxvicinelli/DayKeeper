@@ -44,6 +44,19 @@ func signIn(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
     }
 }
 
+func logoutUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
+    let app = app
+    app!.currentUser!.logOut { (error) in
+        if error == nil {
+            vm.unauthenticate()
+            vm.cancelSettings()
+            onCompletion(false)
+        } else {
+            onCompletion(true)
+        }
+    }
+}
+
 func getEventsFromDb() -> EventsViewModel
 {
     var eventsVM = EventsViewModel()
@@ -56,7 +69,7 @@ func getEventsFromDb() -> EventsViewModel
             events.append(e)
         }
         eventsVM.events = events
-        print(events)
+//        print(events)
 //        let currentUserEvents = events.where {
 //            ($0.UserId == user!.id)
 //        }

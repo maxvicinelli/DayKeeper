@@ -44,6 +44,14 @@ final class AuthenticationModel: ObservableObject {
         self.viewingSettings = false
     }
     
+    func assertAuthentication() {
+        self.authenticated = true
+    }
+    
+    func unauthenticate() {
+        self.authenticated = false
+    }
+    
     func attemptRegistration() -> Bool {
         
         print("called attempt Registration")
