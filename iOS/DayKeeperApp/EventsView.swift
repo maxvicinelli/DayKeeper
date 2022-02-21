@@ -20,6 +20,28 @@ struct EventsView: View {
     var eventStore = EKEventStore()
     @StateObject private var notificationManager = NotificationManager()
     @State private var showTodayEventsOnly = false
+    @State private var isCreatePresented = false
+    
+    @ViewBuilder
+    var infoOverlayView: some View {
+        switch notificationManager.authorizationStatus {
+        case .denied:
+            InfoOverlayView(
+                infoMessage: "Please Enable Notification Permission In Settings",
+                buttonTitle: "Settings",
+                systemImageName: "gear",
+                action: {
+                    if let url = URL(string: UIApplication.openSettingsURLString),
+                        UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+            )
+        default:
+            EmptyView()
+        }
+        
+    }
     
     
     var filteredEvents: [Event] {
@@ -47,6 +69,10 @@ struct EventsView: View {
                 }
             }
             .navigationTitle("Events")
+            .overlay(infoOverlayView)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)){ _ in
+                notificationManager.reloadAuthorizationStatus()
+            }
             .toolbar {
                 HStack {
                     Button("Settings", action: {
@@ -69,6 +95,19 @@ struct EventsView: View {
                 default:
                     break
                 }
+            }
+            .navigationBarItems(trailing: Button {
+                isCreatePresented = true
+            } label: {
+                Image(systemName: "plus.circle")
+                    .imageScale(.large)
+            })
+            .sheet(isPresented: $isCreatePresented){
+                NavigationView {
+                    CreateEventView(isPresented: $isCreatePresented,
+                    notificationManager: notificationManager)
+                }
+                .accentColor(.primary)
             }
         }
     }
