@@ -34,8 +34,7 @@ func signIn(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
         if case let .failure(error) = result {
             print("Failed to log in: \(error.localizedDescription)")
             onCompletion(false)
-            // Set error to observed property so it can be displayed
-            //self.error = error
+            return
         }
         // Other views are observing the app and will detect
         // that the currentUser has changed. Nothing more to do here.
@@ -52,6 +51,7 @@ func logoutUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void)
             vm.cancelSettings()
             onCompletion(false)
         } else {
+            print("Failed to log out: \(String(describing: error?.localizedDescription))")
             onCompletion(true)
         }
     }
@@ -61,18 +61,19 @@ func getEventsFromDb() -> EventsViewModel
 {
     var eventsVM = EventsViewModel()
     if let app = app {
-        let user = app.currentUser
-        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
-        let query = realm.objects(Event.self)
-        var events = [Event]()
-        for e in query {
-            events.append(e)
+        if let user = app.currentUser {
+            let realm = try! Realm(configuration: (user.configuration(partitionValue: user.id)))
+            let query = realm.objects(Event.self)
+            var events = [Event]()
+            for e in query {
+                events.append(e)
+            }
+            eventsVM.events = events
+    //        print(events)
+    //        let currentUserEvents = events.where {
+    //            ($0.UserId == user!.id)
+    //        }
         }
-        eventsVM.events = events
-//        print(events)
-//        let currentUserEvents = events.where {
-//            ($0.UserId == user!.id)
-//        }
     }
     return eventsVM
 }
