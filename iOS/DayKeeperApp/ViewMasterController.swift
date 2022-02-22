@@ -24,20 +24,26 @@ struct ViewMasterController: View {
             SettingsView(authModel: authModel)
         }
       
-        if authModel.authenticated {
+        else if authModel.authenticated {
             if authModel.registering {
                 EventsView(authModel: authModel, app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
+                let x = print("loaded from iCal")
             }
             else {
                 EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
+                let y = print("signed in - getting from DB")
             }
         }
         else {
             if authModel.registering {
+                
+                
+                let z = print("NOW WERE REGISTERING")
                 RegistrationView()
                     .environmentObject(authModel)
             }
             else {
+                let q = print("LOGIN VIEWWWWW")
                 LoginView()
                     .environmentObject(authModel)
             }

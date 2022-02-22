@@ -45,6 +45,11 @@ func getEventsFromiCal(eventStore : EKEventStore) -> [Event] {
     let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
     let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: nil)
     
+    print("-----------------------------")
+    
+    print(eventStore.events(matching: predicate))
+    print("-----------------------------")
+    
     let eventsFromStore = eventStore.events(matching: predicate)
     let newCat = Category()
     newCat.Title = "Test"
