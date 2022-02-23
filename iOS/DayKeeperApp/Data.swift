@@ -88,19 +88,29 @@ func getEventsFromiCal(eventStore : EKEventStore) -> [Event] {
     return events
 }
 
-func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> EventsViewModel {
+func loadFromiCal() -> [Event] {
 //    let eventsVM = EventsViewModel()
+    
+    let eventStore = EKEventStore()
+    
     var events = [Event]()
     eventStore.requestAccess(to: .event) { (granted, error) in
         if granted {
             
+            let calendars = eventStore.calendars(for: .event)
+            
             print("granted!")
             let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
-            let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: nil)
+            let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: calendars)
             
             print("lets get events")
             //return eventStore.events(matching: predicate)
             let eventsFromStore = eventStore.events(matching: predicate)
+            
+            print("here are our events from store")
+            print(eventsFromStore)
+            
+            
             let newCat = Category()
             newCat.Title = "Test"
             newCat.Description = "Test more"
@@ -114,6 +124,9 @@ func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> Events
             taskCat.Cadence = "NEVER"
             for e in eventsFromStore {
 //            eventsFromStore.forEach() { e in
+                print("-------------------------")
+                print("iteration: ")
+                print("e")
                 let newEvent = Event()
                 newEvent.UserId = userid
                 newEvent.Category = newCat
@@ -135,15 +148,24 @@ func loadFromiCal(eventStore: EKEventStore, eventsVM: EventsViewModel) -> Events
                     newEvent.Tasks?.append(newTask)
                 }
                 events.append(newEvent)
+                print("got a new guy in events!")
+                print(events)
             }
-            DispatchQueue.main.async {
-                eventsVM.events = events
-            }
-//            print(eventsVM.events)
+            // eventsVM.events = events
+//            DispatchQueue.main.async {
+//                eventsVM.events = events
+//                print("yooooo we finished")
+//                print(eventsVM.events)
+//            }
+            
+        }
+        else {
+            print("no cal access")
         }
     }
-
-    return eventsVM
+    print("finished load from iCal with events: ")
+    print(events)
+    return events
 }
 
 func dummyEvents() -> EventsViewModel {

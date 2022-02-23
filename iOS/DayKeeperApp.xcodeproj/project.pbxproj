@@ -11,7 +11,6 @@
 		7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757837FF27B99CB300D8FF4A /* NotificationManager.swift */; };
 		7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */; };
 		75F4D92127C30743001024FC /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4D92027C30743001024FC /* CreateEventView.swift */; };
-		7901612B27BD63170005F356 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901612A27BD63170005F356 /* EventViewModel.swift */; };
 		793F052E27B458E00062DE8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793F052D27B458E00062DE8E /* User.swift */; };
 		796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D427AB40BB00B57919 /* AuthViewModel.swift */; };
 		796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D627AB4C1900B57919 /* ViewMasterController.swift */; };
@@ -66,7 +65,6 @@
 		757837FF27B99CB300D8FF4A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
 		75F4D92027C30743001024FC /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
-		7901612A27BD63170005F356 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		793F052D27B458E00062DE8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796B76D427AB40BB00B57919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		796B76D627AB4C1900B57919 /* ViewMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMasterController.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				799CC3BC27A7421B0043A9FF /* LoginView.swift */,
 				AC4B505127AEDA0700488105 /* StatsView.swift */,
 				796B76D427AB40BB00B57919 /* AuthViewModel.swift */,
-				7901612A27BD63170005F356 /* EventViewModel.swift */,
 				799CC3C027A745EA0043A9FF /* MainView.swift */,
 				799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */,
 				757837FF27B99CB300D8FF4A /* NotificationManager.swift */,
@@ -363,7 +360,6 @@
 				7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */,
 				FE11B3BE27AF24980052CA22 /* Event.swift in Sources */,
 				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
-				7901612B27BD63170005F356 /* EventViewModel.swift in Sources */,
 				FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */,
 				799CC3C127A745EA0043A9FF /* MainView.swift in Sources */,
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,

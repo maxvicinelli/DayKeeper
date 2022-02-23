@@ -10,7 +10,8 @@ import SwiftUI
 struct RegistrationView: View {
     
     //@ObservedObject var authModel: AuthenticationModel
-    @EnvironmentObject var authModel: AuthenticationModel
+    @ObservedObject var authModel: AuthenticationModel
+    @ObservedObject var eventsViewModel: EventsViewModel
     
     @State var registrationFailed: Bool = false
     
@@ -18,7 +19,7 @@ struct RegistrationView: View {
         VStack {
         HStack{
                 Button("Back"){
-                    authModel.cancelRegistration()
+                    authModel.setRegistration(value: false)
                 }
             }
             //TextField("username", text: $authModel.username)
@@ -30,8 +31,9 @@ struct RegistrationView: View {
                     if (registerSuccess) {
                         signIn(vm: authModel, onCompletion: { (signInSuccess) in
                             if (signInSuccess) {
+                                eventsViewModel.loadFromiCal()
                                 authModel.authenticated = true
-                                authModel.registering = true
+                                
                             }
                         })
                     } else {
@@ -51,7 +53,7 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
-            .environmentObject(AuthenticationModel())
+        RegistrationView(authModel: AuthenticationModel(), eventsViewModel: EventsViewModel())
+           // .environmentObject(AuthenticationModel())
     }
 }
