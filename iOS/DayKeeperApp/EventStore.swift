@@ -8,12 +8,12 @@
 import Foundation
 import EventKit
 
-class EventStore {
-    let store : EKEventStore
-    var events : EventsViewModel
-    init() {
-        store = EKEventStore()
-        events = EventsViewModel()
-        events = loadFromiCal(eventStore: store, eventsVM: events)
-    }
-}
+//class EventStore {
+//    let store : EKEventStore
+//    var events : EventsViewModel
+//    init() {
+//        store = EKEventStore()
+//        events = EventsViewModel()
+//        events = loadFromiCal(eventStore: store, eventsVM: events)
+//    }
+//}

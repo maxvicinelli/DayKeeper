@@ -20,6 +20,28 @@ struct EventsView: View {
     var eventStore = EKEventStore()
     @StateObject private var notificationManager = NotificationManager()
     @State private var showTodayEventsOnly = false
+    @State private var isCreatePresented = false
+    
+    @ViewBuilder
+    var infoOverlayView: some View {
+        switch notificationManager.authorizationStatus {
+        case .denied:
+            InfoOverlayView(
+                infoMessage: "Please Enable Notification Permission In Settings",
+                buttonTitle: "Settings",
+                systemImageName: "gear",
+                action: {
+                    if let url = URL(string: UIApplication.openSettingsURLString),
+                        UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+            )
+        default:
+            EmptyView()
+        }
+        
+    }
     
     
     var filteredEvents: [Event] {
@@ -29,47 +51,62 @@ struct EventsView: View {
     }
 
     var body: some View {
-
-            
+        
         NavigationView {
-            List {
+            VStack {
                 Toggle(isOn: $showTodayEventsOnly){
                     Text("Today's Events")
                 }
-                ForEach(filteredEvents) { event in
-                    NavigationLink {
-                        EventRow(event: event)
-                    } label:
-                    {
-                        Text(event.Title)
-                            .onAppear(perform: {eventsVM.update()})
+                List(eventsVM.events) { event in
+                    NavigationLink (
+                        destination: EventRow(event: event),
+                        label: {
+                            Text(event.Title)
+                                // .onAppear(perform: {eventsVM.update()})
+                        })
                     }
                 }
-            }
-            .navigationTitle("Events")
-            .toolbar {
-                HStack {
-                    Button("Settings", action: {
-                        authModel.updateSettings()
-                        print("updated settings!")
-                    })
-                    Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
+                .navigationTitle("Events")
+                .overlay(infoOverlayView)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)){ _ in
+                    notificationManager.reloadAuthorizationStatus()
                 }
-            }
-            .onAppear(perform: notificationManager.reloadAuthorizationStatus)
-            .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
-                switch authorizationStatus {
-                case .notDetermined:
-                    notificationManager.requestAuthorization()
-                    break
-                case .authorized:
-                    //get local notifications
-                    notificationManager.reloadLocalNotifications()
-                    break
-                default:
-                    break
+                .toolbar {
+                    HStack {
+                        Button("Settings", action: {
+                            authModel.updateSettings()
+                            print("updated settings!")
+                        })
+                        Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
+                    }
                 }
-            }
+                .onAppear(perform: notificationManager.reloadAuthorizationStatus)
+                .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
+                    switch authorizationStatus {
+                    case .notDetermined:
+                        notificationManager.requestAuthorization()
+                        break
+                    case .authorized:
+                        //get local notifications
+                        notificationManager.reloadLocalNotifications()
+                        break
+                    default:
+                        break
+                    }
+                }
+                .navigationBarItems(trailing: Button {
+                    isCreatePresented = true
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .imageScale(.large)
+                })
+                .sheet(isPresented: $isCreatePresented){
+                    NavigationView {
+                        CreateEventView(isPresented: $isCreatePresented,
+                        notificationManager: notificationManager)
+                    }
+                    .accentColor(.primary)
+                }
         }
     }
 }

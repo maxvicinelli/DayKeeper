@@ -39,11 +39,13 @@ final class NotificationManager: ObservableObject {
         }
     }
     
-    func createLocalNotifications(title: String, weekday: Int?, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
+    func createLocalNotifications(title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
         var dateComponents = DateComponents()
         dateComponents.hour = hour
         dateComponents.minute = minute
-        dateComponents.weekday = weekday
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         let notificationContent = UNMutableNotificationContent()

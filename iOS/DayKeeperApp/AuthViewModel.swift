@@ -28,13 +28,11 @@ final class AuthenticationModel: ObservableObject {
     
     // @Published var signingIn = false
     
-    func beginRegistration() {
-        self.registering = true
+    func setRegistration(value: Bool) {
+        self.registering = value
     }
     
-    func cancelRegistration() {
-        self.registering = false
-    }
+  
 
     func updateSettings() {
         self.viewingSettings = true

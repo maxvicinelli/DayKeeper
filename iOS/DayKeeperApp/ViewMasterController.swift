@@ -12,29 +12,42 @@ import RealmSwift
 struct ViewMasterController: View {
     
     @ObservedObject var authModel: AuthenticationModel
-    @ObservedObject var eventsVM: EventsViewModel = EventsViewModel()
-    var store = EKEventStore()
+    @ObservedObject var eventsVM: EventsViewModel
     
     var body: some View {
+//        if let _ = app!.currentUser {
+//            EventsView(app: app!, eventsVM: getEventsFromDb())
+//        }
+        
         if authModel.viewingSettings {
             SettingsView(authModel: authModel)
-        } else if let _ = app!.currentUser {
-            EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
-        } else if authModel.authenticated {
-            if authModel.registering {
-                EventsView(authModel: authModel, app: app!, eventsVM: loadFromiCal(eventStore: store, eventsVM: eventsVM))
-            }
-            else {
-                EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
-            }
+        }
+      
+        else if authModel.authenticated {
+//            if authModel.registering {
+                 
+                
+            EventsView(authModel: authModel, app: app!, eventsVM: eventsVM)
+            let x = print("loaded from iCal")
+            //let _ = authModel.setRegistration(value: false)
+                
+//            }
+//            else {
+//                EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
+//                let y = print("signed in - getting from DB")
+//            }
         }
         else {
             if authModel.registering {
-                RegistrationView()
+                
+                
+                let z = print("NOW WERE REGISTERING")
+                RegistrationView(authModel: authModel, eventsViewModel: eventsVM)
                     .environmentObject(authModel)
             }
             else {
-                LoginView()
+                let q = print("LOGIN VIEWWWWW")
+                LoginView(eventsViewModel: eventsVM)
                     .environmentObject(authModel)
             }
             
@@ -44,6 +57,6 @@ struct ViewMasterController: View {
 
 struct ViewMasterController_Previews: PreviewProvider {
     static var previews: some View {
-        ViewMasterController(authModel: AuthenticationModel())
+        ViewMasterController(authModel: AuthenticationModel(), eventsVM: EventsViewModel())
     }
 }
