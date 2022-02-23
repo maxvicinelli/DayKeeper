@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ViewMasterController(authModel: AuthenticationModel())
+        ViewMasterController(authModel: AuthenticationModel(), eventsVM: EventsViewModel())
     }
 }
 
