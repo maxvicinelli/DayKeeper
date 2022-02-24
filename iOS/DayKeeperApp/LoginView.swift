@@ -38,11 +38,16 @@ struct LoginView: View {
                     .padding(.bottom, 20)
                 
                 Button ("Sign In") {
+                    print("recognized button press")
                     signIn(vm: authModel, onCompletion: { (success) in
-                        eventsViewModel.updateEvents()
+                        print("now loading events from DB")
+                        eventsViewModel.loadFromDB()
+                        print("finished loading from DB")
                         if (success) {
-                            authModel.authenticated = true
+                            print("login success!")
+                            authModel.setAuthenticated(value: true)
                         } else {
+                            print("epic fail")
                             authenticationDidFail = true
                         }
                     })

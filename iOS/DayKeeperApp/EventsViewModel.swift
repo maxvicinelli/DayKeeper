@@ -88,7 +88,6 @@ final class EventsViewModel : ObservableObject {
                  
                 DispatchQueue.main.async {
                     self.events = events
-                    print("yooooo we finished")
                     print(self.events)
                 }
                 
@@ -96,14 +95,33 @@ final class EventsViewModel : ObservableObject {
         }
     }
     
-    
-    
-    func updateEvents() -> Void {
-
-        print("----------------------------")
-
-        self.events = getEventsFromDb()
+    func loadFromDB() -> Void {
+        var events = [Event]()
+        if let app = app {
+            DispatchQueue.main.async {
+                let user = app.currentUser
+                let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+                
+                let query = realm.objects(Event.self)
+                print("here is what we got")
+                print(query)
+                for e in query {
+                    events.append(e)
+                }
+        
+                self.events = events
+            }
+        }
     }
+    
+    
+//
+//    func updateEvents() -> Void {
+//
+//        print("----------------------------")
+//
+//        self.events = getEventsFromDb()
+//    }
 //    override func viewWillAppear(_ animated : Bool) {
 //        events = getEventsFromDb().events
 //        super.viewWillAppear(animated)
