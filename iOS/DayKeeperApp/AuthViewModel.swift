@@ -32,6 +32,11 @@ final class AuthenticationModel: ObservableObject {
         self.registering = value
     }
     
+    func setAuthenticated(value: Bool) {
+        DispatchQueue.main.async {
+            self.authenticated = value
+        }
+    }
   
 
     func updateSettings() {
