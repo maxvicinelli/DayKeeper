@@ -34,13 +34,26 @@ func signIn(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
         if case let .failure(error) = result {
             print("Failed to log in: \(error.localizedDescription)")
             onCompletion(false)
-            // Set error to observed property so it can be displayed
-            //self.error = error
+            return
         }
         // Other views are observing the app and will detect
         // that the currentUser has changed. Nothing more to do here.
         print("Logged in")
         onCompletion(true)
+    }
+}
+
+func logoutUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
+    let app = app
+    app!.currentUser!.logOut { (error) in
+        if error == nil {
+            vm.unauthenticate()
+            vm.cancelSettings()
+            onCompletion(false)
+        } else {
+            print("Failed to log out: \(String(describing: error?.localizedDescription))")
+            onCompletion(true)
+        }
     }
 }
 
