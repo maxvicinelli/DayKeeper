@@ -1,15 +1,15 @@
 //
-//  NotificationManager.swift
-//  DayKeeperApp
+//  NotificationManager.swift
+//  DayKeeperApp
 //
-//  Created by Jonah Kershen on 2/13/22.
+//  Created by Jonah Kershen on 2/13/22.
 //
 // Tutorial: https://www.youtube.com/watch?v=iRjyk1S0nvo&t=1s
 
 import Foundation
 import UserNotifications
 
-final class NotificationManager: ObservableObject {
+final class NotificationManager: ObservableObject{
     @Published private(set) var authorizationStatus: UNAuthorizationStatus?
     @Published private(set) var notifications: [UNNotificationRequest] = []
     
@@ -23,8 +23,8 @@ final class NotificationManager: ObservableObject {
     
     func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { isGranted, _ in
-            DispatchQueue.main.async {
-                self.authorizationStatus = isGranted ? .authorized : .denied
+        DispatchQueue.main.async {
+            self.authorizationStatus = isGranted ? .authorized : .denied
             }
         }
     }
@@ -35,7 +35,7 @@ final class NotificationManager: ObservableObject {
             DispatchQueue.main.async {
                 self.notifications = notifications
             }
-            
+    
         }
     }
     
@@ -51,9 +51,10 @@ final class NotificationManager: ObservableObject {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
         notificationContent.sound = .default
-        
+    
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
     }
+    
 }

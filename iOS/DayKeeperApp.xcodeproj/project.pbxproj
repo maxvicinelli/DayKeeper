@@ -10,6 +10,7 @@
 		751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D4C7C27B0C04A006273F4 /* HelpView.swift */; };
 		7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757837FF27B99CB300D8FF4A /* NotificationManager.swift */; };
 		7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */; };
+		757EDAA427CC00310037A09E /* ActionNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757EDAA327CC00310037A09E /* ActionNotifManager.swift */; };
 		75F4D92127C30743001024FC /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4D92027C30743001024FC /* CreateEventView.swift */; };
 		793F052E27B458E00062DE8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793F052D27B458E00062DE8E /* User.swift */; };
 		796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D427AB40BB00B57919 /* AuthViewModel.swift */; };
@@ -64,6 +65,7 @@
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		757837FF27B99CB300D8FF4A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
+		757EDAA327CC00310037A09E /* ActionNotifManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionNotifManager.swift; sourceTree = "<group>"; };
 		75F4D92027C30743001024FC /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		793F052D27B458E00062DE8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796B76D427AB40BB00B57919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				799CC3C027A745EA0043A9FF /* MainView.swift */,
 				799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */,
 				757837FF27B99CB300D8FF4A /* NotificationManager.swift */,
+				757EDAA327CC00310037A09E /* ActionNotifManager.swift */,
 				7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */,
 				799CC39327A488AB0043A9FF /* ContentView.swift */,
 				79CADA9227AC889B00518544 /* RegistrationView.swift */,
@@ -384,6 +387,7 @@
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				75F4D92127C30743001024FC /* CreateEventView.swift in Sources */,
 				FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */,
+				757EDAA427CC00310037A09E /* ActionNotifManager.swift in Sources */,
 				79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,7 +547,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = HU48CMT242;
+				DEVELOPMENT_TEAM = 4J4D6N7TUA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -551,7 +555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.jonah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -565,7 +569,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = HU48CMT242;
+				DEVELOPMENT_TEAM = 4J4D6N7TUA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -573,7 +577,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.jonah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

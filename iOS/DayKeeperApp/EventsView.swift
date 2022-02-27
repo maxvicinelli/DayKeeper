@@ -21,6 +21,7 @@ struct EventsView: View {
     @StateObject private var notificationManager = NotificationManager()
     @State private var showTodayEventsOnly = false
     @State private var isCreatePresented = false
+    var actionNotifManager = ActionNotifManager()
     
     @ViewBuilder
     var infoOverlayView: some View {
@@ -40,6 +41,10 @@ struct EventsView: View {
         default:
             EmptyView()
         }
+        
+    }
+     // if there are no notifications created, this gets called and creates notifications for tomorrow
+    func createTodaysNotifications() -> Void {
         
     }
     
@@ -94,6 +99,7 @@ struct EventsView: View {
                         break
                     }
                 }
+                .onAppear(perform: {actionNotifManager.createStatusUpdateNotifs()})
                 .navigationBarItems(trailing: Button {
                     isCreatePresented = true
                 } label: {
