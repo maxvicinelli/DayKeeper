@@ -192,6 +192,8 @@ func dummyEvents() -> EventsViewModel {
         newEvent.OnTime = -1
         newEvent.NotifBefore = -1
         newEvent.Tasks = RealmSwift.List<Event>()
+        newEvent.Timeliness.append(5)
+        
         for _ in 0...randomNums.randomElement()! {
             let newTask = Event()
             newTask.UserId = userid
