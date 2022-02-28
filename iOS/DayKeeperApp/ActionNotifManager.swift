@@ -52,7 +52,48 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     }
     
-
+    func scheduleAlarmNotification(title: String, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
+    
+        var severity = 5
+    
+        //scheduled alarm will sound at a time based on notification severity
+       if let event = getEventsFromDb().first(where: {$0.Title == title}) {
+           severity = event.OnTime * 5
+       }
+    
+    
+       
+       var dateComponents = DateComponents()
+       dateComponents.hour = hour
+       dateComponents.minute = minute
+       //dateComponents.year = year
+       //dateComponents.month = month assuming weekly repeats
+       dateComponents.day = day
+//        print(dateComponents)
+       // Question -- do we want repeats: true below? I feel like we just want each day's notifications to be created specifically for that day?
+    
+       let date = NSCalendar.current.date(from: dateComponents)! //convert components to date so we can modify
+       let modifiedDate = Calendar.current.date(byAdding: .minute, value: -severity, to: date)! //modify date
+       let components = Calendar.current.dateComponents([.minute, .hour, .day], from: modifiedDate) //convert back to component
+       let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+   
+       let content = UNMutableNotificationContent()
+       content.title = title + "Alarm"
+       content.body = "Let's get you on time to your event!"
+       content.sound = UNNotificationSound.default
+       let unique_identifier = title + "statusNotification"
+   
+       let request = UNNotificationRequest(identifier: unique_identifier, content: content, trigger: trigger)
+       
+//        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+       UNUserNotificationCenter.current().add(request) { (error:Error?) in
+           if let error = error {
+               print("Error: \(error.localizedDescription)")
+           }
+       }
+   
+   }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     
         if response.actionIdentifier == "early" {
@@ -112,7 +153,15 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             print(event.Title)
             let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             //year: calendarDate.year!, month: calendarDate.month!,
-
+            scheduleAlarmNotification(title: event.Title, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        // self.isPresented = false
+                    }
+                }
+            }
+            
+            
             scheduleNotification(title: event.Title, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
                     DispatchQueue.main.async {
@@ -120,6 +169,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                     }
                 }
             }
+            
         }
         print("printing current pending notifications after deleting and remaking:")
         UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
