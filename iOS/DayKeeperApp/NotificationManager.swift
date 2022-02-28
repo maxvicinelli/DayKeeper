@@ -57,4 +57,9 @@ final class NotificationManager: ObservableObject{
         UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
     }
     
+    // method that creates notifications intelligently based on how late you have been recently
+    func createIntelligentNotifs(startDate: Date, lateCounter: Int) {
+        
+    }
+    
 }
