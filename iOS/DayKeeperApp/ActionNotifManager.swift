@@ -93,35 +93,47 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
        }
    
    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    
-        if response.actionIdentifier == "early" {
-            print("early")
-            // not sure what the exact syntax is
-            // event.OnTime = max(event.OnTime - 1,0)
+   
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {    
+        let event = response.notification.request.content.title
+        if let event = getEventsFromDb().first(where: {$0.Title == event}) {
             
-            // # if the user has been ontime 2 times in the last 2 days, decrement the notification schedule
-            // elif events[row[1]][-2:] == [0] * early_threshold:
-            //schedule_list[row[1]] += [max(0, schedule_list[row[1]][-1] - 1)]
-            // else:
-            //  schedule_list[row[1]] += [schedule_list[row[1]][-1]]
-        
+            if response.actionIdentifier == "early" {
+                print("early")
+                
+                 event.Timeliness.append(0) //append a 0 to list
+                 event.Timeliness.remove(0) //pop first element to keep moving 5 day window
+                
+                //event.OnTime = max(onTimeVal - 1,0)
+                
+                let lastTwoDays = suffix(event.Timeliness,2)
+                
+                //if the user has been ontime 2 times in the last 2 days, decrement the notification schedule
+                if lastTwoDays.reduce(0, +) == 0{
+                    event.OnTime = max(event.OnTime-1, 0)
+                }
+                
+                
+                
+            }
             
+            else{
+                print("late")
+                event.Timeliness.append(1) //append a 1 to list
+                event.Timeliness.remove(0) //pop first element to keep moving 5 day window
+                               
+                //if the user has been late 3 times in the last 5 days, decrement the notification schedule
+                if event.Timeliness.reduce(0, +) >=3{
+                    event.OnTime = min(event.OnTime+1, 5)
+                }
+            }
+            postEvent(event: event)  
         }
-        else{ // Vegetable
-            print("late")
-            // event.OnTime = max(event.OnTime + 1,5)
-            
-            // if the user has been late 3 times in the last "window" days, increment the notification schedule
-            //if sum(events[row[1]][-window:]) >= late_threshold:
-            //schedule_list[row[1]] += [min(4, 1+ schedule_list[row[1]][-1])]
-            
         
-        
+        else {
+            print("item could not be found")
         }
         completionHandler()
-        
     }
     
     
