@@ -35,7 +35,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     
         let content = UNMutableNotificationContent()
-        content.title = title + "Status Update"
+        content.title = title + " Status Update"
         content.body = "Where you on time to your event?"
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "statusCategory"
@@ -190,4 +190,6 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             }
         })
     }
+    
+
 }

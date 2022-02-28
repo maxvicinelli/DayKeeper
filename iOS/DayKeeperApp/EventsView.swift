@@ -43,15 +43,11 @@ struct EventsView: View {
         }
         
     }
-     // if there are no notifications created, this gets called and creates notifications for tomorrow
-    func createTodaysNotifications() -> Void {
-        
-    }
     
     
     var filteredEvents: [Event] {
         eventsVM.events.filter { event in
-            (Calendar.current.isDateInToday(event.StartDate))
+            (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly)
         }
     }
 
@@ -62,7 +58,7 @@ struct EventsView: View {
                 Toggle(isOn: $showTodayEventsOnly){
                     Text("Today's Events")
                 }
-                List(eventsVM.events) { event in
+                List(filteredEvents) { event in
                     NavigationLink (
                         destination: EventRow(event: event),
                         label: {
