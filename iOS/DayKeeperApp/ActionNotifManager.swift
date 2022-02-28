@@ -11,7 +11,7 @@ import UserNotifications
 final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     // year: Int, month: Int,
-    func scheduleNotification(title: String, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
+    func scheduleNotification(title: String, year: Int, month: Int,day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
         let earlyAction = UNNotificationAction(identifier: "early", title: "I was early", options: [])
         let lateAction = UNNotificationAction(identifier: "late", title: "I was late", options: [])
     
@@ -27,8 +27,8 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         var dateComponents = DateComponents()
         dateComponents.hour = hour
         dateComponents.minute = minute
-        //dateComponents.year = year
-        //dateComponents.month = month assuming weekly repeats
+        dateComponents.year = year
+        dateComponents.month = month //assuming weekly repeats
         dateComponents.day = day
 //        print(dateComponents)
         // Question -- do we want repeats: true below? I feel like we just want each day's notifications to be created specifically for that day?
@@ -39,6 +39,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         content.body = "Where you on time to your event?"
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "statusCategory"
+        content.userInfo = ["date" : NSCalendar.current.date(from: dateComponents)!]
         let unique_identifier = title + "statusNotification"
     
         let request = UNNotificationRequest(identifier: unique_identifier, content: content, trigger: trigger)
@@ -52,13 +53,13 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     }
     
-    func scheduleAlarmNotification(title: String, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
+    func scheduleAlarmNotification(title: String, year: Int, month: Int,day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
     
-        var severity = 5
+        var severity = 1
     
         //scheduled alarm will sound at a time based on notification severity
        if let event = getEventsFromDb().first(where: {$0.Title == title}) {
-           severity = event.OnTime * 5
+           severity = event.OnTime * 1
        }
     
     
@@ -66,8 +67,8 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
        var dateComponents = DateComponents()
        dateComponents.hour = hour
        dateComponents.minute = minute
-       //dateComponents.year = year
-       //dateComponents.month = month assuming weekly repeats
+       dateComponents.year = year
+       dateComponents.month = month //assuming weekly repeats
        dateComponents.day = day
 //        print(dateComponents)
        // Question -- do we want repeats: true below? I feel like we just want each day's notifications to be created specifically for that day?
@@ -81,6 +82,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
        content.title = title + "Alarm"
        content.body = "Let's get you on time to your event!"
        content.sound = UNNotificationSound.default
+       content.userInfo = ["date" : modifiedDate]
        let unique_identifier = title + "statusNotification"
    
        let request = UNNotificationRequest(identifier: unique_identifier, content: content, trigger: trigger)
@@ -165,7 +167,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             print(event.Title)
             let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             //year: calendarDate.year!, month: calendarDate.month!,
-            scheduleAlarmNotification(title: event.Title, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+            scheduleAlarmNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
                 if error == nil {
                     DispatchQueue.main.async {
                         // self.isPresented = false
@@ -174,22 +176,33 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             }
             
             
-            scheduleNotification(title: event.Title, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
+            scheduleNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
                     DispatchQueue.main.async {
                         // self.isPresented = false
                     }
                 }
             }
-            
+            scheduleAlarmNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
+                if error == nil {
+                    
+                    DispatchQueue.main.async {
+                        // self.isPresented = false
+                    }
+                }
+            }
         }
         print("printing current pending notifications after deleting and remaking:")
         UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
             for request in requests {
+                
                 print(request.content.title)
+                print(request.content.userInfo)
+                
             }
         })
     }
     
 
 }
+
