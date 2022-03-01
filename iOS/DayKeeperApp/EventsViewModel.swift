@@ -45,11 +45,7 @@ final class EventsViewModel : ObservableObject {
                 print(eventsFromStore)
                 
                 
-                let newCat = Category()
-                newCat.Title = "Test"
-                newCat.Description = "Test more"
-                newCat.UserId = userid
-                newCat.Cadence = "Weekly"
+                
                 
                 let taskCat = Category()
                 taskCat.Title = "Task category"
@@ -57,12 +53,19 @@ final class EventsViewModel : ObservableObject {
                 taskCat.UserId = userid
                 taskCat.Cadence = "NEVER"
                 for e in eventsFromStore {
+                    let newCat = Category()
+                    newCat.Description = "Test more"
+                    newCat.UserId = userid
+                    newCat.Cadence = "Weekly"
+                    
+                    
     //            eventsFromStore.forEach() { e in
                     print("-------------------------")
                     print("iteration: ")
                     print("e")
                     let newEvent = Event()
                     newEvent.UserId = userid
+                    newCat.Title = e.calendar.title
                     newEvent.Category = newCat
                     newEvent.Title = e.title
                     newEvent.Description = "desc"
