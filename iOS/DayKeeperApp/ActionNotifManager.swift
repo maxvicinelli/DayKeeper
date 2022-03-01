@@ -155,19 +155,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             }
         }
         
-        for event in getEventsFromDb(){
-            print(event.Title)
-            let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
-            //year: calendarDate.year!, month: calendarDate.month!,
-
-            scheduleAlarmNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        // self.isPresented = false
-                    }
-                }
-            }
-        }
+        createStatusUpdateNotifs()
     }
     
    
