@@ -42,7 +42,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = "Where you on time to your event?"
+        content.body = "Were you on time to your event?"
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "statusCategory"
         content.userInfo = ["date" : NSCalendar.current.date(from: dateComponents)!]
@@ -63,6 +63,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 
     
         var severity = 1
+
     
         //scheduled alarm will sound at a time based on notification severity
 //        for event in getEventsFromDb(){
@@ -76,8 +77,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         
 //        if event.Category?.Title == category {
 //                severity = event.OnTime * 5
-//        print("in loop of scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
-//        severity = onTime + 2
+        print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+        let severity = onTime + 2
+
 
         
         var dateComponents = DateComponents()
@@ -95,7 +97,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
     
         let content = UNMutableNotificationContent()
-        content.title = title + "Alarm"
+        content.title = title + " Alarm"
         content.body = "Let's get you on time to your event!"
         content.sound = UNNotificationSound.default
 //                let unique_identifier = title + "statusNotification"
@@ -119,27 +121,41 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
             try! realm.write {
-                if early {
-                    event.Timeliness.append(0) //append a 0 to list
-                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
+
+                for otherEvent in getEventsFromDb() {
+//
+//            let otherEvent2 = otherEvent
+           
+                    if otherEvent.Category?.Title == event.Category?.Title {
+             
+                        if early {
+//                    event.Timeliness.append(0) //append a 0 to list
+//                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
                     
                     //event.OnTime = max(onTimeVal - 1,0)
                     
-                    let lastTwoDays = event.Timeliness.suffix(from: 2)
-                    
-                    //if the user has been ontime 2 times in the last 2 days, decrement the notification schedule
-                    if lastTwoDays.reduce(0, +) == 0 {
-                        event.OnTime = max(event.OnTime-1, 0)
-                    }
-                }
-                else {
-                    event.Timeliness.append(1) //append a 1 to list
-                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
-                    
+//                    let lastTwoDays = event.Timeliness.suffix(from: 2)
+//                    
+//                    //if the user has been ontime 2 times in the last 2 days, decrement the notification schedule
+//                    if lastTwoDays.reduce(0, +) == 0 {
+//                        event.OnTime = max(event.OnTime-1, 0)
+//                    }
+                    event.OnTime = max(event.OnTime-1, 0)
+
+               
+                        }
+              
+                        else {
+//                    event.Timeliness.append(1) //append a 1 to list
+//                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
+//
                     //if the user has been late 3 times in the last 5 days, decrement the notification schedule
-                    if ( event.Timeliness.reduce(0, +) >= 3) {
-                        event.OnTime = min(event.OnTime+1, 5)
-                    }
+                  
+                            event.OnTime = min(event.OnTime+1, 5)
+
+//                    if ( event.Timeliness.reduce(0, +) >= 3) {
+//                        event.OnTime = min(event.OnTime+1, 5)
+//                    }
                 }
             }
         }
