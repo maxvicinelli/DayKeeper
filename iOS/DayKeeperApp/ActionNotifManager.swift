@@ -59,12 +59,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     }
     
-    func scheduleAlarmNotification(title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void){
-
-    
-        var severity = 1
-
-    
+    func scheduleAlarmNotification(onTime: Int, title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void){
         //scheduled alarm will sound at a time based on notification severity
 //        for event in getEventsFromDb(){
 //            if event.Category?.Title == category{
@@ -79,9 +74,6 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 //                severity = event.OnTime * 5
         print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
         let severity = onTime + 2
-
-
-        
         var dateComponents = DateComponents()
         dateComponents.hour = hour
         dateComponents.minute = minute
@@ -117,12 +109,12 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     func updateOtherEvents(event: Event, early: Bool) {
         
-        if let app = app {
-            let user = app.currentUser
-            let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
-            try! realm.write {
+        for otherEvent in getEventsFromDb() {
 
-                for otherEvent in getEventsFromDb() {
+            if let app = app {
+                let user = app.currentUser
+                let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+                try! realm.write {
 //
 //            let otherEvent2 = otherEvent
            
@@ -140,7 +132,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 //                    if lastTwoDays.reduce(0, +) == 0 {
 //                        event.OnTime = max(event.OnTime-1, 0)
 //                    }
-                    event.OnTime = max(event.OnTime-1, 0)
+                            otherEvent.OnTime = max(otherEvent.OnTime-1, 0)
 
                
                         }
@@ -150,12 +142,29 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 //                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
 //
                     //if the user has been late 3 times in the last 5 days, decrement the notification schedule
-                  
-                            event.OnTime = min(event.OnTime+1, 5)
+                            print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
+                            otherEvent.OnTime = min(event.OnTime+1, 5)
+                            print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
 
 //                    if ( event.Timeliness.reduce(0, +) >= 3) {
 //                        event.OnTime = min(event.OnTime+1, 5)
 //                    }
+                        }
+                    }
+                }
+            }
+        }
+        
+        for event in getEventsFromDb(){
+            print(event.Title)
+            let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
+            //year: calendarDate.year!, month: calendarDate.month!,
+
+            scheduleAlarmNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        // self.isPresented = false
+                    }
                 }
             }
         }
@@ -220,26 +229,15 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             //year: calendarDate.year!, month: calendarDate.month!,
 
-          scheduleAlarmNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
-
+            scheduleAlarmNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
                 if error == nil {
                     DispatchQueue.main.async {
                         // self.isPresented = false
                     }
                 }
             }
-            
-            
             scheduleNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
-                    DispatchQueue.main.async {
-                        // self.isPresented = false
-                    }
-                }
-            }
-            scheduleAlarmNotification(   title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
-                if error == nil {
-                    
                     DispatchQueue.main.async {
                         // self.isPresented = false
                     }
@@ -251,7 +249,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             for request in requests {
                 
                 print(request.content.title)
-                print(request.content.userInfo)
+//                print(request.content.userInfo)
                 
             }
         })
