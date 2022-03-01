@@ -58,7 +58,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     }
     
-    func scheduleAlarmNotification(onTime: Int, category: String?, title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void){
+    func scheduleAlarmNotification(title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void){
 
     
         var severity = 1
@@ -75,8 +75,8 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         
 //        if event.Category?.Title == category {
 //                severity = event.OnTime * 5
-        print("in loop of scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
-        severity = onTime + 2
+//        print("in loop of scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+//        severity = onTime + 2
 
         
         var dateComponents = DateComponents()
@@ -203,7 +203,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             //year: calendarDate.year!, month: calendarDate.month!,
 
-          scheduleAlarmNotification(onTime: event.OnTime, category: event.Category?.Title, title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+          scheduleAlarmNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
 
                 if error == nil {
                     DispatchQueue.main.async {
@@ -220,7 +220,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                     }
                 }
             }
-            scheduleAlarmNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
+            scheduleAlarmNotification(   title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
                     
                     DispatchQueue.main.async {
