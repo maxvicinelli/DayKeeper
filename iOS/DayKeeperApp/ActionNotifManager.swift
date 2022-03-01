@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import RealmSwift
 
 final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
@@ -113,10 +114,11 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
    }
     
     func updateOtherEvents(event: Event, early: Bool) {
-//        for otherEvent in getEventsFromDb() {
-//
-//            let otherEvent2 = otherEvent
-//            if otherEvent.Category?.Title == event.Category?.Title {
+        
+        if let app = app {
+            let user = app.currentUser
+            let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+            try! realm.write {
                 if early {
                     event.Timeliness.append(0) //append a 0 to list
                     event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
@@ -139,9 +141,8 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                         event.OnTime = min(event.OnTime+1, 5)
                     }
                 }
-                postEvent(event: event)
-//            }
-//        }
+            }
+        }
     }
     
    
