@@ -10,8 +10,19 @@ import Foundation
 import UserNotifications
 
 final class NotificationManager: ObservableObject{
+    @Published private var isNotifResponsePresented = false
+    // @Published private var actionNotifManager = ActionNotifManager(self)
     @Published private(set) var authorizationStatus: UNAuthorizationStatus?
     @Published private(set) var notifications: [UNNotificationRequest] = []
+
+    
+    func reloadNotifResponseVar() {
+         
+    }
+    
+    func setNotifResponsePresented(value: Bool) {
+        self.isNotifResponsePresented = value 
+    }
     
     func reloadAuthorizationStatus() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in

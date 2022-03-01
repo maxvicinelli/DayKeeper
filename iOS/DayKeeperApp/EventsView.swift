@@ -18,10 +18,14 @@ struct EventsView: View {
     //var events: [Event]
     @ObservedObject var eventsVM : EventsViewModel
     var eventStore = EKEventStore()
-    @StateObject private var notificationManager = NotificationManager()
+    @StateObject var notificationManager = NotificationManager()
     @State private var showTodayEventsOnly = false
     @State private var isCreatePresented = false
+    @State private var isNotifResponsePresented = false
+    @State private var didntRespondEventTitle = ""
+    @State private var didntRespondEventDate = Date()
     var actionNotifManager = ActionNotifManager()
+    @Environment(\.scenePhase) var scenePhase
     
     @ViewBuilder
     var infoOverlayView: some View {
@@ -42,6 +46,12 @@ struct EventsView: View {
             EmptyView()
         }
         
+    }
+    
+    func reloadDidntRespond() {
+        isNotifResponsePresented = actionNotifManager.didntRespond
+        didntRespondEventTitle = actionNotifManager.didntRespond_title_name
+        didntRespondEventDate = actionNotifManager.didntRespondDate
     }
     
     
@@ -96,6 +106,16 @@ struct EventsView: View {
                     }
                 }
                 .onAppear(perform: {actionNotifManager.createStatusUpdateNotifs()})
+            
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        print("now active")
+                        reloadDidntRespond()
+                    }
+                    
+                }
+            
+                // .onAppear(perform: {reloadDidntRespond()})
                 .navigationBarItems(trailing: Button {
                     isCreatePresented = true
                 } label: {
@@ -108,6 +128,13 @@ struct EventsView: View {
                         notificationManager: notificationManager)
                     }
                     .accentColor(.primary)
+                }
+                .sheet(isPresented: $isNotifResponsePresented){
+                    NavigationView {
+                        NotifResponseView(isPresented: $isNotifResponsePresented,
+                                          notificationTitle: didntRespondEventTitle,
+                                          eventStartDate: didntRespondEventDate)
+                    }
                 }
         }
     }
