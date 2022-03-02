@@ -143,7 +143,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 //
                     //if the user has been late 3 times in the last 5 days, decrement the notification schedule
                             print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
-                            otherEvent.OnTime = min(event.OnTime+1, 5)
+                            otherEvent.OnTime = min(otherEvent.OnTime+1, 5)
                             print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
 
 //                    if ( event.Timeliness.reduce(0, +) >= 3) {
