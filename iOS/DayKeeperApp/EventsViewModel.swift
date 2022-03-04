@@ -12,17 +12,28 @@ import RealmSwift
 final class EventsViewModel : ObservableObject {
     @Published var events : [Event] = [Event]()
     
+    var actionNotifManager = ActionNotifManager()
+    
     
     func loadEvents(registering: Bool) -> Void {
-//        if registering {
-//            self.events = loadFromiCal()
-//        } else {
-            self.events = getEventsFromDb()
-        //}
+//        var oldEvents = getEventsFromDb()
+//
+//        let iCalEvents = loadFromiCal(registering: false)
+//        var newEvents = [Event]()
+//
+//        // loop
+//
+//
+//        for event in self.events {
+//            if
+//        }
+        self.events = getEventsFromDb()
+        
+
     }
     
     
-    func loadFromiCal() -> Void {
+    func loadFromiCal(registering: Bool) -> [Event] {
     //    let eventsVM = EventsViewModel()
         
         let eventStore = EKEventStore()
@@ -60,9 +71,6 @@ final class EventsViewModel : ObservableObject {
                     
                     
     //            eventsFromStore.forEach() { e in
-                    print("-------------------------")
-                    print("iteration: ")
-                    print("e")
                     let newEvent = Event()
                     newEvent.UserId = userid
                     newCat.Title = e.calendar.title
@@ -89,13 +97,22 @@ final class EventsViewModel : ObservableObject {
 //                    print(events)
                 }
                  
-                DispatchQueue.main.async {
-                    self.events = events
-                    print(self.events)
+                if registering {
+                    DispatchQueue.main.async {
+                        self.events = events
+                        print("here are our events: ")
+                        print(self.events)
+                        print("now were done")
+                        sendToRealm(events: self.events)
+                        self.actionNotifManager.createStatusUpdateNotifs()
+                    }
                 }
                 
             }
         }
+        print("now calling actionNotificationManager")
+        
+        return events
     }
     
     func loadFromDB() -> Void {

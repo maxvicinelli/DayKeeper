@@ -60,7 +60,9 @@ struct RegistrationView: View {
                     if (registerSuccess) {
                         signIn(vm: authModel, onCompletion: { (signInSuccess) in
                             if (signInSuccess) {
-                                eventsViewModel.loadFromiCal()
+                                print("loading from iCal")
+                                eventsViewModel.loadFromiCal(registering: true)
+                                print("sending to realm")
                                 authModel.authenticated = true
                                 
                             }
