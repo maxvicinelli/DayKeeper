@@ -32,8 +32,8 @@ struct RegistrationView: View {
                         signIn(vm: authModel, onCompletion: { (signInSuccess) in
                             if (signInSuccess) {
                                 eventsViewModel.loadFromiCal()
+                                sendToRealm(events: eventsViewModel.events)
                                 authModel.authenticated = true
-                                
                             }
                         })
                     } else {
