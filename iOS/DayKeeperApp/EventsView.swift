@@ -88,7 +88,6 @@ struct EventsView: View {
                             authModel.updateSettings()
                             print("updated settings!")
                         })
-                        Button("Send to Realm", action: { sendToRealm(events: eventsVM.events) })
                     }
                 }
                 .onAppear(perform: notificationManager.reloadAuthorizationStatus)
