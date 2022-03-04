@@ -26,7 +26,7 @@ struct SettingsView: View {
                         .font(.title)
                     Spacer()
                 }
-                
+
                 NavigationView {
                     List {
                         NavigationLink(
@@ -35,13 +35,15 @@ struct SettingsView: View {
                                 AccountSettingsRow()
                             }
                         )
-                        
+                        .background(.blue)
+
                         NavigationLink(
                             destination: NotificationsSettingsView(),
                             label: {
                                 NotificationsSettingsRow()
                             }
                         )
+
                                                            
                         Button("Log out", role: .destructive, action: { loggingOutConfirmation = true })
                             .confirmationDialog("Are you sure you want to log out?",
@@ -80,7 +82,15 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(authModel: AuthenticationModel())
+        Group {
+            SettingsView(authModel: AuthenticationModel())
+            SettingsView(authModel: AuthenticationModel())
+            SettingsView(authModel: AuthenticationModel())
+            SettingsView(authModel: AuthenticationModel())
+                .previewInterfaceOrientation(.portraitUpsideDown)
+            SettingsView(authModel: AuthenticationModel())
+                .previewInterfaceOrientation(.portraitUpsideDown)
+        }
     }
 }
 
