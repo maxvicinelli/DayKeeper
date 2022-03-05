@@ -38,6 +38,9 @@
 		FE11B3C927B088490052CA22 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C827B088490052CA22 /* Data.swift */; };
 		FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CA27B18CB60052CA22 /* TaskRow.swift */; };
 		FE11B3CD27B2DE340052CA22 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3CC27B2DE330052CA22 /* Category.swift */; };
+		FE89727D27D3E1E100041B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89727C27D3E1E100041B33 /* LoginViewController.swift */; };
+		FE89728127D3E6BD00041B33 /* Lemon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89727F27D3E6BD00041B33 /* Lemon-Regular.ttf */; };
+		FE89728227D3E6BD00041B33 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE89728027D3E6BD00041B33 /* OFL.txt */; };
 		FEA68AAC27BC5E61007E2E3A /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAB27BC5E61007E2E3A /* EventStore.swift */; };
 		FEA68AAE27BCB312007E2E3A /* EventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAD27BCB311007E2E3A /* EventEditView.swift */; };
 		FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */; };
@@ -98,6 +101,9 @@
 		FE11B3C827B088490052CA22 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FE11B3CA27B18CB60052CA22 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		FE11B3CC27B2DE330052CA22 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FE89727C27D3E1E100041B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FE89727F27D3E6BD00041B33 /* Lemon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lemon-Regular.ttf"; sourceTree = "<group>"; };
+		FE89728027D3E6BD00041B33 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		FEA68AAB27BC5E61007E2E3A /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		FEA68AAD27BCB311007E2E3A /* EventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditView.swift; sourceTree = "<group>"; };
 		FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
@@ -157,6 +163,8 @@
 			children = (
 				793F052D27B458E00062DE8E /* User.swift */,
 				799CC3BC27A7421B0043A9FF /* LoginView.swift */,
+				FE89727E27D3E6BD00041B33 /* Lemon */,
+				FE89727C27D3E1E100041B33 /* LoginViewController.swift */,
 				AC4B505127AEDA0700488105 /* StatsView.swift */,
 				753F972127CC250100B5FACB /* NotifResponseView.swift */,
 				796B76D427AB40BB00B57919 /* AuthViewModel.swift */,
@@ -224,6 +232,15 @@
 				79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */,
 			);
 			path = SettingsViews;
+			sourceTree = "<group>";
+		};
+		FE89727E27D3E6BD00041B33 /* Lemon */ = {
+			isa = PBXGroup;
+			children = (
+				FE89727F27D3E6BD00041B33 /* Lemon-Regular.ttf */,
+				FE89728027D3E6BD00041B33 /* OFL.txt */,
+			);
+			path = Lemon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +355,8 @@
 			files = (
 				799CC39927A488AC0043A9FF /* Preview Assets.xcassets in Resources */,
 				799CC39627A488AC0043A9FF /* Assets.xcassets in Resources */,
+				FE89728227D3E6BD00041B33 /* OFL.txt in Resources */,
+				FE89728127D3E6BD00041B33 /* Lemon-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +393,7 @@
 				79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */,
 				79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */,
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
+				FE89727D27D3E1E100041B33 /* LoginViewController.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */,
 				FEA68AAE27BCB312007E2E3A /* EventEditView.swift in Sources */,
