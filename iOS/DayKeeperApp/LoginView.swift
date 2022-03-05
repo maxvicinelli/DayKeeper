@@ -8,9 +8,9 @@
 import SwiftUI
 import UIKit
 
-let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
-
-let lightBlueColor = Color(red: 240.0/255.0, green: 248/255.0, blue: 255/255.0, opacity:  1.0)
+//let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
+//
+//let lightBlueColor = Color(red: 240.0/255.0, green: 248/255.0, blue: 255/255.0, opacity:  1.0)
 
 // Extend Font to be able to use UIFont so that we can use the custom font
 // Taken from: https://swiftuirecipes.com/blog/converting-between-uifont-and-swiftui-font
@@ -20,8 +20,9 @@ public extension Font {
   }
 }
 
+// Extend Color to be able to use a UIColor to color text/buttons
+// Taken from https://stackoverflow.com/questions/56994464/how-to-convert-uicolor-to-swiftui-s-color
 public extension Color {
-    static let registrationButton = Color(UIColor(red: 0.961, green: 0.929, blue: 0.941, alpha: 1))
     static let textColor = Color(UIColor(red: 0.961, green: 0.929, blue: 0.941, alpha: 1))
 }
 
@@ -36,11 +37,16 @@ struct LoginView: View {
         ZStack {
             NavigationView {
                 VStack() {
+                    Text("texttoblock - user should not see")
+                    Image("alarm-resized")
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(Circle())
                     Text("DayKeeper")
                         .shadow(radius: 15)
                         .foregroundColor(Color.textColor)
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 60)!))
-                        .padding(.vertical, 15.0)
+                        .padding(.vertical, 10.0)
                         .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
                         
                     
@@ -79,7 +85,7 @@ struct LoginView: View {
                     
 
                     Spacer()
-                        .frame(height:100)
+                        .frame(height:25)
 
                     Text("New Here?")
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
@@ -92,7 +98,7 @@ struct LoginView: View {
                     .padding()
                     .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 24)!))
                     .shadow(radius: 5)
-                    .background(Color.registrationButton.cornerRadius(8))
+                    .background(Color.textColor.cornerRadius(8))
                     .foregroundColor(.black)
                     .shadow(radius: 10)
                         
