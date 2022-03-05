@@ -41,6 +41,7 @@
 		FE89727D27D3E1E100041B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89727C27D3E1E100041B33 /* LoginViewController.swift */; };
 		FE89728127D3E6BD00041B33 /* Lemon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89727F27D3E6BD00041B33 /* Lemon-Regular.ttf */; };
 		FE89728227D3E6BD00041B33 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE89728027D3E6BD00041B33 /* OFL.txt */; };
+		FE8972A027D4083800041B33 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89728E27D4083800041B33 /* Karla-Regular.ttf */; };
 		FEA68AAC27BC5E61007E2E3A /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAB27BC5E61007E2E3A /* EventStore.swift */; };
 		FEA68AAE27BCB312007E2E3A /* EventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAD27BCB311007E2E3A /* EventEditView.swift */; };
 		FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */; };
@@ -104,6 +105,7 @@
 		FE89727C27D3E1E100041B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE89727F27D3E6BD00041B33 /* Lemon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lemon-Regular.ttf"; sourceTree = "<group>"; };
 		FE89728027D3E6BD00041B33 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		FE89728E27D4083800041B33 /* Karla-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Karla-Regular.ttf"; sourceTree = "<group>"; };
 		FEA68AAB27BC5E61007E2E3A /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		FEA68AAD27BCB311007E2E3A /* EventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditView.swift; sourceTree = "<group>"; };
 		FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				793F052D27B458E00062DE8E /* User.swift */,
 				799CC3BC27A7421B0043A9FF /* LoginView.swift */,
+				FE89728327D4083800041B33 /* Karla */,
 				FE89727E27D3E6BD00041B33 /* Lemon */,
 				FE89727C27D3E1E100041B33 /* LoginViewController.swift */,
 				AC4B505127AEDA0700488105 /* StatsView.swift */,
@@ -243,6 +246,14 @@
 			path = Lemon;
 			sourceTree = "<group>";
 		};
+		FE89728327D4083800041B33 /* Karla */ = {
+			isa = PBXGroup;
+			children = (
+				FE89728E27D4083800041B33 /* Karla-Regular.ttf */,
+			);
+			path = Karla;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,6 +320,9 @@
 		799CC38627A488AB0043A9FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
@@ -357,6 +371,7 @@
 				799CC39627A488AC0043A9FF /* Assets.xcassets in Resources */,
 				FE89728227D3E6BD00041B33 /* OFL.txt in Resources */,
 				FE89728127D3E6BD00041B33 /* Lemon-Regular.ttf in Resources */,
+				FE8972A027D4083800041B33 /* Karla-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +586,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = HU48CMT242;
+				DEVELOPMENT_TEAM = C33557Q74F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -579,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.max;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -593,7 +608,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = HU48CMT242;
+				DEVELOPMENT_TEAM = C33557Q74F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -601,7 +616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.max;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -13,11 +13,16 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255
 let lightBlueColor = Color(red: 240.0/255.0, green: 248/255.0, blue: 255/255.0, opacity:  1.0)
 
 // Extend Font to be able to use UIFont so that we can use the custom font
-// Taken from:  https://swiftuirecipes.com/blog/converting-between-uifont-and-swiftui-font
+// Taken from: https://swiftuirecipes.com/blog/converting-between-uifont-and-swiftui-font
 public extension Font {
   init(uiFont: UIFont) {
     self = Font(uiFont as CTFont)
   }
+}
+
+public extension Color {
+    static let registrationButton = Color(UIColor(red: 0.961, green: 0.929, blue: 0.941, alpha: 1))
+    static let textColor = Color(UIColor(red: 0.961, green: 0.929, blue: 0.941, alpha: 1))
 }
 
 struct LoginView: View {
@@ -32,26 +37,26 @@ struct LoginView: View {
             NavigationView {
                 VStack() {
                     Text("DayKeeper")
-                        .foregroundColor(Color.white)
+                        .shadow(radius: 15)
+                        .foregroundColor(Color.textColor)
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 60)!))
                         .padding(.vertical, 15.0)
                         .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
-//                        .font(.largeTitle)
-                    
+                        
                     
                     TextField("Email", text: $authModel.email)
                         .padding()
                         .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
-                        .border(Color.blue)
                         .padding(.bottom, 20)
+                        .shadow(radius: 5)
                     
                     SecureField("Password", text: $authModel.password)
                         .padding()
                         .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
-                        .border(Color.blue)
                         .padding(.bottom, 20)
+                        .shadow(radius: 5)
                     
                     Button ("Sign In") {
                         print("recognized button press")
@@ -69,17 +74,28 @@ struct LoginView: View {
                         })
                     }.font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
                         .foregroundColor(.white)
-//                    vc.loadView()
+                        .shadow(radius: 25)
+                        
+                    
+
                     Spacer()
                         .frame(height:100)
-//                        .frame(height: 150)
+
                     Text("New Here?")
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                        .shadow(radius: 15)
                         .foregroundColor(.white)
-                    Button ("Register") {
+                    Button ("Create an Account") {
                         authModel.setRegistration(value: true)
                         print("now beginning registration")
                     }
+                    .padding()
+                    .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 24)!))
+                    .shadow(radius: 5)
+                    .background(Color.registrationButton.cornerRadius(8))
+                    .foregroundColor(.black)
+                    .shadow(radius: 10)
+                        
                     if authenticationDidFail {
                         Text("auth failed")
                     }
