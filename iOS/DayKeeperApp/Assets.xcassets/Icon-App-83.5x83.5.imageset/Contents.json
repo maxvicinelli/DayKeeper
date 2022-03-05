@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "user.png",
+      "filename" : "Icon-App-76x76@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Icon-App-83.5x83.5@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -17,10 +18,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "on-demand-resource-tags" : [
-      "New"
-    ]
   }
 }

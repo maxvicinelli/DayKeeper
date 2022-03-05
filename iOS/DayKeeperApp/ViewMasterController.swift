@@ -47,7 +47,7 @@ struct ViewMasterController: View {
             }
             else {
                 let q = print("LOGIN VIEWWWWW")
-                LoginView(eventsViewModel: eventsVM, vc: LoginViewController())
+                LoginView(eventsViewModel: eventsVM)
                     .environmentObject(authModel)
             }
             
