@@ -27,10 +27,7 @@ struct LoginView: View {
     @ObservedObject var eventsViewModel: EventsViewModel
     @State var authenticationDidSucceed: Bool = false
     @State var authenticationDidFail: Bool = false
-    var vc : LoginViewController
     var body: some View {
-//        vc.loadView()
-//        (Color(red:0.436, green: 0.558, blue: 0.925)).ignoresSafeArea()
         ZStack {
             NavigationView {
                 VStack() {
@@ -42,14 +39,16 @@ struct LoginView: View {
 //                        .font(.largeTitle)
                     
                     
-                    TextField("email", text: $authModel.email)
+                    TextField("Email", text: $authModel.email)
                         .padding()
+                        .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
                         .border(Color.blue)
                         .padding(.bottom, 20)
                     
-                    SecureField("password", text: $authModel.password)
+                    SecureField("Password", text: $authModel.password)
                         .padding()
+                        .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
                         .border(Color.blue)
                         .padding(.bottom, 20)
@@ -68,8 +67,15 @@ struct LoginView: View {
                                 authenticationDidFail = true
                             }
                         })
-                    }
+                    }.font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                        .foregroundColor(.white)
 //                    vc.loadView()
+                    Spacer()
+                        .frame(height:100)
+//                        .frame(height: 150)
+                    Text("New Here?")
+                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                        .foregroundColor(.white)
                     Button ("Register") {
                         authModel.setRegistration(value: true)
                         print("now beginning registration")
@@ -92,7 +98,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(eventsViewModel: EventsViewModel(), vc: LoginViewController())
+        LoginView(eventsViewModel: EventsViewModel())
             .environmentObject(AuthenticationModel())
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
