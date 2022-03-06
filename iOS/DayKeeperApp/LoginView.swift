@@ -26,6 +26,19 @@ public extension Color {
     static let textColor = Color(UIColor(red: 0.961, green: 0.929, blue: 0.941, alpha: 1))
 }
 
+//struct FitToWidth: ViewModifier {
+//    var fraction: CGFloat = 1.0
+//    func body(content: Content) -> some View {
+//        GeometryReader { g in
+//        content
+//            .font(.system(size: 1000))
+//            .minimumScaleFactor(0.005)
+//            .lineLimit(1)
+//            .frame(width: g.size.width*self.fraction)
+//        }
+//    }
+//}
+
 struct LoginView: View {
 //    backgroundColor = (Color(red:0.436, green: 0.558, blue: 0.925))
     //@ObservedObject var authModel: AuthenticationModel
@@ -37,32 +50,41 @@ struct LoginView: View {
         ZStack {
             NavigationView {
                 VStack() {
-                    Text("texttoblock - user should not see")
+                    Text("")
+                        .padding(.bottom, 35)
                     Image("alarm-resized")
                         .resizable()
                         .scaledToFill()
                         .clipShape(Circle())
+//                        .padding()
+//                        .minimumScaleFactor(0.5)
+//                                    .lineLimit(1)
+                    
                     Text("DayKeeper")
                         .shadow(radius: 15)
                         .foregroundColor(Color.textColor)
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 60)!))
-                        .padding(.vertical, 10.0)
+                        .padding(.vertical, 5.0)
                         .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
+                        .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
                         
                     
                     TextField("Email", text: $authModel.email)
                         .padding()
                         .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
-                        .padding(.bottom, 20)
+//                        .padding(.bottom, 20)
                         .shadow(radius: 5)
+//                        .scaledToFill()
                     
                     SecureField("Password", text: $authModel.password)
                         .padding()
                         .multilineTextAlignment(.center)
                         .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
-                        .padding(.bottom, 20)
+//                        .padding(.bottom, 20)
                         .shadow(radius: 5)
+//                        .scaledToFill()
                     
                     Button ("Sign In") {
                         print("recognized button press")
@@ -82,16 +104,19 @@ struct LoginView: View {
                     }.font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
                         .foregroundColor(.white)
                         .shadow(radius: 25)
-                        
-                    
+                        .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
 
-                    Spacer()
-                        .frame(height:25)
+//                    Spacer()
+//                        .frame(height:25)
 
                     Text("New Here?")
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
                         .shadow(radius: 15)
                         .foregroundColor(.white)
+                        .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                    
                     Button ("Create an Account") {
                         authModel.setRegistration(value: true)
                         print("now beginning registration")
@@ -102,6 +127,8 @@ struct LoginView: View {
                     .background(Color.textColor.cornerRadius(8))
                     .foregroundColor(.black)
                     .shadow(radius: 10)
+                    .minimumScaleFactor(0.5)
+                                .lineLimit(1)
                         
                     if authenticationDidFail {
                         Text("auth failed")
@@ -115,7 +142,9 @@ struct LoginView: View {
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
         }
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
+//        .modifier(FitToWidth(fraction: 1.0))
     }
+        
 //        .background(Color(red:0.436, green: 0.558, blue: 0.925))
 }
 
