@@ -14,19 +14,17 @@ struct SettingsView: View {
     @State private var loggingOutFailure = false
     
     var body: some View {
-        ZStack {
-            VStack {
+//        ZStack {
+        VStack(alignment: .center, spacing: 0) {
                 HStack {
                     Button("Back"){
                         authModel.cancelSettings()
                     }
                     .padding()
-                    Spacer()
                     Text("Settings")
                         .font(.title)
-                    Spacer()
                 }
-
+                .background(.blue.opacity(0.1))
                 NavigationView {
                     List {
                         NavigationLink(
@@ -35,17 +33,17 @@ struct SettingsView: View {
                                 AccountSettingsRow()
                             }
                         )
-                        .background(.blue)
-
+                        .listRowBackground(Color.blue.opacity(0.1))
                         NavigationLink(
                             destination: NotificationsSettingsView(),
                             label: {
                                 NotificationsSettingsRow()
                             }
                         )
-
-                                                           
+                        .listRowBackground(Color.blue.opacity(0.1))
+                        
                         Button("Log out", role: .destructive, action: { loggingOutConfirmation = true })
+                            .listRowBackground(Color.blue.opacity(0.1))
                             .confirmationDialog("Are you sure you want to log out?",
                                                 isPresented: $loggingOutConfirmation,
                                                 titleVisibility: .visible) {
@@ -64,6 +62,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                       .background(Color.blue.opacity(0.1))
                     }
                 }
             if loggingOutFailure {
@@ -76,21 +75,13 @@ struct SettingsView: View {
                             Text("Try again later").font(.body)
                         })
             }
-        }
+//        }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            SettingsView(authModel: AuthenticationModel())
-            SettingsView(authModel: AuthenticationModel())
-            SettingsView(authModel: AuthenticationModel())
-            SettingsView(authModel: AuthenticationModel())
-                .previewInterfaceOrientation(.portraitUpsideDown)
-            SettingsView(authModel: AuthenticationModel())
-                .previewInterfaceOrientation(.portraitUpsideDown)
-        }
+        SettingsView(authModel: AuthenticationModel())
     }
 }
 
