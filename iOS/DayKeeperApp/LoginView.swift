@@ -67,10 +67,11 @@ struct LoginView: View {
                     Button ("Sign In") {
                         print("recognized button press")
                         signIn(vm: authModel, onCompletion: { (success) in
-                            print("now loading events from DB")
-                            eventsViewModel.loadFromDB()
-                            print("finished loading from DB")
+                            
                             if (success) {
+                                print("now loading events from DB")
+                                eventsViewModel.loadFromDB()
+                                print("finished loading from DB")
                                 print("login success!")
                                 authModel.setAuthenticated(value: true)
                             } else {

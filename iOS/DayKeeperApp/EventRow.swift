@@ -20,57 +20,70 @@ struct EventRow: View {
         
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Title")
-               .font(.title)
+        VStack() {
             TextField(event.Title, text: $event.Title)
+                .multilineTextAlignment(.center)
+                .frame(width: 360, height: 80, alignment: .center)
+                .multilineTextAlignment(.center)
+                
+                .shadow(radius: 15)
+                .foregroundColor(Color.textColor)
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+                .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
             
-            Text("Description")
-             .font(.subheadline)
             TextField(event.Description, text: $event.Description)
+                .frame(width: 330, height: 40)
+                .multilineTextAlignment(.center)
+                .background(RoundedRectangle(cornerRadius: 20).fill( Color(red: 0.996, green: 0.396, blue: 0.31)) )
+                .shadow(radius: 5)
+                .padding(.bottom, 15)
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+            
+            let howEarly = event.OnTime * -1
+            
+            Text("You are currently being reminded \(howEarly) minutes early for this event")
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 14)!))
+                .multilineTextAlignment(.center)
+                
+            
+            VStack {
+                DatePicker("Start Date", selection: $event.StartDate)
+                    
                
-            //List {
-                Section(header: Text("Properties")) {
-                    
-                    
-                    
-                    
-                    
-//                    if event.Category != nil {
-//                        Text("Category")
-//                            .bold()
-//
-//                        TextField(event.Category?.Title, text: $event.Category.Title)
-//                    }
-                        
-                    
-                    DatePicker("Start Date", selection: $event.StartDate)
-                   
-                    DatePicker("End Date", selection: $event.EndDate)
-                    Text("Recurrence")
-                        .bold()
-                    Text(/*event.Category?.Cadence ?? */"NEVER")
-  
-//                    Toggle(isOn: $event.NotifBefore) {
-//                        Text("Notify me before")
-//                            .bold()
-//                    }
-                }.headerProminence(.increased)
-                Section(header: Text("Tasks")) {
+                DatePicker("End Date", selection: $event.EndDate)
+                    .padding(.bottom, 15)
+            }
+            .padding()
+            .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+               
+ 
+            Section(header:
+                    Text("Tasks")
+                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))) {
                     if (event.Tasks != nil)
                     {
                         ForEach(event.Tasks!)
-                        { task in
+                        { subEvent in
                             NavigationLink {
-                                TaskRow(task: task)
+                                EventRow(event: subEvent)
                             } label: {
-                                Text(task.Title)
+                                Text(subEvent.Title)
+                                    .background(Color(red: 0.996, green: 0.396, blue: 0.31))
                             }
                         }
                     }
                 }
             Button("Save", action: updateEvent)
-            }
+            
+                
+                .frame(width: 330, height: 60, alignment: .center)
+                .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+                
+        }
+        .frame(height: 900)
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
+        .padding(.bottom, 100)
         }
     }
 
