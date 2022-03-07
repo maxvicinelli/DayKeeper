@@ -86,7 +86,7 @@ struct LoginView: View {
                         .shadow(radius: 5)
 //                        .scaledToFill()
                     
-                    Button ("Sign In") {
+                                      Button ("Sign In") {
                         print("recognized button press")
                         signIn(vm: authModel, onCompletion: { (success) in
                             
@@ -109,27 +109,16 @@ struct LoginView: View {
 
 //                    Spacer()
 //                        .frame(height:25)
-
-                    Text("New Here?")
-                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
-                        .shadow(radius: 15)
-                        .foregroundColor(.white)
-                        .minimumScaleFactor(0.5)
-                                    .lineLimit(1)
                     
-                    Button ("Create an Account") {
+                    Button ("New Here?") {
                         authModel.setRegistration(value: true)
                         print("now beginning registration")
                     }
-                    .padding()
-                    .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 24)!))
-                    .shadow(radius: 5)
-                    .background(Color.textColor.cornerRadius(8))
-                    .foregroundColor(.black)
-                    .shadow(radius: 10)
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                    .shadow(radius: 15)
+                    .foregroundColor(.white)
                     .minimumScaleFactor(0.5)
                                 .lineLimit(1)
-                        
                     if authenticationDidFail {
                         Text("auth failed")
                     }
