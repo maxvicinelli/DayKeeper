@@ -74,6 +74,8 @@ struct SettingsView: View {
                                             if loggingOutFailure {
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                                         loggingOutFailure = false
+                                                        authModel.authenticated = false
+                                                        authModel.registering = false
                                                 }
                                             }
                                         })
