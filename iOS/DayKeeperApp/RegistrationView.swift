@@ -22,21 +22,32 @@ struct RegistrationView: View {
             
             VStack{
                 Text("Welcome")
-                    .font(Font.custom("Helvetica", size: 60))
-                    .foregroundColor(Color.white)
+                    .shadow(radius: 15)
+                    .foregroundColor(Color.textColor)
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 60)!))
+                    .padding(.vertical, 5.0)
+                    .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
+                    .minimumScaleFactor(0.5)
+                                .lineLimit(1)
                     .position(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/10)
             }
             VStack{
                 //TextField("username", text: $authModel.username)
                 TextField("email", text: $authModel.email)
+                  .padding()
+                    .multilineTextAlignment(.center)
                     .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
-        
-                    .frame(width: 330, alignment: .center)
-                    .padding(30)
+                        .padding(15)
+                    .shadow(radius: 5)
+//                        .scaledToFill()
                 
                 SecureField("password", text: $authModel.password)
-                    .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)))
-                    .frame(width: 330, alignment: .center)
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    .background(RoundedRectangle(cornerRadius: 20).fill( Color(red:241/255, green: 231/255, blue: 159/255)) )
+                        .padding(15)
+                    .shadow(radius: 5)
+//                        .scaledToFill()
                 
                 if registrationFailed {
                     Text("registration failed")
