@@ -27,7 +27,7 @@ struct ViewMasterController: View {
 //            if authModel.registering {
                  
                 
-            EventsView(authModel: authModel, app: app!, eventsVM: eventsVM)
+            EventsView(authModelParam: authModel, appParam: app!, eventsVMParams: eventsVM)
             let x = print("loaded from iCal")
             //let _ = authModel.setRegistration(value: false)
                 
