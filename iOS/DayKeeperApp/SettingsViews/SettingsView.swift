@@ -6,12 +6,25 @@
 //
 
 import SwiftUI
+//
+//struct navListView: View {
+
+//    var body: some View {
+//        NavigationView {
+//            List {
+//        }
+//    }
+//}
 
 struct SettingsView: View {
     
     @ObservedObject var authModel: AuthenticationModel
     @State private var loggingOutConfirmation = false
     @State private var loggingOutFailure = false
+    
+//        init() {
+//            UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
+//        }
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -70,11 +83,11 @@ struct SettingsView: View {
                                 }
                             }
                         }
+//                    .background(Color(red:0.436, green: 0.558, blue: 0.925))
                     }
+//                .background(Color(red:0.436, green: 0.558, blue: 0.925))
+
             }
-                }
-                .background(Color(red:0.436, green: 0.558, blue: 0.925))
-                .padding()
             if loggingOutFailure {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color.gray)
@@ -87,15 +100,15 @@ struct SettingsView: View {
                     .background(Color(red:0.436, green: 0.558, blue: 0.925))
 
             }
+                }
+                .background(Color(red:0.436, green: 0.558, blue: 0.925))
+
 
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView(authModel: AuthenticationModel())
-    }
-}
-
-
-
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView(authModel: AuthenticationModel())
+//    }
+//}
