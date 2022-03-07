@@ -22,6 +22,8 @@ struct NotificationsSettingsRow: View {
                 .padding()
 
             Text("Notifications")
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+
 
 
         }

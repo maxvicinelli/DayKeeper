@@ -55,6 +55,8 @@ struct AccountSettingsRow: View {
                 .padding()
 
             Text("Account")
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+
 
 
         }

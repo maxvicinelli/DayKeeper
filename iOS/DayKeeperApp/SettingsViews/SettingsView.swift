@@ -14,17 +14,25 @@ struct SettingsView: View {
     @State private var loggingOutFailure = false
     
     var body: some View {
-//        ZStack {
         VStack(alignment: .center, spacing: 0) {
+            ZStack{
                 HStack {
                     Button("Back"){
                         authModel.cancelSettings()
                     }
                     .padding()
-                    Text("Settings")
-                        .font(.title)
+                    Spacer()
                 }
-                .background(.blue.opacity(0.1))
+                HStack {
+                    Text("Settings")
+                        .frame(alignment: .center)
+                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                        .foregroundColor(.textColor)
+                }
+            }
+                .background(Color(red:0.436, green: 0.558, blue: 0.925))
+            ZStack {
+                Color(red:0.436, green: 0.558, blue: 0.925)
                 NavigationView {
                     List {
                         NavigationLink(
@@ -33,17 +41,17 @@ struct SettingsView: View {
                                 AccountSettingsRow()
                             }
                         )
-                        .listRowBackground(Color.blue.opacity(0.1))
+                            .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
                         NavigationLink(
                             destination: NotificationsSettingsView(),
                             label: {
                                 NotificationsSettingsRow()
                             }
                         )
-                        .listRowBackground(Color.blue.opacity(0.1))
+                        .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
                         
                         Button("Log out", role: .destructive, action: { loggingOutConfirmation = true })
-                            .listRowBackground(Color.blue.opacity(0.1))
+                            .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
                             .confirmationDialog("Are you sure you want to log out?",
                                                 isPresented: $loggingOutConfirmation,
                                                 titleVisibility: .visible) {
@@ -62,9 +70,11 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                       .background(Color.blue.opacity(0.1))
                     }
+            }
                 }
+                .background(Color(red:0.436, green: 0.558, blue: 0.925))
+                .padding()
             if loggingOutFailure {
                 RoundedRectangle(cornerRadius: 16)
                     .foregroundColor(Color.gray)
@@ -74,8 +84,10 @@ struct SettingsView: View {
                             Text("Failed to log out").font(.largeTitle)
                             Text("Try again later").font(.body)
                         })
+                    .background(Color(red:0.436, green: 0.558, blue: 0.925))
+
             }
-//        }
+
     }
 }
 
