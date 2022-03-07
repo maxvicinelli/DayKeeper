@@ -9,6 +9,7 @@
 import SwiftUI
 import RealmSwift
 import EventKit
+import UIKit
 
 
 
@@ -26,6 +27,7 @@ struct EventsView: View {
     @State private var didntRespondEventDate = Date()
     var actionNotifManager = ActionNotifManager()
     @Environment(\.scenePhase) var scenePhase
+    
     
     @ViewBuilder
     var infoOverlayView: some View {
@@ -63,19 +65,59 @@ struct EventsView: View {
 
     var body: some View {
         
-        NavigationView {
+        ZStack { //Makes background a specific color
+            Color(red:0.436, green: 0.558, blue: 0.925 )
+                .edgesIgnoringSafeArea(.all)
+        
             VStack {
-                Toggle(isOn: $showTodayEventsOnly){
-                    Text("Today's Events")
-                }
-                List(filteredEvents) { event in
-                    NavigationLink (
-                        destination: EventRow(event: event),
-                        label: {
-                            Text(event.Title)
-                                // .onAppear(perform: {eventsVM.update()})
-                        })
+                
+                HStack {
+                    
+                    Text("Welcome, User")
+                        .frame(width: 200) // setting width and line limit can force wrapping
+                        .lineLimit(2)
+                        .shadow(radius: 15)
+                        .foregroundColor(Color.textColor)
+                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 60)!))
+                        .padding(.vertical, 5.0)
+                        .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
+                        .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                    
+                    Button("?") {
+                        print("will be help screen button")
+                
                     }
+                    .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 30)!))
+                    .frame(width: 60, height: 60)
+                    .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
+                    .foregroundColor(Color.black)
+                }
+                
+                Text("Here's Your Schedule for the Day")
+                    .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 24)!))
+                    .foregroundColor(Color(red: 0.02, green: 0.016, blue: 0.004))
+                    .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
+                
+                
+                Toggle(isOn: $showTodayEventsOnly){
+                    Text("Here's Your Schedule for the Day")
+                }
+                List {
+                    ForEach(filteredEvents) { event in
+                        NavigationLink (
+                            destination: EventRow(event: event),
+                            label: {
+                                Text(event.Title)
+                                    .listRowBackground(RoundedRectangle(cornerRadius: 20)
+                                                        .fill(Color.orange)
+                                    )
+                                    // .onAppear(perform: {eventsVM.update()})
+                            })
+                        }
+                    }
+                .listStyle(.automatic)
+                .foregroundColor(Color(red: 0.504, green: 0.504, blue: 0.054))
                 }
                 .navigationTitle("Events")
                 .overlay(infoOverlayView)

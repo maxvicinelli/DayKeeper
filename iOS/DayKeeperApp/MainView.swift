@@ -4,7 +4,7 @@
 //
 //  Created by Max Vicinelli on 1/30/22.
 //
-// NotificationManager incorporated by Jonah Kershen 2/13/22
+// NotificationManager incorporated by Jonah Kershen 2/13/22ß
 
 import SwiftUI
 
