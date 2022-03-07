@@ -14,36 +14,42 @@ struct AccountSettingsView: View {
     
     var body: some View {
         
-        VStack {
-        
-            HStack {
-                Text("Account Settings")
-                
-                Button("done") {
-                    print("updated settings")
-                    // here we'll call a method that updates the settings 
-                }
-            }
-            
-            
-            
+        ZStack {
+            Color(red:0.436, green: 0.558, blue: 0.925)
             VStack {
-//                TextField(
-//                    authModel.username,
-//                    text: $authModel.username
-//                )
-                SecureField(
-                    authModel.password,
-                    text: $authModel.password
-                )
-                TextField(
-                    authModel.email,
-                    text: $authModel.email
-                )
+                Spacer()
+                HStack {
+                    Text("Account Settings")
+                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                        .foregroundColor(.textColor)
+                    Button("done") {
+                        print("updated settings")
+                        // here we'll call a method that updates the settings
+                    }
+                }
+                
+                
+                
+                VStack {
+    //                TextField(
+    //                    authModel.username,
+    //                    text: $authModel.username
+    //                )
+                    SecureField(
+                        authModel.password,
+                        text: $authModel.password
+                    )
+                    TextField(
+                        authModel.email,
+                        text: $authModel.email
+                    )
+                }
+                Spacer()
             }
+            .background(Color(red:0.436, green: 0.558, blue: 0.925))
+        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .background(Color(red:0.436, green: 0.558, blue: 0.925))
-//        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .ignoresSafeArea()
     }
 }
 

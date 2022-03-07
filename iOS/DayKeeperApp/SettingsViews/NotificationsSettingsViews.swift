@@ -9,12 +9,18 @@ import SwiftUI
 
 struct NotificationsSettingsView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Notification Settings here")
-        }
-        .background(Color(red:0.436, green: 0.558, blue: 0.925))
-        .frame(maxWidth: .infinity,
+        ZStack {
+            Color(red:0.436, green: 0.558, blue: 0.925)
+            VStack(alignment: .leading) {
+                Text("Notification Settings here")
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                    .foregroundColor(.textColor)
+            }
+            .background(Color(red:0.436, green: 0.558, blue: 0.925))
+            .frame(maxWidth: .infinity,
                maxHeight: .infinity)
+        }
+        .ignoresSafeArea()
                
     }
 }
