@@ -112,7 +112,7 @@ struct EventsView: View {
                 
 
             }
-            .padding(.top, 20)
+            .padding(.top, 10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
         
@@ -180,7 +180,7 @@ struct EventsView: View {
                 }
             }
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-            .padding(.top, -3)
+            .padding(.top, -8)
         }
     }
 }
