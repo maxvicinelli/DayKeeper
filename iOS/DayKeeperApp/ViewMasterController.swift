@@ -20,7 +20,7 @@ struct ViewMasterController: View {
 //        }
         
         if authModel.viewingSettings {
-            SettingsView(authModel: authModel)
+            SettingsView(authModelParam: authModel)
         }
       
         else if authModel.authenticated {
