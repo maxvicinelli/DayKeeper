@@ -67,6 +67,9 @@
 		FEEB0EDD27D41E3E0088E346 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E9027D41E3E0088E346 /* iTunesArtwork@3x.png */; };
 		FEEB0F0D27D420EE0088E346 /* Alarm-1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0F0C27D420EE0088E346 /* Alarm-1024.jpg */; };
 		FEEB0F0F27D424F90088E346 /* Alarm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0F0E27D424F90088E346 /* Alarm.jpg */; };
+		FEEB0F1427D663BA0088E346 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0F1127D663B90088E346 /* Assets.xcassets */; };
+		FEEB0F1527D663BA0088E346 /* appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0F1227D663B90088E346 /* appstore.png */; };
+		FEEB0F1627D663BA0088E346 /* playstore.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0F1327D663B90088E346 /* playstore.png */; };
 		FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECDC8C27B4380C007DD3CD /* Constants.swift */; };
 		FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEECDC9027B97722007DD3CD /* RealmSetup.swift */; };
 /* End PBXBuildFile section */
@@ -153,6 +156,9 @@
 		FEEB0E9027D41E3E0088E346 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		FEEB0F0C27D420EE0088E346 /* Alarm-1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Alarm-1024.jpg"; sourceTree = "<group>"; };
 		FEEB0F0E27D424F90088E346 /* Alarm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Alarm.jpg; sourceTree = "<group>"; };
+		FEEB0F1127D663B90088E346 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FEEB0F1227D663B90088E346 /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
+		FEEB0F1327D663B90088E346 /* playstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playstore.png; sourceTree = "<group>"; };
 		FEECDC8C27B4380C007DD3CD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FEECDC9027B97722007DD3CD /* RealmSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSetup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +234,7 @@
 				FEEB0F0E27D424F90088E346 /* Alarm.jpg */,
 				FEEB0E7A27D41E3E0088E346 /* Alarm */,
 				FEEB0E7827D41D1B0088E346 /* Images.xcassets */,
+				FEEB0F1027D663B90088E346 /* AppIcons */,
 				799CC39A27A488AC0043A9FF /* Info.plist */,
 				799CC39727A488AC0043A9FF /* Preview Content */,
 				FE11B3BB27ADC3480052CA22 /* EventsView.swift */,
@@ -342,6 +349,16 @@
 				FEEB0E8D27D41E3E0088E346 /* Icon-App-29x29@2x.png */,
 			);
 			path = AppIcon.appiconset;
+			sourceTree = "<group>";
+		};
+		FEEB0F1027D663B90088E346 /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				FEEB0F1127D663B90088E346 /* Assets.xcassets */,
+				FEEB0F1227D663B90088E346 /* appstore.png */,
+				FEEB0F1327D663B90088E346 /* playstore.png */,
+			);
+			path = AppIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +482,7 @@
 				FEEB0ED327D41E3E0088E346 /* Icon-App-20x20@2x.png in Resources */,
 				FEEB0EDB27D41E3E0088E346 /* README.md in Resources */,
 				799CC39627A488AC0043A9FF /* Assets.xcassets in Resources */,
+				FEEB0F1627D663BA0088E346 /* playstore.png in Resources */,
 				FEEB0EDD27D41E3E0088E346 /* iTunesArtwork@3x.png in Resources */,
 				FE89728227D3E6BD00041B33 /* OFL.txt in Resources */,
 				FEEB0ECA27D41E3E0088E346 /* iTunesArtwork@1x.png in Resources */,
@@ -482,7 +500,9 @@
 				FE8972A027D4083800041B33 /* Karla-Regular.ttf in Resources */,
 				FEEB0ECE27D41E3E0088E346 /* Icon-App-20x20@1x.png in Resources */,
 				FEEB0ECF27D41E3E0088E346 /* Icon-App-83.5x83.5@2x.png in Resources */,
+				FEEB0F1527D663BA0088E346 /* appstore.png in Resources */,
 				FEEB0F0F27D424F90088E346 /* Alarm.jpg in Resources */,
+				FEEB0F1427D663BA0088E346 /* Assets.xcassets in Resources */,
 				FEEB0F0D27D420EE0088E346 /* Alarm-1024.jpg in Resources */,
 				FEEB0ECC27D41E3E0088E346 /* Icon-App-29x29@1x.png in Resources */,
 			);
