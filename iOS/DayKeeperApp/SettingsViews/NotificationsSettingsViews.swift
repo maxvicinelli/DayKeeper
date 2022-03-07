@@ -14,8 +14,7 @@ struct NotificationsSettingsView: View {
         }
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
         .frame(maxWidth: .infinity,
-               maxHeight: .infinity,
-               alignment: .topLeading)
+               maxHeight: .infinity)
                
     }
 }
@@ -27,12 +26,9 @@ struct NotificationsSettingsRow: View {
                 .resizable()
                 .frame(width: 50, height: 50)
                 .padding()
-
+            
             Text("Notifications")
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
-
-
-
         }
     }
 }

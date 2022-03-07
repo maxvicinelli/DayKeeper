@@ -6,15 +6,6 @@
 //
 
 import SwiftUI
-//
-//struct navListView: View {
-
-//    var body: some View {
-//        NavigationView {
-//            List {
-//        }
-//    }
-//}
 
 struct SettingsView: View {
     
@@ -30,9 +21,8 @@ struct SettingsView: View {
        
     var body: some View {
 
-        VStack {
+        VStack(alignment: .center, spacing: 0) {
             ZStack {
-                
                 HStack {
                     Button("Back"){
                         authModel.cancelSettings()
@@ -46,8 +36,8 @@ struct SettingsView: View {
                     .foregroundColor(.textColor)
                     .frame(alignment: .center)
             }
-            
-            
+            .background(Color(red:0.436, green: 0.558, blue: 0.925))
+
             NavigationView {
                 ZStack {
                     Color.red.ignoresSafeArea(.all)
@@ -103,24 +93,11 @@ struct SettingsView: View {
                                 })
                             .background(Color(red:0.436, green: 0.558, blue: 0.925))
                     }
-//                .background(Color(red:0.436, green: 0.558, blue: 0.925))
-
             }
-//            if loggingOutFailure {
-//                RoundedRectangle(cornerRadius: 16)
-//                    .foregroundColor(Color.gray)
-//                    .frame(width: 250, height: 250)
-//                    .overlay(
-//                        VStack {
-//                            Text("Failed to log out").font(.largeTitle)
-//                            Text("Try again later").font(.body)
-//                        })
-//                    .background(Color(red:0.436, green: 0.558, blue: 0.925))
-//
-//            }
         }
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
     }
+}
 }
 
 

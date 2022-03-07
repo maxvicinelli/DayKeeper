@@ -54,12 +54,17 @@ struct AccountSettingsRow: View {
                 .resizable()
                 .frame(width: 50, height: 50)
                 .padding()
+            
+//            if let image_url = Bundle.main.url(forResource: "user", withExtension: "png") {
+//                Image(uiImage: UIImage(imageLiteralResourceName: image_url.lastPathComponent))
+//                    .renderingMode(.original)
+//                    .resizable()
+//                    .frame(width: 50, height: 50)
+//                    .padding()
+//            }
 
             Text("Account")
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
-
-
-
         }
     }
 }
