@@ -31,13 +31,20 @@ struct SettingsView: View {
     var body: some View {
 
         VStack {
-            HStack {
-                Button("Back"){
-                    authModel.cancelSettings()
+            ZStack {
+                
+                HStack {
+                    Button("Back"){
+                        authModel.cancelSettings()
+                    }
+                    .padding()
+                    .foregroundColor(.textColor)
+                    Spacer()
                 }
                 Text("Settings")
-                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 40)!))
                     .foregroundColor(.textColor)
+                    .frame(alignment: .center)
             }
             
             
@@ -51,6 +58,8 @@ struct SettingsView: View {
                                                         AccountSettingsRow()
                                                     }
                         )
+                        .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
+
                         
                         NavigationLink(
                                                     destination: NotificationsSettingsView(),
@@ -58,6 +67,8 @@ struct SettingsView: View {
                                                         NotificationsSettingsRow()
                                                     }
                         )
+                        .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
+
                         
                         Button("Log out", role: .destructive, action: { loggingOutConfirmation = true })
                             .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
@@ -80,24 +91,33 @@ struct SettingsView: View {
                                     Button("Cancel", role: .cancel, action: {})
                                 }
                             }
-                        }
-//                    .background(Color(red:0.436, green: 0.558, blue: 0.925))
+                    }
+                    if loggingOutFailure {
+                        RoundedRectangle(cornerRadius: 16)
+                            .foregroundColor(Color.gray)
+                            .frame(width: 250, height: 250)
+                            .overlay(
+                                VStack {
+                                    Text("Failed to log out").font(.largeTitle)
+                                    Text("Try again later").font(.body)
+                                })
+                            .background(Color(red:0.436, green: 0.558, blue: 0.925))
                     }
 //                .background(Color(red:0.436, green: 0.558, blue: 0.925))
 
             }
-            if loggingOutFailure {
-                RoundedRectangle(cornerRadius: 16)
-                    .foregroundColor(Color.gray)
-                    .frame(width: 250, height: 250)
-                    .overlay(
-                        VStack {
-                            Text("Failed to log out").font(.largeTitle)
-                            Text("Try again later").font(.body)
-                        })
-                    .background(Color(red:0.436, green: 0.558, blue: 0.925))
-
-            }
+//            if loggingOutFailure {
+//                RoundedRectangle(cornerRadius: 16)
+//                    .foregroundColor(Color.gray)
+//                    .frame(width: 250, height: 250)
+//                    .overlay(
+//                        VStack {
+//                            Text("Failed to log out").font(.largeTitle)
+//                            Text("Try again later").font(.body)
+//                        })
+//                    .background(Color(red:0.436, green: 0.558, blue: 0.925))
+//
+//            }
         }
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
     }
@@ -109,9 +129,3 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView(authModelParam: AuthenticationModel())
     }
 }
-
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView(authModel: AuthenticationModel())
-//    }
-//}

@@ -718,7 +718,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = C33557Q74F;
+				DEVELOPMENT_TEAM = 4J4D6N7TUA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -726,7 +726,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.jonah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -741,7 +741,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = C33557Q74F;
+				DEVELOPMENT_TEAM = 4J4D6N7TUA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -749,7 +749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.jonah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

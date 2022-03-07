@@ -9,7 +9,14 @@ import SwiftUI
 
 struct NotificationsSettingsView: View {
     var body: some View {
-        Text("Notification Settings here")
+        VStack(alignment: .leading) {
+            Text("Notification Settings here")
+        }
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
+        .frame(maxWidth: .infinity,
+               maxHeight: .infinity,
+               alignment: .topLeading)
+               
     }
 }
 

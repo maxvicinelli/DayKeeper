@@ -42,7 +42,8 @@ struct AccountSettingsView: View {
                 )
             }
         }
-        
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
+//        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 

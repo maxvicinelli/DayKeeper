@@ -63,7 +63,7 @@ struct LoginView: View {
                     Text("DayKeeper")
                         .shadow(radius: 15)
                         .foregroundColor(Color.textColor)
-                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 60)!))
+                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 70)!))
                         .padding(.vertical, 5.0)
                         .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
                         .minimumScaleFactor(0.5)
