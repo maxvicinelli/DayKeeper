@@ -42,7 +42,8 @@ struct AccountSettingsView: View {
                 )
             }
         }
-        
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
+//        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
@@ -53,10 +54,17 @@ struct AccountSettingsRow: View {
                 .resizable()
                 .frame(width: 50, height: 50)
                 .padding()
+            
+//            if let image_url = Bundle.main.url(forResource: "user", withExtension: "png") {
+//                Image(uiImage: UIImage(imageLiteralResourceName: image_url.lastPathComponent))
+//                    .renderingMode(.original)
+//                    .resizable()
+//                    .frame(width: 50, height: 50)
+//                    .padding()
+//            }
 
             Text("Account")
-
-
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
         }
     }
 }
