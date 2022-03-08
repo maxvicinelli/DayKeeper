@@ -108,6 +108,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
    }
     
     func updateOtherEvents(event: Event, early: Bool) {
+        print("updateOtherEvents called")
         
         for otherEvent in getEventsFromDb() {
 
@@ -154,40 +155,42 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 }
             }
         }
-        
         createStatusUpdateNotifs()
     }
     
    
        func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let event_title = response.notification.request.content.title
-           
-        if let event = getEventsFromDb().first(where: {$0.Title == event_title}) {
-            switch response.actionIdentifier{
-            case "early":
-                print("early")
-                updateOtherEvents(event: event, early: true)
-            case "late":
-                print("late")
-                updateOtherEvents(event: event, early: false)
-            case UNNotificationDefaultActionIdentifier:
-                print("notification was clicked on and app opened, but no response was recorded")
-                didntRespond = true
-                didntRespond_title_name = event.Title
-                didntRespondDate = event.StartDate
-            case UNNotificationDismissActionIdentifier:
-                print("notification was dismissed")
-                didntRespond = true
-                didntRespond_title_name = event.Title
-                didntRespondDate = event.StartDate
-            default:
-                print("default case")
+            let event_title = response.notification.request.content.title
+           print("userNotificationCenter callback called, event_title:", event_title)
+               
+            if let event = getEventsFromDb().first(where: {$0.Title == event_title}) {
+                print("event was found in db")
+                switch response.actionIdentifier{
+                case "early":
+                    print("early")
+                    updateOtherEvents(event: event, early: true)
+                case "late":
+                    print("late")
+                    updateOtherEvents(event: event, early: false)
+                case UNNotificationDefaultActionIdentifier:
+                    print("notification was clicked on and app opened, but no response was recorded")
+                    print("Event title:", event.Title)
+                    didntRespond_title_name = event.Title
+                    didntRespondDate = event.StartDate
+                    didntRespond = true
+                case UNNotificationDismissActionIdentifier:
+                    print("notification was dismissed")
+                    didntRespond_title_name = event.Title
+                    didntRespondDate = event.StartDate
+                    didntRespond = true
+                default:
+                    print("default case")
+                }
             }
-        }
-        else {
-            print("item could not be found")
-        }
-        completionHandler()
+            else {
+                print("item could not be found")
+            }
+            completionHandler()
     }
     
     

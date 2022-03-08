@@ -50,9 +50,11 @@ struct EventsView: View {
     }
     
     func reloadDidntRespond() {
+        print("reload didnt respond called")
         isNotifResponsePresented = actionNotifManager.didntRespond
         didntRespondEventTitle = actionNotifManager.didntRespond_title_name
         didntRespondEventDate = actionNotifManager.didntRespondDate
+        print("isNotifResponsePresented:", isNotifResponsePresented, "didntRespondEventTitle:", didntRespondEventTitle, "didntRespondEventDate:", didntRespondEventDate)
     }
     
     
@@ -169,8 +171,9 @@ struct EventsView: View {
                         .sheet(isPresented: $isNotifResponsePresented){
                             NavigationView {
                                 NotifResponseView(isPresented: $isNotifResponsePresented,
-                                                  notificationTitle: didntRespondEventTitle,
-                                                  eventStartDate: didntRespondEventDate)
+                                                  notificationTitle: actionNotifManager.didntRespond_title_name,
+                                                  eventStartDate: didntRespondEventDate,
+                                                  actionNotifManger: actionNotifManager)
                             }
                         }
                 }
