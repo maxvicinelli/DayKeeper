@@ -168,11 +168,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 switch response.actionIdentifier{
                 case "early":
                     print("early")
-                    // event.OnTime = max(event.OnTime-1, 0)
                     updateOtherEvents(event: event, early: true)
                 case "late":
                     print("late")
-                    // event.OnTime = min(event.OnTime+1, 5)
                     updateOtherEvents(event: event, early: false)
                 case UNNotificationDefaultActionIdentifier:
                     print("notification was clicked on and app opened, but no response was recorded")
