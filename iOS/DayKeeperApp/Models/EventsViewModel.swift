@@ -81,6 +81,7 @@ final class EventsViewModel : ObservableObject {
                     newEvent.EndDate = e.endDate
                     newEvent.OnTime = -1
                     newEvent.NotifBefore = -1
+                    newEvent.CreationMethod = iCalCreation
                     newEvent.Tasks = RealmSwift.List<Event>()
                     for _ in 0...randomNums.randomElement()! {
                         let newTask = Event()
@@ -141,6 +142,40 @@ final class EventsViewModel : ObservableObject {
             try! realm.write {
                 realm.add(self.events)
             }
+        }
+    }
+    //    print(events)
+    func combineDBandiCal() -> Void {
+        var iCalEvents = [Event]()
+        iCalEvents = self.loadFromiCal(registering: false)
+    
+//        var iCalEvents = loadFromiCal(registering: false)
+        print("ical: ")
+        print(iCalEvents)
+//        loadFromDB()
+        print("vm b4: ")
+        print(self.events)
+        var manualEvents = self.events.filter { event in
+            (event.CreationMethod == ManualCreation)
+        }
+        print("manual: ")
+        print(manualEvents)
+        print("db :")
+        var dbEvents = self.events.filter { event in
+            (event.CreationMethod == iCalCreation)
+        }
+        print(dbEvents)
+        
+        DispatchQueue.main.async {
+            print("combined :")
+            var combined = iCalEvents.append(contentsOf: manualEvents)
+            print(combined)
+//            self.events = combined
+            print("here are our events: ")
+            print(self.events)
+            print("now were done")
+//            sendToRealm(events: self.events)
+//            self.actionNotifManager.createStatusUpdateNotifs()
         }
     }
     
