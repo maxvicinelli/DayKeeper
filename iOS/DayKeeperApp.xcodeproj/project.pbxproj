@@ -761,7 +761,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = HU48CMT242;
+				DEVELOPMENT_TEAM = C33557Q74F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -769,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.max;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -786,7 +786,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DayKeeperApp/Preview Content\"";
-				DEVELOPMENT_TEAM = HU48CMT242;
+				DEVELOPMENT_TEAM = UA9ZY8LVV5;
 				ENABLE_PREVIEWS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = DayKeeperApp/Info.plist;
@@ -795,7 +795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.max;
+				PRODUCT_BUNDLE_IDENTIFIER = cosc98.DayKeeperApp.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
