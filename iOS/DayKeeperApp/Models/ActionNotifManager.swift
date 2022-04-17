@@ -229,10 +229,22 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             }
             scheduleNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
-                    DispatchQueue.main.async {
-                        // self.isPresented = false
+                    DispatchQueue.main.async { // self.isPresented = false
                     }
                 }
+                 
+            for preTask in event.Tasks ?? List<Event>() {
+                print(preTask.Title)
+                self.scheduleAlarmNotification(onTime: event.OnTime , title: preTask.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            // self.isPresented = false
+                        }
+                    }
+                }
+                
+            }
+
             }
         }
         print("printing current pending notifications after deleting and remaking:")

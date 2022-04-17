@@ -12,10 +12,18 @@ struct EventRow: View {
     
     
     
-    @State var event: Event
-    
+ @State var event: Event
+    @State private var new_task = ""
+    @State private var new_category = ""
     private func updateEvent() {
+        if new_task != "" {
+            print(new_task)
+            let pretask = Event()
+            pretask.Title = new_task
+                event.Tasks!.append(pretask)
+            }
         postEvent(event: event)
+        //reload page
     }
         
     
@@ -72,6 +80,8 @@ struct EventRow: View {
                             }
                         }
                     }
+                TextField("New Task", text: $new_task)
+                TextField("Update Category", text: $new_category)
                 }
             Button("Save", action: updateEvent)
             
