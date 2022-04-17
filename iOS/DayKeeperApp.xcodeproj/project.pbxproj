@@ -30,8 +30,6 @@
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
 		FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventsView.swift */; };
 		FE11B3BE27AF24980052CA22 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BD27AF24980052CA22 /* Event.swift */; };
-		FE11B3C127AF26770052CA22 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FE11B3C027AF26770052CA22 /* Realm */; };
-		FE11B3C327AF26770052CA22 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE11B3C227AF26770052CA22 /* RealmSwift */; settings = {ATTRIBUTES = (Required, ); }; };
 		FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C427B03ABA0052CA22 /* PreEvent.swift */; };
 		FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C627B05B900052CA22 /* EventRow.swift */; };
 		FE11B3C927B088490052CA22 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C827B088490052CA22 /* Data.swift */; };
@@ -41,6 +39,8 @@
 		FE89728227D3E6BD00041B33 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE89728027D3E6BD00041B33 /* OFL.txt */; };
 		FE8972A027D4083800041B33 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89728E27D4083800041B33 /* Karla-Regular.ttf */; };
 		FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */; };
+		FEB86BB1280CB8DA00A0944C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FEB86BB0280CB8DA00A0944C /* Realm */; };
+		FEB86BB3280CB8DA00A0944C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEB86BB2280CB8DA00A0944C /* RealmSwift */; };
 		FEEB0E7927D41D1B0088E346 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7827D41D1B0088E346 /* Images.xcassets */; };
 		FEEB0ECA27D41E3E0088E346 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7C27D41E3E0088E346 /* iTunesArtwork@1x.png */; };
 		FEEB0ECB27D41E3E0088E346 /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7E27D41E3E0088E346 /* Icon-App-76x76@2x.png */; };
@@ -162,8 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE11B3C327AF26770052CA22 /* RealmSwift in Frameworks */,
-				FE11B3C127AF26770052CA22 /* Realm in Frameworks */,
+				FEB86BB3280CB8DA00A0944C /* RealmSwift in Frameworks */,
+				FEB86BB1280CB8DA00A0944C /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,8 +411,8 @@
 			);
 			name = DayKeeperApp;
 			packageProductDependencies = (
-				FE11B3C027AF26770052CA22 /* Realm */,
-				FE11B3C227AF26770052CA22 /* RealmSwift */,
+				FEB86BB0280CB8DA00A0944C /* Realm */,
+				FEB86BB2280CB8DA00A0944C /* RealmSwift */,
 			);
 			productName = DayKeeperApp;
 			productReference = 799CC38E27A488AB0043A9FF /* DayKeeperApp.app */;
@@ -489,7 +489,7 @@
 			);
 			mainGroup = 799CC38527A488AB0043A9FF;
 			packageReferences = (
-				FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 799CC38F27A488AB0043A9FF /* Products */;
 			projectDirPath = "";
@@ -929,6 +929,14 @@
 				kind = branch;
 			};
 		};
+		FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -942,14 +950,14 @@
 			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		FE11B3C027AF26770052CA22 /* Realm */ = {
+		FEB86BB0280CB8DA00A0944C /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		FE11B3C227AF26770052CA22 /* RealmSwift */ = {
+		FEB86BB2280CB8DA00A0944C /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
