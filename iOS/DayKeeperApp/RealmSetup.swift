@@ -67,11 +67,6 @@ func getEventsFromDb() -> [Event]
         for e in query {
             events.append(e)
         }
-        //eventsVM.events = events
-        // print(events)
-//        let currentUserEvents = events.where {
-//            ($0.UserId == user!.id)
-//        }
     }
     return events
 }
@@ -82,9 +77,9 @@ func postEvent(event: Event) -> Void {
         let user = app.currentUser
         let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
         let eventsInDb = realm.objects(Event.self)
-        let eventInDb = eventsInDb.where {
-            ($0._id == event._id)
-        }
+        //        let eventInDB = eventsInDb.where {
+        //            ($0._id == event._id)
+        //        }
         try! realm.write {
             realm.add(event, update: .modified)
         }

@@ -60,7 +60,7 @@ struct EventsView: View {
     
     var filteredEvents: [Event] {
         eventsVM.events.filter { event in
-            (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly)
+            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly))
         }
     }
     

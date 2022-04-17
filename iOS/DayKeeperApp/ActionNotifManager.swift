@@ -143,9 +143,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 //                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
 //
                     //if the user has been late 3 times in the last 5 days, decrement the notification schedule
-                            print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
+                            //                            print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
                             otherEvent.OnTime = min(otherEvent.OnTime+1, 5)
-                            print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
+                            //                            print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
 
 //                    if ( event.Timeliness.reduce(0, +) >= 3) {
 //                        event.OnTime = min(event.OnTime+1, 5)
@@ -168,9 +168,11 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 switch response.actionIdentifier{
                 case "early":
                     print("early")
+                    // event.OnTime = max(event.OnTime-1, 0)
                     updateOtherEvents(event: event, early: true)
                 case "late":
                     print("late")
+                    // event.OnTime = min(event.OnTime+1, 5)
                     updateOtherEvents(event: event, early: false)
                 case UNNotificationDefaultActionIdentifier:
                     print("notification was clicked on and app opened, but no response was recorded")

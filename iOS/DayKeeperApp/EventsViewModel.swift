@@ -33,7 +33,7 @@ final class EventsViewModel : ObservableObject {
     }
     
     
-    func loadFromiCal(registering: Bool) -> [Event] {
+    func loadFromiCal(registering: Bool) -> Void {
     //    let eventsVM = EventsViewModel()
         
         let eventStore = EKEventStore()
@@ -103,7 +103,7 @@ final class EventsViewModel : ObservableObject {
                         print("here are our events: ")
                         print(self.events)
                         print("now were done")
-                        sendToRealm(events: self.events)
+                        self.sendToRealm()
                         self.actionNotifManager.createStatusUpdateNotifs()
                     }
                 }
@@ -112,7 +112,6 @@ final class EventsViewModel : ObservableObject {
         }
         print("now calling actionNotificationManager")
         
-        return events
     }
     
     func loadFromDB() -> Void {
@@ -130,6 +129,17 @@ final class EventsViewModel : ObservableObject {
                 }
         
                 self.events = events
+            }
+        }
+    }
+    
+    func sendToRealm() -> Void {
+    //    print(events)
+        if let app = app {
+            let user = app.currentUser
+            let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+            try! realm.write {
+                realm.add(self.events)
             }
         }
     }
