@@ -151,20 +151,20 @@ struct EventsView: View {
                                 break
                             }
                         }
-                        .onAppear(perform: {actionNotifManager.createStatusUpdateNotifs()})
+                        .onAppear(perform: {
+                            print("onAppear called in EventsView")
+                            actionNotifManager.createStatusUpdateNotifs()})
                     
                         .onChange(of: scenePhase) { newPhase in
                             if newPhase == .active {
-                                print("now active")
                                 reloadDidntRespond()
                             }
                         }
                         .onAppear(perform: {reloadDidntRespond()})
                         .background(Color(red:0.436, green: 0.558, blue: 0.925))
-                        .sheet(isPresented: $isCreatePresented){
+                        .sheet(isPresented: $isCreatePresented, onDismiss: actionNotifManager.createStatusUpdateNotifs){
                             NavigationView {
-                                CreateEventView(isPresented: $isCreatePresented,
-                                notificationManager: notificationManager)
+                                CreateEventView(isPresented: $isCreatePresented, eventsVM: eventsVM)
                             }
                             .accentColor(.primary)
                         }

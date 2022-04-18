@@ -18,6 +18,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     // year: Int, month: Int,
     func scheduleNotification(title: String, year: Int, month: Int,day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
+        
+        print("scheduling action notification w/ title \(title)")
+        
         let earlyAction = UNNotificationAction(identifier: "early", title: "I was early", options: [])
         let lateAction = UNNotificationAction(identifier: "late", title: "I was late", options: [])
     
@@ -72,7 +75,12 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         
 //        if event.Category?.Title == category {
 //                severity = event.OnTime * 5
-        print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+        //print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+        
+        
+        print("scheduling alarm notification w/ title \(title)")
+        
+        
         let severity = onTime + 2
         var dateComponents = DateComponents()
         dateComponents.hour = hour
@@ -160,8 +168,11 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
    
        func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+           
+            print("in userNotificationCenter")
+           
             let event_title = response.notification.request.content.title
-           print("userNotificationCenter callback called, event_title:", event_title)
+            print("userNotificationCenter callback called, event_title:", event_title)
                
             if let event = getEventsFromDb().first(where: {$0.Title == event_title}) {
                 print("event was found in db")
@@ -214,29 +225,37 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 print(request.content.title)
             }
         })
-        print("Printing events currently in DB")
+        print("Now creating notifications")
         for event in getEventsFromDb(){
             print(event.Title)
             let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             //year: calendarDate.year!, month: calendarDate.month!,
 
             scheduleAlarmNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+                
                 if error == nil {
                     DispatchQueue.main.async {
-                        // self.isPresented = false
+                        print("scheduled alarm notification for event: \(event.Title)")
                     }
+                } else {
+                    print("there was an error w/ scheduling alarm notification")
+                    print(error)
                 }
             }
             scheduleNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
                     DispatchQueue.main.async {
-                        // self.isPresented = false
+                        print("scheduled action notification for event: \(event.Title)")
                     }
+                } else {
+                    print("there was an error w/ scheduling action notif")
+                    print(error)
                 }
             }
         }
         print("printing current pending notifications after deleting and remaking:")
         UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
+            print("printing notification requests: ")
             for request in requests {
                 
                 print(request.content.title)
@@ -244,8 +263,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 
             }
         })
+        print("finished executing createStatusUpdateNotifs")
     }
-    
-
 }
 

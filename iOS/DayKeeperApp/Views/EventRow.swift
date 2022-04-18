@@ -15,7 +15,7 @@ struct EventRow: View {
     @State var event: Event
     
     private func updateEvent() {
-        postEvent(event: event)
+        postEvent(event: event, updating: true)
     }
         
     
