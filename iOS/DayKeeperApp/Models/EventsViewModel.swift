@@ -16,26 +16,6 @@ final class EventsViewModel : ObservableObject {
     
     
     func loadEvents(registering: Bool) -> Void {
-//        var oldEvents = getEventsFromDb()
-//
-//        let iCalEvents = loadFromiCal(registering: false)
-//        var newEvents = [Event]()
-//
-//        // loop
-//
-//
-//        for event in self.events {
-//            if
-//        }
-//        self.events = getEventsFromDb()
-        var oldEvents = getEventsFromDb()
-        print("db: ")
-        print(oldEvents)
-        loadFromiCal(registering: false)
-        print("loading new from ical...")
-        self.events.append(contentsOf: oldEvents)
-        print(self.events)
-        
     }
     
     
@@ -135,7 +115,13 @@ final class EventsViewModel : ObservableObject {
                 print("here is what we got")
                 print(query)
                 for e in query {
-                    events.append(e)
+                    if e.CreationMethod == ManualCreation {
+                        events.append(e)
+                    } else if e.CreationMethod == iCalCreation {
+                        try! realm.write {
+                            realm.delete(e)
+                        }
+                    }
                 }
         
                 self.events.append(contentsOf: events)
@@ -153,50 +139,4 @@ final class EventsViewModel : ObservableObject {
             }
         }
     }
-    //    print(events)
-    func combineDBandiCal() -> Void {
-        var dbEvents = [Event]()//loadFromDBArray()
-        print("db: ")
-        print(dbEvents)
-//        loadFromiCal(registering: false)
-//        var iCalEvents = loadFromiCal(registering: false)
-        print("vm: ")
-        print(self.events)
-        var manualEvents = self.events.filter { event in
-            (event.CreationMethod == ManualCreation)
-        }
-        print("manual: ")
-        print(manualEvents)
-        print("db :")
-        var iCalEvents = self.events.filter { event in
-            (event.CreationMethod == iCalCreation)
-        }
-        print(iCalEvents)
-        
-//        DispatchQueue.main.async {
-//            print("combined :")
-//            var combined = iCalEvents.append(contentsOf: manualEvents)
-//            print(combined)
-////            self.events = combined
-//            print("here are our events: ")
-//            print(self.events)
-//            print("now were done")
-////            sendToRealm(events: self.events)
-////            self.actionNotifManager.createStatusUpdateNotifs()
-//        }
-    }
-    
-    
-//
-//    func updateEvents() -> Void {
-//
-//        print("----------------------------")
-//
-//        self.events = getEventsFromDb()
-//    }
-//    override func viewWillAppear(_ animated : Bool) {
-//        events = getEventsFromDb().events
-//        super.viewWillAppear(animated)
-//        print("test")
-//    }
 }
