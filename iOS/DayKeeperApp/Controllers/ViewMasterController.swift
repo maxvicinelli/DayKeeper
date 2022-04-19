@@ -28,9 +28,6 @@ struct ViewMasterController: View {
                  
                 
             EventsView(authModelParam: authModel, appParam: app!, eventsVMParams: eventsVM)
-            let x = print("loaded from iCal")
-            //let _ = authModel.setRegistration(value: false)
-                
 //            }
 //            else {
 //                EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
@@ -39,22 +36,16 @@ struct ViewMasterController: View {
         }
         else {
             if authModel.registering {
-                
-                
-                let z = print("NOW WERE REGISTERING")
                 RegistrationView(authModel: authModel, eventsViewModel: eventsVM)
                     .environmentObject(authModel)
             }
             else {
-                let q = print("LOGIN VIEWWWWW")
                 LoginView(eventsViewModel: eventsVM)
                     .environmentObject(authModel)
             }
-            
         }
     }
 }
-
 struct ViewMasterController_Previews: PreviewProvider {
     static var previews: some View {
         ViewMasterController(authModel: AuthenticationModel(), eventsVM: EventsViewModel())

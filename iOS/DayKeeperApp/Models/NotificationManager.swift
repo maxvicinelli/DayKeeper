@@ -59,6 +59,8 @@ final class NotificationManager: ObservableObject{
         dateComponents.day = day
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
+        print("now in createLocalNotifications")
+        
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
         notificationContent.sound = .default
@@ -66,6 +68,9 @@ final class NotificationManager: ObservableObject{
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
+        
+        
+        print("finished creating a notif for this event")
     }
     
     // method that creates notifications intelligently based on how late you have been recently

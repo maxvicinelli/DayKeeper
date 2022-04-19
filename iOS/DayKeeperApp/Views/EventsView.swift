@@ -50,15 +50,17 @@ struct EventsView: View {
     }
     
     func reloadDidntRespond() {
+        print("reload didnt respond called")
         isNotifResponsePresented = actionNotifManager.didntRespond
         didntRespondEventTitle = actionNotifManager.didntRespond_title_name
         didntRespondEventDate = actionNotifManager.didntRespondDate
+        print("isNotifResponsePresented:", isNotifResponsePresented, "didntRespondEventTitle:", didntRespondEventTitle, "didntRespondEventDate:", didntRespondEventDate)
     }
     
     
     var filteredEvents: [Event] {
         eventsVM.events.filter { event in
-            (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly)
+            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly))
         }
     }
     
@@ -78,12 +80,12 @@ struct EventsView: View {
         
         VStack {
             HStack {
-                Text("Welcome, User")
+                Text("Welcome")
                     .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
                     .lineLimit(2)
                     .shadow(radius: 15)
                     .foregroundColor(Color.textColor)
-                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 40)!))
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
                     .padding(.vertical, 5.0)
                     .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
                     .minimumScaleFactor(0.5)
@@ -106,23 +108,18 @@ struct EventsView: View {
                 .frame(width: 80, height: 40, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
                 .foregroundColor(Color.black)
-                
-                
-                
-                
-
             }
             .padding(.top, 10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
         
-            VStack {
+            VStack(spacing: 0) {
                 
                 NavigationView {
-                    
-                    VStack {
+                    VStack(spacing: 0) {
                         Toggle(isOn: $showTodayEventsOnly){
-                            Text("Click for your schedule for today")
+                            Text("Today's Events Only")
+                                .foregroundColor(Color.textColor)
                         }
                         .padding()
                         List(filteredEvents) { event in
@@ -132,6 +129,7 @@ struct EventsView: View {
                                     Text(event.Title)
                                         // .onAppear(perform: {eventsVM.update()})
                                 })
+                                .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
                             }
                         }
                         .overlay(infoOverlayView)
@@ -153,28 +151,29 @@ struct EventsView: View {
                                 break
                             }
                         }
-                        .onAppear(perform: {actionNotifManager.createStatusUpdateNotifs()})
+                        .onAppear(perform: {
+                            print("onAppear called in EventsView")
+                            actionNotifManager.createStatusUpdateNotifs()})
                     
                         .onChange(of: scenePhase) { newPhase in
                             if newPhase == .active {
-                                print("now active")
                                 reloadDidntRespond()
                             }
                         }
                         .onAppear(perform: {reloadDidntRespond()})
                         .background(Color(red:0.436, green: 0.558, blue: 0.925))
-                        .sheet(isPresented: $isCreatePresented){
+                        .sheet(isPresented: $isCreatePresented, onDismiss: actionNotifManager.createStatusUpdateNotifs){
                             NavigationView {
-                                CreateEventView(isPresented: $isCreatePresented,
-                                notificationManager: notificationManager)
+                                CreateEventView(isPresented: $isCreatePresented, eventsVM: eventsVM)
                             }
                             .accentColor(.primary)
                         }
                         .sheet(isPresented: $isNotifResponsePresented){
                             NavigationView {
                                 NotifResponseView(isPresented: $isNotifResponsePresented,
-                                                  notificationTitle: didntRespondEventTitle,
-                                                  eventStartDate: didntRespondEventDate)
+                                                  notificationTitle: actionNotifManager.didntRespond_title_name,
+                                                  eventStartDate: didntRespondEventDate,
+                                                  actionNotifManger: actionNotifManager)
                             }
                         }
                 }

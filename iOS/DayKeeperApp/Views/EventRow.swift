@@ -15,7 +15,7 @@ struct EventRow: View {
     @State var event: Event
     
     private func updateEvent() {
-        postEvent(event: event)
+        postEvent(event: event, updating: true)
     }
         
     
@@ -39,7 +39,7 @@ struct EventRow: View {
                 .padding(.bottom, 15)
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
             
-            let howEarly = event.OnTime * -1
+            let howEarly = event.OnTime + 2
             
             Text("You are currently being reminded \(howEarly) minutes early for this event")
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 14)!))

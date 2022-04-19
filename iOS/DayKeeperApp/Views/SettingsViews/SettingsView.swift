@@ -76,6 +76,7 @@ struct SettingsView: View {
                                                         loggingOutFailure = false
                                                         authModel.authenticated = false
                                                         authModel.registering = false
+
                                                 }
                                             }
                                         })

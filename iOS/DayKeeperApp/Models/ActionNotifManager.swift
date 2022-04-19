@@ -18,6 +18,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
     
     // year: Int, month: Int,
     func scheduleNotification(title: String, year: Int, month: Int,day: Int, hour: Int, minute: Int, completion: @escaping (Error?) -> Void) {
+        
+        print("scheduling action notification w/ title \(title)")
+        
         let earlyAction = UNNotificationAction(identifier: "early", title: "I was early", options: [])
         let lateAction = UNNotificationAction(identifier: "late", title: "I was late", options: [])
     
@@ -72,7 +75,12 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
         
 //        if event.Category?.Title == category {
 //                severity = event.OnTime * 5
-        print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+        //print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+        
+        
+        print("scheduling alarm notification w/ title \(title)")
+        
+        
         let severity = onTime + 2
         var dateComponents = DateComponents()
         dateComponents.hour = hour
@@ -108,6 +116,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
    }
     
     func updateOtherEvents(event: Event, early: Bool) {
+        print("updateOtherEvents called")
         
         for otherEvent in getEventsFromDb() {
 
@@ -142,9 +151,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
 //                    event.Timeliness.remove(at: 0) //pop first element to keep moving 5 day window
 //
                     //if the user has been late 3 times in the last 5 days, decrement the notification schedule
-                            print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
+                            //                            print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
                             otherEvent.OnTime = min(otherEvent.OnTime+1, 5)
-                            print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
+                            //                            print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
 
 //                    if ( event.Timeliness.reduce(0, +) >= 3) {
 //                        event.OnTime = min(event.OnTime+1, 5)
@@ -154,40 +163,45 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 }
             }
         }
-        
         createStatusUpdateNotifs()
     }
     
    
        func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let event_title = response.notification.request.content.title
            
-        if let event = getEventsFromDb().first(where: {$0.Title == event_title}) {
-            switch response.actionIdentifier{
-            case "early":
-                print("early")
-                updateOtherEvents(event: event, early: true)
-            case "late":
-                print("late")
-                updateOtherEvents(event: event, early: false)
-            case UNNotificationDefaultActionIdentifier:
-                print("notification was clicked on and app opened, but no response was recorded")
-                didntRespond = true
-                didntRespond_title_name = event.Title
-                didntRespondDate = event.StartDate
-            case UNNotificationDismissActionIdentifier:
-                print("notification was dismissed")
-                didntRespond = true
-                didntRespond_title_name = event.Title
-                didntRespondDate = event.StartDate
-            default:
-                print("default case")
+            print("in userNotificationCenter")
+           
+            let event_title = response.notification.request.content.title
+            print("userNotificationCenter callback called, event_title:", event_title)
+               
+            if let event = getEventsFromDb().first(where: {$0.Title == event_title}) {
+                print("event was found in db")
+                switch response.actionIdentifier{
+                case "early":
+                    print("early")
+                    updateOtherEvents(event: event, early: true)
+                case "late":
+                    print("late")
+                    updateOtherEvents(event: event, early: false)
+                case UNNotificationDefaultActionIdentifier:
+                    print("notification was clicked on and app opened, but no response was recorded")
+                    print("Event title:", event.Title)
+                    didntRespond_title_name = event.Title
+                    didntRespondDate = event.StartDate
+                    didntRespond = true
+                case UNNotificationDismissActionIdentifier:
+                    print("notification was dismissed")
+                    didntRespond_title_name = event.Title
+                    didntRespondDate = event.StartDate
+                    didntRespond = true
+                default:
+                    print("default case")
+                }
             }
-        }
-        else {
-            print("item could not be found")
-        }
-        completionHandler()
+            else {
+                print("item could not be found")
+            }
+            completionHandler()
     }
     
     
@@ -211,29 +225,37 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 print(request.content.title)
             }
         })
-        print("Printing events currently in DB")
+        print("Now creating notifications")
         for event in getEventsFromDb(){
             print(event.Title)
             let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             //year: calendarDate.year!, month: calendarDate.month!,
 
             scheduleAlarmNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+                
                 if error == nil {
                     DispatchQueue.main.async {
-                        // self.isPresented = false
+                        print("scheduled alarm notification for event: \(event.Title)")
                     }
+                } else {
+                    print("there was an error w/ scheduling alarm notification")
+                    print(error)
                 }
             }
             scheduleNotification(title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!) { error in
                 if error == nil {
                     DispatchQueue.main.async {
-                        // self.isPresented = false
+                        print("scheduled action notification for event: \(event.Title)")
                     }
+                } else {
+                    print("there was an error w/ scheduling action notif")
+                    print(error)
                 }
             }
         }
         print("printing current pending notifications after deleting and remaking:")
         UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
+            print("printing notification requests: ")
             for request in requests {
                 
                 print(request.content.title)
@@ -241,8 +263,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 
             }
         })
+        print("finished executing createStatusUpdateNotifs")
     }
-    
-
 }
 
