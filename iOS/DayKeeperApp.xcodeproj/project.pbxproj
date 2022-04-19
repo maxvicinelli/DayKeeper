@@ -40,8 +40,13 @@
 		FE89728227D3E6BD00041B33 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE89728027D3E6BD00041B33 /* OFL.txt */; };
 		FE8972A027D4083800041B33 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89728E27D4083800041B33 /* Karla-Regular.ttf */; };
 		FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */; };
+<<<<<<< HEAD
 		FEB86BB1280CB8DA00A0944C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FEB86BB0280CB8DA00A0944C /* Realm */; };
 		FEB86BB3280CB8DA00A0944C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEB86BB2280CB8DA00A0944C /* RealmSwift */; };
+=======
+		FEB86BB6280CBA3000A0944C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FEB86BB5280CBA3000A0944C /* Realm */; };
+		FEB86BB8280CBA3000A0944C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEB86BB7280CBA3000A0944C /* RealmSwift */; };
+>>>>>>> 69a76a2 (got events in db)
 		FEEB0E7927D41D1B0088E346 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7827D41D1B0088E346 /* Images.xcassets */; };
 		FEEB0ECA27D41E3E0088E346 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7C27D41E3E0088E346 /* iTunesArtwork@1x.png */; };
 		FEEB0ECB27D41E3E0088E346 /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7E27D41E3E0088E346 /* Icon-App-76x76@2x.png */; };
@@ -164,8 +169,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				FEB86BB3280CB8DA00A0944C /* RealmSwift in Frameworks */,
 				FEB86BB1280CB8DA00A0944C /* Realm in Frameworks */,
+=======
+				FEB86BB8280CBA3000A0944C /* RealmSwift in Frameworks */,
+				FEB86BB6280CBA3000A0944C /* Realm in Frameworks */,
+>>>>>>> 69a76a2 (got events in db)
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,8 +424,13 @@
 			);
 			name = DayKeeperApp;
 			packageProductDependencies = (
+<<<<<<< HEAD
 				FEB86BB0280CB8DA00A0944C /* Realm */,
 				FEB86BB2280CB8DA00A0944C /* RealmSwift */,
+=======
+				FEB86BB5280CBA3000A0944C /* Realm */,
+				FEB86BB7280CBA3000A0944C /* RealmSwift */,
+>>>>>>> 69a76a2 (got events in db)
 			);
 			productName = DayKeeperApp;
 			productReference = 799CC38E27A488AB0043A9FF /* DayKeeperApp.app */;
@@ -492,7 +507,11 @@
 			);
 			mainGroup = 799CC38527A488AB0043A9FF;
 			packageReferences = (
+<<<<<<< HEAD
 				FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */,
+=======
+				FEB86BB4280CBA3000A0944C /* XCRemoteSwiftPackageReference "realm-swift" */,
+>>>>>>> 69a76a2 (got events in db)
 			);
 			productRefGroup = 799CC38F27A488AB0043A9FF /* Products */;
 			projectDirPath = "";
@@ -933,7 +952,11 @@
 				kind = branch;
 			};
 		};
+<<<<<<< HEAD
 		FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+=======
+		FEB86BB4280CBA3000A0944C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+>>>>>>> 69a76a2 (got events in db)
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
@@ -954,6 +977,7 @@
 			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
+<<<<<<< HEAD
 		FEB86BB0280CB8DA00A0944C /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */;
@@ -962,6 +986,16 @@
 		FEB86BB2280CB8DA00A0944C /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FEB86BAF280CB8DA00A0944C /* XCRemoteSwiftPackageReference "realm-swift" */;
+=======
+		FEB86BB5280CBA3000A0944C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEB86BB4280CBA3000A0944C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		FEB86BB7280CBA3000A0944C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEB86BB4280CBA3000A0944C /* XCRemoteSwiftPackageReference "realm-swift" */;
+>>>>>>> 69a76a2 (got events in db)
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

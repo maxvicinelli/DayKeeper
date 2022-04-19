@@ -27,9 +27,15 @@ final class EventsViewModel : ObservableObject {
 //        for event in self.events {
 //            if
 //        }
-        self.events = getEventsFromDb()
+//        self.events = getEventsFromDb()
+        var oldEvents = getEventsFromDb()
+        print("db: ")
+        print(oldEvents)
+        loadFromiCal(registering: false)
+        print("loading new from ical...")
+        self.events.append(contentsOf: oldEvents)
+        print(self.events)
         
-
     }
     
     
@@ -100,13 +106,15 @@ final class EventsViewModel : ObservableObject {
                  
                 if registering {
                     DispatchQueue.main.async {
-                        self.events = events
+                        self.events.append(contentsOf: events)
                         print("here are our events: ")
                         print(self.events)
                         print("now were done")
                         self.sendToRealm()
                         self.actionNotifManager.createStatusUpdateNotifs()
                     }
+                } else {
+                    self.events.append(contentsOf: events)
                 }
                 
             }
@@ -117,6 +125,7 @@ final class EventsViewModel : ObservableObject {
     
     func loadFromDB() -> Void {
         var events = [Event]()
+        loadFromiCal(registering: true)
         if let app = app {
             DispatchQueue.main.async {
                 let user = app.currentUser
@@ -129,7 +138,7 @@ final class EventsViewModel : ObservableObject {
                     events.append(e)
                 }
         
-                self.events = events
+                self.events.append(contentsOf: events)
             }
         }
     }
@@ -146,14 +155,12 @@ final class EventsViewModel : ObservableObject {
     }
     //    print(events)
     func combineDBandiCal() -> Void {
-        var iCalEvents = [Event]()
-        iCalEvents = self.loadFromiCal(registering: false)
-    
+        var dbEvents = [Event]()//loadFromDBArray()
+        print("db: ")
+        print(dbEvents)
+//        loadFromiCal(registering: false)
 //        var iCalEvents = loadFromiCal(registering: false)
-        print("ical: ")
-        print(iCalEvents)
-//        loadFromDB()
-        print("vm b4: ")
+        print("vm: ")
         print(self.events)
         var manualEvents = self.events.filter { event in
             (event.CreationMethod == ManualCreation)
@@ -161,22 +168,22 @@ final class EventsViewModel : ObservableObject {
         print("manual: ")
         print(manualEvents)
         print("db :")
-        var dbEvents = self.events.filter { event in
+        var iCalEvents = self.events.filter { event in
             (event.CreationMethod == iCalCreation)
         }
-        print(dbEvents)
+        print(iCalEvents)
         
-        DispatchQueue.main.async {
-            print("combined :")
-            var combined = iCalEvents.append(contentsOf: manualEvents)
-            print(combined)
-//            self.events = combined
-            print("here are our events: ")
-            print(self.events)
-            print("now were done")
-//            sendToRealm(events: self.events)
-//            self.actionNotifManager.createStatusUpdateNotifs()
-        }
+//        DispatchQueue.main.async {
+//            print("combined :")
+//            var combined = iCalEvents.append(contentsOf: manualEvents)
+//            print(combined)
+////            self.events = combined
+//            print("here are our events: ")
+//            print(self.events)
+//            print("now were done")
+////            sendToRealm(events: self.events)
+////            self.actionNotifManager.createStatusUpdateNotifs()
+//        }
     }
     
     

@@ -93,6 +93,7 @@ struct LoginView: View {
                             if (success) {
                                 print("now loading events from DB")
                                 eventsViewModel.loadFromDB()
+//                                eventsViewModel.loadEvents(registering: false)
                                 print("finished loading from DB")
                                 print("login success!")
                                 authModel.setAuthenticated(value: true)
