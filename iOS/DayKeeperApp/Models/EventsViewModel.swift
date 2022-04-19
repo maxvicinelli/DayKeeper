@@ -16,20 +16,6 @@ final class EventsViewModel : ObservableObject {
     
     
     func loadEvents(registering: Bool) -> Void {
-//        var oldEvents = getEventsFromDb()
-//
-//        let iCalEvents = loadFromiCal(registering: false)
-//        var newEvents = [Event]()
-//
-//        // loop
-//
-//
-//        for event in self.events {
-//            if
-//        }
-        self.events = getEventsFromDb()
-        
-
     }
     
     
@@ -81,6 +67,7 @@ final class EventsViewModel : ObservableObject {
                     newEvent.EndDate = e.endDate
                     newEvent.OnTime = -1
                     newEvent.NotifBefore = -1
+                    newEvent.CreationMethod = iCalCreation
                     newEvent.Tasks = RealmSwift.List<Event>()
                     for _ in 0...randomNums.randomElement()! {
                         let newTask = Event()
@@ -99,13 +86,15 @@ final class EventsViewModel : ObservableObject {
                  
                 if registering {
                     DispatchQueue.main.async {
-                        self.events = events
+                        self.events.append(contentsOf: events)
                         print("here are our events: ")
                         print(self.events)
                         print("now were done")
                         self.sendToRealm()
                         self.actionNotifManager.createStatusUpdateNotifs()
                     }
+                } else {
+                    self.events.append(contentsOf: events)
                 }
                 
             }
@@ -116,6 +105,7 @@ final class EventsViewModel : ObservableObject {
     
     func loadFromDB() -> Void {
         var events = [Event]()
+        loadFromiCal(registering: true)
         if let app = app {
             DispatchQueue.main.async {
                 let user = app.currentUser
@@ -125,10 +115,16 @@ final class EventsViewModel : ObservableObject {
                 print("here is what we got")
                 print(query)
                 for e in query {
-                    events.append(e)
+                    if e.CreationMethod == ManualCreation {
+                        events.append(e)
+                    } else if e.CreationMethod == iCalCreation {
+                        try! realm.write {
+                            realm.delete(e)
+                        }
+                    }
                 }
         
-                self.events = events
+                self.events.append(contentsOf: events)
             }
         }
     }
@@ -143,18 +139,4 @@ final class EventsViewModel : ObservableObject {
             }
         }
     }
-    
-    
-//
-//    func updateEvents() -> Void {
-//
-//        print("----------------------------")
-//
-//        self.events = getEventsFromDb()
-//    }
-//    override func viewWillAppear(_ animated : Bool) {
-//        events = getEventsFromDb().events
-//        super.viewWillAppear(animated)
-//        print("test")
-//    }
 }

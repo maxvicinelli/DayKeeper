@@ -112,7 +112,6 @@ struct EventsView: View {
             .padding(.top, 10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-        
             VStack(spacing: 0) {
                 
                 NavigationView {
