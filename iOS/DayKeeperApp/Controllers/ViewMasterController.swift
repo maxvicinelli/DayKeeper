@@ -26,8 +26,8 @@ struct ViewMasterController: View {
         else if authModel.authenticated {
 //            if authModel.registering {
                  
-                
-            EventsView(authModelParam: authModel, appParam: app!, eventsVMParams: eventsVM)
+            MainTabView(authModelParam: authModel, eventsVMParam: eventsVM)
+
 //            }
 //            else {
 //                EventsView(authModel: authModel, app: app!, eventsVM: getEventsFromDb())
