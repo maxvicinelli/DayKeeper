@@ -27,7 +27,6 @@ struct EventsView: View {
     var actionNotifManager = ActionNotifManager()
     @Environment(\.scenePhase) var scenePhase
     
-    
     @ViewBuilder
     var infoOverlayView: some View {
         switch notificationManager.authorizationStatus {
@@ -112,7 +111,6 @@ struct EventsView: View {
             .padding(.top, 10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-        
             VStack(spacing: 0) {
                 
                 NavigationView {
@@ -124,9 +122,12 @@ struct EventsView: View {
                         .padding()
                         List(filteredEvents) { event in
                             NavigationLink (
+                                
                                 destination: EventRow(event: event),
                                 label: {
-                                    Text(event.Title)
+                                
+                                    Text(event.Title) + Text("\n") +
+                                    Text(date2text(event: event)).foregroundColor(Color(red:0.436, green: 0.558, blue: 0.925)).font(.system(size: 18))
                                         // .onAppear(perform: {eventsVM.update()})
                                 })
                                 .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
@@ -193,3 +194,13 @@ struct EventsView_Previews: PreviewProvider {
     }
 }
 
+func date2text(event: Event) -> String {
+    // Create Date Formatter
+    let dateFormatter = DateFormatter()
+
+    // Set Date Format
+    dateFormatter.dateFormat = "E, HH:mm"
+
+    let text = dateFormatter.string(from: event.StartDate) + "-" + dateFormatter.string(from: event.EndDate)
+    return text
+}
