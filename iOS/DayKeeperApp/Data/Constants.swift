@@ -8,3 +8,6 @@
 import Foundation
 
 let RealmAppId = "daykeeper-ciwtb"
+
+let iCalCreation = "iCal"
+let ManualCreation = "Manual"

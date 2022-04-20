@@ -6,12 +6,47 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct CreateEventView: View {
     @State private var title = ""
-    @State private var date = Date()
+    @State private var startDate = Date()
+    @State private var endDate = Date() + (60 * 60)
     @Binding var isPresented: Bool
-    @ObservedObject var notificationManager: NotificationManager
+    // @State var actionNotificationManager: ActionNotifManager
+    @ObservedObject var eventsVM: EventsViewModel
+    
+    
+    func addEventToRealm() {
+        
+        print("called add event to realm!")
+        
+        let event = Event()
+        event.UserId = userid
+        event.Title = title
+        event.StartDate = startDate
+        event.EndDate = endDate
+        event.Description = "desc"
+        event.OnTime = -1
+        event.NotifBefore = -1
+        event.Tasks = RealmSwift.List<Event>()
+        event.CreationMethod = ManualCreation
+        
+        let cat = Category()
+        cat.Title = "Manually Created Event"
+        event.Category = cat
+        
+        print("now adding event to realm")
+        
+        eventsVM.events.append(event)
+        
+        postEvent(event: event, updating: false) // might need to turn that update parameter off in postEvent. Also could need more info for the event
+        
+        // actionNotificationManager.createStatusUpdateNotifs()
+        
+        print("finished posting event!")
+        
+    }
     
     var body: some View {
         List {
@@ -20,10 +55,11 @@ struct CreateEventView: View {
                     Text("Create Event")
                         .foregroundColor(Color.white)
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 40)!))
-                    HStack {
+                    VStack {
                         TextField("Title", text: $title)
                         Spacer()
-                        DatePicker("", selection: $date, displayedComponents: [.date, .hourAndMinute])
+                        DatePicker("", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
+                        DatePicker("", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
                     }
                     .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
                     .foregroundColor(Color.white)
@@ -33,14 +69,9 @@ struct CreateEventView: View {
                     
                     .cornerRadius(10)
                     Button {
-                        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-                        guard let year = dateComponents.year, let month = dateComponents.month, let day = dateComponents.day, let hour = dateComponents.hour, let minute = dateComponents.minute else { return }
-                        notificationManager.createLocalNotifications(title: title, year: year, month: month, day: day, hour: hour, minute: minute) { error in
-                            if error == nil {
-                                DispatchQueue.main.async {
-                                    self.isPresented = false
-                                }
-                            }
+                        DispatchQueue.main.async {
+                            addEventToRealm()
+                            self.isPresented = false
                         }
                         
                     } label: {
@@ -56,10 +87,10 @@ struct CreateEventView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .onDisappear{
-            // not sure if this will be needed. With this method, we refresh the EventsView page using the notifications that are currently in the queue. maybe this is better than pulling everything from database tho? We need to discuss -- Jonah, 2/20/22
-            notificationManager.reloadLocalNotifications()
-        }
+//        .onDisappear{
+//            // not sure if this will be needed. With this method, we refresh the EventsView page using the notifications that are currently in the queue. maybe this is better than pulling everything from database tho? We need to discuss -- Jonah, 2/20/22
+//            notificationManager.reloadLocalNotifications()
+        //}
       //  .navigationTitle("Create Event")
         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
         .navigationBarItems(trailing: Button {
@@ -73,6 +104,6 @@ struct CreateEventView: View {
 
 struct CreateEventView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventView(isPresented: .constant(false), notificationManager: NotificationManager())
+        CreateEventView(isPresented: .constant(false), eventsVM: EventsViewModel())
     }
 }

@@ -111,7 +111,6 @@ struct EventsView: View {
             .padding(.top, 10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-        
             VStack(spacing: 0) {
                 
                 NavigationView {
@@ -153,20 +152,20 @@ struct EventsView: View {
                                 break
                             }
                         }
-                        .onAppear(perform: {actionNotifManager.createStatusUpdateNotifs()})
+                        .onAppear(perform: {
+                            print("onAppear called in EventsView")
+                            actionNotifManager.createStatusUpdateNotifs()})
                     
                         .onChange(of: scenePhase) { newPhase in
                             if newPhase == .active {
-                                print("now active")
                                 reloadDidntRespond()
                             }
                         }
                         .onAppear(perform: {reloadDidntRespond()})
                         .background(Color(red:0.436, green: 0.558, blue: 0.925))
-                        .sheet(isPresented: $isCreatePresented){
+                        .sheet(isPresented: $isCreatePresented, onDismiss: actionNotifManager.createStatusUpdateNotifs){
                             NavigationView {
-                                CreateEventView(isPresented: $isCreatePresented,
-                                notificationManager: notificationManager)
+                                CreateEventView(isPresented: $isCreatePresented, eventsVM: eventsVM)
                             }
                             .accentColor(.primary)
                         }

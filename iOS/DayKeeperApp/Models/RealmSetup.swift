@@ -72,7 +72,7 @@ func getEventsFromDb() -> [Event]
 }
 
 
-func postEvent(event: Event) -> Void {
+func postEvent(event: Event, updating: Bool) -> Void {
     if let app = app {
         let user = app.currentUser
         let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
@@ -81,7 +81,11 @@ func postEvent(event: Event) -> Void {
         //            ($0._id == event._id)
         //        }
         try! realm.write {
-            realm.add(event, update: .modified)
+            if updating {
+                realm.add(event, update: .modified)
+            } else {
+                realm.add(event)
+            }
         }
     }
 }
