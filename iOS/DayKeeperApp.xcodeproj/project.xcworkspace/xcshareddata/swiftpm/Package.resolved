@@ -12,7 +12,7 @@
       },
       {
         "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift",
+        "repositoryURL": "https://github.com/realm/realm-swift.git",
         "state": {
           "branch": "master",
           "revision": "7d7271481b293ebc39798d29ef1fee8aac20b708",
