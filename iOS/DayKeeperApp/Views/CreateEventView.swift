@@ -22,6 +22,7 @@ struct CreateEventView: View {
         print("called add event to realm!")
         
         let event = Event()
+        event._id = UUID().uuidString
         event.UserId = userid
         event.Title = title
         event.StartDate = startDate
