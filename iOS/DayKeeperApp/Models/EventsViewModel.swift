@@ -58,6 +58,7 @@ final class EventsViewModel : ObservableObject {
                     
     //            eventsFromStore.forEach() { e in
                     let newEvent = Event()
+                    newEvent._id = e.eventIdentifier!
                     newEvent.UserId = userid
                     newCat.Title = e.calendar.title
                     newEvent.Category = newCat
