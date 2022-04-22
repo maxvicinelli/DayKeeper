@@ -184,7 +184,7 @@ func dummyEvents() -> EventsViewModel {
         //let userid = UUID()//uuidString: "620415ea8833dd465fb6f1f2")!
     
         let newEvent = Event()
-        newEvent._id = UUID()
+        newEvent._id = UUID().uuidString
         newEvent.UserId = userid
         newEvent.Category = newCat
         newEvent.Title = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
