@@ -16,6 +16,7 @@ final class EventsViewModel : ObservableObject {
     
     
     func loadEvents(registering: Bool) -> Void {
+        
     }
     
     
@@ -50,6 +51,7 @@ final class EventsViewModel : ObservableObject {
                 taskCat.UserId = userid
                 taskCat.Cadence = "NEVER"
                 for e in eventsFromStore {
+                    print(e.eventIdentifier!)
                     let newCat = Category()
                     newCat.Description = "Test more"
                     newCat.UserId = userid
