@@ -16,7 +16,9 @@ final class EventsViewModel : ObservableObject {
     
     
     func iCalSync() -> Void {
-
+        
+        
+        events = [Event]()
         var dbManualEvents = [Event]()
         var dbiCalEvents = [Event]()
         var iCalEvents = [Event]()
@@ -84,11 +86,14 @@ final class EventsViewModel : ObservableObject {
         print("ical")
         print(iCalEvents)
         
+        print("events to update before checking db and ical")
+        print(eventsToUpdate)
+        
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
             for e in iCalEvents {
-                (realm.object(ofType: Event.self, forPrimaryKey: e._id) == nil ? eventsToAdd.append(e) : eventsToUpdate.append(e))
+                (realm.object(ofType: Event.self, forPrimaryKey: e._id) == nil ? eventsToAdd.append(e) : (eventsToUpdate.contains {$0._id == e._id} ? print("nothing to do") : eventsToUpdate.append(e)) )
             }
         }
         
@@ -102,14 +107,28 @@ final class EventsViewModel : ObservableObject {
         print("events to be deleted: ")
         print(dbEventsToDelete)
         
+        for e in dbEventsToDelete {
+            dbiCalEvents.removeAll(where: {$0._id == e._id})
+            dbManualEvents.removeAll(where: {$0._id == e._id})
+        }
+        
         self.deleteFromRealm(eventsToDelete: dbEventsToDelete)
+        dbEventsToDelete.removeAll()
+        print("no err yet1")
+        print("no err yet2")
         self.updateInRealm(eventsToUpdate: eventsToUpdate)
+        print("no err yet3")
         
-        self.events = [Event]()
+        
         self.events.append(contentsOf: eventsToAdd)
+        print("no err yet4")
         self.events.append(contentsOf: eventsToUpdate)
+        print("no err yet5")
         self.sendToRealm()
-        
+        print("no err yet6")
+        self.events.append(contentsOf: dbManualEvents)
+        print("no err yet7")
+        print(self.events)
     }
     
     
@@ -262,12 +281,16 @@ final class EventsViewModel : ObservableObject {
     }
     
     func deleteFromRealm(eventsToDelete: [Event]) -> Void {
+        print("deleting")
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
             try! realm.write {
                 realm.delete(eventsToDelete)
+//                self.events.removeAll(where: self.events.contains(_:))
             }
         }
+        print("deleted")
+        print(self.events)
     }
 }
