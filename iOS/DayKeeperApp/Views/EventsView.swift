@@ -90,9 +90,10 @@ struct EventsView: View {
                     .minimumScaleFactor(0.5)
                                 .lineLimit(1)
 
-                Button("Settings", action: {
-                    authModel.updateSettings()
-                    print("updated settings!")
+                Button("Sync iCal", action: {
+                    eventsVM.iCalSync()
+//                    authModel.updateSettings()
+                    print("ical sync")
                 })
                 .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
                 .frame(width: 80, height: 40, alignment: .center)
