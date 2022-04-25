@@ -14,11 +14,13 @@ final class EventsViewModel : ObservableObject {
     
     var actionNotifManager = ActionNotifManager()
     
+    func reload() -> Void {
+        events = [Event]()
+        loadFromDB()
+    }
     
     func iCalSync() -> Void {
-        
-        
-        events = [Event]()
+        self.events.removeAll()
         var dbManualEvents = [Event]()
         var dbiCalEvents = [Event]()
         var iCalEvents = [Event]()
@@ -28,7 +30,7 @@ final class EventsViewModel : ObservableObject {
         var eventsToAdd = [Event]()
         
         // get events from DB first
-        print("getting db events...")
+//        print("getting db events...")
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
@@ -41,23 +43,24 @@ final class EventsViewModel : ObservableObject {
                 dbManualEvents.append(e)
             }
         }
-        
-        print("db ical: ")
-        print(dbiCalEvents)
-        print("db manual: ")
-        print(dbManualEvents)
-        
+//
+//        print("db ical: ")
+//        print(dbiCalEvents)
+//        print("db manual: ")
+//        print(dbManualEvents)
+//
         // then, check events in the iCal event store
-        print("dbevents done, getting ical")
+//        print("dbevents done, getting ical")
         let eventStore = EKEventStore()
         for e in dbiCalEvents {
-            (eventStore.event(withIdentifier: e._id) == nil ? dbEventsToDelete.append(e) : eventsToUpdate.append(e))
+            (eventStore.event(withIdentifier: e._id) == nil ? dbEventsToDelete.append(e) : print("nothing to add"))
         }
         
-        print("getting events from store...")
+//        print("getting events from store...")
         let calendars = eventStore.calendars(for: .event)
         let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
-        let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: calendars)
+//        filteredCalendars.append(calendars.first(where: {$0.title == "Calendar"}))
+        let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: calendars.filter{$0.title == "Calendar"})
         let eventsFromStore = eventStore.events(matching: predicate)
         
         for e in eventsFromStore {
@@ -83,52 +86,45 @@ final class EventsViewModel : ObservableObject {
             iCalEvents.append(newEvent)
         }
 
-        print("ical")
-        print(iCalEvents)
-        
-        print("events to update before checking db and ical")
-        print(eventsToUpdate)
-        
+//        print("ical")
+//        print(iCalEvents)
+//
+//        print("events to update before checking db and ical")
+//        print(eventsToUpdate)
+//
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
             for e in iCalEvents {
-                (realm.object(ofType: Event.self, forPrimaryKey: e._id) == nil ? eventsToAdd.append(e) : (eventsToUpdate.contains {$0._id == e._id} ? print("nothing to do") : eventsToUpdate.append(e)) )
+                (realm.object(ofType: Event.self, forPrimaryKey: e._id) == nil ? eventsToAdd.append(e) : (eventsToUpdate.contains {$0._id == e._id} ? print("") : eventsToUpdate.append(e)) )
             }
         }
         
-        print("trying to update realm now...")
-        print("events tba: ")
-        print(eventsToAdd)
-        
-        print ("events to update: ")
-        print(eventsToUpdate)
-        
-        print("events to be deleted: ")
-        print(dbEventsToDelete)
+//        print("trying to update realm now...")
+//        print("events tba: ")
+//        print(eventsToAdd)
+//
+//        print ("events to update: ")
+//        print(eventsToUpdate)
+//
+//        print("events to be deleted: ")
+//        print(dbEventsToDelete)
         
         for e in dbEventsToDelete {
             dbiCalEvents.removeAll(where: {$0._id == e._id})
-            dbManualEvents.removeAll(where: {$0._id == e._id})
+//            dbManualEvents.removeAll(where: {$0._id == e._id})
         }
         
         self.deleteFromRealm(eventsToDelete: dbEventsToDelete)
         dbEventsToDelete.removeAll()
-        print("no err yet1")
-        print("no err yet2")
+//        print(dbiCalEvents)
         self.updateInRealm(eventsToUpdate: eventsToUpdate)
-        print("no err yet3")
-        
         
         self.events.append(contentsOf: eventsToAdd)
-        print("no err yet4")
-        self.events.append(contentsOf: eventsToUpdate)
-        print("no err yet5")
         self.sendToRealm()
-        print("no err yet6")
-        self.events.append(contentsOf: dbManualEvents)
-        print("no err yet7")
-        print(self.events)
+        self.events.removeAll()
+//        self.events.append(contentsOf: eventsToUpdate)
+//        self.events.append(contentsOf: dbManualEvents)
     }
     
     
@@ -145,7 +141,7 @@ final class EventsViewModel : ObservableObject {
                 
                 print("granted!")
                 let weekFromNow = Date(timeIntervalSinceNow: 3600*24*7)
-                let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: calendars)
+                let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: calendars.filter{$0.title == "Calendar"})
                 
                 print("lets get events")
                 //return eventStore.events(matching: predicate)
@@ -217,6 +213,7 @@ final class EventsViewModel : ObservableObject {
     }
     
     func loadFromDB() -> Void {
+//        self.events = [Event]()
 //        var events = [Event]()
 //        loadFromiCal(registering: true)
         if let app = app {
@@ -281,16 +278,20 @@ final class EventsViewModel : ObservableObject {
     }
     
     func deleteFromRealm(eventsToDelete: [Event]) -> Void {
-        print("deleting")
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+//            for e in eventsToDelete {
+//                try! realm.write {
+////                    realm.delete(e.Category!)
+//                    realm.delete(e)
+//                }
+//            }
             try! realm.write {
                 realm.delete(eventsToDelete)
 //                self.events.removeAll(where: self.events.contains(_:))
             }
+            
         }
-        print("deleted")
-        print(self.events)
     }
 }

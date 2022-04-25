@@ -92,6 +92,13 @@ struct EventsView: View {
 
                 Button("Sync iCal", action: {
                     eventsVM.iCalSync()
+                    print("ical sync done")
+//                    DispatchQueue.main.async {
+                    eventsVM.loadFromDB()
+//                    }
+//                    eventsVM.loadFromDB()
+//                    eventsVM.reload()
+//                    eventsVM.loadFromDB()
                 })
                 .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
                 .frame(width: 80, height: 40, alignment: .center)
