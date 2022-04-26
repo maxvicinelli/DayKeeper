@@ -285,6 +285,7 @@ final class EventsViewModel : ObservableObject {
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
             try! realm.write {
                 event.OnTime += delta
+                event.Timeliness.append(delta)
             }
         }
     }
