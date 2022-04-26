@@ -15,12 +15,16 @@ final class EventsViewModel : ObservableObject {
     var actionNotifManager = ActionNotifManager()
     
     func reload() -> Void {
+        print("EventsViewModel reload called")
         events = [Event]()
         loadFromDB()
     }
     
     func iCalSync() -> Void {
+        print("iCalSync called")
+        print("self.events before removing all:", self.events)
         self.events.removeAll()
+        print("self.events afer removing all:", self.events)
         var dbManualEvents = [Event]()
         var dbiCalEvents = [Event]()
         var iCalEvents = [Event]()
@@ -92,6 +96,9 @@ final class EventsViewModel : ObservableObject {
 //        print("events to update before checking db and ical")
 //        print(eventsToUpdate)
 //
+        // Now check to see if events currently in User's iCal are in Realm -- search based on event ID
+        // if it is not in Realm, then add event to "eventsToAdd" array
+        // if it is in Realm, then add it to the "eventsToUpdate" array (if it is not already in "eventsToUpdate"
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
@@ -122,7 +129,16 @@ final class EventsViewModel : ObservableObject {
         
         self.events.append(contentsOf: eventsToAdd)
         self.sendToRealm()
+        
         self.events.removeAll()
+        
+        self.events.append(contentsOf: iCalEvents)
+        self.events.append(contentsOf: dbManualEvents)
+        
+        print("made it to end of iCalSync, here are our events:", self.events)
+        
+    
+        
 //        self.events.append(contentsOf: eventsToUpdate)
 //        self.events.append(contentsOf: dbManualEvents)
     }
@@ -130,6 +146,7 @@ final class EventsViewModel : ObservableObject {
     
     func loadFromiCal(registering: Bool) -> Void {
     //    let eventsVM = EventsViewModel()
+        print("loadFromiCal Called")
         
         let eventStore = EKEventStore()
         
@@ -213,6 +230,7 @@ final class EventsViewModel : ObservableObject {
     }
     
     func loadFromDB() -> Void {
+        print("loadfromDB called")
 //        self.events = [Event]()
 //        var events = [Event]()
 //        loadFromiCal(registering: true)
@@ -225,7 +243,9 @@ final class EventsViewModel : ObservableObject {
                 print("here is what we got")
                 print(query)
                 for e in query {
-                    self.events.append(e)
+                    if !e.isInvalidated {
+                        self.events.append(e)
+                    }
 //                    if e.CreationMethod == ManualCreation {
 //                        events.append(e)
 //                    } else if e.CreationMethod == iCalCreation {
@@ -234,6 +254,7 @@ final class EventsViewModel : ObservableObject {
 //                        }
 //                    }
                 }
+                print("self.events after loadfromdb append:", self.events)
         
 //                self.events.append(contentsOf: events)
             }
@@ -241,6 +262,7 @@ final class EventsViewModel : ObservableObject {
     }
     
     func sendToRealm() -> Void {
+        print("sendToRealm called")
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
@@ -268,6 +290,7 @@ final class EventsViewModel : ObservableObject {
     }
     
     func updateInRealm(eventsToUpdate: [Event]) -> Void {
+        print("updateInRealm called")
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
@@ -278,6 +301,7 @@ final class EventsViewModel : ObservableObject {
     }
     
     func deleteFromRealm(eventsToDelete: [Event]) -> Void {
+        print("deleteFromRealm called")
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
