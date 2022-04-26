@@ -129,11 +129,10 @@ struct EventsView: View {
                                 .foregroundColor(Color.textColor)
                         }
                         .padding()
-                        let _ = print(filteredEvents)
                         List(filteredEvents) { event in
                             if !event.isInvalidated {
                             NavigationLink (
-                                destination: EventRow(event: event, eventsVM: self.eventsVM),
+                                destination: EventRow(event: event, actionNotificationManager: actionNotifManager),
                                 label: {
                                 
                                     Text(event.Title) + Text("\n") +
