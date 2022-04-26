@@ -59,7 +59,7 @@ struct EventsView: View {
     
     var filteredEvents: [Event] {
         eventsVM.events.filter { event in
-            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly))
+            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly) && !event.isInvalidated)
         }
     }
     
@@ -90,9 +90,18 @@ struct EventsView: View {
                     .minimumScaleFactor(0.5)
                                 .lineLimit(1)
 
-                Button("Settings", action: {
-                    authModel.updateSettings()
-                    print("updated settings!")
+                Button("Sync iCal", action: {
+                    print("before ical sync, these are our events:", eventsVM.events)
+                    eventsVM.events.removeAll()
+                    eventsVM.iCalSync()
+                    print("ical sync done, here are the events we now have: ", eventsVM.events)
+//                    DispatchQueue.main.async {
+//                    eventsVM.loadFromDB()
+                        
+//                    }
+//                    eventsVM.loadFromDB()
+//                    eventsVM.reload()
+//                    eventsVM.loadFromDB()
                 })
                 .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
                 .frame(width: 80, height: 40, alignment: .center)
@@ -121,9 +130,9 @@ struct EventsView: View {
                         }
                         .padding()
                         List(filteredEvents) { event in
+                            if !event.isInvalidated {
                             NavigationLink (
-                                
-                                destination: EventRow(event: event),
+                                destination: EventRow(event: event, actionNotificationManager: actionNotifManager),
                                 label: {
                                 
                                     Text(event.Title) + Text("\n") +
@@ -131,6 +140,7 @@ struct EventsView: View {
                                         // .onAppear(perform: {eventsVM.update()})
                                 })
                                 .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
+                            }
                             }
                         }
                         .overlay(infoOverlayView)
