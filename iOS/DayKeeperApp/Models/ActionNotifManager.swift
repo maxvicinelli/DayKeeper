@@ -253,18 +253,18 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                 }
             }
             //creates alarm notification for each pre event task. No need for actionable alarm.
-            var x = 1
-            for preTask in event.Tasks ?? List<Event>() { //unwrapping an optional list
-                print(preTask.Title)
-                calendarDate.minute! = calendarDate.minute!-5*x
-                x = x+2
-                self.scheduleAlarmNotification(onTime: event.OnTime , title: preTask.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
-                    if error == nil {
-                        DispatchQueue.main.async {
+         //   var x = 1
+         //   for preTask in event.Tasks ?? List<Event>() { //unwrapping an optional list
+          //      print(preTask.Title)
+          //      calendarDate.minute! = calendarDate.minute!-5*x
+           //     x = x+2
+           //     self.scheduleAlarmNotification(onTime: event.OnTime , title: preTask.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+           //         if error == nil {
+            //            DispatchQueue.main.async {
                             // self.isPresented = false
-                        }
-                    }
-                }
+            //            }
+          //        }
+             //   }
             }
             
             print("printing current pending notifications after deleting and remaking:")
@@ -280,4 +280,4 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             print("finished executing createStatusUpdateNotifs")
         }
     }
-}
+//}
