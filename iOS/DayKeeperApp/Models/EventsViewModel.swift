@@ -278,18 +278,6 @@ final class EventsViewModel : ObservableObject {
         }
     }
     
-    func incrementOnTime(delta: Int, event: Event) {
-        // delta = 1 for late, -1 for early 
-        if let app = app {
-            let user = app.currentUser
-            let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
-            try! realm.write {
-                event.OnTime += delta
-                event.Timeliness.append(delta)
-            }
-        }
-    }
-    
     func updateInRealm(eventsToUpdate: [Event]) -> Void {
         print("updateInRealm called")
         if let app = app {
