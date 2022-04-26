@@ -100,8 +100,6 @@ final class EventsViewModel : ObservableObject {
                 
             }
         }
-        print("now calling actionNotificationManager")
-        
     }
     
     func loadFromDB() -> Void {
@@ -135,8 +133,25 @@ final class EventsViewModel : ObservableObject {
         if let app = app {
             let user = app.currentUser
             let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+            
+            do {
+                try! realm.write {
+                    realm.add(self.events)
+                    print("send to realm was a success!")
+                }
+            } catch {
+                print("couldn't send to realm")
+            }
+        }
+    }
+    
+    func incrementOnTime(delta: Int, event: Event) {
+        // delta = 1 for late, -1 for early 
+        if let app = app {
+            let user = app.currentUser
+            let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
             try! realm.write {
-                realm.add(self.events)
+                event.OnTime += delta
             }
         }
     }

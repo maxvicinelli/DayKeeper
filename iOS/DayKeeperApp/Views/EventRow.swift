@@ -9,17 +9,28 @@ import RealmSwift
 
 struct EventRow: View {
     
-    
-    
-    
     @State var event: Event
+    @State var userGaveLateInput: Bool = false
+    
+    @ObservedObject var eventsVM : EventsViewModel
     
     private func updateEvent() {
         postEvent(event: event, updating: true)
+        
+    }
+    
+    private func manualLate() {
+        eventsVM.incrementOnTime(delta: 1, event: self.event)
+    }
+    
+    private func manualEarly() {
+        eventsVM.incrementOnTime(delta: -1, event: self.event)
     }
         
     
     var body: some View {
+        
+        let _ = print(event)
         VStack() {
             TextField(event.Title, text: $event.Title)
                 .multilineTextAlignment(.center)
@@ -55,6 +66,20 @@ struct EventRow: View {
             }
             .padding()
             .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+
+            HStack {
+                Button("Early", action: manualEarly)
+//                    .frame(width: 100, height: 60)
+//                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
+//                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+
+                Spacer()
+
+                Button("Late", action: manualLate)
+//                    .frame(width: 100, height: 60)
+//                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
+//                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+            }
                
  
             Section(header:
@@ -65,7 +90,7 @@ struct EventRow: View {
                         ForEach(event.Tasks!)
                         { subEvent in
                             NavigationLink {
-                                EventRow(event: subEvent)
+                                EventRow(event: subEvent, eventsVM: eventsVM)
                             } label: {
                                 Text(subEvent.Title)
                                     .background(Color(red: 0.996, green: 0.396, blue: 0.31))
@@ -111,6 +136,6 @@ struct EventRow_Previews: PreviewProvider {
     
     static var previews: some View {
        
-        EventRow(event: Event())
+        EventRow(event: Event(), eventsVM: EventsViewModel())
     }
 }

@@ -120,10 +120,11 @@ struct EventsView: View {
                                 .foregroundColor(Color.textColor)
                         }
                         .padding()
+                        let _ = print(filteredEvents)
                         List(filteredEvents) { event in
                             NavigationLink (
                                 
-                                destination: EventRow(event: event),
+                                destination: EventRow(event: event, eventsVM: self.eventsVM),
                                 label: {
                                 
                                     Text(event.Title) + Text("\n") +
