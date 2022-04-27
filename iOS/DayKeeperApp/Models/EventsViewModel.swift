@@ -22,9 +22,9 @@ final class EventsViewModel : ObservableObject {
     
     func iCalSync() -> Void {
         print("iCalSync called")
-        print("self.events before removing all:", self.events)
+//        print("self.events before removing all:", self.events)
         self.events.removeAll()
-        print("self.events afer removing all:", self.events)
+//        print("self.events afer removing all:", self.events)
         var dbManualEvents = [Event]()
         var dbiCalEvents = [Event]()
         var iCalEvents = [Event]()
@@ -34,6 +34,8 @@ final class EventsViewModel : ObservableObject {
         var eventsToAdd = [Event]()
         
         // get events from DB first
+        // dbiCalEvents holds the events that are in the DB that were pulled from iCal
+        // dbManuelEvents holds the events that are in the DB that were created manually
 //        print("getting db events...")
         if let app = app {
             let user = app.currentUser
@@ -68,25 +70,33 @@ final class EventsViewModel : ObservableObject {
         let eventsFromStore = eventStore.events(matching: predicate)
         
         for e in eventsFromStore {
-            let newCat = Category()
-            newCat.Description = "Test more"
-            newCat.UserId = userid
-            newCat.Cadence = "Weekly"
-            
             let newEvent = Event()
+            let category = Category()
+            category.Description = "Test more"
+            category.UserId = userid
+            category.Cadence = "Weekly"
+            category.Title = e.calendar.title
+            newEvent.Category = category
             newEvent._id = e.eventIdentifier!
             newEvent.UserId = userid
-            newCat.Title = e.calendar.title
-            newEvent.Category = newCat
             newEvent.Title = e.title
-            newEvent.Description = "desc"
             newEvent.StartDate = e.startDate
             newEvent.EndDate = e.endDate
-            newEvent.OnTime = -1
-            newEvent.NotifBefore = -1
             newEvent.CreationMethod = iCalCreation
             newEvent.Tasks = RealmSwift.List<Event>()
-            
+            newEvent.OnTime = -1
+            newEvent.NotifBefore = -1
+            newEvent.Description = ""
+        
+            for e_db in dbiCalEvents {
+                if e_db._id == e.eventIdentifier{
+                    newEvent.OnTime = e_db.OnTime
+                    newEvent.NotifBefore = e_db.NotifBefore
+                    newEvent.Category = e_db.Category
+                    newEvent.Description = e_db.Description
+                    break
+                }
+            }
             iCalEvents.append(newEvent)
         }
 
@@ -135,7 +145,7 @@ final class EventsViewModel : ObservableObject {
         self.events.append(contentsOf: iCalEvents)
         self.events.append(contentsOf: dbManualEvents)
         
-        print("made it to end of iCalSync, here are our events:", self.events)
+//        print("made it to end of iCalSync, here are our events:", self.events)
         
     
         
@@ -169,14 +179,14 @@ final class EventsViewModel : ObservableObject {
                 
                 
                 
-                
                 let taskCat = Category()
                 taskCat.Title = "Task category"
                 taskCat.Description = "Task test"
                 taskCat.UserId = userid
                 taskCat.Cadence = "NEVER"
                 for e in eventsFromStore {
-                    print(e.eventIdentifier!)
+//                    print(e.eventIdentifier!)
+                    // WORk HERE -- need to check to see if event is already in DB
                     let newCat = Category()
                     newCat.Description = "Test more"
                     newCat.UserId = userid
