@@ -205,7 +205,7 @@ final class EventsViewModel : ObservableObject {
                         newTask.Description = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
                         newTask.NotifBefore = -1
                         newTask.OnTime = -1
-                        newEvent.Tasks?.append(newTask)
+                     //   newEvent.Tasks?.append(newTask)
                     }
                     events.append(newEvent)
 //                    print("got a new guy in events!")

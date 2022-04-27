@@ -31,7 +31,7 @@ final class Event : Object, ObjectKeyIdentifiable, Identifiable /*Decodable, Enc
     @Persisted var OnTime: Int
     @Persisted var NotifBefore: Int
     @Persisted var CreationMethod: String
-    var Tasks: List<Event>? = nil//List<Event>()
+    @Persisted var Tasks = List<Event>()
     @Persisted var Timeliness = List<Int>()
 }
 
