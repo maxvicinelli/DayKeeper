@@ -47,7 +47,7 @@ struct EventRow: View {
     
     var body: some View {
         
-        let _ = print(event)
+//        let _ = print(event)
         VStack() {
             TextField(event.Title, text: $event.Title)
                 .multilineTextAlignment(.center)
