@@ -266,7 +266,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                     print("TEST2")
                     calendarDate.minute! = calendarDate.minute!-5*x
                     x = x+2
-                    scheduleAlarmNotification(onTime: event.OnTime , title: preTask.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
+                    scheduleAlarmNotification(onTime: event.OnTime , title: preTask, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!){ error in
                         if error == nil {
                             DispatchQueue.main.async {
                                 print("scheduled action notification for event: \(event.Title)")

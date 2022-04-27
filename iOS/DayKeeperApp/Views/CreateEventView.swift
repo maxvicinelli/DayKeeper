@@ -30,7 +30,7 @@ struct CreateEventView: View {
         event.Description = "desc"
         event.OnTime = -1
         event.NotifBefore = -1
-        event.Tasks = RealmSwift.List<Event>()
+        event.Tasks = RealmSwift.List<String>()
         event.CreationMethod = ManualCreation
         
         let cat = Category()

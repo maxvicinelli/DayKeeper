@@ -30,7 +30,7 @@
 		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
 		AC81ADA82818B160006280CA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC81ADA72818B160006280CA /* RealmSwift */; };
-		AC81ADAB2818B1CF006280CA /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC81ADAA2818B1CF006280CA /* CoreServices.framework */; };
+		AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC81ADAC2818F0A9006280CA /* CoreLocation.framework */; };
 		FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventsView.swift */; };
 		FE11B3BE27AF24980052CA22 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BD27AF24980052CA22 /* Event.swift */; };
 		FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3C427B03ABA0052CA22 /* PreEvent.swift */; };
@@ -119,6 +119,7 @@
 		79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsViews.swift; sourceTree = "<group>"; };
 		AC4B505127AEDA0700488105 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		AC81ADAA2818B1CF006280CA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		AC81ADAC2818F0A9006280CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FE11B3BB27ADC3480052CA22 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		FE11B3BD27AF24980052CA22 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FE11B3C427B03ABA0052CA22 /* PreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreEvent.swift; sourceTree = "<group>"; };
@@ -165,7 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC81ADAB2818B1CF006280CA /* CoreServices.framework in Frameworks */,
+				AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */,
 				AC81ADA82818B160006280CA /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +330,7 @@
 		AC81ADA92818B1CF006280CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC81ADAC2818F0A9006280CA /* CoreLocation.framework */,
 				AC81ADAA2818B1CF006280CA /* CoreServices.framework */,
 			);
 			name = Frameworks;

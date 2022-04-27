@@ -21,13 +21,15 @@ struct EventRow: View {
         print(new_task)
         if new_task != "" {
             print(new_task)
-            var pretask = Event()
-            pretask.Title = new_task
+            //let pretask = Event()
+          //  pretask.Title = new_task
             if let app = app {
                 let user = app.currentUser
                 let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
                 try! realm.write{
-                    event.Tasks.append(pretask)
+                  
+                    realm.add(event, update: .modified)
+                    event.Tasks.append(new_task)
                 }
             }
         }
@@ -104,12 +106,13 @@ struct EventRow: View {
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))) {
                 if (event.Tasks != nil)
                 {
-                    ForEach(event.Tasks)
+                    ForEach(event.Tasks,  id: \.self)
                     { subEvent in
                         NavigationLink {
-                            EventRow(event: subEvent, actionNotificationManager: actionNotificationManager)
+                           // EventRow(event: subEvent, actionNotificationManager: actionNotificationManager)
                         } label: {
-                            Text(subEvent.Title)
+                            //Text(subEvent.Title)
+                            Text(subEvent)
                                 .background(Color(red: 0.996, green: 0.396, blue: 0.31))
                         }
                     }

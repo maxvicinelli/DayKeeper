@@ -85,7 +85,7 @@ final class EventsViewModel : ObservableObject {
             newEvent.OnTime = -1
             newEvent.NotifBefore = -1
             newEvent.CreationMethod = iCalCreation
-            newEvent.Tasks = RealmSwift.List<Event>()
+            newEvent.Tasks = RealmSwift.List<String>()
             
             iCalEvents.append(newEvent)
         }
@@ -196,7 +196,7 @@ final class EventsViewModel : ObservableObject {
                     newEvent.OnTime = -1
                     newEvent.NotifBefore = -1
                     newEvent.CreationMethod = iCalCreation
-                    newEvent.Tasks = RealmSwift.List<Event>()
+                    newEvent.Tasks = RealmSwift.List<String>()
                     for _ in 0...randomNums.randomElement()! {
                         let newTask = Event()
                         newTask.UserId = userid

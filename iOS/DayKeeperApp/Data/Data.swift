@@ -193,7 +193,7 @@ func dummyEvents() -> EventsViewModel {
         newEvent.EndDate = Date(timeIntervalSinceNow: 24 * 3600 * 7)
         newEvent.OnTime = -1
         newEvent.NotifBefore = -1
-        newEvent.Tasks = RealmSwift.List<Event>()
+        newEvent.Tasks = RealmSwift.List<String>()
         newEvent.Timeliness.append(5)
         
         for _ in 0...randomNums.randomElement()! {
