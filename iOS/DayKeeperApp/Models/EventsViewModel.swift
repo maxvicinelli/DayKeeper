@@ -84,7 +84,21 @@ final class EventsViewModel : ObservableObject {
             newEvent.EndDate = e.endDate
             newEvent.CreationMethod = iCalCreation
             newEvent.Tasks = RealmSwift.List<String>()
+            newEvent.OnTime = -1
+            newEvent.NotifBefore = -1
+            newEvent.Description = ""
             
+            // Is there a more efficient way of doing this below? Not sure but this works for now -Jonah
+            for e_db in dbiCalEvents {
+                if e_db._id == e.eventIdentifier{
+                    newEvent.OnTime = e_db.OnTime
+                    newEvent.NotifBefore = e_db.NotifBefore
+                    newEvent.Category = e_db.Category
+                    newEvent.Description = e_db.Description
+                    newEvent.Tasks = e_db.Tasks
+                    break
+                }
+            }
             iCalEvents.append(newEvent)
         }
 

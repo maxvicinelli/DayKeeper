@@ -126,7 +126,6 @@ struct EventRow: View {
                     Text(event.Category?.Title ?? "")
                 }
             }
-            .padding()
             Section(header:
                         Text("Tasks")
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))) {
