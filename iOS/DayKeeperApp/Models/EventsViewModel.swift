@@ -176,7 +176,8 @@ final class EventsViewModel : ObservableObject {
                 taskCat.UserId = userid
                 taskCat.Cadence = "NEVER"
                 for e in eventsFromStore {
-                    print(e.eventIdentifier!)
+//                    print(e.eventIdentifier!)
+                    // WORk HERE -- need to check to see if event is already in DB
                     let newCat = Category()
                     newCat.Description = "Test more"
                     newCat.UserId = userid
