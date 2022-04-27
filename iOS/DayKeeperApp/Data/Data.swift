@@ -205,7 +205,7 @@ func dummyEvents() -> EventsViewModel {
             newTask.OnTime = -1
             newTask.StartDate = Date(timeIntervalSince1970: 0)
             newTask.EndDate = Date(timeIntervalSince1970: 0)
-            newEvent.Tasks?.append(newTask)
+           // newEvent.Tasks?.append(newTask)
         }
         events.append(newEvent)
     }
