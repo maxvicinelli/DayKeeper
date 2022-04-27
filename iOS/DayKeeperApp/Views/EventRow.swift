@@ -107,6 +107,7 @@ struct EventRow: View {
             
             HStack {
                 Button("I Was Early", action: manualEarly)
+                    .padding()
                 //                    .frame(width: 100, height: 60)
                 //                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
                 //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
@@ -114,6 +115,7 @@ struct EventRow: View {
                 Spacer()
                 
                 Button("I Was Late", action: manualLate)
+                    .padding()
                 //                    .frame(width: 100, height: 60)
                 //                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
                 //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
@@ -126,7 +128,6 @@ struct EventRow: View {
                     Text(event.Category?.Title ?? "")
                 }
             }
-            .padding()
             Section(header:
                         Text("Tasks")
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))) {
