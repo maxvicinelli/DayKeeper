@@ -27,9 +27,9 @@ struct EventRow: View {
                 let user = app.currentUser
                 let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
                 try! realm.write{
-                  
-                    realm.add(event, update: .modified)
                     event.Tasks.append(new_task)
+                    realm.add(event, update: .modified)
+                    print("adding event to realm with these tasks:", event.Tasks)
                 }
             }
         }
