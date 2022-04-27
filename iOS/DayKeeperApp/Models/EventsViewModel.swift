@@ -242,7 +242,7 @@ final class EventsViewModel : ObservableObject {
                 print(query)
                 for e in query {
                     if !e.isInvalidated {
-                        self.events.append(e)
+                        !self.events.contains(where: {$0._id == e._id}) ? self.events.append(e) : print("not appending to events")
                     }
 //                    if e.CreationMethod == ManualCreation {
 //                        events.append(e)

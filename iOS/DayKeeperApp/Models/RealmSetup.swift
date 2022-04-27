@@ -62,10 +62,15 @@ func getEventsFromDb() -> [Event]
     var events = [Event]()
     if let app = app {
         let user = app.currentUser
-        let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
-        let query = realm.objects(Event.self)
-        for e in query {
-            events.append(e)
+        if user == nil {
+            return events
+        }
+        else if user!.isLoggedIn {
+            let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+            let query = realm.objects(Event.self)
+            for e in query {
+                events.append(e)
+            }
         }
     }
     return events
