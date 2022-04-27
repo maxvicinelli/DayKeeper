@@ -32,7 +32,7 @@ final class EventsViewModel : ObservableObject {
         var dbEventsToDelete = [Event]()
         var eventsToUpdate = [Event]()
         var eventsToAdd = [Event]()
-        
+                
         // get events from DB first
         // dbiCalEvents holds the events that are in the DB that were pulled from iCal
         // dbManuelEvents holds the events that are in the DB that were created manually
@@ -69,6 +69,7 @@ final class EventsViewModel : ObservableObject {
         let predicate = eventStore.predicateForEvents(withStart: Date(), end: weekFromNow, calendars: calendars.filter{$0.title == "Calendar"})
         let eventsFromStore = eventStore.events(matching: predicate)
         
+        
         for e in eventsFromStore {
             let newEvent = Event()
             let category = Category()
@@ -90,7 +91,7 @@ final class EventsViewModel : ObservableObject {
             
             // Is there a more efficient way of doing this below? Not sure but this works for now -Jonah
             for e_db in dbiCalEvents {
-                if e_db._id == e.eventIdentifier{
+                if e_db._id == e.eventIdentifier || e.title == e_db.Title {
                     newEvent.OnTime = e_db.OnTime
                     newEvent.NotifBefore = e_db.NotifBefore
                     newEvent.Category = e_db.Category
@@ -99,6 +100,7 @@ final class EventsViewModel : ObservableObject {
                     break
                 }
             }
+            
             iCalEvents.append(newEvent)
         }
 
