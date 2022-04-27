@@ -17,21 +17,40 @@ struct EventRow: View {
     var actionNotificationManager: ActionNotifManager
     
     private func updateEvent() {
-        print("update event:")
-        print(new_task)
+//        print("update event:")
+//        print(new_task)
         if new_task != "" {
-            print(new_task)
+//            print("new task is:", new_task)
             //let pretask = Event()
           //  pretask.Title = new_task
             if let app = app {
                 let user = app.currentUser
                 let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
                 try! realm.write{
-                  
-                    realm.add(event, update: .modified)
                     event.Tasks.append(new_task)
+                    realm.add(event, update: .modified)
+//                    print("adding event to realm with these tasks:", event.Tasks)
                 }
             }
+        }
+        if new_category != "" {
+//            print("new category is:", new_category)
+//            print("userid is:", userid)
+            if let app = app {
+                let user = app.currentUser
+                let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
+                try! realm.write{
+                    let category_obj = Category()
+                    category_obj.UserId = userid
+                    category_obj.Title = new_category
+                    category_obj.Description = new_category
+                    category_obj.Cadence = "Undetermined"
+                    event.Category = category_obj
+                    realm.add(event, update: .modified)
+//                    print("adding event to realm with this new category:", event.Category?.Title)
+                }
+            }
+            
         }
         postEvent(event: event, updating: true)
         //reload page
@@ -100,12 +119,18 @@ struct EventRow: View {
                 //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
             }
             
-            
+            Section(header:
+                        Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+            ){
+                if event.Category?.Title != "" {
+                    Text(event.Category?.Title ?? "")
+                }
+            }
+            .padding()
             Section(header:
                         Text("Tasks")
                         .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))) {
-                if (event.Tasks != nil)
-                {
+                if (event.Tasks.count > 0) {
                     ForEach(event.Tasks,  id: \.self)
                     { subEvent in
                         NavigationLink {
