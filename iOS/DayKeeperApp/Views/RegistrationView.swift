@@ -56,8 +56,13 @@ struct RegistrationView: View {
             }
             
             
-            Button(action: {authModel.setRegistration(value: false)},
-                   label: {Image(systemName: "arrow.left").renderingMode(.original)}
+            Button(action:
+                    {
+                withAnimation(.easeInOut) {
+                    authModel.setRegistration(value: false)
+                }
+            },
+                    label: {Image(systemName: "arrow.left").renderingMode(.original)}
             )
                 .padding()
                 .background(Color(red: 1, green: 1, blue: 1))
@@ -69,15 +74,17 @@ struct RegistrationView: View {
                 
                 registerUser(vm: authModel, onCompletion: { (registerSuccess) in
                     if (registerSuccess) {
-                        signIn(vm: authModel, onCompletion: { (signInSuccess) in
-                            if (signInSuccess) {
-                                print("loading from iCal")
-                                eventsViewModel.loadFromiCal(registering: true)
-                                print("sending to realm")
-                                authModel.authenticated = true
-                                
-                            }
-                        })
+                        withAnimation(.easeInOut){
+                            signIn(vm: authModel, onCompletion: { (signInSuccess) in
+                                if (signInSuccess) {
+                                    print("loading from iCal")
+                                    eventsViewModel.loadFromiCal(registering: true)
+                                    print("sending to realm")
+                                    authModel.authenticated = true
+                                    
+                                }
+                            })
+                        }
                     } else {
                         registrationFailed = true
                     }

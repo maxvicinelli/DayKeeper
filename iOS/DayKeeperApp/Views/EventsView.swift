@@ -78,48 +78,47 @@ struct EventsView: View {
     var body: some View {
         
         VStack {
-            HStack {
-                Text("Welcome")
-                    .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
-                    .lineLimit(2)
-                    .shadow(radius: 15)
-                    .foregroundColor(Color.textColor)
-                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
-                    .padding(.vertical, 5.0)
-                    .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
-                    .minimumScaleFactor(0.5)
-                                .lineLimit(1)
+            HStack(spacing: 20){
+                            Text("Welcome")
+                                .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
+                                .lineLimit(2)
+                                .shadow(radius: 15)
+                                .foregroundColor(Color.textColor)
+                                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
+                                .padding(.vertical, 5.0)
+                                .padding(.leading, 100)
+                                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
+                                .minimumScaleFactor(0.5)
+                                            .lineLimit(1)
 
-                Button("Settings", action: {
-                    authModel.updateSettings()
-                    print("updated settings!")
-                })
-                .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
-                .frame(width: 80, height: 40, alignment: .center)
-                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
-                .foregroundColor(Color.black)
-                
-                
-                Button("Create Event", action: {
-                    setIsCreatePresentedTrue()
-                })
-                .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
-                .frame(width: 80, height: 40, alignment: .center)
-                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
-                .foregroundColor(Color.black)
-            }
-            .padding(.top, 10)
-            .frame(width: 500, height: 80, alignment: .center)
-            .background(Color(red:0.436, green: 0.558, blue: 0.925))
+                         
+                            
+                            Button("Create Event", action: {
+                                setIsCreatePresentedTrue()
+                            })
+                            .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
+                            .frame(width: 80, height: 40, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
+                            .foregroundColor(Color.black)
+                        }
+                        .padding(.top, 10)
+                        .frame(width: 500, height: 80, alignment: .center)
+                        .background(Color(red:0.436, green: 0.558, blue: 0.925))
+            
             VStack(spacing: 0) {
-                
                 NavigationView {
                     VStack(spacing: 0) {
-                        Toggle(isOn: $showTodayEventsOnly){
-                            Text("Today's Events Only")
-                                .foregroundColor(Color.textColor)
+                        VStack {
+                        Text("Today's Events Only")
+                            .foregroundColor(Color.textColor)
+                            .font(.system(size: 26))
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Toggle("Events", isOn: $showTodayEventsOnly)
+                            .labelsHidden()
                         }
                         .padding()
+                        
                         List(filteredEvents) { event in
                             NavigationLink (
                                 
@@ -127,7 +126,7 @@ struct EventsView: View {
                                 label: {
                                 
                                     Text(event.Title) + Text("\n") +
-                                    Text(date2text(event: event)).foregroundColor(Color(red:0.436, green: 0.558, blue: 0.925)).font(.system(size: 18))
+                                    Text(date2text(event: event)).foregroundColor(Color(red:0.436, green: 0.558, blue: 0.925)).font(.system(size: 22))
                                         // .onAppear(perform: {eventsVM.update()})
                                 })
                                 .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
