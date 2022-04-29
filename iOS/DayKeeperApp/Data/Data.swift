@@ -184,7 +184,7 @@ func dummyEvents() -> EventsViewModel {
         //let userid = UUID()//uuidString: "620415ea8833dd465fb6f1f2")!
     
         let newEvent = Event()
-        newEvent._id = UUID()
+        newEvent._id = UUID().uuidString
         newEvent.UserId = userid
         newEvent.Category = newCat
         newEvent.Title = "\(randomAdjectives.randomElement()!) \(randomNouns.randomElement()!)"
@@ -193,7 +193,7 @@ func dummyEvents() -> EventsViewModel {
         newEvent.EndDate = Date(timeIntervalSinceNow: 24 * 3600 * 7)
         newEvent.OnTime = -1
         newEvent.NotifBefore = -1
-        newEvent.Tasks = RealmSwift.List<Event>()
+        newEvent.Tasks = RealmSwift.List<String>()
         newEvent.Timeliness.append(5)
         
         for _ in 0...randomNums.randomElement()! {
@@ -205,7 +205,7 @@ func dummyEvents() -> EventsViewModel {
             newTask.OnTime = -1
             newTask.StartDate = Date(timeIntervalSince1970: 0)
             newTask.EndDate = Date(timeIntervalSince1970: 0)
-            newEvent.Tasks?.append(newTask)
+           // newEvent.Tasks?.append(newTask)
         }
         events.append(newEvent)
     }

@@ -22,6 +22,7 @@ struct CreateEventView: View {
         print("called add event to realm!")
         
         let event = Event()
+        event._id = UUID().uuidString
         event.UserId = userid
         event.Title = title
         event.StartDate = startDate
@@ -29,7 +30,7 @@ struct CreateEventView: View {
         event.Description = "desc"
         event.OnTime = -1
         event.NotifBefore = -1
-        event.Tasks = RealmSwift.List<Event>()
+        event.Tasks = RealmSwift.List<String>()
         event.CreationMethod = ManualCreation
         
         let cat = Category()
