@@ -108,6 +108,23 @@ struct EventsView: View {
                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
                 .foregroundColor(Color.black)
                 
+                Button("Test", action: {
+                    updateConnectedUsers(vm: authModel, onCompletion: { (failure) in
+                        print("failed with ", failure)
+                    })
+//                    DispatchQueue.main.async {
+//                    eventsVM.loadFromDB()
+                        
+//                    }
+//                    eventsVM.loadFromDB()
+//                    eventsVM.reload()
+//                    eventsVM.loadFromDB()
+                })
+                .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
+                .frame(width: 80, height: 40, alignment: .center)
+                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
+                .foregroundColor(Color.black)
+                
                 
                 Button("Create Event", action: {
                     setIsCreatePresentedTrue()
