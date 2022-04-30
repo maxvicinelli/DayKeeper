@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3626d60 (working add new user with connected array)
   "object": {
     "pins": [
       {
@@ -7,8 +10,13 @@
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
+<<<<<<< HEAD
           "revision": "472d325a2e844fcb48c400db74e6b9646f92ca93",
           "version": "11.15.0"
+=======
+          "revision": "3c78cccdc0d9f967c5c15b7f3ea081814e2b3ef2",
+          "version": "11.13.0"
+>>>>>>> 3626d60 (working add new user with connected array)
         }
       },
       {
@@ -16,6 +24,7 @@
         "repositoryURL": "https://github.com/realm/realm-swift",
         "state": {
           "branch": "master",
+<<<<<<< HEAD
           "revision": "19ff29f9dc35f52d02bd63c6427e98ce0c2fac0e",
           "version": null
         }
@@ -29,17 +38,13 @@
         "revision" : "3c78cccdc0d9f967c5c15b7f3ea081814e2b3ef2",
         "version" : "11.13.0"
 >>>>>>> origin/main
+=======
+          "revision": "8c1cbf124c5025da9220595e7764059963065891",
+          "version": null
+        }
+>>>>>>> 3626d60 (working add new user with connected array)
       }
-    },
-    {
-      "identity" : "realm-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-swift",
-      "state" : {
-        "branch" : "master",
-        "revision" : "8c1cbf124c5025da9220595e7764059963065891"
-      }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }
