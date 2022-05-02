@@ -13,10 +13,13 @@ struct SettingsView: View {
     @State private var loggingOutConfirmation = false
     @State private var loggingOutFailure = false
     
+    @ObservedObject var settingsModel: SettingsViewModel
+    
 
-    init(authModelParam: AuthenticationModel) {
+    init(authModelParam: AuthenticationModel, settingsViewModelParam: SettingsViewModel) {
         UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
         self.authModel = authModelParam
+        self.settingsModel = settingsViewModelParam
     }
        
     var body: some View {
@@ -43,22 +46,28 @@ struct SettingsView: View {
                     Color.red.ignoresSafeArea(.all)
                     List {
                         NavigationLink(
-                                                    destination: AccountSettingsView(authModel: authModel),
-                                                    label: {
-                                                        AccountSettingsRow()
-                                                    }
+                            destination: AccountSettingsView(authModel: authModel),
+                            label: {
+                                AccountSettingsRow()
+                            }
                         )
                         .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
 
                         
                         NavigationLink(
-                                                    destination: NotificationsSettingsView(),
-                                                    label: {
-                                                        NotificationsSettingsRow()
-                                                    }
+                            destination: NotificationsSettingsView(),
+                            label: {
+                                NotificationsSettingsRow()
+                            }
                         )
                         .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
-
+                        
+                        NavigationLink(
+                            destination: AddChildrenView(settingsViewModel: settingsModel),
+                            label: {
+                                AddChildrenRow()
+                            })
+                        .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
                         
                         Button("Log out", role: .destructive, action: { loggingOutConfirmation = true })
                             .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
@@ -106,6 +115,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(authModelParam: AuthenticationModel())
+        SettingsView(authModelParam: AuthenticationModel(), settingsViewModelParam: SettingsViewModel())
     }
 }
