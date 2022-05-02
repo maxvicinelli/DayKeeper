@@ -14,6 +14,8 @@
 		7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */; };
 		757EDAA427CC00310037A09E /* ActionNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757EDAA327CC00310037A09E /* ActionNotifManager.swift */; };
 		75F4D92127C30743001024FC /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4D92027C30743001024FC /* CreateEventView.swift */; };
+		7918B8BD282058C900655D77 /* AddChildrenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7918B8BC282058C900655D77 /* AddChildrenView.swift */; };
+		7918B8BF282058F000655D77 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7918B8BE282058F000655D77 /* SettingsViewModel.swift */; };
 		793F052E27B458E00062DE8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793F052D27B458E00062DE8E /* User.swift */; };
 		796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D427AB40BB00B57919 /* AuthViewModel.swift */; };
 		796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D627AB4C1900B57919 /* ViewMasterController.swift */; };
@@ -97,6 +99,8 @@
 		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
 		757EDAA327CC00310037A09E /* ActionNotifManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionNotifManager.swift; sourceTree = "<group>"; };
 		75F4D92027C30743001024FC /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		7918B8BC282058C900655D77 /* AddChildrenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChildrenView.swift; sourceTree = "<group>"; };
+		7918B8BE282058F000655D77 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		793F052D27B458E00062DE8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796B76D427AB40BB00B57919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		796B76D627AB4C1900B57919 /* ViewMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMasterController.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				757837FF27B99CB300D8FF4A /* NotificationManager.swift */,
 				FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */,
 				796B76D427AB40BB00B57919 /* AuthViewModel.swift */,
+				7918B8BE282058F000655D77 /* SettingsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				79DC167A27BAEA3C007BFE1D /* SettingsView.swift */,
 				79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */,
 				79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */,
+				7918B8BC282058C900655D77 /* AddChildrenView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */,
 				FE11B3BE27AF24980052CA22 /* Event.swift in Sources */,
 				799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */,
+				7918B8BF282058F000655D77 /* SettingsViewModel.swift in Sources */,
 				FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */,
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				AC4B505227AEDA0700488105 /* StatsView.swift in Sources */,
@@ -597,6 +604,7 @@
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
+				7918B8BD282058C900655D77 /* AddChildrenView.swift in Sources */,
 				7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */,
 				FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */,
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,

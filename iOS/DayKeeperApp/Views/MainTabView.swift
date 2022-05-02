@@ -10,11 +10,13 @@ import SwiftUI
 struct MainTabView: View {
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var eventsVM: EventsViewModel
+    @ObservedObject var settingsVM: SettingsViewModel
     
     
-    init(authModelParam: AuthenticationModel, eventsVMParam: EventsViewModel ){
+    init(authModelParam: AuthenticationModel, eventsVMParam: EventsViewModel, settingsVMParam: SettingsViewModel ){
         self.authModel = authModelParam
         self.eventsVM = eventsVMParam
+        self.settingsVM = settingsVMParam
         UITabBarAppearance().backgroundColor = UIColor.gray
     }
     
@@ -28,7 +30,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Stats", systemImage: "chart.xyaxis.line")
                 }
-            SettingsView(authModelParam: authModel)
+            SettingsView(authModelParam: authModel, settingsViewModelParam: settingsVM)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
@@ -42,6 +44,6 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(authModelParam: AuthenticationModel(), eventsVMParam: EventsViewModel())
+        MainTabView(authModelParam: AuthenticationModel(), eventsVMParam: EventsViewModel(), settingsVMParam: SettingsViewModel())
     }
 }
