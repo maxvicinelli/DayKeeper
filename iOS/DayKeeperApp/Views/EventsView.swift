@@ -109,6 +109,8 @@ struct EventsView: View {
                 .foregroundColor(Color.black)
                 
                 Button("Test", action: {
+//                    createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
+//                        print("failed with ", failure)
                     updateConnectedUsers(vm: authModel, onCompletion: { (failure) in
                         print("failed with ", failure)
                     })
