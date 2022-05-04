@@ -13,20 +13,21 @@ struct ViewMasterController: View {
     
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var eventsVM: EventsViewModel
+    @ObservedObject var settingsVM: SettingsViewModel
     
     var body: some View {
 //        if let _ = app!.currentUser {
 //            EventsView(app: app!, eventsVM: getEventsFromDb())
 //        }
         
-        if authModel.viewingSettings {
-            SettingsView(authModelParam: authModel)
-        }
+//        if authModel.viewingSettings {
+//            SettingsView(authModelParam: authModel)
+//        }
       
-        else if authModel.authenticated {
+        if authModel.authenticated {
 //            if authModel.registering {
                  
-            MainTabView(authModelParam: authModel, eventsVMParam: eventsVM)
+            MainTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
 
 //            }
 //            else {
@@ -48,6 +49,6 @@ struct ViewMasterController: View {
 }
 struct ViewMasterController_Previews: PreviewProvider {
     static var previews: some View {
-        ViewMasterController(authModel: AuthenticationModel(), eventsVM: EventsViewModel())
+        ViewMasterController(authModel: AuthenticationModel(), eventsVM: EventsViewModel(), settingsVM: SettingsViewModel())
     }
 }
