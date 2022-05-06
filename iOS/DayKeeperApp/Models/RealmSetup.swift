@@ -75,14 +75,9 @@ func createCustomUserDataDocument(vm: AuthenticationModel, onCompletion: @escapi
         let database = client.database(named: "DK")
         let collection = database.collection(withName: "User")
         collection.insertOne([
-//            "_id": AnyBSON("HMM"),
             "_id": AnyBSON(user!.id),
-            "connectedUser1":  AnyBSON("no-user"),
-            "connectedUser2":  AnyBSON("no-user"),
-            "connectedUser3":  AnyBSON("no-user"),
-            "connectedUser4":  AnyBSON("no-user"),
-            "connectedUser5":  AnyBSON("no-user"),
-            "_partition": AnyBSON(user!.id)
+            "_partition": AnyBSON(user!.id),
+            "connectedUsers": AnyBSON(RealmSwift.List<String>().toArray())
         ]) { (result) in
             switch result {
                 case .failure(let error):
@@ -107,46 +102,20 @@ func updateConnectedUsers(vm: AuthenticationModel, onCompletion: @escaping (Bool
             case .failure(let error):
                 print("Failed to refresh custom data: \(error.localizedDescription)")
             case .success(let customData):
-                print("connectedUser \(customData["connectedUser1"] ?? "not set")")
-                var cU1 = user!.customData["connectedUser1"]
-                var cU2 = user!.customData["connectedUser2"]
-                var cU3 = user!.customData["connectedUser3"]
-                var cU4 = user!.customData["connectedUser4"]
-                var cU5 = user!.customData["connectedUser5"]
-                
-                let updateString = "test55555"
-                
-                if cU1!!.stringValue! != "no-user" {
-                    if cU2!!.stringValue! != "no-user" {
-                        if cU3!!.stringValue! != "no-user" {
-                            if cU4!!.stringValue! != "no-user" {
-                                if cU5!!.stringValue! != "no-user" {
-                                    print("hmm")
-                                } else {
-                                    cU5 = AnyBSON(updateString)
-                                }
-                            } else {
-                                cU4 = AnyBSON(updateString)
-                            }
-                        } else {
-                            cU3 = AnyBSON(updateString)
-                        }
-                    } else {
-                        cU2 = AnyBSON(updateString)
-                    }
-                } else {
-                    cU1 = AnyBSON(updateString)
+                let usersArray = customData["connectedUsers"]! as! NSArray
+                let usersList = RealmSwift.List<String>()
+                for u in usersArray {
+                    usersList.append(u as! String)
                 }
+                
+//                let updateString = "test55555"
+//                usersList.append(updateString)
                 
                 collection.updateOneDocument(
                     filter: ["_partition": AnyBSON(user!.id)],
                     update: ["_partition": AnyBSON(user!.id),
                              "_id": AnyBSON(user!.id),
-                             "connectedUser1": cU1!!,
-                             "connectedUser2": cU2!!,
-                             "connectedUser3": cU3!!,
-                             "connectedUser4": cU4!!,
-                             "connectedUser5": cU5!!]
+                             "connectedUsers": AnyBSON(usersList.toArray())]
                 ) { (result) in
                     switch result {
                     case .failure(let error):
@@ -160,55 +129,6 @@ func updateConnectedUsers(vm: AuthenticationModel, onCompletion: @escaping (Bool
                 return
             }
         }
-        
-//        var cU1 = user!.customData["connectedUser1"]
-//        var cU2 = user!.customData["connectedUser2"]
-//        var cU3 = user!.customData["connectedUser3"]
-//        var cU4 = user!.customData["connectedUser4"]
-//        var cU5 = user!.customData["connectedUser5"]
-//
-//        let updateString = "test55555"
-//
-//        if cU1!!.stringValue! != "no-user" {
-//            if cU2!!.stringValue! != "no-user" {
-//                if cU3!!.stringValue! != "no-user" {
-//                    if cU4!!.stringValue! != "no-user" {
-//                        if cU5!!.stringValue! != "no-user" {
-//                            print("hmm")
-//                        } else {
-//                            cU5 = AnyBSON(updateString)
-//                        }
-//                    } else {
-//                        cU4 = AnyBSON(updateString)
-//                    }
-//                } else {
-//                    cU3 = AnyBSON(updateString)
-//                }
-//            } else {
-//                cU2 = AnyBSON(updateString)
-//            }
-//        } else {
-//            cU1 = AnyBSON(updateString)
-//        }
-//
-//        collection.updateOneDocument(
-//            filter: ["_partition": AnyBSON(user!.id)],
-//            update: ["_partition": AnyBSON(user!.id),
-//                     "connectedUser1": cU1!!,
-//                     "connectedUser2": cU2!!,
-//                     "connectedUser3": cU3!!,
-//                     "connectedUser4": cU4!!,
-//                     "connectedUser5": cU5!!]
-//        ) { (result) in
-//            switch result {
-//            case .failure(let error):
-//                print("Failed to update: \(error.localizedDescription)")
-//                return
-//            case .success(let updateResult):
-//                //  User document updated.
-//                print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
-//            }
-//        }
     }
 }
 
