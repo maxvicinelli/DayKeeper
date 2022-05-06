@@ -57,6 +57,89 @@ func logoutUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void)
     }
 }
 
+// Extend RealmSwift.List so that we can encode a user's connected users array to BSON document
+extension RealmSwift.List where Element == String {
+    func toArray() -> [AnyBSON] {
+        var bsonArray = [AnyBSON]()
+        for e in self {
+            bsonArray.append(AnyBSON(e))
+        }
+        return bsonArray
+    }
+ }
+
+func createCustomUserDataDocument(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
+    if let app = app {
+        let user = app.currentUser
+        let client = user!.mongoClient("mongodb-atlas")
+        let database = client.database(named: "DK")
+        let collection = database.collection(withName: "User")
+        collection.insertOne([
+            "connectedUsers":  AnyBSON(RealmSwift.List<String>().toArray()),
+            "_partition": AnyBSON(user!.id)
+        ]) { (result) in
+            switch result {
+                case .failure(let error):
+                    print("Failed to insert document: \(error.localizedDescription)")
+                case .success(let newObjectId):
+                print("Inserted custom user data document with object ID: \(newObjectId)")
+            }
+        }
+    }
+}
+
+func updateConnectedUsers(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
+    if let app = app {
+        let user = app.currentUser
+        let client = user!.mongoClient("mongodb-atlas")
+        let database = client.database(named: "DK")
+        let collection = database.collection(withName: "User")
+        
+        ["_partition": user!.id,
+         "connectedUsers": ]
+//        // Refresh the custom user data
+//        await user!.refreshCustomData { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print("Failed to refresh custom data: \(error.localizedDescription)")
+//            case .success(let customData):
+//                print("connectedUsers \(customData["_partition"] ?? "not set")")
+//                return
+//            }
+//        }
+        
+//        let newUser = AnyBSON("test4")
+//        var updateDocument = user?.customData
+//        var connectedUsers = updateDocument!["connectedUsers"] ?? AnyBSON(RealmSwift.List<String>().toArray())
+//        var customUserDataIterator = user?.customData.makeIterator()
+//        while let i = customUserDataIterator?.next() {
+//            print(i)
+//        }
+//        let newConnectedUsers = Document(dictionaryLiteral: connectedUsers, )
+//        updateDocument!["connectedUsers"] = connectedUsers
+//        connected
+
+//        let updateDocument = ["_partition": AnyBSON(user!.id),
+//                              "connectedUsers": connectedUsers]
+        
+        print(user!.customData)
+        
+        collection.updateOneDocument(
+            filter: ["_partition": AnyBSON(user!.id)],
+            update: user!.customData
+        ) { (result) in
+            switch result {
+            case .failure(let error):
+                print("Failed to update: \(error.localizedDescription)")
+                return
+            case .success(let updateResult):
+                // User document updated.
+                print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+            }
+        }
+    }
+}
+
 func getEventsFromDb() -> [Event]
 {
     var events = [Event]()
