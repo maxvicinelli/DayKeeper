@@ -74,7 +74,6 @@ struct RegistrationView: View {
                 
                 registerUser(vm: authModel, onCompletion: { (registerSuccess) in
                     if (registerSuccess) {
-<<<<<<< HEAD
                         withAnimation(.easeInOut){
                             signIn(vm: authModel, onCompletion: { (signInSuccess) in
                                 if (signInSuccess) {
@@ -89,20 +88,6 @@ struct RegistrationView: View {
                                 }
                             })
                         }
-=======
-                        signIn(vm: authModel, onCompletion: { (signInSuccess) in
-                            if (signInSuccess) {
-                                print("loading from iCal")
-                                eventsViewModel.loadFromiCal(registering: true)
-                                print("sending to realm")
-                                authModel.authenticated = true
-                                createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
-                                    print("failed with ", failure)
-                                })
-                                
-                            }
-                        })
->>>>>>> 4ec7954ceda5bf13288ca14f45d73abf80725f54
                     } else {
                         registrationFailed = true
                     }

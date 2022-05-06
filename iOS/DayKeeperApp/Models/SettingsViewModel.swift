@@ -9,9 +9,9 @@ import Foundation
 
 final class SettingsViewModel: ObservableObject {
     
-    @Published var childUUID: UUID = UUID()
+//    @Published var childUUID: UUID = UUID()
     @Published var childEmail: String = ""
-    
+    @Published var childPassword: String = ""
     
     func addChild() {
         print("called addChild")
