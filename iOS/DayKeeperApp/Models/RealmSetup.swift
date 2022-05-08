@@ -68,7 +68,7 @@ extension RealmSwift.List where Element == String {
     }
  }
 
-func createCustomUserDataDocument(onCompletion: @escaping (Bool) -> Void) {
+func createCustomUserDataDocument(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
     if let app = app {
         let user = app.currentUser
         let client = user!.mongoClient("mongodb-atlas")
@@ -80,7 +80,7 @@ func createCustomUserDataDocument(onCompletion: @escaping (Bool) -> Void) {
             "connectedUsers": AnyBSON(RealmSwift.List<String>().toArray()),
             "canCreateEvents": AnyBSON(true),
             "canLocationTrack": AnyBSON(true),
-            "parentAccount": AnyBSON(false)
+            "parentAccount": AnyBSON(vm.parentAccout)
         ]) { (result) in
             switch result {
                 case .failure(let error):

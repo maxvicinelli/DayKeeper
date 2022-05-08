@@ -4,7 +4,6 @@
 //
 //  Created by Max Vicinelli on 2/3/22.
 //
-
 import SwiftUI
 
 struct RegistrationView: View {
@@ -53,6 +52,11 @@ struct RegistrationView: View {
                     Text("registration failed")
                 }
                 
+                Toggle(isOn: $authModel.parentAccout) {
+                    Text("Parent Account")
+                    let _ = print(authModel.parentAccout)
+                }
+                
             }
             
             
@@ -81,7 +85,7 @@ struct RegistrationView: View {
                                     eventsViewModel.loadFromiCal(registering: true)
                                     print("sending to realm")
                                     authModel.authenticated = true
-                                    createCustomUserDataDocument(onCompletion: { (failure) in
+                                    createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
                                         print("failed with ", failure)
                                     })
                                     
