@@ -89,7 +89,7 @@ func createCustomUserDataDocument(vm: AuthenticationModel, onCompletion: @escapi
     }
 }
 
-func updateConnectedUsers(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
+func updateConnectedUsers(newUUID: String, vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
     if let app = app {
         let user = app.currentUser
         let client = user!.mongoClient("mongodb-atlas")
@@ -108,9 +108,7 @@ func updateConnectedUsers(vm: AuthenticationModel, onCompletion: @escaping (Bool
                     usersList.append(u as! String)
                 }
                 
-//                let updateString = "test55555"
-//                usersList.append(updateString)
-                
+                usersList.append(newUUID)
                 collection.updateOneDocument(
                     filter: ["_partition": AnyBSON(user!.id)],
                     update: ["_partition": AnyBSON(user!.id),
