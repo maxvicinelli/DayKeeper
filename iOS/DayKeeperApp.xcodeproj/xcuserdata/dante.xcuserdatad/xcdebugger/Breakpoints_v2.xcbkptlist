@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
-            landmarkName = "logoutUser(vm:onCompletion:)"
+            landmarkName = "signIn(vm:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "logoutUser(vm:onCompletion:)"
+            landmarkName = "signIn(vm:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "logoutUser(vm:onCompletion:)"
+            landmarkName = "signIn(vm:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
             endingLineNumber = "51"
-            landmarkName = "logoutUser(vm:onCompletion:)"
+            landmarkName = "signIn(vm:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,7 +80,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
-            landmarkName = "logoutUser(vm:onCompletion:)"
+            landmarkName = "signIn(vm:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -96,7 +96,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
-            landmarkName = "logoutUser(vm:onCompletion:)"
+            landmarkName = "signIn(vm:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -112,7 +112,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "updateConnectedUsers(newUUID:vm:onCompletion:)"
+            landmarkName = "updateConnectedUsers(newUUID:onCompletion:)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

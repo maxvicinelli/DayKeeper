@@ -145,55 +145,6 @@ func updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Voi
                 return
             }
         }
-        
-//        var cU1 = user!.customData["connectedUser1"]
-//        var cU2 = user!.customData["connectedUser2"]
-//        var cU3 = user!.customData["connectedUser3"]
-//        var cU4 = user!.customData["connectedUser4"]
-//        var cU5 = user!.customData["connectedUser5"]
-//
-//        let updateString = "test55555"
-//
-//        if cU1!!.stringValue! != "no-user" {
-//            if cU2!!.stringValue! != "no-user" {
-//                if cU3!!.stringValue! != "no-user" {
-//                    if cU4!!.stringValue! != "no-user" {
-//                        if cU5!!.stringValue! != "no-user" {
-//                            print("hmm")
-//                        } else {
-//                            cU5 = AnyBSON(updateString)
-//                        }
-//                    } else {
-//                        cU4 = AnyBSON(updateString)
-//                    }
-//                } else {
-//                    cU3 = AnyBSON(updateString)
-//                }
-//            } else {
-//                cU2 = AnyBSON(updateString)
-//            }
-//        } else {
-//            cU1 = AnyBSON(updateString)
-//        }
-//
-//        collection.updateOneDocument(
-//            filter: ["_partition": AnyBSON(user!.id)],
-//            update: ["_partition": AnyBSON(user!.id),
-//                     "connectedUser1": cU1!!,
-//                     "connectedUser2": cU2!!,
-//                     "connectedUser3": cU3!!,
-//                     "connectedUser4": cU4!!,
-//                     "connectedUser5": cU5!!]
-//        ) { (result) in
-//            switch result {
-//            case .failure(let error):
-//                print("Failed to update: \(error.localizedDescription)")
-//                return
-//            case .success(let updateResult):
-//                //  User document updated.
-//                print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
-//            }
-//        }
     }
 }
 
