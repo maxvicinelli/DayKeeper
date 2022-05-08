@@ -68,7 +68,7 @@ extension RealmSwift.List where Element == String {
     }
  }
 
-func createCustomUserDataDocument(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
+func createCustomUserDataDocument(vm: AuthenticationModel, settingsVM: SettingsViewModel, onCompletion: @escaping (Bool) -> Void) {
     if let app = app {
         let user = app.currentUser
         let client = user!.mongoClient("mongodb-atlas")
@@ -78,8 +78,8 @@ func createCustomUserDataDocument(vm: AuthenticationModel, onCompletion: @escapi
             "_id": AnyBSON(user!.id),
             "_partition": AnyBSON(user!.id),
             "connectedUsers": AnyBSON(RealmSwift.List<String>().toArray()),
-            "canCreateEvents": AnyBSON(true),
-            "canLocationTrack": AnyBSON(true),
+            "canCreateEvents": AnyBSON(settingsVM.canCreateEvents),
+            "canLocationTrack": AnyBSON(settingsVM.canLocationTrack),
             "parentAccount": AnyBSON(vm.parentAccout)
         ]) { (result) in
             switch result {
@@ -110,7 +110,7 @@ func updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Voi
                 for u in usersArray {
                     usersList.append(u as! String)
                 }
-                print(customData["canCreateEvents"])
+                
                 if !usersList.contains(newUUID) {
                     usersList.append(newUUID)
                     collection.updateOneDocument(
