@@ -26,19 +26,30 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Events", systemImage: "list.dash")
                 }
+                .tag(0)
+            
             StatsView()
                 .tabItem {
                     Label("Stats", systemImage: "chart.xyaxis.line")
                 }
+                .tag(1)
             SettingsView(authModelParam: authModel, settingsViewModelParam: settingsVM)
+
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
+                .tag(2)
+            
             HelpView()
                 .tabItem {
                     Label("Help", systemImage: "questionmark")
                 }
+                .tag(3)
         }
+        .accentColor(Color("Off-White"))
+        //.onAppear() {
+        //    UITabBar.appearance().barTintColor = .white
+       // }
     }
 }
 
