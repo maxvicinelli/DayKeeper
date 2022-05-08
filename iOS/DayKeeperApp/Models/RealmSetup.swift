@@ -77,7 +77,10 @@ func createCustomUserDataDocument(onCompletion: @escaping (Bool) -> Void) {
         collection.insertOne([
             "_id": AnyBSON(user!.id),
             "_partition": AnyBSON(user!.id),
-            "connectedUsers": AnyBSON(RealmSwift.List<String>().toArray())
+            "connectedUsers": AnyBSON(RealmSwift.List<String>().toArray()),
+            "canCreateEvents": AnyBSON(true),
+            "canLocationTrack": AnyBSON(true),
+            "parentAccount": AnyBSON(false)
         ]) { (result) in
             switch result {
                 case .failure(let error):
@@ -107,21 +110,26 @@ func updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Voi
                 for u in usersArray {
                     usersList.append(u as! String)
                 }
-                
-                usersList.append(newUUID)
-                collection.updateOneDocument(
-                    filter: ["_partition": AnyBSON(user!.id)],
-                    update: ["_partition": AnyBSON(user!.id),
-                             "_id": AnyBSON(user!.id),
-                             "connectedUsers": AnyBSON(usersList.toArray())]
-                ) { (result) in
-                    switch result {
-                    case .failure(let error):
-                        print("Failed to update: \(error.localizedDescription)")
-                        return
-                    case .success(let updateResult):
-                        //  User document updated.
-                        print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+                print(customData["canCreateEvents"])
+                if !usersList.contains(newUUID) {
+                    usersList.append(newUUID)
+                    collection.updateOneDocument(
+                        filter: ["_partition": AnyBSON(user!.id)],
+                        update: ["_partition": AnyBSON(user!.id),
+                                 "_id": AnyBSON(user!.id),
+                                 "connectedUsers": AnyBSON(usersList.toArray()),
+                                 "canCreateEvents": AnyBSON(customData["canCreateEvents"] as! Bool),
+                                 "canLocationTrack": AnyBSON(customData["canLocationTrack"] as! Bool),
+                                 "parentAccount": AnyBSON(customData["parentAccount"] as! Bool)]
+                    ) { (result) in
+                        switch result {
+                        case .failure(let error):
+                            print("Failed to update: \(error.localizedDescription)")
+                            return
+                        case .success(let updateResult):
+                            //  User document updated.
+                            print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+                        }
                     }
                 }
                 return
