@@ -23,46 +23,56 @@ final class SettingsViewModel: ObservableObject {
     
     
     func attemptAuthorization() {
-        
         let authModel = AuthenticationModel()
-        
         authModel.email = childEmail
         authModel.password = childPassword
-        
+        let app = app
+        let parent = app?.currentUser
+        var child = app?.currentUser
         signIn(vm: authModel, onCompletion: { (success) in
-
             if (success) {
                 print("child login successful ")
                 self.authorized = true
-               
+                child = app?.currentUser
+                app?.switch(to: parent!)
+                updateConnectedUsers(newUUID: child!.id, onCompletion: { (failure) in
+                    print("failed with ", failure)
+                })
             } else {
                 print("epic fail")
                 self.authorized = false
                 
             }
         })
-    func addChild() {
-        if let app = app {
-            let parentUser = app.currentUser
-            print(app.currentUser?.id)
-            signIn(vm: self, onCompletion: { (success) in
-                if (success) {
-                    print("win!")
-                    print(app.currentUser?.id)
-                    let childUser = app.currentUser
-                    app.switch(to: parentUser!)
-//                    updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Void)
-                    updateConnectedUsers(newUUID: childUser?.id!, onCompletion: { (failure) in
-                        print("failed with ", failure)
-                    })
-//                    updateConnectedUsers(newUUID: childUser?.id!,
-//                                         onCompletion: { (failure) in
-//                                        print("failed with ", failure)})
-                    print(app.currentUser?.id)
-                } else {
-                    print("epic fail")
-                }
-            })
-        }
     }
+    
+    func addChild() {
+        print("add child")
+        attemptAuthorization()
+    }
+    
+//    func addChild() {
+//        if let app = app {
+//            let parentUser = app.currentUser
+//            print(app.currentUser?.id)
+//            signIn(vm: self, onCompletion: { (success) in
+//                if (success) {
+//                    print("win!")
+//                    print(app.currentUser?.id)
+//                    let childUser = app.currentUser
+//                    app.switch(to: parentUser!)
+////                    updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Void)
+////                    updateConnectedUsers(newUUID: childUser?.id!, onCompletion: { (failure) in
+////                        print("failed with ", failure)
+////                    })
+////                    updateConnectedUsers(newUUID: childUser?.id!,
+////                                         onCompletion: { (failure) in
+////                                        print("failed with ", failure)})
+//                    print(app.currentUser?.id)
+//                } else {
+//                    print("epic fail")
+//                }
+//            })
+//        }
+//    }
 }

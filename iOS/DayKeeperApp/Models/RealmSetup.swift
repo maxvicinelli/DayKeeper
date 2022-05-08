@@ -43,24 +43,6 @@ func signIn(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
     }
 }
 
-// overload signin such that we can use settingsVM
-func signIn(vm: SettingsViewModel, onCompletion: @escaping (Bool) -> Void) {
-    let app = app
-    print("signing in")
-    app!.login(credentials: Credentials.emailPassword(email: vm.childEmail, password: vm.childPassword)) { result in
-        //isLoggingIn = false
-        if case let .failure(error) = result {
-            print("Failed to log in: \(error.localizedDescription)")
-            onCompletion(false)
-            return
-        }
-        // Other views are observing the app and will detect
-        // that the currentUser has changed. Nothing more to do here.
-        print("Logged in")
-        onCompletion(true)
-    }
-}
-
 func logoutUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void) {
     let app = app
     app!.currentUser!.logOut { (error) in
