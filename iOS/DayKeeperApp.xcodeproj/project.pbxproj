@@ -19,6 +19,7 @@
 		793F052E27B458E00062DE8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793F052D27B458E00062DE8E /* User.swift */; };
 		796B76D527AB40BB00B57919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D427AB40BB00B57919 /* AuthViewModel.swift */; };
 		796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796B76D627AB4C1900B57919 /* ViewMasterController.swift */; };
+		7984BA8C28281F15004A19B6 /* ChildSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7984BA8B28281F15004A19B6 /* ChildSettingsView.swift */; };
 		799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */; };
 		799CC39427A488AB0043A9FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC39327A488AB0043A9FF /* ContentView.swift */; };
 		799CC39627A488AC0043A9FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799CC39527A488AC0043A9FF /* Assets.xcassets */; };
@@ -104,6 +105,7 @@
 		793F052D27B458E00062DE8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		796B76D427AB40BB00B57919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		796B76D627AB4C1900B57919 /* ViewMasterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMasterController.swift; sourceTree = "<group>"; };
+		7984BA8B28281F15004A19B6 /* ChildSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSettingsView.swift; sourceTree = "<group>"; };
 		799CC38E27A488AB0043A9FF /* DayKeeperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayKeeperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		799CC39127A488AB0043A9FF /* DayKeeperAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeeperAppApp.swift; sourceTree = "<group>"; };
 		799CC39327A488AB0043A9FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */,
 				79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */,
 				7918B8BC282058C900655D77 /* AddChildrenView.swift */,
+				7984BA8B28281F15004A19B6 /* ChildSettingsView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */,
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
 				7550853D280F575700967F9F /* MainTabView.swift in Sources */,
+				7984BA8C28281F15004A19B6 /* ChildSettingsView.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
