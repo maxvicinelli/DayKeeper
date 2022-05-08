@@ -53,6 +53,11 @@ struct RegistrationView: View {
                     Text("registration failed")
                 }
                 
+                Toggle(isOn: $authModel.parentAccout) {
+                    Text("Parent Account")
+                    let _ = print(authModel.parentAccout)
+                }
+                
             }
             
             
