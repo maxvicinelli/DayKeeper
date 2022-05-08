@@ -4,7 +4,6 @@
 //
 //  Created by Max Vicinelli on 2/3/22.
 //
-
 import SwiftUI
 
 struct RegistrationView: View {
@@ -86,6 +85,9 @@ struct RegistrationView: View {
                                     eventsViewModel.loadFromiCal(registering: true)
                                     print("sending to realm")
                                     authModel.authenticated = true
+                                    createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
+                                        print("failed with ", failure)
+                                    })
                                     
                                 }
                             })
