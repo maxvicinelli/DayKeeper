@@ -81,7 +81,7 @@ struct RegistrationView: View {
                                     eventsViewModel.loadFromiCal(registering: true)
                                     print("sending to realm")
                                     authModel.authenticated = true
-                                    createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
+                                    createCustomUserDataDocument(onCompletion: { (failure) in
                                         print("failed with ", failure)
                                     })
                                     
