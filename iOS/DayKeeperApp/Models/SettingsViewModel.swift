@@ -16,6 +16,9 @@ final class SettingsViewModel: ObservableObject {
     
     @Published var authorized: Bool = false
     
+    @Published var parentEmail: String = "" 
+    
+    
     // CHILD SETTINGS
     
     @Published var canCreateEvents = false

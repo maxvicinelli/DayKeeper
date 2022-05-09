@@ -38,6 +38,19 @@ struct ChildSettingsView: View {
     }
 }
 
+struct ChildSettingsRow: View {
+    var body: some View {
+        HStack {
+            Image("social-care")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .padding()
+            Text("Child Settings")
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+        }
+    }
+}
+
 
 struct ListRowView: View {
     var toggleVar: Binding<Bool>
