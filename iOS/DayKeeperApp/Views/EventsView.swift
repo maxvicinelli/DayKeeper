@@ -27,7 +27,6 @@ struct EventsView: View {
     var actionNotifManager = ActionNotifManager()
     @Environment(\.scenePhase) var scenePhase
     
-    
     @ViewBuilder
     var infoOverlayView: some View {
         switch notificationManager.authorizationStatus {
@@ -60,7 +59,7 @@ struct EventsView: View {
     
     var filteredEvents: [Event] {
         eventsVM.events.filter { event in
-            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly))
+            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly) && !event.isInvalidated)
         }
     }
     
@@ -79,26 +78,55 @@ struct EventsView: View {
     var body: some View {
         
         VStack {
-            HStack {
-                Text("Welcome")
-                    .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
-                    .lineLimit(2)
-                    .shadow(radius: 15)
-                    .foregroundColor(Color.textColor)
-                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
-                    .padding(.vertical, 5.0)
-                    .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
-                    .minimumScaleFactor(0.5)
-                                .lineLimit(1)
+            HStack(spacing: 20){
+                            Text("Welcome")
+                                .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
+                                .lineLimit(2)
+                                .shadow(radius: 15)
+                                .foregroundColor(Color.textColor)
+                                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
+                                .padding(.vertical, 5.0)
+                                .padding(.leading, 100)
+                                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
+                                .minimumScaleFactor(0.5)
+                                            .lineLimit(1)
 
-                Button("Settings", action: {
-                    authModel.updateSettings()
-                    print("updated settings!")
+                Button("Sync iCal", action: {
+                    print("before ical sync, these are our events:", eventsVM.events)
+                    eventsVM.events.removeAll()
+                    eventsVM.iCalSync()
+                    print("ical sync done, here are the events we now have: ", eventsVM.events)
+//                    DispatchQueue.main.async {
+//                    eventsVM.loadFromDB()
+                        
+//                    }
+//                    eventsVM.loadFromDB()
+//                    eventsVM.reload()
+//                    eventsVM.loadFromDB()
                 })
                 .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
                 .frame(width: 80, height: 40, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
                 .foregroundColor(Color.black)
+                
+//                Button("Test", action: {
+////                    createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
+////                        print("failed with ", failure)
+////                    updateConnectedUsers(vm: authModel, onCompletion: { (failure) in
+////                        print("failed with ", failure)
+////                    })
+////                    DispatchQueue.main.async {
+////                    eventsVM.loadFromDB()
+//
+////                    }
+////                    eventsVM.loadFromDB()
+////                    eventsVM.reload()
+////                    eventsVM.loadFromDB()
+//                })
+//                .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
+//                .frame(width: 80, height: 40, alignment: .center)
+//                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
+//                .foregroundColor(Color.black)
                 
                 
                 Button("Create Event", action: {
@@ -112,24 +140,33 @@ struct EventsView: View {
             .padding(.top, 10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-        
+
             VStack(spacing: 0) {
-                
                 NavigationView {
                     VStack(spacing: 0) {
-                        Toggle(isOn: $showTodayEventsOnly){
-                            Text("Today's Events Only")
-                                .foregroundColor(Color.textColor)
+                        VStack {
+                        Text("Today's Events Only")
+                            .foregroundColor(Color.textColor)
+                            .font(.system(size: 26))
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Toggle("Events", isOn: $showTodayEventsOnly)
+                            .labelsHidden()
                         }
                         .padding()
+                        
                         List(filteredEvents) { event in
+                            if !event.isInvalidated {
                             NavigationLink (
-                                destination: EventRow(event: event),
+                                destination: EventRow(event: event, actionNotificationManager: actionNotifManager),
                                 label: {
-                                    Text(event.Title)
+                                
+                                    Text(event.Title) + Text("\n") +
+                                    Text(date2text(event: event)).foregroundColor(Color(red:0.436, green: 0.558, blue: 0.925)).font(.system(size: 22))
                                         // .onAppear(perform: {eventsVM.update()})
                                 })
                                 .listRowBackground(Color(red:1.0, green: 0.941, blue: 0.612))
+                            }
                             }
                         }
                         .overlay(infoOverlayView)
@@ -151,20 +188,20 @@ struct EventsView: View {
                                 break
                             }
                         }
-                        .onAppear(perform: {actionNotifManager.createStatusUpdateNotifs()})
+                        .onAppear(perform: {
+                            print("onAppear called in EventsView")
+                            actionNotifManager.createStatusUpdateNotifs()})
                     
                         .onChange(of: scenePhase) { newPhase in
                             if newPhase == .active {
-                                print("now active")
                                 reloadDidntRespond()
                             }
                         }
                         .onAppear(perform: {reloadDidntRespond()})
                         .background(Color(red:0.436, green: 0.558, blue: 0.925))
-                        .sheet(isPresented: $isCreatePresented){
+                        .sheet(isPresented: $isCreatePresented, onDismiss: actionNotifManager.createStatusUpdateNotifs){
                             NavigationView {
-                                CreateEventView(isPresented: $isCreatePresented,
-                                notificationManager: notificationManager)
+                                CreateEventView(isPresented: $isCreatePresented, eventsVM: eventsVM)
                             }
                             .accentColor(.primary)
                         }
@@ -193,3 +230,13 @@ struct EventsView_Previews: PreviewProvider {
     }
 }
 
+func date2text(event: Event) -> String {
+    // Create Date Formatter
+    let dateFormatter = DateFormatter()
+
+    // Set Date Format
+    dateFormatter.dateFormat = "E, HH:mm"
+
+    let text = dateFormatter.string(from: event.StartDate) + "-" + dateFormatter.string(from: event.EndDate)
+    return text
+}

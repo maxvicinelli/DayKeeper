@@ -4,14 +4,13 @@
 //
 //  Created by Max Vicinelli on 2/3/22.
 //
-
 import SwiftUI
 
 struct RegistrationView: View {
     
-    //@ObservedObject var authModel: AuthenticationModel
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var eventsViewModel: EventsViewModel
+    @ObservedObject var settingsVM: SettingsViewModel
     
     @State var registrationFailed: Bool = false
     
@@ -53,11 +52,21 @@ struct RegistrationView: View {
                     Text("registration failed")
                 }
                 
+                Toggle(isOn: $authModel.parentAccout) {
+                    Text("Parent Account")
+                    let _ = print(authModel.parentAccout)
+                }
+                
             }
             
             
-            Button(action: {authModel.setRegistration(value: false)},
-                   label: {Image(systemName: "arrow.left").renderingMode(.original)}
+            Button(action:
+                    {
+                withAnimation(.easeInOut) {
+                    authModel.setRegistration(value: false)
+                }
+            },
+                    label: {Image(systemName: "arrow.left").renderingMode(.original)}
             )
                 .padding()
                 .background(Color(red: 1, green: 1, blue: 1))
@@ -69,15 +78,20 @@ struct RegistrationView: View {
                 
                 registerUser(vm: authModel, onCompletion: { (registerSuccess) in
                     if (registerSuccess) {
-                        signIn(vm: authModel, onCompletion: { (signInSuccess) in
-                            if (signInSuccess) {
-                                print("loading from iCal")
-                                eventsViewModel.loadFromiCal(registering: true)
-                                print("sending to realm")
-                                authModel.authenticated = true
-                                
-                            }
-                        })
+                        withAnimation(.easeInOut){
+                            signIn(vm: authModel, onCompletion: { (signInSuccess) in
+                                if (signInSuccess) {
+                                    print("loading from iCal")
+                                    eventsViewModel.loadFromiCal(registering: true)
+                                    print("sending to realm")
+                                    authModel.authenticated = true
+                                    createCustomUserDataDocument(vm: authModel, settingsVM: settingsVM, onCompletion: { (failure) in
+                                        print("failed with ", failure)
+                                    })
+                                    
+                                }
+                            })
+                        }
                     } else {
                         registrationFailed = true
                     }
@@ -97,8 +111,7 @@ struct RegistrationView_Previews: PreviewProvider {
         UITableView.appearance().backgroundColor = .clear
     }
     static var previews: some View {
-        RegistrationView(authModel: AuthenticationModel(), eventsViewModel: EventsViewModel())
-        // .environmentObject(AuthenticationModel())
+        RegistrationView(authModel: AuthenticationModel(), eventsViewModel: EventsViewModel(), settingsVM: SettingsViewModel())
         
     }
 }

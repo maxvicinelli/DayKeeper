@@ -91,11 +91,16 @@ struct LoginView: View {
                         signIn(vm: authModel, onCompletion: { (success) in
                             
                             if (success) {
-                                print("now loading events from DB")
-                                eventsViewModel.loadFromDB()
-                                print("finished loading from DB")
-                                print("login success!")
-                                authModel.setAuthenticated(value: true)
+                                withAnimation(.easeIn) {
+                                    print("now loading events from DB")
+                                    eventsViewModel.loadFromDB()
+                                    
+                                    // here set the settingsViewModel from DB
+    //                                eventsViewModel.loadEvents(registering: false)
+                                    print("finished loading from DB")
+                                    print("login success!")
+                                    authModel.setAuthenticated(value: true)
+                                }
                             } else {
                                 print("epic fail")
                                 authenticationDidFail = true
@@ -111,8 +116,10 @@ struct LoginView: View {
 //                        .frame(height:25)
                     
                     Button ("New Here?") {
+                        withAnimation(.easeIn) {
                         authModel.setRegistration(value: true)
                         print("now beginning registration")
+                        }
                     }
                     .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
                     .shadow(radius: 15)

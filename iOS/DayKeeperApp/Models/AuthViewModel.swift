@@ -24,6 +24,7 @@ final class AuthenticationModel: ObservableObject {
     
     @Published var viewingSettings = false 
     
+    @Published var parentAccout = false 
    
     
     // @Published var signingIn = false
