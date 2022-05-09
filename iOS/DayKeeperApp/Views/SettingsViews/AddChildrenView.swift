@@ -18,12 +18,12 @@ struct AddChildrenView: View {
         
         
             TextField("Child's Email", text: $settingsViewModel.childEmail)
-                .frame(width: 300, height: 40, alignment: .center)
+                .frame(width: 330, height: 40, alignment: .center)
                 .multilineTextAlignment(.center)
                 .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
 //                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
             SecureField("Child's Password", text: $settingsViewModel.childPassword)
-                .frame(width: 300, height: 40, alignment: .center)
+                .frame(width: 330, height: 40, alignment: .center)
                 .multilineTextAlignment(.center)
                 .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
 //                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))

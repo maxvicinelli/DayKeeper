@@ -94,6 +94,8 @@ struct LoginView: View {
                                 withAnimation(.easeIn) {
                                     print("now loading events from DB")
                                     eventsViewModel.loadFromDB()
+                                    
+                                    // here set the settingsViewModel from DB
     //                                eventsViewModel.loadEvents(registering: false)
                                     print("finished loading from DB")
                                     print("login success!")

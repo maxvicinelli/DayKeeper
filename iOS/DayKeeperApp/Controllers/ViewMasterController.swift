@@ -27,7 +27,12 @@ struct ViewMasterController: View {
         if authModel.authenticated {
 //            if authModel.registering {
                  
-            MainTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
+            
+            if authModel.parentAccout {
+                ParentTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
+            } else {
+                MainTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
+            }
 
 //            }
 //            else {
@@ -37,7 +42,7 @@ struct ViewMasterController: View {
         }
         else {
             if authModel.registering {
-                RegistrationView(authModel: authModel, eventsViewModel: eventsVM)
+                RegistrationView(authModel: authModel, eventsViewModel: eventsVM, settingsVM: settingsVM)
                     .environmentObject(authModel)
             }
             else {
