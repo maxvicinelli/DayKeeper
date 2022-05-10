@@ -15,6 +15,9 @@ struct ViewMasterController: View {
     @ObservedObject var eventsVM: EventsViewModel
     @ObservedObject var settingsVM: SettingsViewModel
     
+
+    
+    
     var body: some View {
 //        if let _ = app!.currentUser {
 //            EventsView(app: app!, eventsVM: getEventsFromDb())

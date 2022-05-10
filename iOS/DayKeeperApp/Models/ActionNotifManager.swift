@@ -143,7 +143,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                             //                    }
                             otherEvent.OnTime = max(otherEvent.OnTime-1, 0)
                             if otherEvent.Title == event.Title {
-                                otherEvent.Timeliness.append(-1)
+                                otherEvent.Timeliness.append(1) //1 for early
                             }
                             
                             
@@ -157,7 +157,7 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
                             //                            print("Before making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
                             otherEvent.OnTime = min(otherEvent.OnTime+1, 5)
                             if otherEvent.Title == event.Title {
-                                otherEvent.Timeliness.append(1)
+                                otherEvent.Timeliness.append(0) //0 for late
                             }
                             //                            print("After making change to onTime, category:", otherEvent.Category?.Title, "event title:", otherEvent.Title, "onTime count:", otherEvent.OnTime)
                             
