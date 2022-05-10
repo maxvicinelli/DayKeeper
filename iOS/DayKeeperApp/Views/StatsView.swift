@@ -7,19 +7,36 @@
 
 import SwiftUI
 
-struct StatsView: View {
+class StatViewModel : ObservableObject {
+    @Published var name: String = ""
+    var events : [Event] = getEventsFromDb()
     
-    @ObservedObject var viewModel : ShuffleViewModel = ShuffleViewModel()
+   
+    
+    init() {
+         events = getEventsFromDb()
+        }
+    }
+
+
+
+
+struct StatsView: View {
+    @StateObject var eventClass = StatViewModel()
+    @State private var currentTime: Date = Date()
+    @State var events : [Event] = getEventsFromDb()
+    
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
-      
     }
-    
-  
+      
     
     var body: some View {
+       
+        
         ZStack {
+           
             Text("Statistics")
                 .position(x: 200, y: 10)
                 .padding(.top, 50)
@@ -52,6 +69,9 @@ struct StatsView: View {
                 .minimumScaleFactor(0.5)
             
             Text("On Time").position(x: 100, y: 200)
+                .shadow(radius: 15)
+                .foregroundColor(Color("Off-White"))
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
     
             
     
@@ -72,7 +92,8 @@ struct StatsView_Previews: PreviewProvider {
 
 // of all possible events in the last 5 days, find out how many you were on time for
 func get_total_percentage() -> Int {
-    print("get_total_percentage")
+
+    
     var sum = 0
     var  percentage = 0.0
     let event_count = find_event_count()
@@ -81,19 +102,19 @@ func get_total_percentage() -> Int {
         sum += event.Timeliness.reduce(0, +)
         
     }
-    print("event_count")
-    print(event_count)
+//    print("event_count")
+   // print(event_count)
     
-    print("SUM")
-    print(sum)
+  //  print("SUM")
+  //  print(sum)
     
     if event_count != 0 {
-        print("TEST event count")
-        print(53.0/103.0)
+     //   print("TEST event count")
+      //  print(53.0/103.0)
         percentage = Double(sum)/Double(event_count) * 100.0
-        print("Percentage")
+      //  print("Percentage")
         
-        print(round(percentage))
+       // print(round(percentage))
         
     }
 
@@ -109,8 +130,6 @@ func worst_and_best_event() -> Array<String>{
     }
     
     
-    
-    
     var worst_event = " "
     var best_event = " "
     
@@ -122,9 +141,11 @@ func worst_and_best_event() -> Array<String>{
         
         return LHS.OnTime > RHS.OnTime
     })
-    
-    worst_event = sorted_events.first!.Title
-    best_event = sorted_events.last!.Title
+    print("PRINT SORTED EVENTS")
+    print(sorted_events)
+    worst_event = sorted_events.last!.Title
+    best_event = sorted_events.first!.Title
+
     
     
     return [worst_event, best_event]
@@ -174,13 +195,4 @@ func find_event_count() -> Int{
     }
     
     return sum
-}
-
-class ShuffleViewModel : ObservableObject {
-    @Published var listData = ["one", "two", "three", "four"]
-
-    func shuffle() {
-        listData.shuffle()
-        //or listData = dictionary.shuffled().prefix(upTo: 10)
-    }
 }
