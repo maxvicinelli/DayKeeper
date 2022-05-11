@@ -1,4 +1,5 @@
 {
+
   "object": {
     "pins": [
       {
@@ -28,7 +29,16 @@
           "version": null
         }
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "8c1cbf124c5025da9220595e7764059963065891"
+      }
+    }
+  ],
+  "version" : 2
 }

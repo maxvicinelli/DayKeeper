@@ -22,7 +22,7 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            EventsView(authModelParam: authModel, appParam: app!, eventsVMParams: eventsVM)
+            EventsView(authModelParam: authModel, appParam: app!, eventsVMParams: eventsVM, settingsVMParam: settingsVM)
                 .tabItem {
                     Label("Events", systemImage: "list.dash")
                 }

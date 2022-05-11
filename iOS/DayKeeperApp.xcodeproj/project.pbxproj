@@ -30,6 +30,7 @@
 		79A6FE722829570F00CEBBB3 /* ParentTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6FE712829570F00CEBBB3 /* ParentTabView.swift */; };
 		79A6FE7428295A3000CEBBB3 /* ChildAcctSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6FE7328295A3000CEBBB3 /* ChildAcctSettingsView.swift */; };
 		79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CADA9227AC889B00518544 /* RegistrationView.swift */; };
+		79CC525E282B25A600954A2B /* ParentEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CC525D282B25A600954A2B /* ParentEventsView.swift */; };
 		79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167A27BAEA3C007BFE1D /* SettingsView.swift */; };
 		79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */; };
 		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
@@ -126,6 +127,7 @@
 		79A6FE712829570F00CEBBB3 /* ParentTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTabView.swift; sourceTree = "<group>"; };
 		79A6FE7328295A3000CEBBB3 /* ChildAcctSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildAcctSettingsView.swift; sourceTree = "<group>"; };
 		79CADA9227AC889B00518544 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		79CC525D282B25A600954A2B /* ParentEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentEventsView.swift; sourceTree = "<group>"; };
 		79DC167A27BAEA3C007BFE1D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsViews.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */,
 				FE11B3C627B05B900052CA22 /* EventRow.swift */,
 				FE11B3BB27ADC3480052CA22 /* EventsView.swift */,
+				79CC525D282B25A600954A2B /* ParentEventsView.swift */,
 				751D4C7C27B0C04A006273F4 /* HelpView.swift */,
 				79CADA9227AC889B00518544 /* RegistrationView.swift */,
 				799CC3BC27A7421B0043A9FF /* LoginView.swift */,
@@ -615,6 +618,7 @@
 				7984BA8C28281F15004A19B6 /* ChildSettingsView.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
 				79A6FE7428295A3000CEBBB3 /* ChildAcctSettingsView.swift in Sources */,
+				79CC525E282B25A600954A2B /* ParentEventsView.swift in Sources */,
 				751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
 				793F052E27B458E00062DE8E /* User.swift in Sources */,

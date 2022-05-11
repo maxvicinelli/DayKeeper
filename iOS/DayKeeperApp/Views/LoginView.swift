@@ -44,6 +44,7 @@ struct LoginView: View {
     //@ObservedObject var authModel: AuthenticationModel
     @EnvironmentObject var authModel: AuthenticationModel
     @ObservedObject var eventsViewModel: EventsViewModel
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @State var authenticationDidSucceed: Bool = false
     @State var authenticationDidFail: Bool = false
     var body: some View {
@@ -96,6 +97,9 @@ struct LoginView: View {
                                     eventsViewModel.loadFromDB()
                                     
                                     // here set the settingsViewModel from DB
+                                    
+                                    settingsViewModel.getConnectionFromDB() 
+                                    
     //                                eventsViewModel.loadEvents(registering: false)
                                     print("finished loading from DB")
                                     print("login success!")
@@ -146,7 +150,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(eventsViewModel: EventsViewModel())
+        LoginView(eventsViewModel: EventsViewModel(), settingsViewModel: SettingsViewModel())
             .environmentObject(AuthenticationModel())
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
