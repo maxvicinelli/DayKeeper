@@ -8,16 +8,22 @@ import SwiftUI
 
 class StatViewModel : ObservableObject {
     @Published var name: String = ""
+    @State private var currentTime: Date = Date()
     var events : [Event] = getEventsFromDb()
     
     init() {
         events = getEventsFromDb()
     }
+    func reload() {
+        events = getEventsFromDb()
+        currentTime = Date()
+
+}
 }
 
 struct StatsView: View {
-    @StateObject var eventClass = StatViewModel()
-    @State private var currentTime: Date = Date()
+    @ObservedObject var eventClass = StatViewModel()
+   
     @State var events : [Event] = getEventsFromDb()
     
     
@@ -98,10 +104,15 @@ struct StatsView: View {
             
         } .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
+            .refreshable {
+                eventClass.reload()
+            }
        
-        
+    
     }
 }
+
+
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
