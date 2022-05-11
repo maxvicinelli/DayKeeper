@@ -28,7 +28,7 @@ struct MainTabView: View {
                 }
                 .tag(0)
             
-            StatsView()
+            StatsView(eventsVMParam: eventsVM)
                 .tabItem {
                     Label("Stats", systemImage: "chart.xyaxis.line")
                 }

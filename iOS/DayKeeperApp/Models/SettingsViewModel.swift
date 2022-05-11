@@ -38,19 +38,43 @@ final class SettingsViewModel: ObservableObject {
             let database = client.database(named: "DK")
             let collection = database.collection(withName: "User")
             
-            collection.updateOneDocument(
-                filter: ["_partition": AnyBSON(user!.id)],
-                update: ["_partition": AnyBSON(user!.id),
-                         "parentAccount": AnyBSON(self.parentAccount)])
-                { (result) in
-                    switch result {
-                    case .failure(let error):
-                        print("Failed to update: \(error.localizedDescription)")
-                        return
-                    case .success(let updateResult):
-                        //  User document updated.
-                        print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+            
+            DispatchQueue.main.async {
+                
+            
+            
+            user!.refreshCustomData { (result) in
+                switch result {
+                case .failure(let error):
+                    print("Failed to refresh custom data: \(error.localizedDescription)")
+                case .success(let customData):
+                    
+                    
+                    print("PRINTING CUSTOM DATA")
+                    print(user?.customData)
+                    
+                    print("now creating collection")
+                    collection.updateOneDocument(
+                        filter: ["_partition": AnyBSON(user!.id)],
+                        update: ["_partition": AnyBSON(user!.id),
+                                 "_id": AnyBSON(user!.id),
+                                 "connectedUser": AnyBSON(customData["connectedUser"]! as! String),
+                                 "childPassword": AnyBSON(customData["childPassword"]! as! String),
+                                 "canCreateEvents": AnyBSON(customData["canCreateEvents"]! as! Bool),
+                                 "canLocationTrack": AnyBSON(customData["canLocationTrack"]! as! Bool),
+                                 "parentAccount": AnyBSON(self.parentAccount)]
+                    ) { (result) in
+                        switch result {
+                        case .failure(let error):
+                            print("Failed to update: \(error.localizedDescription)")
+                            return
+                        case .success(let updateResult):
+                            //  User document updated.
+                            print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+                        }
+                    }
                 }
+            }
             }
         }
     }
@@ -67,27 +91,34 @@ final class SettingsViewModel: ObservableObject {
             let collection = database.collection(withName: "User")
             
             
-            print("current user id: \(user?.id)")
-            
-            collection.insertOne([
-                "_partition": AnyBSON(user!.id),
-                "connectedUser": AnyBSON(self.childEmail),
-                "childUUID": AnyBSON(childUUID)
-            ]) { (result) in
+            user!.refreshCustomData { (result) in
                 switch result {
-                    case .failure(let error):
-                        print("Failed to insert document: \(error.localizedDescription)")
-                    case .success(let newObjectId):
-                        print("Inserted custom user data document with object ID: \(newObjectId)")
+                case .failure(let error):
+                    print("Failed to refresh custom data: \(error.localizedDescription)")
+                case .success(let customData):
+                    
+                    print("now creating collection")
+                    collection.updateOneDocument(
+                        filter: ["_partition": AnyBSON(user!.id)],
+                        update: ["_partition": AnyBSON(user!.id),
+                                 "_id": AnyBSON(user!.id),
+                                 "connectedUser": AnyBSON(self.childEmail),
+                                 "childPassword": AnyBSON(self.childPassword),
+                                 "canCreateEvents": AnyBSON(customData["canCreateEvents"] as! Bool),
+                                 "canLocationTrack": AnyBSON(customData["canLocationTrack"] as! Bool),
+                                 "parentAccount": AnyBSON(customData["parentAccount"] as! Bool)]
+                    ) { (result) in
+                        switch result {
+                        case .failure(let error):
+                            print("Failed to update: \(error.localizedDescription)")
+                            return
+                        case .success(let updateResult):
+                            //  User document updated.
+                            print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+                        }
+                    }
                 }
             }
-            
-           
-            
-            print("refreshing custom user data")
-            user!.refreshCustomData()
-            print("printing c user data")
-            print(user?.customData)
         }
     }
     
@@ -116,11 +147,17 @@ final class SettingsViewModel: ObservableObject {
                     
                     print("refreshing worked!")
                     
+                    
+                    print("NOW PRINTING CUSTOM DATA")
                     print(user?.customData)
  
                     DispatchQueue.main.async {
                         if customData["connectedUser"] != nil {
                             self.childEmail = customData["connectedUser"]! as! String
+                            
+                            if self.childEmail != "" {
+                                self.authorized = true 
+                            }
                         }
                        
                         print("got users array")
@@ -134,19 +171,24 @@ final class SettingsViewModel: ObservableObject {
                             self.canLocationTrack = customData["canLocationTrack"]! as! Bool
                         }
                         
+                        if customData["childPassword"] != nil {
+                            self.childPassword = customData["childPassword"]! as! String
+                        }
+                        
                         print("got can location track ")
                         if customData["parentAccount"] != nil {
-                        self.parentAccount = customData["parentAccount"]! as! Bool
-                        print("parent account: \(self.parentAccount)")
-                        print("got parent acct")
+                            self.parentAccount = customData["parentAccount"]! as! Bool
+                            print("parent account: \(self.parentAccount)")
+                            print("got parent acct")
                         }
                         
                         self.attemptAuthorization()
-                        
+   
                     }
                 }
             }
         }
+        
     }
     
     func attemptAuthorization() {
@@ -157,6 +199,9 @@ final class SettingsViewModel: ObservableObject {
         let parent = app?.currentUser
         
         print("PARENT ID: \(parent?.id)")
+        
+        print("child username: \(authModel.email)")
+        print("child password: \(authModel.password)")
         
         
         var child = app?.currentUser

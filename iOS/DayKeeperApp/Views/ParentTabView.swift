@@ -24,7 +24,7 @@ struct ParentTabView: View {
         TabView {
             
             
-            StatsView()
+            StatsView(eventsVMParam: settingsVM.childEVM)
                 .tabItem {
                     Label("Stats", systemImage: "chart.xyaxis.line")
                 }
