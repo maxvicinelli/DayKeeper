@@ -34,6 +34,7 @@
 		79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167A27BAEA3C007BFE1D /* SettingsView.swift */; };
 		79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */; };
 		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
+		AC11A767282BF57D0068FD82 /* StatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11A766282BF57D0068FD82 /* StatFunctions.swift */; };
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
 		AC5B803A282B5CCF00386EBC /* FLCharts in Frameworks */ = {isa = PBXBuildFile; productRef = AC5B8039282B5CCF00386EBC /* FLCharts */; };
 		AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC81ADAC2818F0A9006280CA /* CoreLocation.framework */; };
@@ -131,6 +132,7 @@
 		79DC167A27BAEA3C007BFE1D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsViews.swift; sourceTree = "<group>"; };
+		AC11A766282BF57D0068FD82 /* StatFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatFunctions.swift; sourceTree = "<group>"; };
 		AC4B505127AEDA0700488105 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		AC81ADAA2818B1CF006280CA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		AC81ADAC2818F0A9006280CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -234,6 +236,7 @@
 				FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */,
 				796B76D427AB40BB00B57919 /* AuthViewModel.swift */,
 				7918B8BE282058F000655D77 /* SettingsViewModel.swift */,
+				AC11A766282BF57D0068FD82 /* StatFunctions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
 				7918B8BD282058C900655D77 /* AddChildrenView.swift in Sources */,
 				7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */,
+				AC11A767282BF57D0068FD82 /* StatFunctions.swift in Sources */,
 				FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */,
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				75F4D92127C30743001024FC /* CreateEventView.swift in Sources */,
