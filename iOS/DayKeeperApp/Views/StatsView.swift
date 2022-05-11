@@ -4,22 +4,16 @@
 //
 //  Created by Ariel Attias on 2/5/22.
 
-
 import SwiftUI
 
 class StatViewModel : ObservableObject {
     @Published var name: String = ""
     var events : [Event] = getEventsFromDb()
     
-    
-    
     init() {
         events = getEventsFromDb()
     }
 }
-
-
-
 
 struct StatsView: View {
     @StateObject var eventClass = StatViewModel()
@@ -30,7 +24,6 @@ struct StatsView: View {
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
     }
-    
     
     var body: some View {
         
@@ -174,31 +167,26 @@ func worst_and_best_event() -> Array<String>{
 
 
 func worst_and_best_time() -> Dictionary<String, Int> {
-    var time_array = ["morning": 0,
-                      "afternoon": 0,
-                      "night": 0]
-    var total_array = ["morning": 0,
-                       "afternoon": 0,
-                       "night": 0]
+    
     if getEventsFromDb().count == 0 {
         
-        return ["morning": 0,
-                "afternoon": 0,
-                "night": 0]
+        return ["morning": 0, "afternoon": 0, "night": 0]
         
     }
     
+    var time_array = ["morning": 0, "afternoon": 0, "night": 0]
+    var total_array = ["morning": 0, "afternoon": 0, "night": 0]
     
     let formatter = DateFormatter()
     formatter.dateFormat = "HH" // "a" prints "pm" or "am"
     
     for event in getEventsFromDb(){
+        
         var hour = Int(formatter.string(from: event.StartDate))
         
         if hour! >= 4 && hour! <= 11 {
             time_array["morning"]! += event.Timeliness.reduce(0, +)
             total_array["morning"]! += event.Timeliness.count
-            
         }
         
         if hour! >= 12 && hour! <= 19 {
@@ -210,16 +198,14 @@ func worst_and_best_time() -> Dictionary<String, Int> {
             time_array["night"]! += event.Timeliness.reduce(0, +)
             total_array["night"]! += event.Timeliness.count
         }
-        
     }
     
     time_array["morning"]! = Int(round(100.0 * Double(time_array["morning"]!)/Double(total_array["morning"]!)))
     time_array["afternoon"]! = Int(round(100.0 * Double(time_array["afternoon"]!)/Double(total_array["afternoon"]!)))
     time_array["night"]! = Int(round(100.0 * Double(time_array["night"]!)/Double(total_array["night"]!)))
-        
-    print(time_array)
-    return time_array
     
+    //  print(time_array)
+    return time_array
 }
 
 
@@ -227,7 +213,6 @@ func find_event_count() -> Int{
     var sum = 0
     for event in getEventsFromDb(){
         sum += event.Timeliness.count
-        
     }
     
     return sum
