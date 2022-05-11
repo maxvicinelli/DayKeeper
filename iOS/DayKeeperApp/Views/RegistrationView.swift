@@ -52,10 +52,11 @@ struct RegistrationView: View {
                     Text("registration failed")
                 }
                 
-                Toggle(isOn: $authModel.parentAccout) {
+                Toggle(isOn: $settingsVM.parentAccount) {
                     Text("Parent Account")
-                    let _ = print(authModel.parentAccout)
+                    //let _ = print(authModel.parentAccout)
                 }
+                .padding()
                 
             }
             
@@ -88,6 +89,7 @@ struct RegistrationView: View {
                                     createCustomUserDataDocument(vm: authModel, settingsVM: settingsVM, onCompletion: { (failure) in
                                         print("failed with ", failure)
                                     })
+                                    settingsVM.setParentAccount()
                                     
                                 }
                             })
