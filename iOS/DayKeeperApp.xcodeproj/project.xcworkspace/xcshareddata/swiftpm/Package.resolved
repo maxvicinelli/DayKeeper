@@ -1,5 +1,4 @@
 {
-
   "object": {
     "pins": [
       {
@@ -25,20 +24,11 @@
         "repositoryURL": "https://github.com/realm/realm-swift",
         "state": {
           "branch": "master",
-          "revision": "c4b36c55ebf5e7f37746f80de50b9b4389d7e548",
+          "revision": "3a7dee88f5731b11c746fe222141ad8d1597bb9e",
           "version": null
         }
       }
-    },
-    {
-      "identity" : "realm-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-swift.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "8c1cbf124c5025da9220595e7764059963065891"
-      }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }

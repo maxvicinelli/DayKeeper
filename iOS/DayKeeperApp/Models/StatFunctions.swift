@@ -6,6 +6,8 @@
 //
 
 // of all possible events in the last 5 days, find out how many you were on time for
+import SwiftUI
+import FLCharts
 func get_total_percentage() -> Int {
     
     
@@ -117,4 +119,57 @@ func find_event_count() -> Int{
     }
     
     return sum
+}
+
+
+
+func create_Chart() -> FLCard {
+    
+    let weekdata = create_chart_data()
+    
+    let chartData = FLChartData(title: "Week",
+                             data: weekdata,
+                             legendKeys: [Key(key: "F1", color: .Gradient.purpleCyan),
+                                        Key(key: "F2", color: .green),],
+                            unitOfMeasure: "Events")
+    
+    
+    let chart = FLChart(data: chartData, type: .bar())
+    
+    let card = FLCard(chart: chart, style: .rounded)
+    card.showAverage = true
+    card.showLegend = false
+    
+    return card
+}
+
+func create_chart_data() -> [MultiPlotable] {
+    //MultiPlotable(name: "jan", values: [30]),
+    let weekData = [MultiPlotable(name: "Mon", values: [0,0]),
+                    MultiPlotable(name: "Tue", values: [0,0]),
+                    MultiPlotable(name: "Wed", values: [0,0]),
+                    MultiPlotable(name: "Thu", values: [0,0]),
+                    MultiPlotable(name: "Fri", values: [0,0]),]
+    
+    
+    for event in getEventsFromDb(){
+           
+           let myCalendar = Calendar(identifier: .gregorian)
+           let weekDay = myCalendar.component(.weekday, from: event.StartDate)
+        
+        // 1 is sunday, 2 is monday, 3 is tuesday, etc
+        if weekDay-2 <= 4{
+            var plotable = weekData[weekDay-2]
+            
+            if event.Timeliness.last == 1{
+                plotable.values[0] += 1
+                
+            }
+            else{
+                plotable.values[1] += 1
+            }
+        }
+    }
+    
+    return weekData
 }

@@ -135,9 +135,11 @@ final class SettingsViewModel: ObservableObject {
                         }
                         
                         print("got can location track ")
+                        if customData["parentAccount"] != nil {
                         self.parentAccount = customData["parentAccount"]! as! Bool
                         print("parent account: \(self.parentAccount)")
                         print("got parent acct")
+                        }
                         
                         self.attemptAuthorization()
                         

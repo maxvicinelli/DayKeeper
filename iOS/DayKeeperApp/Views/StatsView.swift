@@ -23,13 +23,15 @@ struct StatsView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
+        
+
     }
     
     var body: some View {
         
         
         ZStack {
-            
+            Group{
             Text("Statistics")
                 .position(x: 200, y: 10)
                 .padding(.top, 50)
@@ -64,6 +66,8 @@ struct StatsView: View {
             Text("On Time").position(x: 100, y: 200)
                 .shadow(radius: 15)
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+            }
+            
             Group {
                 
                 let height = 250
@@ -88,11 +92,13 @@ struct StatsView: View {
                     .foregroundColor(Color("Off-White"))
                     .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: CGFloat(size))!))
             }
+           
+            
             
             
         } .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-        
+       
         
     }
 }
@@ -100,5 +106,6 @@ struct StatsView: View {
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
         StatsView()
+    
     }
 }
