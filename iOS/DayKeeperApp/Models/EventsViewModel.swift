@@ -275,6 +275,8 @@ final class EventsViewModel : ObservableObject {
         }
     }
     
+    
+    
     func sendToRealm() -> Void {
         print("sendToRealm called")
         if let app = app {

@@ -17,6 +17,7 @@ struct EventsView: View {
     @ObservedObject var app: RealmSwift.App
     //var events: [Event]
     @ObservedObject var eventsVM : EventsViewModel
+    @ObservedObject var settingsVM: SettingsViewModel
     var eventStore = EKEventStore()
     @StateObject var notificationManager = NotificationManager()
     @State private var showTodayEventsOnly = false
@@ -63,11 +64,12 @@ struct EventsView: View {
         }
     }
     
-    init(authModelParam: AuthenticationModel, appParam: RealmSwift.App, eventsVMParams: EventsViewModel) {
+    init(authModelParam: AuthenticationModel, appParam: RealmSwift.App, eventsVMParams: EventsViewModel, settingsVMParam: SettingsViewModel) {
             UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
             self.authModel = authModelParam
             self.app = appParam
             self.eventsVM = eventsVMParams
+            self.settingsVM = settingsVMParam
         }
     
     func setIsCreatePresentedTrue() -> Void {
@@ -225,7 +227,7 @@ struct EventsView: View {
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+        EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents(), settingsVMParam: SettingsViewModel())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
 .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

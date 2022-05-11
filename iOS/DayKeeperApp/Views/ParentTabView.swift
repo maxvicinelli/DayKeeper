@@ -41,6 +41,15 @@ struct ParentTabView: View {
                     Label("Help", systemImage: "questionmark")
                 }
                 .tag(2)
+            
+            
+           
+            ParentEventsView(authModel: authModel, app: app!, settingsVM: settingsVM)
+                .tabItem {
+                    Label("Child Events", systemImage: "list.dash")
+                }
+                .tag(3)
+            
         }
         .accentColor(Color("Off-White"))
         //.onAppear() {

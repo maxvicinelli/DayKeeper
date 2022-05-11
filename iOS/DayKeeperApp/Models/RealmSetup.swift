@@ -74,19 +74,23 @@ func createCustomUserDataDocument(vm: AuthenticationModel, settingsVM: SettingsV
         let client = user!.mongoClient("mongodb-atlas")
         let database = client.database(named: "DK")
         let collection = database.collection(withName: "User")
+        
+//        let userList = RealmSwift.List<String>().toArray()
+//        print(userList)
+        
         collection.insertOne([
             "_id": AnyBSON(user!.id),
             "_partition": AnyBSON(user!.id),
-            "connectedUsers": AnyBSON(RealmSwift.List<String>().toArray()),
+            // "connectedUser": AnyBSON(settingsVM.childEmail),
             "canCreateEvents": AnyBSON(settingsVM.canCreateEvents),
             "canLocationTrack": AnyBSON(settingsVM.canLocationTrack),
-            "parentAccount": AnyBSON(vm.parentAccout)
+            "parentAccount": AnyBSON(settingsVM.parentAccount)
         ]) { (result) in
             switch result {
                 case .failure(let error):
                     print("Failed to insert document: \(error.localizedDescription)")
                 case .success(let newObjectId):
-                print("Inserted custom user data document with object ID: \(newObjectId)")
+                    print("Inserted custom user data document with object ID: \(newObjectId)")
             }
         }
     }
@@ -113,6 +117,8 @@ func updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Voi
                 
                 if !usersList.contains(newUUID) {
                     usersList.append(newUUID)
+                    
+                    print("now creating collection")
                     collection.updateOneDocument(
                         filter: ["_partition": AnyBSON(user!.id)],
                         update: ["_partition": AnyBSON(user!.id),

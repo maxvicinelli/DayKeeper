@@ -23,10 +23,8 @@ struct SettingsView: View {
     }
        
     var body: some View {
-        
-        
-        
-        if authModel.parentAccout {
+
+        if settingsModel.parentAccount {
 
             VStack(alignment: .center, spacing: 0) {
                 ZStack {
@@ -35,6 +33,7 @@ struct SettingsView: View {
                         .foregroundColor(.textColor)
                         .frame(alignment: .center)
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 65, alignment: .center)
                 .background(Color(red:0.436, green: 0.558, blue: 0.925))
 
                 NavigationView {

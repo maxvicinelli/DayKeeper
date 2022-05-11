@@ -31,7 +31,7 @@ struct ViewMasterController: View {
 //            if authModel.registering {
                  
             
-            if authModel.parentAccout {
+            if settingsVM.parentAccount {
                 ParentTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
             } else {
                 MainTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
@@ -49,7 +49,7 @@ struct ViewMasterController: View {
                     .environmentObject(authModel)
             }
             else {
-                LoginView(eventsViewModel: eventsVM)
+                LoginView(eventsViewModel: eventsVM, settingsViewModel: settingsVM)
                     .environmentObject(authModel)
             }
         }
