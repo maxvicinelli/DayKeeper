@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "FLCharts",
+        "repositoryURL": "https://github.com/francescoleoni98/FLCharts",
+        "state": {
+          "branch": null,
+          "revision": "8c09ccd4eef5c3106b3e1befa50e0b4db2513942",
+          "version": "1.6.0"
+        }
+      },
+      {
         "package": "RealmDatabase",
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
