@@ -69,19 +69,23 @@ extension RealmSwift.List where Element == String {
  }
 
 func createCustomUserDataDocument(vm: AuthenticationModel, settingsVM: SettingsViewModel, onCompletion: @escaping (Bool) -> Void) {
+    DispatchQueue.main.async {
+        
     if let app = app {
         let user = app.currentUser
         let client = user!.mongoClient("mongodb-atlas")
         let database = client.database(named: "DK")
         let collection = database.collection(withName: "User")
         
-//        let userList = RealmSwift.List<String>().toArray()
-//        print(userList)
+        let userList = RealmSwift.List<String>().toArray()
+        // print(userList)
         
         collection.insertOne([
             "_id": AnyBSON(user!.id),
             "_partition": AnyBSON(user!.id),
-            // "connectedUser": AnyBSON(settingsVM.childEmail),
+            "connectedUser": AnyBSON(settingsVM.childEmail),
+            "childPassword": AnyBSON(settingsVM.childPassword),
+            // "connectedUsers": AnyBSON(userList),
             "canCreateEvents": AnyBSON(settingsVM.canCreateEvents),
             "canLocationTrack": AnyBSON(settingsVM.canLocationTrack),
             "parentAccount": AnyBSON(settingsVM.parentAccount)
@@ -93,6 +97,8 @@ func createCustomUserDataDocument(vm: AuthenticationModel, settingsVM: SettingsV
                     print("Inserted custom user data document with object ID: \(newObjectId)")
             }
         }
+    }
+    settingsVM.setParentAccount()
     }
 }
 

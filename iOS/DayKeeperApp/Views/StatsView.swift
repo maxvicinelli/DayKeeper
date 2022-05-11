@@ -27,8 +27,12 @@ struct StatsView: View {
     @State var events : [Event] = getEventsFromDb()
     
     
-    init() {
+    @ObservedObject var eventsVM: EventsViewModel
+    
+    
+    init(eventsVMParam: EventsViewModel) {
         UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
+        self.eventsVM = eventsVMParam
         
 
     }
@@ -47,7 +51,7 @@ struct StatsView: View {
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 30)!))
                 .minimumScaleFactor(0.5)
             
-            Text(String(worst_and_best_event()[0])).position(x: 300, y: 120)
+                Text(String(worst_and_best_event(events: eventsVM.events)[0])).position(x: 300, y: 120)
                 .shadow(radius: 15)
                 .foregroundColor(Color("Off-White"))
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
@@ -55,7 +59,7 @@ struct StatsView: View {
             Text("Best Event").position(x: 300, y: 140)
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 10)!))
             
-            Text(String(worst_and_best_event()[1])).position(x: 300, y: 180)
+                Text(String(worst_and_best_event(events: eventsVM.events)[1])).position(x: 300, y: 180)
                 .shadow(radius: 15)
                 .foregroundColor(Color("Off-White"))
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
@@ -63,7 +67,7 @@ struct StatsView: View {
             Text("Worst Event").position(x: 300, y: 200)
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 10)!))
             
-            Text(String(get_total_percentage()) + "%").position(x: 100, y: 150)
+                Text(String(get_total_percentage(events: eventsVM.events)) + "%").position(x: 100, y: 150)
                 .shadow(radius: 15)
                 .foregroundColor(Color("Off-White"))
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 80)!))
@@ -81,19 +85,19 @@ struct StatsView: View {
                 let time_height = height + 30
                 
                 Text("Morning").position(x: 100, y: CGFloat(time_height)).font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 10)!))
-                Text(String(worst_and_best_time()["morning"] ?? 0) + "%").position(x: 100, y: CGFloat(height))
+                Text(String(worst_and_best_time(events: eventsVM.events)["morning"] ?? 0) + "%").position(x: 100, y: CGFloat(height))
                     .shadow(radius: 15)
                     .foregroundColor(Color("Off-White"))
                     .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: CGFloat(size))!))
                 
                 Text("Afternoon").position(x: 200, y: CGFloat(time_height)).font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 10)!))
-                Text(String(worst_and_best_time()["afternoon"] ?? 0) + "%").position(x: 200, y: CGFloat(height))
+                Text(String(worst_and_best_time(events: eventsVM.events)["afternoon"] ?? 0) + "%").position(x: 200, y: CGFloat(height))
                     .shadow(radius: 15)
                     .foregroundColor(Color("Off-White"))
                     .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: CGFloat(size))!))
                 
                 Text("Night").position(x: 300, y: CGFloat(time_height)).font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 10)!))
-                Text(String(worst_and_best_time()["night"] ?? 0) + "%").position(x: 300, y: CGFloat(height))
+                Text(String(worst_and_best_time(events: eventsVM.events)["night"] ?? 0) + "%").position(x: 300, y: CGFloat(height))
                     .shadow(radius: 15)
                     .foregroundColor(Color("Off-White"))
                     .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: CGFloat(size))!))
@@ -116,7 +120,7 @@ struct StatsView: View {
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsView()
+        StatsView(eventsVMParam: EventsViewModel())
     
     }
 }

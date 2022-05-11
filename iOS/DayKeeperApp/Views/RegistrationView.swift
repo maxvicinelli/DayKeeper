@@ -89,7 +89,7 @@ struct RegistrationView: View {
                                     createCustomUserDataDocument(vm: authModel, settingsVM: settingsVM, onCompletion: { (failure) in
                                         print("failed with ", failure)
                                     })
-                                    settingsVM.setParentAccount()
+                                    //settingsVM.setParentAccount()
                                     
                                 }
                             })

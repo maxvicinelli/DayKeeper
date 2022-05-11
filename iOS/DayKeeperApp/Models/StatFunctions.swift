@@ -8,14 +8,14 @@
 // of all possible events in the last 5 days, find out how many you were on time for
 import SwiftUI
 import FLCharts
-func get_total_percentage() -> Int {
+func get_total_percentage(events: [Event]) -> Int {
     
     
     var sum = 0
     var  percentage = 0.0
-    let event_count = find_event_count()
+    let event_count = find_event_count(events: events)
     
-    for event in getEventsFromDb(){
+    for event in events {
         sum += event.Timeliness.reduce(0, +)
         
     }
@@ -39,8 +39,8 @@ func get_total_percentage() -> Int {
     return Int(round(percentage))
 }
 
-func worst_and_best_event() -> Array<String>{
-    if getEventsFromDb().count == 0 {
+func worst_and_best_event(events: [Event]) -> Array<String>{
+    if events.count == 0 {
         
         return ["Add events!", "Add Events!"]
         
@@ -51,7 +51,7 @@ func worst_and_best_event() -> Array<String>{
     var best_event = " "
     
     //sorts in descending order
-    let sorted_events = getEventsFromDb().sorted(by: {LHS, RHS in
+    let sorted_events = events.sorted(by: {LHS, RHS in
         if  LHS.OnTime == RHS.OnTime {
             return LHS.Timeliness.reduce(0, +) < LHS.Timeliness.reduce(0, +)
         }
@@ -69,7 +69,7 @@ func worst_and_best_event() -> Array<String>{
 }
 
 
-func worst_and_best_time() -> Dictionary<String, Int> {
+func worst_and_best_time(events: [Event]) -> Dictionary<String, Int> {
     
     if getEventsFromDb().count == 0 {
         
@@ -83,7 +83,7 @@ func worst_and_best_time() -> Dictionary<String, Int> {
     let formatter = DateFormatter()
     formatter.dateFormat = "HH" // "a" prints "pm" or "am"
     
-    for event in getEventsFromDb(){
+    for event in events {
         
         var hour = Int(formatter.string(from: event.StartDate))
         
@@ -112,9 +112,9 @@ func worst_and_best_time() -> Dictionary<String, Int> {
 }
 
 
-func find_event_count() -> Int{
+func find_event_count(events: [Event]) -> Int{
     var sum = 0
-    for event in getEventsFromDb(){
+    for event in events {
         sum += event.Timeliness.count
     }
     
@@ -123,9 +123,9 @@ func find_event_count() -> Int{
 
 
 
-func create_Chart() -> FLCard {
+func create_Chart(events: [Event]) -> FLCard {
     
-    let weekdata = create_chart_data()
+    let weekdata = create_chart_data(events: events)
     
     let chartData = FLChartData(title: "Week",
                              data: weekdata,
@@ -143,7 +143,7 @@ func create_Chart() -> FLCard {
     return card
 }
 
-func create_chart_data() -> [MultiPlotable] {
+func create_chart_data(events: [Event]) -> [MultiPlotable] {
     //MultiPlotable(name: "jan", values: [30]),
     let weekData = [MultiPlotable(name: "Mon", values: [0,0]),
                     MultiPlotable(name: "Tue", values: [0,0]),
@@ -152,7 +152,7 @@ func create_chart_data() -> [MultiPlotable] {
                     MultiPlotable(name: "Fri", values: [0,0]),]
     
     
-    for event in getEventsFromDb(){
+    for event in events {
            
            let myCalendar = Calendar(identifier: .gregorian)
            let weekDay = myCalendar.component(.weekday, from: event.StartDate)
