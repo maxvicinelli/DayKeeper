@@ -86,10 +86,12 @@ struct RegistrationView: View {
                                     eventsViewModel.loadFromiCal(registering: true)
                                     print("sending to realm")
                                     authModel.authenticated = true
-                                    createCustomUserDataDocument(vm: authModel, settingsVM: settingsVM, onCompletion: { (failure) in
-                                        print("failed with ", failure)
-                                    })
-                                    //settingsVM.setParentAccount()
+                                    if settingsVM.parentAccount {
+                                        createCustomUserDataDocument(vm: authModel, settingsVM: settingsVM, onCompletion: { (failure) in
+                                            print("failed with ", failure)
+                                        })
+                                        //settingsVM.setParentAccount()
+                                    }
                                     
                                 }
                             })

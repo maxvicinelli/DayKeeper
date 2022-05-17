@@ -103,9 +103,17 @@ func worst_and_best_time(events: [Event]) -> Dictionary<String, Int> {
         }
     }
     
-    time_array["morning"]! = Int(round(100.0 * Double(time_array["morning"]!)/Double(total_array["morning"]!)))
-    time_array["afternoon"]! = Int(round(100.0 * Double(time_array["afternoon"]!)/Double(total_array["afternoon"]!)))
-    time_array["night"]! = Int(round(100.0 * Double(time_array["night"]!)/Double(total_array["night"]!)))
+    
+    if total_array["morning"] != 0 {
+        time_array["morning"]! = Int(round(100.0 * Double(time_array["morning"]!)/Double(total_array["morning"]!)))
+    }
+    if total_array["afternoon"] != 0 {
+        time_array["afternoon"]! = Int(round(100.0 * Double(time_array["afternoon"]!)/Double(total_array["afternoon"]!)))
+    }
+    if total_array["night"] != 0 {
+        time_array["night"]! = Int(round(100.0 * Double(time_array["night"]!)/Double(total_array["night"]!)))
+    }
+    
     
     //  print(time_array)
     return time_array

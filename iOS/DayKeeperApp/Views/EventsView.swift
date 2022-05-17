@@ -58,11 +58,11 @@ struct EventsView: View {
     }
     
     
-    var filteredEvents: [Event] {
-        eventsVM.events.filter { event in
-            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly) && !event.isInvalidated)
-        }
-    }
+//    var filteredEvents: [Event] {
+//        eventsVM.events.filter { event in
+//            (!event.isInvalidated && event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly))
+//        }
+//    }
     
     init(authModelParam: AuthenticationModel, appParam: RealmSwift.App, eventsVMParams: EventsViewModel, settingsVMParam: SettingsViewModel) {
             UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
@@ -111,24 +111,6 @@ struct EventsView: View {
                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
                 .foregroundColor(Color.black)
                 
-//                Button("Test", action: {
-////                    createCustomUserDataDocument(vm: authModel, onCompletion: { (failure) in
-////                        print("failed with ", failure)
-////                    updateConnectedUsers(vm: authModel, onCompletion: { (failure) in
-////                        print("failed with ", failure)
-////                    })
-////                    DispatchQueue.main.async {
-////                    eventsVM.loadFromDB()
-//
-////                    }
-////                    eventsVM.loadFromDB()
-////                    eventsVM.reload()
-////                    eventsVM.loadFromDB()
-//                })
-//                .font(Font(uiFont: UIFont(name: "Karla-Regular", size: 14)!))
-//                .frame(width: 80, height: 40, alignment: .center)
-//                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
-//                .foregroundColor(Color.black)
                 
                 
                 Button("Create Event", action: {
@@ -157,8 +139,9 @@ struct EventsView: View {
                         }
                         .padding()
                         
-                        List(filteredEvents) { event in
-                            if !event.isInvalidated {
+                        
+                        List(eventsVM.events) { event in
+                           if !event.isInvalidated {
                             NavigationLink (
                                 destination: EventRow(event: event, actionNotificationManager: actionNotifManager),
                                 label: {

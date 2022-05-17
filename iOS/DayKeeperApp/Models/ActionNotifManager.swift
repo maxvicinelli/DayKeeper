@@ -261,6 +261,9 @@ final class ActionNotifManager: NSObject, UNUserNotificationCenterDelegate {
             //    creates alarm notification for each pre event task. No need for actionable alarm.
             var x = 1
             print("TEST")
+            
+            print(event.Tasks)
+            
             dump(event.Tasks)
                 for preTask in event.Tasks { //unwrapping an optional list
                     print("TEST2")
