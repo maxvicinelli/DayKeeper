@@ -67,9 +67,18 @@ struct EventRow: View {
     
     
     var body: some View {
+       
+            
         
-//        let _ = print(event)
+        
+        //let _ = print("printing event \(event)")
         VStack() {
+            
+            
+            
+            let x = print("PRINTING EVENT")
+            let _ = print(event)
+            //if !event.isInvalidated {
             TextField(event.Title, text: $event.Title)
                 .multilineTextAlignment(.center)
                 .frame(width: 360, height: 80, alignment: .center)
@@ -152,10 +161,12 @@ struct EventRow: View {
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
             
         }
+        //}
         .frame(height: 900)
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
         .padding(.bottom, 100)
     }
+    
 }
 
 
