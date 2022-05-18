@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750A33A928356CD10012FBAC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A33A828356CD10012FBAC /* MapView.swift */; };
 		751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D4C7C27B0C04A006273F4 /* HelpView.swift */; };
 		753F972227CC250100B5FACB /* NotifResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F972127CC250100B5FACB /* NotifResponseView.swift */; };
 		7550853D280F575700967F9F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550853C280F575700967F9F /* MainTabView.swift */; };
@@ -99,6 +100,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		750A33A828356CD10012FBAC /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		753F972127CC250100B5FACB /* NotifResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifResponseView.swift; sourceTree = "<group>"; };
 		7550853C280F575700967F9F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				AC4B505127AEDA0700488105 /* StatsView.swift */,
 				7550853C280F575700967F9F /* MainTabView.swift */,
 				79A6FE712829570F00CEBBB3 /* ParentTabView.swift */,
+				750A33A828356CD10012FBAC /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */,
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
+				750A33A928356CD10012FBAC /* MapView.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
 				7918B8BD282058C900655D77 /* AddChildrenView.swift in Sources */,
 				7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */,
