@@ -33,5 +33,8 @@ final class Event : Object, ObjectKeyIdentifiable, Identifiable /*Decodable, Enc
     @Persisted var CreationMethod: String
     @Persisted var Tasks = List<String>()
     @Persisted var Timeliness = List<Int>()
+    @Persisted var Latitude : Float
+    @Persisted var Longitude : Float
+    @Persisted var Location : String
 }
 
