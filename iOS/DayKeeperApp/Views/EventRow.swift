@@ -14,6 +14,9 @@ struct EventRow: View {
     
     @State private var new_task = ""
     @State private var new_category = ""
+//    @State private var latitude = 0.0
+//    @State private var longitude = 0.0
+//    @State private var address = ""
     var actionNotificationManager: ActionNotifManager
     
     private func updateEvent() {
@@ -72,7 +75,7 @@ struct EventRow: View {
         
         
         //let _ = print("printing event \(event)")
-        VStack() {
+        VStack {
             
             
             
@@ -127,12 +130,14 @@ struct EventRow: View {
                 //                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
                 //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
             }
-            
             NavigationLink (
-                destination: MapView(),
+                destination: MapView(event: event),
                 label: {
                     Text("Click here to add an address for this event.")
                 })
+            Section(header: Text("Address").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))){
+                Text(event.Location)
+            }
             
             Section(header:
                         Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))

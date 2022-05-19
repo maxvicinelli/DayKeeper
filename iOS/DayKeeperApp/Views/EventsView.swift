@@ -78,17 +78,16 @@ struct EventsView: View {
     
 
     var body: some View {
-        
+        NavigationView {
         VStack {
-            HStack(spacing: 20){
+            HStack(spacing: 10){
                             Text("Welcome")
-                                .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
+                                .frame(width: 150, alignment: .leading) // setting width and line limit can force wrapping
                                 .lineLimit(2)
                                 .shadow(radius: 15)
                                 .foregroundColor(Color.textColor)
-                                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
-                                .padding(.vertical, 5.0)
-                                .padding(.leading, 100)
+                                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size:35)!))
+                                .padding(.leading, 60)
                                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
                                 .minimumScaleFactor(0.5)
                                             .lineLimit(1)
@@ -122,11 +121,11 @@ struct EventsView: View {
                 .foregroundColor(Color.black)
             }
             .padding(.top, 10)
-            .frame(width: 500, height: 80, alignment: .center)
+            .frame(height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
+            .offset(x: -30, y: 0)
 
             VStack(spacing: 0) {
-                NavigationView {
                     VStack(spacing: 0) {
                         VStack {
                         Text("Today's Events Only")
@@ -185,24 +184,27 @@ struct EventsView: View {
                         .onAppear(perform: {reloadDidntRespond()})
                         .background(Color(red:0.436, green: 0.558, blue: 0.925))
                         .sheet(isPresented: $isCreatePresented, onDismiss: actionNotifManager.createStatusUpdateNotifs){
-                            NavigationView {
+//                            NavigationView {
                                 CreateEventView(isPresented: $isCreatePresented, eventsVM: eventsVM)
-                            }
+//                            }
                             .accentColor(.primary)
                         }
                         .sheet(isPresented: $isNotifResponsePresented){
-                            NavigationView {
+//                            NavigationView {
                                 NotifResponseView(isPresented: $isNotifResponsePresented,
                                                   notificationTitle: actionNotifManager.didntRespond_title_name,
                                                   eventStartDate: didntRespondEventDate,
                                                   actionNotifManger: actionNotifManager)
-                            }
+//                            }
                         }
                 }
             }
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-            .padding(.top, -8)
         }
+//        .frame(height: 900)
+//        .offset(x: 0, y: -160)
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
+
     }
 }
 
@@ -210,8 +212,12 @@ struct EventsView: View {
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents(), settingsVMParam: SettingsViewModel())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
-.previewInterfaceOrientation(.portraitUpsideDown)
+        Group {
+            EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents(), settingsVMParam: SettingsViewModel())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+                .previewInterfaceOrientation(.portraitUpsideDown)
+            EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents(), settingsVMParam: SettingsViewModel())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+                .previewInterfaceOrientation(.portraitUpsideDown)
+        }
     }
 }
 
