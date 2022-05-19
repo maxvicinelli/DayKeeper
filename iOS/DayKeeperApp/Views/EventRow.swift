@@ -128,6 +128,12 @@ struct EventRow: View {
                 //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
             }
             
+            NavigationLink (
+                destination: MapView(),
+                label: {
+                    Text("Click here to add an address for this event.")
+                })
+            
             Section(header:
                         Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
             ){
