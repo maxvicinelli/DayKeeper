@@ -33,8 +33,8 @@ struct CreateEventView: View {
         event.Tasks = RealmSwift.List<String>()
         event.CreationMethod = ManualCreation
         event.Location = "Dartmouth College"
-        event.Latitude = 43.704441
-        event.Longitude = -72.288696
+        event.Latitude = 43.7
+        event.Longitude = -72.2
         
         
         let cat = Category()

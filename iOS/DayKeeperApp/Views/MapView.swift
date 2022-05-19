@@ -27,8 +27,8 @@ struct MapView: View {
             } )
             Button(action:{
                     print("values we are about to save into the event:", mapAPI.coordinates[0], mapAPI.coordinates[1], mapAPI.locations[0].name)
-                    event.Latitude = mapAPI.coordinates[0] as! Float
-                    event.Longitude = mapAPI.coordinates[1] as! Float
+                    event.Latitude = mapAPI.coordinates[0] as! Double
+                    event.Longitude = mapAPI.coordinates[1] as! Double
                     event.Location = mapAPI.locations[0].name
                    }, label: {
                        Text("Done")
