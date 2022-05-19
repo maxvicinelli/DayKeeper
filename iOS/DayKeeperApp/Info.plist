@@ -20,8 +20,17 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs your location to know if you have arrived on time to your events.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location to know if you have arrived on time to your events.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Karla-Regular.ttf</string>
