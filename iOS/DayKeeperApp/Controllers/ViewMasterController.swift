@@ -15,6 +15,9 @@ struct ViewMasterController: View {
     @ObservedObject var eventsVM: EventsViewModel
     @ObservedObject var settingsVM: SettingsViewModel
     
+
+    
+    
     var body: some View {
 //        if let _ = app!.currentUser {
 //            EventsView(app: app!, eventsVM: getEventsFromDb())
@@ -27,7 +30,12 @@ struct ViewMasterController: View {
         if authModel.authenticated {
 //            if authModel.registering {
                  
-            MainTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
+            
+            if settingsVM.parentAccount {
+                ParentTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
+            } else {
+                MainTabView(authModelParam: authModel, eventsVMParam: eventsVM, settingsVMParam: settingsVM)
+            }
 
 //            }
 //            else {
@@ -37,11 +45,11 @@ struct ViewMasterController: View {
         }
         else {
             if authModel.registering {
-                RegistrationView(authModel: authModel, eventsViewModel: eventsVM)
+                RegistrationView(authModel: authModel, eventsViewModel: eventsVM, settingsVM: settingsVM)
                     .environmentObject(authModel)
             }
             else {
-                LoginView(eventsViewModel: eventsVM)
+                LoginView(eventsViewModel: eventsVM, settingsViewModel: settingsVM)
                     .environmentObject(authModel)
             }
         }

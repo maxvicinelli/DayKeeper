@@ -57,6 +57,99 @@ func logoutUser(vm: AuthenticationModel, onCompletion: @escaping (Bool) -> Void)
     }
 }
 
+// Extend RealmSwift.List so that we can encode a user's connected users array to BSON document
+extension RealmSwift.List where Element == String {
+    func toArray() -> [AnyBSON] {
+        var bsonArray = [AnyBSON]()
+        for e in self {
+            bsonArray.append(AnyBSON(e))
+        }
+        return bsonArray
+    }
+ }
+
+func createCustomUserDataDocument(vm: AuthenticationModel, settingsVM: SettingsViewModel, onCompletion: @escaping (Bool) -> Void) {
+    DispatchQueue.main.async {
+        
+    if let app = app {
+        let user = app.currentUser
+        let client = user!.mongoClient("mongodb-atlas")
+        let database = client.database(named: "DK")
+        let collection = database.collection(withName: "User")
+        
+        let userList = RealmSwift.List<String>().toArray()
+        // print(userList)
+        
+        collection.insertOne([
+            "_id": AnyBSON(user!.id),
+            "_partition": AnyBSON(user!.id),
+            "connectedUser": AnyBSON(settingsVM.childEmail),
+            "childPassword": AnyBSON(settingsVM.childPassword),
+            // "connectedUsers": AnyBSON(userList),
+            "canCreateEvents": AnyBSON(settingsVM.canCreateEvents),
+            "canLocationTrack": AnyBSON(settingsVM.canLocationTrack),
+            "parentAccount": AnyBSON(settingsVM.parentAccount)
+        ]) { (result) in
+            switch result {
+                case .failure(let error):
+                    print("Failed to insert document: \(error.localizedDescription)")
+                case .success(let newObjectId):
+                    print("Inserted custom user data document with object ID: \(newObjectId)")
+            }
+        }
+    }
+    settingsVM.setParentAccount()
+    }
+}
+
+func updateConnectedUsers(newUUID: String, onCompletion: @escaping (Bool) -> Void) {
+    if let app = app {
+        let user = app.currentUser
+        let client = user!.mongoClient("mongodb-atlas")
+        let database = client.database(named: "DK")
+        let collection = database.collection(withName: "User")
+        
+        // Refresh the custom user data
+        user!.refreshCustomData { (result) in
+            switch result {
+            case .failure(let error):
+                print("Failed to refresh custom data: \(error.localizedDescription)")
+            case .success(let customData):
+                let usersArray = customData["connectedUsers"]! as! NSArray
+                let usersList = RealmSwift.List<String>()
+                for u in usersArray {
+                    usersList.append(u as! String)
+                }
+                
+                if !usersList.contains(newUUID) {
+                    usersList.append(newUUID)
+                    
+                    print("now creating collection")
+                    collection.updateOneDocument(
+                        filter: ["_partition": AnyBSON(user!.id)],
+                        update: ["_partition": AnyBSON(user!.id),
+                                 "_id": AnyBSON(user!.id),
+                                 "connectedUsers": AnyBSON(usersList.toArray()),
+                                 "canCreateEvents": AnyBSON(customData["canCreateEvents"] as! Bool),
+                                 "canLocationTrack": AnyBSON(customData["canLocationTrack"] as! Bool),
+                                 "parentAccount": AnyBSON(customData["parentAccount"] as! Bool)]
+                    ) { (result) in
+                        switch result {
+                        case .failure(let error):
+                            print("Failed to update: \(error.localizedDescription)")
+                            return
+                        case .success(let updateResult):
+                            //  User document updated.
+                            print("Matched: \(updateResult.matchedCount), updated: \(updateResult.modifiedCount)")
+                        }
+                    }
+                }
+                return
+            }
+        }
+    }
+}
+
 func getEventsFromDb() -> [Event]
 {
     var events = [Event]()

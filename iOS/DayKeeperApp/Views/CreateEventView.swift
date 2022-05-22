@@ -32,6 +32,10 @@ struct CreateEventView: View {
         event.NotifBefore = -1
         event.Tasks = RealmSwift.List<String>()
         event.CreationMethod = ManualCreation
+        event.Location = "Dartmouth College"
+        event.Latitude = 43.7
+        event.Longitude = -72.2
+        
         
         let cat = Category()
         cat.Title = "Manually Created Event"

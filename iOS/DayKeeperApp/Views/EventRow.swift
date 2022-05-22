@@ -14,6 +14,9 @@ struct EventRow: View {
     
     @State private var new_task = ""
     @State private var new_category = ""
+//    @State private var latitude = 0.0
+//    @State private var longitude = 0.0
+//    @State private var address = ""
     var actionNotificationManager: ActionNotifManager
     
     private func updateEvent() {
@@ -67,9 +70,18 @@ struct EventRow: View {
     
     
     var body: some View {
+       
+            
         
-//        let _ = print(event)
-        VStack() {
+        
+        //let _ = print("printing event \(event)")
+        VStack {
+            
+            
+            
+            let x = print("PRINTING EVENT")
+            let _ = print(event)
+            //if !event.isInvalidated {
             TextField(event.Title, text: $event.Title)
                 .multilineTextAlignment(.center)
                 .frame(width: 360, height: 80, alignment: .center)
@@ -118,6 +130,14 @@ struct EventRow: View {
                 //                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
                 //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
             }
+            NavigationLink (
+                destination: MapView(event: event),
+                label: {
+                    Text("Click here to add an address for this event.")
+                })
+            Section(header: Text("Address").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))){
+                Text(event.Location)
+            }
             
             Section(header:
                         Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
@@ -152,10 +172,12 @@ struct EventRow: View {
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
             
         }
+        //}
         .frame(height: 900)
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
         .padding(.bottom, 100)
     }
+    
 }
 
 

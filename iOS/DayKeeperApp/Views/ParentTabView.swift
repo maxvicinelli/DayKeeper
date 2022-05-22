@@ -1,13 +1,13 @@
 //
-//  MainTabView.swift
+//  ParentTabView.swift
 //  DayKeeperApp
 //
-//  Created by Jonah Kershen on 4/19/22.
+//  Created by Max Vicinelli on 5/9/22.
 //
 
 import SwiftUI
 
-struct MainTabView: View {
+struct ParentTabView: View {
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var eventsVM: EventsViewModel
     @ObservedObject var settingsVM: SettingsViewModel
@@ -22,41 +22,43 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            EventsView(authModelParam: authModel, appParam: app!, eventsVMParams: eventsVM, settingsVMParam: settingsVM)
-                .tabItem {
-                    Label("Events", systemImage: "list.dash")
-                }
-                .tag(0)
             
-            StatsView(eventsVMParam: eventsVM)
+            
+            StatsView(eventsVMParam: settingsVM.childEVM)
                 .tabItem {
                     Label("Stats", systemImage: "chart.xyaxis.line")
                 }
-                .tag(1)
+                .tag(0)
             SettingsView(authModelParam: authModel, settingsViewModelParam: settingsVM)
 
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-                .tag(2)
+                .tag(1)
             
             HelpView()
                 .tabItem {
                     Label("Help", systemImage: "questionmark")
                 }
+                .tag(2)
+            
+            
+           
+            ParentEventsView(authModel: authModel, app: app!, settingsVM: settingsVM)
+                .tabItem {
+                    Label("Child Events", systemImage: "list.dash")
+                }
                 .tag(3)
+            
         }
         .accentColor(Color("Off-White"))
-        //.tabViewStyle(PageTabViewStyle())
-        //.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        .background(Color(red:0.436, green: 0.558, blue: 0.925))
         //.onAppear() {
         //    UITabBar.appearance().barTintColor = .white
        // }
     }
 }
 
-struct MainTabView_Previews: PreviewProvider {
+struct ParentTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView(authModelParam: AuthenticationModel(), eventsVMParam: EventsViewModel(), settingsVMParam: SettingsViewModel())
     }

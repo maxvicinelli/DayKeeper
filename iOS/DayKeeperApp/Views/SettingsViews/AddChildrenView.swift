@@ -14,31 +14,42 @@ struct AddChildrenView: View {
     
     var body: some View {
         
-        VStack {
+        if settingsViewModel.authorized {
+            VStack {
+                Text("You are paired with \(settingsViewModel.childEmail)")
+                    .padding()
+            }
+            .padding()
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .center)
+            .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+            .background(Color(UIColor(named: "Back-Blue")!))
+        } else {
         
         
-            TextField(settingsViewModel.childEmail, text: $settingsViewModel.childEmail)
-                .frame(width: 330, height: 40, alignment: .center)
-                .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
-                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+            VStack {
             
-            SecureField(settingsViewModel.childPassword, text: $settingsViewModel.childPassword)
-                .frame(width: 330, height: 40, alignment: .center)
-                .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 0))
-                .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
-                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
             
-            Button("Add Child", action: settingsViewModel.attemptAuthorization)
-                .padding()
-                .frame(width: 330, height: 40, alignment: .center)
-                .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
-                .buttonStyle(PlainButtonStyle())
-                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
-                .multilineTextAlignment(.center)
+                TextField("Child's Email", text: $settingsViewModel.childEmail)
+                    .frame(width: 330, height: 40, alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
+    //                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+                SecureField("Child's Password", text: $settingsViewModel.childPassword)
+                    .frame(width: 330, height: 40, alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
+    //                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+                Button("Add Child", action: settingsViewModel.addChild)
+                    .padding()
+                    .frame(width: 330, height: 40, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
+                    .buttonStyle(PlainButtonStyle())
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+                    .multilineTextAlignment(.center)
+            }
+            .frame(width: 1000, height: 1000, alignment: .center)
+            .background(Color(UIColor(named: "Back-Blue")!))
         }
-        .frame(width: 1000, height: 1000, alignment: .center)
-        .background(Color(UIColor(named: "Back-Blue")!))
-            
         
     }
 }

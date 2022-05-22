@@ -4,14 +4,13 @@
 //
 //  Created by Max Vicinelli on 2/3/22.
 //
-
 import SwiftUI
 
 struct RegistrationView: View {
     
-    //@ObservedObject var authModel: AuthenticationModel
     @ObservedObject var authModel: AuthenticationModel
     @ObservedObject var eventsViewModel: EventsViewModel
+    @ObservedObject var settingsVM: SettingsViewModel
     
     @State var registrationFailed: Bool = false
     
@@ -53,10 +52,11 @@ struct RegistrationView: View {
                     Text("registration failed")
                 }
                 
-                Toggle(isOn: $authModel.parentAccout) {
+                Toggle(isOn: $settingsVM.parentAccount) {
                     Text("Parent Account")
-                    let _ = print(authModel.parentAccout)
+                    //let _ = print(authModel.parentAccout)
                 }
+                .padding()
                 
             }
             
@@ -86,6 +86,12 @@ struct RegistrationView: View {
                                     eventsViewModel.loadFromiCal(registering: true)
                                     print("sending to realm")
                                     authModel.authenticated = true
+                                    if settingsVM.parentAccount {
+                                        createCustomUserDataDocument(vm: authModel, settingsVM: settingsVM, onCompletion: { (failure) in
+                                            print("failed with ", failure)
+                                        })
+                                        //settingsVM.setParentAccount()
+                                    }
                                     
                                 }
                             })
@@ -109,8 +115,7 @@ struct RegistrationView_Previews: PreviewProvider {
         UITableView.appearance().backgroundColor = .clear
     }
     static var previews: some View {
-        RegistrationView(authModel: AuthenticationModel(), eventsViewModel: EventsViewModel())
-        // .environmentObject(AuthenticationModel())
+        RegistrationView(authModel: AuthenticationModel(), eventsViewModel: EventsViewModel(), settingsVM: SettingsViewModel())
         
     }
 }

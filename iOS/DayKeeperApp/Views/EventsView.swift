@@ -17,6 +17,7 @@ struct EventsView: View {
     @ObservedObject var app: RealmSwift.App
     //var events: [Event]
     @ObservedObject var eventsVM : EventsViewModel
+    @ObservedObject var settingsVM: SettingsViewModel
     var eventStore = EKEventStore()
     @StateObject var notificationManager = NotificationManager()
     @State private var showTodayEventsOnly = false
@@ -57,17 +58,18 @@ struct EventsView: View {
     }
     
     
-    var filteredEvents: [Event] {
-        eventsVM.events.filter { event in
-            (event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly) && !event.isInvalidated)
-        }
-    }
+//    var filteredEvents: [Event] {
+//        eventsVM.events.filter { event in
+//            (!event.isInvalidated && event.StartDate > Date.now &&  (Calendar.current.isDateInToday(event.StartDate) || !showTodayEventsOnly))
+//        }
+//    }
     
-    init(authModelParam: AuthenticationModel, appParam: RealmSwift.App, eventsVMParams: EventsViewModel) {
+    init(authModelParam: AuthenticationModel, appParam: RealmSwift.App, eventsVMParams: EventsViewModel, settingsVMParam: SettingsViewModel) {
             UITableView.appearance().backgroundColor = UIColor(Color(red:0.436, green: 0.558, blue: 0.925)) // Uses UIColor
             self.authModel = authModelParam
             self.app = appParam
             self.eventsVM = eventsVMParams
+            self.settingsVM = settingsVMParam
         }
     
     func setIsCreatePresentedTrue() -> Void {
@@ -76,7 +78,7 @@ struct EventsView: View {
     
 
     var body: some View {
-        
+        NavigationView {
         VStack {
             HStack(spacing: 0){
                 Text("Welcome")
@@ -115,6 +117,7 @@ struct EventsView: View {
                 .foregroundColor(Color.black)
                 
                 
+                
                 Button("Create Event", action: {
                     setIsCreatePresentedTrue()
                 })
@@ -126,9 +129,9 @@ struct EventsView: View {
             //.padding(.top, -10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
+            .offset(x: -30, y: 0)
 
             VStack(spacing: 0) {
-                NavigationView {
                     VStack(spacing: 0) {
                         VStack {
                         Text("Today's Events Only")
@@ -144,8 +147,9 @@ struct EventsView: View {
                         .toggleStyle(SwitchToggleStyle(tint: Color("Icon-Red")))
                         
                         
-                        List(filteredEvents) { event in
-                            if !event.isInvalidated {
+                        
+                        List(eventsVM.events) { event in
+                           if !event.isInvalidated {
                             NavigationLink (
                                 destination: EventRow(event: event, actionNotificationManager: actionNotifManager),
                                 label: {
@@ -189,23 +193,22 @@ struct EventsView: View {
                         .onAppear(perform: {reloadDidntRespond()})
                         .background(Color(red:0.436, green: 0.558, blue: 0.925))
                         .sheet(isPresented: $isCreatePresented, onDismiss: actionNotifManager.createStatusUpdateNotifs){
-                            NavigationView {
+//                            NavigationView {
                                 CreateEventView(isPresented: $isCreatePresented, eventsVM: eventsVM)
-                            }
+//                            }
                             .accentColor(.primary)
                         }
                         .sheet(isPresented: $isNotifResponsePresented){
-                            NavigationView {
+//                            NavigationView {
                                 NotifResponseView(isPresented: $isNotifResponsePresented,
                                                   notificationTitle: actionNotifManager.didntRespond_title_name,
                                                   eventStartDate: didntRespondEventDate,
                                                   actionNotifManger: actionNotifManager)
-                            }
+//                            }
                         }
                 }
             }
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-            .padding(.top, -8)
         }
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
     }
@@ -215,8 +218,12 @@ struct EventsView: View {
 
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
-.previewInterfaceOrientation(.portraitUpsideDown)
+        Group {
+            EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents(), settingsVMParam: SettingsViewModel())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+                .previewInterfaceOrientation(.portraitUpsideDown)
+            EventsView(authModelParam: AuthenticationModel(), appParam: app!, eventsVMParams: dummyEvents(), settingsVMParam: SettingsViewModel())//, events: dummyEvents())//loadFromiCal(eventStore: EKEventStore()))
+                .previewInterfaceOrientation(.portraitUpsideDown)
+        }
     }
 }
 
@@ -226,7 +233,6 @@ func date2text(event: Event) -> String {
 
     // Set Date Format
     dateFormatter.dateFormat = "E, HH:mm"
-
     let text = dateFormatter.string(from: event.StartDate) + "-" + dateFormatter.string(from: event.EndDate)
     return text
 }

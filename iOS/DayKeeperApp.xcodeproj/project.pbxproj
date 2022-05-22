@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750A33A928356CD10012FBAC /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A33A828356CD10012FBAC /* MapView.swift */; };
+		750A33AD2835A0AB0012FBAC /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A33AC2835A0AB0012FBAC /* MapModel.swift */; };
 		751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D4C7C27B0C04A006273F4 /* HelpView.swift */; };
 		753F972227CC250100B5FACB /* NotifResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F972127CC250100B5FACB /* NotifResponseView.swift */; };
 		7550853D280F575700967F9F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550853C280F575700967F9F /* MainTabView.swift */; };
@@ -27,10 +29,14 @@
 		799CC3A427A488AC0043A9FF /* DayKeeperAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3A327A488AC0043A9FF /* DayKeeperAppTests.swift */; };
 		799CC3AF27A488AC0043A9FF /* DayKeeperAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */; };
 		799CC3BD27A7421B0043A9FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CC3BC27A7421B0043A9FF /* LoginView.swift */; };
+		79A6FE722829570F00CEBBB3 /* ParentTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6FE712829570F00CEBBB3 /* ParentTabView.swift */; };
+		79A6FE7428295A3000CEBBB3 /* ChildAcctSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6FE7328295A3000CEBBB3 /* ChildAcctSettingsView.swift */; };
 		79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CADA9227AC889B00518544 /* RegistrationView.swift */; };
+		79CC525E282B25A600954A2B /* ParentEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CC525D282B25A600954A2B /* ParentEventsView.swift */; };
 		79DC167B27BAEA3C007BFE1D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167A27BAEA3C007BFE1D /* SettingsView.swift */; };
 		79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */; };
 		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
+		AC11A767282BF57D0068FD82 /* StatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11A766282BF57D0068FD82 /* StatFunctions.swift */; };
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
 		AC6013D52828492300059A7E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AC6013D42828492300059A7E /* Realm */; };
 		AC6013D72828492300059A7E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC6013D62828492300059A7E /* RealmSwift */; };
@@ -45,6 +51,8 @@
 		FE89728127D3E6BD00041B33 /* Lemon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89727F27D3E6BD00041B33 /* Lemon-Regular.ttf */; };
 		FE89728227D3E6BD00041B33 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE89728027D3E6BD00041B33 /* OFL.txt */; };
 		FE8972A027D4083800041B33 /* Karla-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE89728E27D4083800041B33 /* Karla-Regular.ttf */; };
+		FE9AC4172819999400755B24 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FE9AC4162819999400755B24 /* Realm */; };
+		FE9AC4192819999400755B24 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE9AC4182819999400755B24 /* RealmSwift */; };
 		FEA68AB027BD4E15007E2E3A /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */; };
 		FEEB0E7927D41D1B0088E346 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7827D41D1B0088E346 /* Images.xcassets */; };
 		FEEB0ECA27D41E3E0088E346 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEEB0E7C27D41E3E0088E346 /* iTunesArtwork@1x.png */; };
@@ -94,6 +102,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		750A33A828356CD10012FBAC /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		750A33AC2835A0AB0012FBAC /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		753F972127CC250100B5FACB /* NotifResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifResponseView.swift; sourceTree = "<group>"; };
 		7550853C280F575700967F9F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -120,10 +130,14 @@
 		799CC3AE27A488AC0043A9FF /* DayKeeperAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayKeeperAppUITests.swift; sourceTree = "<group>"; };
 		799CC3B027A488AC0043A9FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		799CC3BC27A7421B0043A9FF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		79A6FE712829570F00CEBBB3 /* ParentTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTabView.swift; sourceTree = "<group>"; };
+		79A6FE7328295A3000CEBBB3 /* ChildAcctSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildAcctSettingsView.swift; sourceTree = "<group>"; };
 		79CADA9227AC889B00518544 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		79CC525D282B25A600954A2B /* ParentEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentEventsView.swift; sourceTree = "<group>"; };
 		79DC167A27BAEA3C007BFE1D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		79DC167E27BAF070007BFE1D /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsViews.swift; sourceTree = "<group>"; };
+		AC11A766282BF57D0068FD82 /* StatFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatFunctions.swift; sourceTree = "<group>"; };
 		AC4B505127AEDA0700488105 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		AC81ADAA2818B1CF006280CA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		AC81ADAC2818F0A9006280CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -173,9 +187,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				AC6013D72828492300059A7E /* RealmSwift in Frameworks */,
 				AC6013D52828492300059A7E /* Realm in Frameworks */,
 				AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */,
+=======
+				FE9AC4192819999400755B24 /* RealmSwift in Frameworks */,
+				FE9AC4172819999400755B24 /* Realm in Frameworks */,
+				AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */,
+				AC5B803A282B5CCF00386EBC /* FLCharts in Frameworks */,
+>>>>>>> origin
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,11 +227,14 @@
 				7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */,
 				FE11B3C627B05B900052CA22 /* EventRow.swift */,
 				FE11B3BB27ADC3480052CA22 /* EventsView.swift */,
+				79CC525D282B25A600954A2B /* ParentEventsView.swift */,
 				751D4C7C27B0C04A006273F4 /* HelpView.swift */,
 				79CADA9227AC889B00518544 /* RegistrationView.swift */,
 				799CC3BC27A7421B0043A9FF /* LoginView.swift */,
 				AC4B505127AEDA0700488105 /* StatsView.swift */,
 				7550853C280F575700967F9F /* MainTabView.swift */,
+				79A6FE712829570F00CEBBB3 /* ParentTabView.swift */,
+				750A33A828356CD10012FBAC /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +248,8 @@
 				FEA68AAF27BD4E15007E2E3A /* EventsViewModel.swift */,
 				796B76D427AB40BB00B57919 /* AuthViewModel.swift */,
 				7918B8BE282058F000655D77 /* SettingsViewModel.swift */,
+				AC11A766282BF57D0068FD82 /* StatFunctions.swift */,
+				750A33AC2835A0AB0012FBAC /* MapModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +360,7 @@
 				79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */,
 				7918B8BC282058C900655D77 /* AddChildrenView.swift */,
 				7984BA8B28281F15004A19B6 /* ChildSettingsView.swift */,
+				79A6FE7328295A3000CEBBB3 /* ChildAcctSettingsView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -437,8 +464,14 @@
 			);
 			name = DayKeeperApp;
 			packageProductDependencies = (
+<<<<<<< HEAD
 				AC6013D42828492300059A7E /* Realm */,
 				AC6013D62828492300059A7E /* RealmSwift */,
+=======
+				FE9AC4162819999400755B24 /* Realm */,
+				FE9AC4182819999400755B24 /* RealmSwift */,
+				AC5B8039282B5CCF00386EBC /* FLCharts */,
+>>>>>>> origin
 			);
 			productName = DayKeeperApp;
 			productReference = 799CC38E27A488AB0043A9FF /* DayKeeperApp.app */;
@@ -515,7 +548,12 @@
 			);
 			mainGroup = 799CC38527A488AB0043A9FF;
 			packageReferences = (
+<<<<<<< HEAD
 				AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */,
+=======
+				FE9AC4152819999400755B24 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				AC5B8038282B5CCF00386EBC /* XCRemoteSwiftPackageReference "FLCharts" */,
+>>>>>>> origin
 			);
 			productRefGroup = 799CC38F27A488AB0043A9FF /* Products */;
 			projectDirPath = "";
@@ -598,11 +636,15 @@
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				AC4B505227AEDA0700488105 /* StatsView.swift in Sources */,
 				79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */,
+				79A6FE722829570F00CEBBB3 /* ParentTabView.swift in Sources */,
 				79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */,
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
 				7550853D280F575700967F9F /* MainTabView.swift in Sources */,
 				7984BA8C28281F15004A19B6 /* ChildSettingsView.swift in Sources */,
 				799CC39427A488AB0043A9FF /* ContentView.swift in Sources */,
+				79A6FE7428295A3000CEBBB3 /* ChildAcctSettingsView.swift in Sources */,
+				79CC525E282B25A600954A2B /* ParentEventsView.swift in Sources */,
+				750A33AD2835A0AB0012FBAC /* MapModel.swift in Sources */,
 				751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */,
 				796B76D727AB4C1900B57919 /* ViewMasterController.swift in Sources */,
 				793F052E27B458E00062DE8E /* User.swift in Sources */,
@@ -610,9 +652,11 @@
 				FEECDC9127B97722007DD3CD /* RealmSetup.swift in Sources */,
 				FE11B3CB27B18CB60052CA22 /* TaskRow.swift in Sources */,
 				799CC39227A488AB0043A9FF /* DayKeeperAppApp.swift in Sources */,
+				750A33A928356CD10012FBAC /* MapView.swift in Sources */,
 				FE11B3C527B03ABA0052CA22 /* PreEvent.swift in Sources */,
 				7918B8BD282058C900655D77 /* AddChildrenView.swift in Sources */,
 				7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */,
+				AC11A767282BF57D0068FD82 /* StatFunctions.swift in Sources */,
 				FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */,
 				FE11B3C727B05B900052CA22 /* EventRow.swift in Sources */,
 				75F4D92127C30743001024FC /* CreateEventView.swift in Sources */,
@@ -951,17 +995,29 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+<<<<<<< HEAD
 		AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+=======
+		AC5B8038282B5CCF00386EBC /* XCRemoteSwiftPackageReference "FLCharts" */ = {
+>>>>>>> origin
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
+			repositoryURL = "https://github.com/francescoleoni98/FLCharts";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		FE9AC4152819999400755B24 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -980,6 +1036,7 @@
 			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
+<<<<<<< HEAD
 		AC6013D42828492300059A7E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */;
@@ -988,6 +1045,21 @@
 		AC6013D62828492300059A7E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */;
+=======
+		AC5B8039282B5CCF00386EBC /* FLCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC5B8038282B5CCF00386EBC /* XCRemoteSwiftPackageReference "FLCharts" */;
+			productName = FLCharts;
+		};
+		FE9AC4162819999400755B24 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE9AC4152819999400755B24 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		FE9AC4182819999400755B24 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE9AC4152819999400755B24 /* XCRemoteSwiftPackageReference "realm-swift" */;
+>>>>>>> origin
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
