@@ -37,6 +37,11 @@ class MapAPI: ObservableObject {
         self.locations.insert(Location(name: "Pin", coordinate: CLLocationCoordinate2D(latitude: 43.704540, longitude: -72.288986)), at: 0)
     }
     
+    func setMapLocation(locationName: String, latitude: Double, longitude: Double) {
+        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.locations.removeAll()
+        self.locations.insert(Location(name: locationName, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)), at: 0)
+    }
     func getLocation(address: String, delta: Double) {
         let pAddress = address.replacingOccurrences(of: " ", with: "%20")   // to make address work with API
         let url_string = "\(BASE_URL)?access_key=\(API_KEY)&query=\(pAddress)"
