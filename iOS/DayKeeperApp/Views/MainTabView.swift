@@ -47,6 +47,9 @@ struct MainTabView: View {
                 .tag(3)
         }
         .accentColor(Color("Off-White"))
+        //.tabViewStyle(PageTabViewStyle())
+        //.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
         //.onAppear() {
         //    UITabBar.appearance().barTintColor = .white
        // }

@@ -78,19 +78,24 @@ struct EventsView: View {
     var body: some View {
         
         VStack {
-            HStack(spacing: 20){
-                            Text("Welcome")
-                                .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
-                                .lineLimit(2)
-                                .shadow(radius: 15)
-                                .foregroundColor(Color.textColor)
-                                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
-                                .padding(.vertical, 5.0)
-                                .padding(.leading, 100)
-                                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
-                                .minimumScaleFactor(0.5)
-                                            .lineLimit(1)
+            HStack(spacing: 0){
+                Text("Welcome")
+                    .frame(width: 200, alignment: .leading) // setting width and line limit can force wrapping
+                    .lineLimit(2)
+                    .shadow(radius: 15)
+                    .foregroundColor(Color.textColor)
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 45)!))
+                    //.padding(.vertical, 5.0)
+                    //.padding(.leading, 100)
+                    .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
+                    .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+            }
+            .padding(.top, -10)
+            .frame(width: 500, height: 80, alignment: .center)
+            .background(Color(red:0.436, green: 0.558, blue: 0.925))
 
+            HStack(spacing: 20){
                 Button("Sync iCal", action: {
                     print("before ical sync, these are our events:", eventsVM.events)
                     eventsVM.events.removeAll()
@@ -118,7 +123,7 @@ struct EventsView: View {
                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
                 .foregroundColor(Color.black)
             }
-            .padding(.top, 10)
+            //.padding(.top, -10)
             .frame(width: 500, height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
 
@@ -131,10 +136,13 @@ struct EventsView: View {
                             .font(.system(size: 26))
                             .fontWeight(.bold)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            
                         Toggle("Events", isOn: $showTodayEventsOnly)
                             .labelsHidden()
                         }
                         .padding()
+                        .toggleStyle(SwitchToggleStyle(tint: Color("Icon-Red")))
+                        
                         
                         List(filteredEvents) { event in
                             if !event.isInvalidated {
@@ -199,6 +207,7 @@ struct EventsView: View {
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
             .padding(.top, -8)
         }
+        .background(Color(red:0.436, green: 0.558, blue: 0.925))
     }
 }
 
