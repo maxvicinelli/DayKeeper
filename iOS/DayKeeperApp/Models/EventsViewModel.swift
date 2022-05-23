@@ -89,8 +89,8 @@ final class EventsViewModel : ObservableObject {
             newEvent.NotifBefore = -1
             newEvent.Description = ""
             newEvent.Location = "Dartmouth College"
-            newEvent.Latitude = 43.7
-            newEvent.Longitude = -72.2
+            newEvent.Latitude = 43.704540
+            newEvent.Longitude = -72.288986
             
             // Is there a more efficient way of doing this below? Not sure but this works for now -Jonah
             for e_db in dbiCalEvents {

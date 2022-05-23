@@ -176,6 +176,9 @@ struct EventRow: View {
         .frame(height: 900)
         .background(Color(red:0.436, green: 0.558, blue: 0.925))
         .padding(.bottom, 100)
+        .onAppear(perform: {getDrivingTime(event: event){ time in
+            print("time to location is:", time!, " seconds")
+        }})
     }
     
 }

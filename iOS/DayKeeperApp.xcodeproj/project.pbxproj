@@ -12,6 +12,7 @@
 		751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D4C7C27B0C04A006273F4 /* HelpView.swift */; };
 		753F972227CC250100B5FACB /* NotifResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F972127CC250100B5FACB /* NotifResponseView.swift */; };
 		7550853D280F575700967F9F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550853C280F575700967F9F /* MainTabView.swift */; };
+		756F3671283AEF380060644A /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756F3670283AEF380060644A /* LocationModel.swift */; };
 		7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757837FF27B99CB300D8FF4A /* NotificationManager.swift */; };
 		7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */; };
 		757EDAA427CC00310037A09E /* ActionNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757EDAA327CC00310037A09E /* ActionNotifManager.swift */; };
@@ -38,7 +39,8 @@
 		79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DC168127BAF420007BFE1D /* NotificationsSettingsViews.swift */; };
 		AC11A767282BF57D0068FD82 /* StatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11A766282BF57D0068FD82 /* StatFunctions.swift */; };
 		AC4B505227AEDA0700488105 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4B505127AEDA0700488105 /* StatsView.swift */; };
-		AC5B803A282B5CCF00386EBC /* FLCharts in Frameworks */ = {isa = PBXBuildFile; productRef = AC5B8039282B5CCF00386EBC /* FLCharts */; };
+		AC6013D52828492300059A7E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AC6013D42828492300059A7E /* Realm */; };
+		AC6013D72828492300059A7E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC6013D62828492300059A7E /* RealmSwift */; };
 		AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC81ADAC2818F0A9006280CA /* CoreLocation.framework */; };
 		ACDB8E442836F8AF00BF432D /* locationNotifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB8E432836F8AF00BF432D /* locationNotifs.swift */; };
 		FE11B3BC27ADC3480052CA22 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11B3BB27ADC3480052CA22 /* EventsView.swift */; };
@@ -107,6 +109,7 @@
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		753F972127CC250100B5FACB /* NotifResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifResponseView.swift; sourceTree = "<group>"; };
 		7550853C280F575700967F9F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		756F3670283AEF380060644A /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		757837FF27B99CB300D8FF4A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
 		757EDAA327CC00310037A09E /* ActionNotifManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionNotifManager.swift; sourceTree = "<group>"; };
@@ -188,10 +191,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
+				AC6013D72828492300059A7E /* RealmSwift in Frameworks */,
+				AC6013D52828492300059A7E /* Realm in Frameworks */,
+				AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */,
+=======
 				FE9AC4192819999400755B24 /* RealmSwift in Frameworks */,
 				FE9AC4172819999400755B24 /* Realm in Frameworks */,
 				AC81ADAD2818F0AA006280CA /* CoreLocation.framework in Frameworks */,
 				AC5B803A282B5CCF00386EBC /* FLCharts in Frameworks */,
+>>>>>>> origin
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +255,7 @@
 				AC11A766282BF57D0068FD82 /* StatFunctions.swift */,
 				750A33AC2835A0AB0012FBAC /* MapModel.swift */,
 				ACDB8E432836F8AF00BF432D /* locationNotifs.swift */,
+				756F3670283AEF380060644A /* LocationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,9 +470,14 @@
 			);
 			name = DayKeeperApp;
 			packageProductDependencies = (
+<<<<<<< HEAD
+				AC6013D42828492300059A7E /* Realm */,
+				AC6013D62828492300059A7E /* RealmSwift */,
+=======
 				FE9AC4162819999400755B24 /* Realm */,
 				FE9AC4182819999400755B24 /* RealmSwift */,
 				AC5B8039282B5CCF00386EBC /* FLCharts */,
+>>>>>>> origin
 			);
 			productName = DayKeeperApp;
 			productReference = 799CC38E27A488AB0043A9FF /* DayKeeperApp.app */;
@@ -539,8 +554,12 @@
 			);
 			mainGroup = 799CC38527A488AB0043A9FF;
 			packageReferences = (
+<<<<<<< HEAD
+				AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */,
+=======
 				FE9AC4152819999400755B24 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				AC5B8038282B5CCF00386EBC /* XCRemoteSwiftPackageReference "FLCharts" */,
+>>>>>>> origin
 			);
 			productRefGroup = 799CC38F27A488AB0043A9FF /* Products */;
 			projectDirPath = "";
@@ -623,6 +642,7 @@
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				AC4B505227AEDA0700488105 /* StatsView.swift in Sources */,
 				79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */,
+				756F3671283AEF380060644A /* LocationModel.swift in Sources */,
 				79A6FE722829570F00CEBBB3 /* ParentTabView.swift in Sources */,
 				79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */,
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
@@ -983,7 +1003,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+<<<<<<< HEAD
+		AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+=======
 		AC5B8038282B5CCF00386EBC /* XCRemoteSwiftPackageReference "FLCharts" */ = {
+>>>>>>> origin
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/francescoleoni98/FLCharts";
 			requirement = {
@@ -1020,6 +1044,16 @@
 			package = FE11B3BF27AF26770052CA22 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
+<<<<<<< HEAD
+		AC6013D42828492300059A7E /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		AC6013D62828492300059A7E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC6013D32828492300059A7E /* XCRemoteSwiftPackageReference "realm-swift" */;
+=======
 		AC5B8039282B5CCF00386EBC /* FLCharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC5B8038282B5CCF00386EBC /* XCRemoteSwiftPackageReference "FLCharts" */;
@@ -1033,6 +1067,7 @@
 		FE9AC4182819999400755B24 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FE9AC4152819999400755B24 /* XCRemoteSwiftPackageReference "realm-swift" */;
+>>>>>>> origin
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
