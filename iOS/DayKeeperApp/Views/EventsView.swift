@@ -80,17 +80,17 @@ struct EventsView: View {
     var body: some View {
         NavigationView {
         VStack {
+            Text("Welcome")
+                .frame(width: 150, alignment: .leading) // setting width and line limit can force wrapping
+                .lineLimit(2)
+                .shadow(radius: 15)
+                .foregroundColor(Color.textColor)
+                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size:35)!))
+                //.padding(.leading, 60)
+                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
+                .minimumScaleFactor(0.5)
+                            .lineLimit(1)
             HStack(spacing: 10){
-                            Text("Welcome")
-                                .frame(width: 150, alignment: .leading) // setting width and line limit can force wrapping
-                                .lineLimit(2)
-                                .shadow(radius: 15)
-                                .foregroundColor(Color.textColor)
-                                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size:35)!))
-                                .padding(.leading, 60)
-                                .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.436, green: 0.558, blue: 0.925 )))
-                                .minimumScaleFactor(0.5)
-                                            .lineLimit(1)
 
                 Button("Sync iCal", action: {
                     print("before ical sync, these are our events:", eventsVM.events)
@@ -120,10 +120,10 @@ struct EventsView: View {
                 .background(RoundedRectangle(cornerRadius: 60).fill(Color(red:0.996, green: 0.396, blue: 0.31 )))
                 .foregroundColor(Color.black)
             }
-            .padding(.top, 10)
+            .padding(.top, 5)
             .frame(height: 80, alignment: .center)
             .background(Color(red:0.436, green: 0.558, blue: 0.925))
-            .offset(x: -30, y: 0)
+            //.offset(x: -30, y: 0)
 
             VStack(spacing: 0) {
                     VStack(spacing: 0) {
