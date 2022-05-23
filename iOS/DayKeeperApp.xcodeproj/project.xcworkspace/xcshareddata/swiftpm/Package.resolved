@@ -1,32 +1,34 @@
 {
-  "pins" : [
-    {
-      "identity" : "flcharts",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/francescoleoni98/FLCharts",
-      "state" : {
-        "revision" : "8c09ccd4eef5c3106b3e1befa50e0b4db2513942",
-        "version" : "1.6.0"
+  "object": {
+    "pins": [
+      {
+        "package": "FLCharts",
+        "repositoryURL": "https://github.com/francescoleoni98/FLCharts",
+        "state": {
+          "branch": null,
+          "revision": "98653956b19ef8ea193373b304bb76898bdb1708",
+          "version": "1.7.0"
+        }
+      },
+      {
+        "package": "RealmDatabase",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "d97eed3ae7dff2f2e2ffbda83fa8f3b8c445c6ba",
+          "version": "11.17.0"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-swift",
+        "state": {
+          "branch": "master",
+          "revision": "d3fad65d4b193171a45ab0976029d4235efea804",
+          "version": null
+        }
       }
-    },
-    {
-      "identity" : "realm-core",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-core",
-      "state" : {
-        "revision" : "3c78cccdc0d9f967c5c15b7f3ea081814e2b3ef2",
-        "version" : "11.13.0"
-      }
-    },
-    {
-      "identity" : "realm-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-swift.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "8c1cbf124c5025da9220595e7764059963065891"
-      }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }
