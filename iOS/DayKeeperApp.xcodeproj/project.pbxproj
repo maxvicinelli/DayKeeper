@@ -12,6 +12,7 @@
 		751D4C7D27B0C04A006273F4 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D4C7C27B0C04A006273F4 /* HelpView.swift */; };
 		753F972227CC250100B5FACB /* NotifResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F972127CC250100B5FACB /* NotifResponseView.swift */; };
 		7550853D280F575700967F9F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550853C280F575700967F9F /* MainTabView.swift */; };
+		756F3671283AEF380060644A /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756F3670283AEF380060644A /* LocationModel.swift */; };
 		7578380027B99CB300D8FF4A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757837FF27B99CB300D8FF4A /* NotificationManager.swift */; };
 		7578380227B9BEBF00D8FF4A /* InfoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */; };
 		757EDAA427CC00310037A09E /* ActionNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757EDAA327CC00310037A09E /* ActionNotifManager.swift */; };
@@ -106,6 +107,7 @@
 		751D4C7C27B0C04A006273F4 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		753F972127CC250100B5FACB /* NotifResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifResponseView.swift; sourceTree = "<group>"; };
 		7550853C280F575700967F9F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		756F3670283AEF380060644A /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		757837FF27B99CB300D8FF4A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		7578380127B9BEBF00D8FF4A /* InfoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOverlayView.swift; sourceTree = "<group>"; };
 		757EDAA327CC00310037A09E /* ActionNotifManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionNotifManager.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				7918B8BE282058F000655D77 /* SettingsViewModel.swift */,
 				AC11A766282BF57D0068FD82 /* StatFunctions.swift */,
 				750A33AC2835A0AB0012FBAC /* MapModel.swift */,
+				756F3670283AEF380060644A /* LocationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				79CADA9327AC889B00518544 /* RegistrationView.swift in Sources */,
 				AC4B505227AEDA0700488105 /* StatsView.swift in Sources */,
 				79DC167F27BAF070007BFE1D /* AccountSettingsView.swift in Sources */,
+				756F3671283AEF380060644A /* LocationModel.swift in Sources */,
 				79A6FE722829570F00CEBBB3 /* ParentTabView.swift in Sources */,
 				79DC168227BAF420007BFE1D /* NotificationsSettingsViews.swift in Sources */,
 				FEECDC8D27B4380C007DD3CD /* Constants.swift in Sources */,
