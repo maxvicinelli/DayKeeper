@@ -92,13 +92,13 @@ struct EventRow: View {
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
                 .background(Color(red:0.436, green: 0.558, blue: 0.925 ))
             
-            TextField(event.Description, text: $event.Description)
-                .frame(width: 330, height: 40)
-                .multilineTextAlignment(.center)
-                .background(RoundedRectangle(cornerRadius: 20).fill( Color(red: 0.996, green: 0.396, blue: 0.31)) )
-                .shadow(radius: 5)
-                .padding(.bottom, 15)
-                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+//            TextField(event.Description, text: $event.Description)
+//                .frame(width: 330, height: 40)
+//                .multilineTextAlignment(.center)
+//                .background(RoundedRectangle(cornerRadius: 20).fill( Color(red: 0.996, green: 0.396, blue: 0.31)) )
+//                .shadow(radius: 5)
+//                .padding(.bottom, 15)
+//                .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
             
             let howEarly = event.OnTime + 2
             
@@ -114,62 +114,140 @@ struct EventRow: View {
                 DatePicker("End Date", selection: $event.EndDate)
                     .padding(.bottom, 15)
             }
-            .padding()
+            .padding(.leading, 15)
+            .padding(.trailing, 15)
             .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
             
             HStack {
                 Button("I Was Early", action: manualEarly)
-                //                    .frame(width: 100, height: 60)
-                //                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
-                //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+                    .frame(width: 160, height: 60)
+                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor(named: "Bubble-Yellow")!)))
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+                    .foregroundColor(Color.black)
+                    .padding()
                 
-                Spacer()
+                
+                
                 
                 Button("I Was Late", action: manualLate)
-                //                    .frame(width: 100, height: 60)
-                //                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
-                //                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+                    .frame(width: 160, height: 60)
+                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor(named: "Bubble-Yellow")!)))
+                    .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+                    .foregroundColor(Color.black)
+                    .padding()
             }
-            NavigationLink (
-                destination: MapView(event: event),
-                label: {
-                    Text("Click here to add an address for this event.")
-                })
-            Section(header: Text("Address").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))){
-                Text(event.Location)
-            }
+            .padding(.leading, 5)
+            .padding(.trailing, 5)
+//            NavigationLink (
+//                destination: MapView(event: event),
+//                label: {
+//                    Text("Click to add an address for this event.")
+//                        .frame(width: 350, height: 45, alignment: .center)
+//                        .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor(named: "Icon-Red")!)))
+//                        //.font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+//                        .foregroundColor(Color.black)
+//                })
             
-            Section(header:
-                        Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
-            ){
-                if event.Category?.Title != "" {
-                    Text(event.Category?.Title ?? "")
+            
+            HStack {
+                VStack (alignment: .leading) {
+                    Text("Address:")
+                       
+                        
+                    Text(event.Location)
+                        
+                       
                 }
+                
+                
+            
+               
+                .padding(.leading, 10)
+                Spacer()
+                NavigationLink (
+                    destination: MapView(event: event),
+                    label: {
+                        Image("arrow")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .padding()
+//                            .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor(named: "Icon-Red")!)))
+//                            //.font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 16)!))
+//                            .foregroundColor(Color.black)
+                    })
             }
-            Section(header:
-                        Text("Tasks")
-                        .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))) {
-                if (event.Tasks.count > 0) {
-                    ForEach(event.Tasks,  id: \.self)
-                    { subEvent in
-                        NavigationLink {
-                           // EventRow(event: subEvent, actionNotificationManager: actionNotificationManager)
-                        } label: {
-                            //Text(subEvent.Title)
-                            Text(subEvent)
-                                .background(Color(red: 0.996, green: 0.396, blue: 0.31))
+            .frame(width: 360, height: 64, alignment: .center)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor(named: "Icon-Red")!)))
+            .multilineTextAlignment(.leading)
+            .padding(.bottom, 15)
+            //.frame(width: 400, height: 70, alignment: .center)
+//            Section(header: Text("Address").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))){
+//                Text(event.Location)
+//                    //.padding(.top, 3)
+//            }
+            
+            VStack {
+                
+                HStack {
+                    ZStack (alignment: .leading) {
+                        Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+                    }
+                    .padding(.leading, 15)
+                    Spacer()
+                    
+                    ZStack (alignment: .trailing) {
+                        Text("Tasks").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+                    }
+                    .padding(.trailing, 28)
+                    
+                }
+            
+            
+                HStack {
+                    VStack (alignment: .leading) {
+                        //Text("Category").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+                        if event.Category?.Title != "" {
+                            Text(event.Category?.Title ?? "")
+                        } else {
+                            Text("None")
+                        }
+                        TextField("New Task", text: $new_task)
+                            //.padding(.leading, 15)
+
+                        TextField("Update Category", text: $new_category)
+                           // .padding(.leading, 15)
+                        
+                    }
+                    .padding(.leading, 15)
+                    VStack (alignment: .trailing) {
+                        //Text("Tasks").font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 20)!))
+                        if (event.Tasks.count > 0) {
+                            ForEach(event.Tasks,  id: \.self)
+                            { subEvent in
+                                NavigationLink {
+                                   // EventRow(event: subEvent, actionNotificationManager: actionNotificationManager)
+                                } label: {
+                                    //Text(subEvent.Title)
+                                    Text(subEvent)
+                                        .background(Color(red: 0.996, green: 0.396, blue: 0.31))
+                                }
+                            }
                         }
                     }
+                    .padding(.trailing, 15)
+                    .padding(.bottom, 20)
                 }
-                TextField("New Task", text: $new_task)
-                TextField("Update Category", text: $new_category)
             }
+            
             Button("Save", action: updateEvent)
             
             
                 .frame(width: 330, height: 60, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 20).fill(Color(red:241/255, green: 231/255, blue: 159/255)))
                 .font(Font(uiFont: UIFont(name: "Lemon-Regular", size: 26)!))
+                .foregroundColor(Color.black)
+                .padding(.top, 20)
+            
             
         }
         //}
