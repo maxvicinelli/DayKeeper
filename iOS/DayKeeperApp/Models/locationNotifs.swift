@@ -70,7 +70,20 @@ func create_location_notif(event: Event){
             if ([departure_time  compare: new_departure_time] == NSOrderedDescending) {
                 NSLog(@"previous departure time is later than new departure time");
                 
-                //notify user of new departure time
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM d, h:mm a" // Sep 12, 2:11 PM --> MMM d, h:mm a
+                let stringDate: String = dateFormatter.string(from: new_departure_time as Date)
+                
+                scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "Your new departure time for \(event.Title) is \(stringDate)" ){ error in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            print("scheduled alarm notification for event: \(event.Title)")
+                        }
+                    } else {
+                        print("there was an error w/ scheduling alarm notification")
+                        print(error)
+                    }
+                }
                 
                 
             }
@@ -84,7 +97,16 @@ func create_location_notif(event: Event){
         }
         //user is late or just on time
         else {
-            //tell user to leave now
+            scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "You should leave now for  new \(event.Title)!" ){ error in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        print("scheduled alarm notification for event: \(event.Title)")
+                    }
+                } else {
+                    print("there was an error w/ scheduling alarm notification")
+                    print(error)
+                }
+            }
             
         }
         
@@ -92,9 +114,8 @@ func create_location_notif(event: Event){
         
         // then create new timer with same rules, "recursively"
         if ([event.StartDate  compare: new_departure_time] == NSOrderedDescending) {
-            NSLog(@"event start time is later than new departure time");
-        
-        
+            NSLog(@"current time is earlier than new departure time");
+            create_location_notif(event: Event)
         
     }
 }
@@ -135,3 +156,57 @@ func find_soonest_event(events: [Event]) -> Event {
     
     return soonest_event
 }
+
+
+    func scheduleLocationNotification(onTime: Int, title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, customMessage: String, completion: @escaping (Error?) -> Void){
+        //scheduled alarm will sound at a time based on notification severity
+        //        for event in getEventsFromDb(){
+        //            if event.Category?.Title == category{
+        //
+        //            }
+        //        }
+        //        if let event = getEventsFromDb().first(where: {$0.Category?.Title == category}) {
+        //           severity = event.OnTime * 5
+        //       }
+        
+        //        if event.Category?.Title == category {
+        //                severity = event.OnTime * 5
+        //print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+        
+        
+        print("scheduling alarm notification w/ title \(title)")
+        
+        
+        let severity = onTime + 2
+        var dateComponents = DateComponents()
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.year = year
+        dateComponents.month = month // assuming weekly repeats
+        dateComponents.day = day
+        //        print(dateComponents)
+        // Question -- do we want repeats: true below? I feel like we just want each day's notifications to be created specifically for that day?
+        
+        let date = NSCalendar.current.date(from: dateComponents)! //convert components to date so we can modify
+        let modifiedDate = Calendar.current.date(byAdding: .minute, value: -severity, to: date)! //modify date
+        let components = Calendar.current.dateComponents([.minute, .hour, .day], from: modifiedDate) //convert back to component
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let content = UNMutableNotificationContent()
+        content.title = title + " Alarm"
+        content.body = customMessage
+        content.sound = UNNotificationSound.default
+        //                let unique_identifier = title + "statusNotification"
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        //        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().add(request) { (error:Error?) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+        //        }
+        
+        
+    }
