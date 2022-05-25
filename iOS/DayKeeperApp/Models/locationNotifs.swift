@@ -43,18 +43,26 @@ func create_location_notif(event: Event){
     // check distance from current position and event, and the time it will take to leave
     var driving_time = 0.0
     getDrivingTime(event: event){ time in
+        print("event_time")
+        print(time!)
        driving_time = time!}
     
     print("DRIVING_TIME")
     print(driving_time)
-    
-    let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
-    let time_to_event = diffComponents.second
+
+    print(Date())
+    print(event.StartDate)
+   // let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
+    let time_to_event = event.StartDate.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
    // let minutes = diffComponents.minute
     let departure_time  = Calendar.current.date(
         byAdding: .second,
-        value: -1 * time_to_event!,
+        value: -1 * Int(driving_time),
         to: event.StartDate)
+    print("Time to event")
+    print(time_to_event)
+    print("Departure time")
+    print(departure_time!)
     // create timer to check location in (current time - event time)/2 minutes
     
     // Current time 10 am: x
@@ -63,7 +71,7 @@ func create_location_notif(event: Event){
     // Driving time = (z-y)
     // We want to check in (y-x)/2 time
     // (Y-x) = (z-x) - (Z-y)
-    let timer = Timer.scheduledTimer(withTimeInterval: (driving_time-Double(time_to_event!))/2.0, repeats: false) { timer in
+    let timer = Timer.scheduledTimer(withTimeInterval: (driving_time-Double(time_to_event))/2.0, repeats: false) { timer in
         print("Timer fired!")
         
         var new_driving_time = 0.0
