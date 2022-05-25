@@ -120,11 +120,12 @@ func create_location_notif(event: Event){
         
         // then create new timer with same rules, "recursively"
         if (event.StartDate < new_departure_time!) {
+           //  timer.invalidate() // do we need this?
             NSLog("current time is earlier than new departure time");
             create_location_notif(event: event)
         
     }
-        //else, function with
+        //else, end calls to create_location_notif() and go back to initialize_location_notif_cycle() to call check_status()
 
         
         
@@ -134,7 +135,16 @@ func check_status(){
     // at event time, check location of user
     // update notification severity based on whether user is late or not
     
+    
+    //if early
+    
+    
+    //if late
+    
+    
+    
     //restart cycle
+    //initialize_location_notif_cycle()
 }
 
 func sort_events_by_date() -> [Event] {
@@ -216,4 +226,9 @@ func find_soonest_event(events: [Event]) -> Event {
                 print("Error: \(error.localizedDescription)")
             }
         }
+        
+
+
     }
+
+
