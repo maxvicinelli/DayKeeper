@@ -13,7 +13,7 @@ import RealmSwift
 // initialize notifs
 func initialize_location_notif_cycle(){
     // delete all our notifications first
-    
+    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     
     //sort events by oldest to newest date
     let sorted_events =  sort_events_by_date()
@@ -36,12 +36,15 @@ func initialize_location_notif_cycle(){
 
 func create_location_notif(event: Event){
     // check distance from current position and event, and the time it will take to leave
-    let driving_time = getDrivingTime(event: event, completion: <#(Double?) -> Void#>)
+    var driving_time = 0.0
+    getDrivingTime(event: event){ time in
+       driving_time = time!}
+    
     
     let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
     let time_to_event = diffComponents.second
-    let minutes = diffComponents.minute
-    var departure_time  = Calendar.current.date(
+   // let minutes = diffComponents.minute
+    let departure_time  = Calendar.current.date(
         byAdding: .second,
         value: -1 * time_to_event!,
         to: event.StartDate)
@@ -53,27 +56,29 @@ func create_location_notif(event: Event){
     // Driving time = (z-y)
     // We want to check in (y-x)/2 time
     // (Y-x) = (z-x) - (Z-y)
-    let timer = Timer.scheduledTimer(withTimeInterval: Double((driving_time-time_to_event!)/2), repeats: false) { timer in
+    let timer = Timer.scheduledTimer(withTimeInterval: (driving_time-Double(time_to_event!))/2.0, repeats: false) { timer in
         print("Timer fired!")
         
-        let new_driving_time = getDrivingTime(event: event)
-        var new_departure_time  = Calendar.current.date(
+        var new_driving_time = 0.0
+        getDrivingTime(event: event){ time in
+            new_driving_time = time!}
+        let new_departure_time  = Calendar.current.date(
             byAdding: .second,
-            value: -1 * new_driving_time,
+            value: -1 * Int(new_driving_time),
             to: event.StartDate)
         
         //user is still on time
-        if (Date() < new_departure_time) {
+        if (Date() < new_departure_time!) {
             NSLog("current time is earlier than new departure time");
             
             //user is running early and departure time has moved later
-            if (departure_time > new_departure_time) {
+            if (departure_time! > new_departure_time!) {
                 NSLog("previous departure time is later than new departure time");
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MMM d, h:mm a" // Sep 12, 2:11 PM --> MMM d, h:mm a
-                let stringDate: String = dateFormatter.string(from: new_departure_time as Date)
-                
+                let stringDate: String = dateFormatter.string(from: new_departure_time! as Date)
+                let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
                 scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "Your new departure time for \(event.Title) is \(stringDate)" ){ error in
                     if error == nil {
                         DispatchQueue.main.async {
@@ -97,6 +102,7 @@ func create_location_notif(event: Event){
         }
         //user is late or just on time
         else {
+            let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
             scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "You should leave now for  new \(event.Title)!" ){ error in
                 if error == nil {
                     DispatchQueue.main.async {
@@ -113,11 +119,15 @@ func create_location_notif(event: Event){
         
         
         // then create new timer with same rules, "recursively"
-        if (event.StartDate < new_departure_time) {
+        if (event.StartDate < new_departure_time!) {
             NSLog("current time is earlier than new departure time");
-            create_location_notif(event: Event)
+            create_location_notif(event: event)
         
     }
+        //else, function with
+
+        
+        
 }
 }
 func check_status(){
@@ -157,7 +167,6 @@ func find_soonest_event(events: [Event]) -> Event {
     
     return soonest_event
 }
-
 
     func scheduleLocationNotification(onTime: Int, title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, customMessage: String, completion: @escaping (Error?) -> Void){
         //scheduled alarm will sound at a time based on notification severity
@@ -207,8 +216,4 @@ func find_soonest_event(events: [Event]) -> Event {
                 print("Error: \(error.localizedDescription)")
             }
         }
-        //        }
-        
-        
     }
-
