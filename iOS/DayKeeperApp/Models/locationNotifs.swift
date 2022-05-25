@@ -41,23 +41,18 @@ func initialize_location_notif_cycle(){
 func create_location_notif(event: Event){
     print("create_location_notif")
     // check distance from current position and event, and the time it will take to leave
-    var driving_time = 0.0
-    getDrivingTime(event: event){ time in
-        print("event_time")
-        print(time!)
-       driving_time = time!}
-    
-    print("DRIVING_TIME")
-    print(driving_time)
 
+    getDrivingTime(event: event){ time in
+
+    
     print(Date())
     print(event.StartDate)
-   // let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
+    // let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
     let time_to_event = event.StartDate.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
-   // let minutes = diffComponents.minute
+    // let minutes = diffComponents.minute
     let departure_time  = Calendar.current.date(
         byAdding: .second,
-        value: -1 * Int(driving_time),
+        value: -1 * Int(time!),
         to: event.StartDate)
     print("Time to event")
     print(time_to_event)
@@ -71,15 +66,15 @@ func create_location_notif(event: Event){
     // Driving time = (z-y)
     // We want to check in (y-x)/2 time
     // (Y-x) = (z-x) - (Z-y)
-    let timer = Timer.scheduledTimer(withTimeInterval: (driving_time-Double(time_to_event))/2.0, repeats: false) { timer in
+    let timer = Timer.scheduledTimer(withTimeInterval: (Double(time_to_event)-time!)/2.0, repeats: false) { timer in
         print("Timer fired!")
         
-        var new_driving_time = 0.0
-        getDrivingTime(event: event){ time in
-            new_driving_time = time!}
+        
+        getDrivingTime(event: event){ new_time in
+            
         let new_departure_time  = Calendar.current.date(
             byAdding: .second,
-            value: -1 * Int(new_driving_time),
+            value: -1 * Int(new_time!),
             to: event.StartDate)
         
         //user is still on time
@@ -130,20 +125,21 @@ func create_location_notif(event: Event){
             }
             
         }
-        
+    
         
         
         // then create new timer with same rules, "recursively"
         if (event.StartDate < new_departure_time!) {
-           //  timer.invalidate() // do we need this?
+            //  timer.invalidate() // do we need this?
             NSLog("current time is earlier than new departure time");
             create_location_notif(event: event)
-        
-    }
+            
+        }
         //else, end calls to create_location_notif() and go back to initialize_location_notif_cycle() to call check_status()
-
         
         
+        }
+    }
 }
 }
 func check_status(){
@@ -168,15 +164,15 @@ func sort_events_by_date() -> [Event] {
     let events = getEventsFromDb()
     try! realm.write {
         
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
-    
-    for event in events {
-        let date = dateFormatter.date(from: dateFormatter.string(from: event.StartDate))
-        if let date = date {
-            event.StartDate = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
+        
+        for event in events {
+            let date = dateFormatter.date(from: dateFormatter.string(from: event.StartDate))
+            if let date = date {
+                event.StartDate = date
+            }
         }
-    }
     }
     
     return  events.sorted(by: { $0.StartDate < $1.StartDate }) //ascending order
@@ -186,7 +182,7 @@ func find_soonest_event(events: [Event]) -> Event {
     var soonest_event = events.first!
     for event in events{
         let timeInterval = event.StartDate.timeIntervalSince(NSDate() as Date)
-//find time interval from now till event
+        //find time interval from now till event
         
         if timeInterval > 0 {
             soonest_event = event
@@ -197,57 +193,61 @@ func find_soonest_event(events: [Event]) -> Event {
     return soonest_event
 }
 
-    func scheduleLocationNotification(onTime: Int, title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, customMessage: String, completion: @escaping (Error?) -> Void){
-        //scheduled alarm will sound at a time based on notification severity
-        //        for event in getEventsFromDb(){
-        //            if event.Category?.Title == category{
-        //
-        //            }
-        //        }
-        //        if let event = getEventsFromDb().first(where: {$0.Category?.Title == category}) {
-        //           severity = event.OnTime * 5
-        //       }
-        
-        //        if event.Category?.Title == category {
-        //                severity = event.OnTime * 5
-        //print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
-        
-        
-        print("scheduling alarm notification w/ title \(title)")
-        
-        
-        let severity = onTime + 2
-        var dateComponents = DateComponents()
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-        dateComponents.year = year
-        dateComponents.month = month // assuming weekly repeats
-        dateComponents.day = day
-        //        print(dateComponents)
-        // Question -- do we want repeats: true below? I feel like we just want each day's notifications to be created specifically for that day?
-        
-        let date = NSCalendar.current.date(from: dateComponents)! //convert components to date so we can modify
-        let modifiedDate = Calendar.current.date(byAdding: .minute, value: -severity, to: date)! //modify date
-        let components = Calendar.current.dateComponents([.minute, .hour, .day], from: modifiedDate) //convert back to component
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-        
-        let content = UNMutableNotificationContent()
-        content.title = title + " Alarm"
-        content.body = customMessage
-        content.sound = UNNotificationSound.default
-        //                let unique_identifier = title + "statusNotification"
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        //        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        UNUserNotificationCenter.current().add(request) { (error:Error?) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
+func scheduleLocationNotification(onTime: Int, title: String, year: Int, month: Int, day: Int, hour: Int, minute: Int, customMessage: String, completion: @escaping (Error?) -> Void){
+    //scheduled alarm will sound at a time based on notification severity
+    //        for event in getEventsFromDb(){
+    //            if event.Category?.Title == category{
+    //
+    //            }
+    //        }
+    //        if let event = getEventsFromDb().first(where: {$0.Category?.Title == category}) {
+    //           severity = event.OnTime * 5
+    //       }
+    
+    //        if event.Category?.Title == category {
+    //                severity = event.OnTime * 5
+    //print("in scheduleAlarmNotification, event.Title and event.onTime:", title, onTime)
+    
+    
+    print("scheduling alarm notification w/ title \(title)")
+    
+    
+    let severity = onTime + 2
+    var dateComponents = DateComponents()
+    dateComponents.hour = hour
+    dateComponents.minute = minute
+    dateComponents.year = year
+    dateComponents.month = month // assuming weekly repeats
+    dateComponents.day = day
+    //        print(dateComponents)
+    // Question -- do we want repeats: true below? I feel like we just want each day's notifications to be created specifically for that day?
+    
+    let date = NSCalendar.current.date(from: dateComponents)! //convert components to date so we can modify
+    let modifiedDate = Calendar.current.date(byAdding: .minute, value: -severity, to: date)! //modify date
+    let components = Calendar.current.dateComponents([.minute, .hour, .day], from: modifiedDate) //convert back to component
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    
+    let content = UNMutableNotificationContent()
+    content.title = title + " Alarm"
+    content.body = customMessage
+    content.sound = UNNotificationSound.default
+    //                let unique_identifier = title + "statusNotification"
+    
+    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+    
+    //        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    UNUserNotificationCenter.current().add(request) { (error:Error?) in
+        if let error = error {
+            print("Error: \(error.localizedDescription)")
         }
-        
-
-
     }
+    
+    
+    
+}
 
+//func transfer_time(driving_time: Double, time: Double){
+//  driving_time = time
+
+//}
 
