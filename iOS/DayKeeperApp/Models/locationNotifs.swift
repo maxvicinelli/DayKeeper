@@ -12,6 +12,7 @@ import RealmSwift
 
 // initialize notifs
 func initialize_location_notif_cycle(){
+    print("initialize_location_notif_cycle")
     // delete all our notifications first
     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     
@@ -21,6 +22,9 @@ func initialize_location_notif_cycle(){
     
     // underlying logic: if list is sorted by ascending date, oldest to newest,
     // the first positive time interval is the nearest date in the future
+    if sorted_events.count == 0 {
+        return
+    }
     let soonest_event = find_soonest_event(events: sorted_events)
     
     //create notification for nearest event
@@ -35,11 +39,14 @@ func initialize_location_notif_cycle(){
 }
 
 func create_location_notif(event: Event){
+    print("create_location_notif")
     // check distance from current position and event, and the time it will take to leave
     var driving_time = 0.0
     getDrivingTime(event: event){ time in
        driving_time = time!}
     
+    print("DRIVING_TIME")
+    print(driving_time)
     
     let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
     let time_to_event = diffComponents.second
@@ -148,8 +155,11 @@ func check_status(){
 }
 
 func sort_events_by_date() -> [Event] {
+    let user = app?.currentUser
+    let realm = try! Realm(configuration: (user?.configuration(partitionValue: user!.id))!)
     let events = getEventsFromDb()
-    
+    try! realm.write {
+        
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
     
@@ -158,6 +168,7 @@ func sort_events_by_date() -> [Event] {
         if let date = date {
             event.StartDate = date
         }
+    }
     }
     
     return  events.sorted(by: { $0.StartDate < $1.StartDate }) //ascending order

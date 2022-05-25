@@ -174,8 +174,9 @@ struct EventsView: View {
                         }
                         .onAppear(perform: {
                             print("onAppear called in EventsView")
-                            actionNotifManager.createStatusUpdateNotifs()})
-                            // initialize_location_notif_cycle()
+                            actionNotifManager.createStatusUpdateNotifs()
+                            initialize_location_notif_cycle()
+                        })
                     
                         .onChange(of: scenePhase) { newPhase in
                             if newPhase == .active {
