@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 import UserNotifications
 import RealmSwift
-
+import CoreLocation
 
 // initialize notifs
 func initialize_location_notif_cycle(){
@@ -31,131 +32,168 @@ func initialize_location_notif_cycle(){
     // " Your next event is at X:XX, you should leave your current location by Y:YYY
     // function will calculate the next time to check user's location
     create_location_notif(event: soonest_event)
+    get_user_location()
     
     // function will ccheck at the start time if user was early or late
     // function can then call initialize_location_notif_cycle(), to then start the cycle
-    check_status()
+    check_status(event: soonest_event)
     
 }
 
 func create_location_notif(event: Event){
     print("create_location_notif")
     // check distance from current position and event, and the time it will take to leave
-
+    
     getDrivingTime(event: event){ time in
-
-    
-    print(Date())
-    print(event.StartDate)
-    // let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
-    let time_to_event = event.StartDate.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
-    // let minutes = diffComponents.minute
-    let departure_time  = Calendar.current.date(
-        byAdding: .second,
-        value: -1 * Int(time!),
-        to: event.StartDate)
-    print("Time to event")
-    print(time_to_event)
-    print("Departure time")
-    print(departure_time!)
-    // create timer to check location in (current time - event time)/2 minutes
-    
-    // Current time 10 am: x
-    // Departure time 11:  y
-    // Event time 12 pm:   z
-    // Driving time = (z-y)
-    // We want to check in (y-x)/2 time
-    // (Y-x) = (z-x) - (Z-y)
-    let timer = Timer.scheduledTimer(withTimeInterval: (Double(time_to_event)-time!)/2.0, repeats: false) { timer in
-        print("Timer fired!")
         
         
-        getDrivingTime(event: event){ new_time in
-            
-        let new_departure_time  = Calendar.current.date(
+        print(Date())
+        print(event.StartDate)
+        // let diffComponents = Calendar.current.dateComponents([.second, .minute], from: Date(), to: event.StartDate)
+        let time_to_event = event.StartDate.timeIntervalSinceReferenceDate - Date().timeIntervalSinceReferenceDate
+        // let minutes = diffComponents.minute
+        let departure_time  = Calendar.current.date(
             byAdding: .second,
-            value: -1 * Int(new_time!),
+            value: -1 * Int(time!),
             to: event.StartDate)
+        print("Time to event")
+        print(time_to_event)
+        print("Departure time")
+        print(departure_time!)
+        // create timer to check location in (current time - event time)/2 minutes
         
-        //user is still on time
-        if (Date() < new_departure_time!) {
-            NSLog("current time is earlier than new departure time");
+        // Current time 10 am: x
+        // Departure time 11:  y
+        // Event time 12 pm:   z
+        // Driving time = (z-y)
+        // We want to check in (y-x)/2 time
+        // (Y-x) = (z-x) - (Z-y)
+        let timer = Timer.scheduledTimer(withTimeInterval: (Double(time_to_event)-time!)/2.0, repeats: false) { timer in
+            print("Timer fired!")
             
-            //user is running early and departure time has moved later
-            if (departure_time! > new_departure_time!) {
-                NSLog("previous departure time is later than new departure time");
+            
+            getDrivingTime(event: event){ new_time in
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MMM d, h:mm a" // Sep 12, 2:11 PM --> MMM d, h:mm a
-                let stringDate: String = dateFormatter.string(from: new_departure_time! as Date)
-                let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
-                scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "Your new departure time for \(event.Title) is \(stringDate)" ){ error in
-                    if error == nil {
-                        DispatchQueue.main.async {
-                            print("scheduled alarm notification for event: \(event.Title)")
+                let new_departure_time  = Calendar.current.date(
+                    byAdding: .second,
+                    value: -1 * Int(new_time!),
+                    to: event.StartDate)
+                
+                //user is still on time
+                if (Date() < new_departure_time!) {
+                    NSLog("current time is earlier than new departure time");
+                    
+                    //user is running early and departure time has moved later
+                    if (departure_time! > new_departure_time!) {
+                        NSLog("previous departure time is later than new departure time");
+                        
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM d, h:mm a" // Sep 12, 2:11 PM --> MMM d, h:mm a
+                        let stringDate: String = dateFormatter.string(from: new_departure_time! as Date)
+                        let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
+                        scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "Your new departure time for \(event.Title) is \(stringDate)" ){ error in
+                            if error == nil {
+                                DispatchQueue.main.async {
+                                    print("scheduled alarm notification for event: \(event.Title)")
+                                }
+                            } else {
+                                print("there was an error w/ scheduling alarm notification")
+                                print(error)
+                            }
                         }
-                    } else {
-                        print("there was an error w/ scheduling alarm notification")
-                        print(error)
+                        
+                        
                     }
+                    //user is running early but departure time has moved earlier
+                    else{
+                        
+                        //do nothing
+                        
+                    }
+                    
+                }
+                //user is late or just on time
+                else {
+                    let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
+                    scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "You should leave now for  new \(event.Title)!" ){ error in
+                        if error == nil {
+                            DispatchQueue.main.async {
+                                print("scheduled alarm notification for event: \(event.Title)")
+                            }
+                        } else {
+                            print("there was an error w/ scheduling alarm notification")
+                            print(error)
+                        }
+                    }
+                    
                 }
                 
                 
-            }
-            //user is running early but departure time has moved earlier
-            else{
                 
-                //do nothing
-                
-            }
-            
-        }
-        //user is late or just on time
-        else {
-            let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
-            scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "You should leave now for  new \(event.Title)!" ){ error in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        print("scheduled alarm notification for event: \(event.Title)")
-                    }
-                } else {
-                    print("there was an error w/ scheduling alarm notification")
-                    print(error)
+                // then create new timer with same rules, "recursively"
+                if (event.StartDate < new_departure_time!) {
+                    //  timer.invalidate() // do we need this?
+                    NSLog("current time is earlier than new departure time");
+                    create_location_notif(event: event)
+                    
                 }
+                //else, end calls to create_location_notif() and go back to initialize_location_notif_cycle() to call check_status()
+                
+                
             }
-            
-        }
-    
-        
-        
-        // then create new timer with same rules, "recursively"
-        if (event.StartDate < new_departure_time!) {
-            //  timer.invalidate() // do we need this?
-            NSLog("current time is earlier than new departure time");
-            create_location_notif(event: event)
-            
-        }
-        //else, end calls to create_location_notif() and go back to initialize_location_notif_cycle() to call check_status()
-        
-        
         }
     }
 }
-}
-func check_status(){
+func check_status(event: Event){
     // at event time, check location of user
+    let user_location =  get_user_location()
     // update notification severity based on whether user is late or not
     
-    
+    let calendarDate = Calendar.current.dateComponents([.minute, .hour, .day, .year, .month], from: event.StartDate)
     //if early
     
+    if user_location.latitude == event.Latitude && event.Longitude == user_location.longitude {
+        scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "Nice job being early to   \(event.Title)!" ){ error in
+            if error == nil {
+                DispatchQueue.main.async {
+                    print("scheduled alarm notification for event: \(event.Title)")
+                }
+            } else {
+                print("there was an error w/ scheduling alarm notification")
+                print(error)
+            }
+        }
+        
+        
+        
+        
+        
+        
+    }
     
     //if late
-    
+    else{
+        scheduleLocationNotification(onTime: event.OnTime , title: event.Title, year: calendarDate.year!, month: calendarDate.month!, day: calendarDate.day!, hour: calendarDate.hour!, minute: calendarDate.minute!, customMessage: "Unfortunately you were late to  \(event.Title)." ){ error in
+            if error == nil {
+                DispatchQueue.main.async {
+                    print("scheduled alarm notification for event: \(event.Title)")
+                }
+            } else {
+                print("there was an error w/ scheduling alarm notification")
+                print(error)
+            }
+        }
+        
+        
+        
+        
+        
+        
+    }
     
     
     //restart cycle
-    //initialize_location_notif_cycle()
+    initialize_location_notif_cycle()
 }
 
 func sort_events_by_date() -> [Event] {
@@ -245,9 +283,3 @@ func scheduleLocationNotification(onTime: Int, title: String, year: Int, month: 
     
     
 }
-
-//func transfer_time(driving_time: Double, time: Double){
-//  driving_time = time
-
-//}
-
